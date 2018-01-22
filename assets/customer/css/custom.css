@@ -1,0 +1,89 @@
+.login-error {
+    color: red !important;
+    font-size: 12px;
+    position: absolute;
+}
+.common-select-box
+{
+width:100%;
+height:38px;	
+}
+
+div.dataTables_info
+{
+border:none !important;	
+}
+.modal-body span
+{
+	margin-left:0px;
+	position:relative;
+}
+.modal-footer 
+{
+border:none;	
+}
+#flotTip{
+z-index: 999;
+}
+/* .statistics-view th,.js-customer-list th
+{
+background-color:#dddddd;
+} */
+div.tokenize-sample{
+width:100%;
+}
+
+.gallery-controls{
+display:none !important;	
+}
+.plan-name{
+	color:#fff;
+}
+.selectbox-error .login-error{
+	position:inherit;
+}
+.profile-tab{
+margin:10px;	
+}
+.tab-pane{
+	display:none;
+}
+.tab-pane.active{
+	display:block;
+}
+.profile-preview{
+margin-right:10px;	
+}
+.clearfix{
+clear:both;	
+}
+.profile-tab li a{
+	font-weight:bold;
+}
+.profile-tab li.active a{
+	font-weight:bold;
+	
+/*	color:orange;*/
+}
+.TokensContainer li span{
+	color:#000;
+}
+.sbmit_buttons a{
+ margin-right: 12px;
+}
+.make_payment button,.profile_preview button{
+margin-right:10px;
+}
+div.Tokenize ul.Dropdown li{
+ color:#000;	
+}
+.list-group-item{
+	color:#fff;
+}
+.td-crumb-container a{
+font-size:15px;
+font-weight:bold;	
+}
+.amaran.colorful .colorful-inner{
+	font-weight:bold;
+}

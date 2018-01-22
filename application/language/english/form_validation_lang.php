@@ -1,0 +1,72 @@
+<?php
+$lang['required']			= "Please enter the %s.";
+$lang['file_required']		= "Please select the %s.";
+$lang['file_wo_required']	= "Please select the %s.";
+$lang['file_allowed_type']	= "Please select the valid %s type.";
+$lang['isset']				= "The %s field must have a value.";
+$lang['valid_email']		= "Invalid Email";
+$lang['valid_emails']		= "The %s field must contain all valid email addresses.";
+$lang['valid_url']			= "The %s field must contain a valid URL.";
+$lang['valid_url_format']	= "Invalid URL.";
+$lang['valid_ip']			= "The %s field must contain a valid IP.";
+$lang['min_length']			= "The %s must be at least %s characters in length.";
+$lang['max_length']			= "The %s field can not exceed %s characters in length.";
+$lang['exact_length']		= "The %s field must be exactly %s characters in length.";
+$lang['alpha']				= "The %s field may only contain alphabetical characters.";
+$lang['alpha_numeric']		= "The %s field may only contain alpha-numeric characters.";
+$lang['alpha_dash']			= "The %s field may only contain alpha-numeric characters, underscores, and dashes.";
+$lang['numeric']			= "Please enter valid %s";
+$lang['is_numeric']			= "The %s field must contain only numeric characters.";
+$lang['integer']			= "The %s field must contain integers.";
+$lang['regex_match']		= "The %s field is not in the correct format.";
+$lang['matches']			= "The %s field does not match the %s field.";
+$lang['is_unique'] 			= "The %s already exists.";
+$lang['is_natural']			= "The %s field must contain only positive numbers.";
+$lang['is_natural_no_zero']	= "The %s field must contain a number greater than zero.";
+$lang['decimal']			= "The %s field must contain a decimal number.";
+$lang['less_than']			= "The %s field must contain a number less than %s.";
+$lang['greater_than']		= "The %s field must contain a number greater than %s.";
+$lang['password_check']		= "The %s should contain at least one digit [0-9], one alphabet [A-Z] [a-z] and one special character such as [@#&*!]";
+
+$lang['not_authenticate']	= '<span class="alert alert-error" style="float:left;width:95.8%;text-align: center;">'.'<button class="close" data-dismiss="alert">×</button>'.'You dont have the authentication to access this one.'.'</span>';
+$lang['record_add']			= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Record added successfully'.'</span>';
+$lang['record_update']		= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Record updated successfully'.'</span>';
+$lang['edit_error']			= '<span class="alert alert-error" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Error occured ! Illegal action performed'.'</span>';
+$lang['enabled']			= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Record activated successfully'.'</span>';
+$lang['hotel_approved']			= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'This Hotel Approved successfully'.'</span>';
+$lang['disabled']			= '<span class="alert alert-error" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Record inactivated successfully'.'</span>';
+$lang['cityunfeatured']			= '<span class="alert alert-error" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'City added as Unfeatured Successfully'.'</span>';
+$lang['cityfeatured']			= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'City added as Featured Successfully'.'</span>';
+$lang['citystart']			= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Start your Experince City added Successfully'.'</span>';
+$lang['cityunstart']			= '<span class="alert alert-error" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'In order to activate you need to fill some basic info'.'</span>';
+$lang['deleted']			= '<span class="alert" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Record has been Deleted successfully'.'</span>';
+$lang['bulk_enabled']		= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Selected record(s) has been activated successfully'.'</span>';
+$lang['bulk_disabled']		= '<span class="alert alert-error" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Selected record(s) has been inactivated successfully'.'</span>';
+$lang['suc-pwd']			= "<div class='alert alert-success'><a class='close' data-dismiss='alert'>×</a>Password Changed successfully</div>";
+$lang['user-suc-pwd']		= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Password Changed successfully'.'</span>';
+$lang['unsuc-pwd']			= "<div class='alert alert-error'><a class='close' data-dismiss='alert'>×</a><strong>Unable to change!</strong> Something went wrong</div>";
+$lang['unsuc-oldpwd']		= "<div class='alert alert-error'><a class='close' data-dismiss='alert'></a><strong>Unable to change your password!</strong> Your old password is wrong </div>";
+$lang['user_add']			= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'User created successfully'.'</span>';
+$lang['user_error']			= '<span class="alert alert-error" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Mail send Error!'.'</span>';
+$lang['email_not_exist']	= "<div class='alert alert-error'><a class='close' data-dismiss='alert'>×</a><strong>Email ID does not exist</div>";
+$lang['mail_suc']			= "<div class='alert alert-success'><a class='close' data-dismiss='alert'>×</a>Mail has been successfully sent to your registered Email Address!</div>";
+$lang['mail_failure']		= "<div class='alert alert-error'><a class='close' data-dismiss='alert'>×</a>The mail could not be sent! Caution Error!.</div>";
+$lang['session_expires']	= "<div class='alert alert-error'><a class='close' data-dismiss='alert'>×</a>Invalid request or your session may expired!.</div>";
+$lang['update_position']			= '<span class="alert alert-success" style="float:left">'.'<button class="close" data-dismiss="alert">×</button>'.'Priority updated successfully'.'</span>';
+
+//Front end
+$lang['email_verified']			= "<div class='alert alert-success'><a class='close' data-dismiss='alert'>×</a>Your email verified successfully !</div>";
+$lang['error_delemeter_start'] 	= "<span class='input-error'>";
+$lang['error_delemeter_end'] = "</span>";
+$lang['hotel_mail_suc']			= "<span class='input-success'>Mail has been successfully sent to your registered Email Address!</span>";
+$lang['account_deactivated']	= "<span class='input-error'>Your account may inactivated by admin.</span>";
+$lang['hotel_mail_failure']		= "<span class='input-error'>The mail could not be sent! Caution Error!.</span>";
+$lang['hotel_email_not_exist']	= "<span class='input-error'>Email ID does not exist</span>";
+$lang['hotel_password']			= "<span class='input-success'>Password updated successfully</span>";
+$lang['hotel_session_expires']	= "<span class='failure_create'>Invalid request or your session may expired!.</span>";
+$lang['hotel_mail_verify']	= "<span class='input-error'>Your Mail Id has not been Verified!.</span>";
+$lang['hotel_mailsent_success'] = "<span class='success_create'>Mail has been verified successfully !</span>";
+$lang['created_account'] = "<span class='success_create' >Your Account Created Successfully. Please verify your account before login here.</span>";
+$lang['email_exists']	= "<span class='input-error'>Email Already Exists.Please try again with different account!.</span>";
+/* End of file form_validation_lang.php */
+/* Location: ./system/language/english/form_validation_lang.php */

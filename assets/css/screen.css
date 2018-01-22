@@ -1,0 +1,401 @@
+﻿@media screen and ( max-width: 1024px) {
+    .result-detail .art-image-in {
+        width: 100%;
+    }
+    ul.detail-details li {
+        margin-left: 29px;
+        border: none;
+    }
+    .wrapper {
+        padding: 0px 10px
+    }
+    nav.primary-menu ul li {
+        padding: 0 20px
+    }
+    .search-box {
+        width: 495px
+    }
+    .search-box input[type="text"] {
+        width: 354px
+    }
+    .search-list .selectric .label {
+        height: 45px
+    }
+    .quick-menus-list li label {
+        font-size: 14px
+    }
+    .quick-menus-list li {
+        width: 135px
+    }
+    .middlesection {
+        width: 515px;
+    }
+    .art-image {
+        width: 175px;
+        margin-right: 10px
+    }
+    .art-image-in {
+        height: 100px;
+        width: 165px
+    }
+    .rev-list > ul > li .art-image img {
+        max-height: 100px;
+        max-width: 160px
+    }
+    .rev-list > ul > li .art-text {
+        float: left;
+        position: relative;
+        width: 325px
+    }
+    .art-text h3 {
+        font: 16px/18px "OpenSansRegular";
+        margin-bottom: 4px
+    }
+    .art-text p {
+        color: #5f5f5f;
+        font: 12px/18px "OpenSansRegular";
+        margin-bottom: 5px
+    }
+    .gmap a {
+        font-size: 25px;
+        height: 25px
+    }
+    .rev-text {
+        width: 392px
+    }
+    .search-list {
+        margin-right: 5px;
+        width: 240px
+    }
+}
+
+@media screen and (min-width:100px) and (max-width:736px) {
+    .slicknav_menu {
+        background: none;
+        padding: 0;
+        position: relative;
+        margin-top: 0px;
+        float: left
+    }
+    .slicknav_btn {
+        background: none;
+        float: left;
+        padding: 0
+    }
+    .slicknav_btn .slicknav_menutxt {
+        display: none
+    }
+    .slicknav_menu .slicknav_icon-bar {
+        border-radius: 0;
+        display: block;
+        height: 3px;
+        width: 20px
+    }
+    .slicknav_nav {
+        background: #292d2e;
+        position: absolute;
+        top: 45px;
+        width: 250px;
+        z-index: 999
+    }
+    .slicknav_nav li {
+        border-top: 1px solid #666
+    }
+    .slicknav_nav li:first-child {
+        border-top: 0
+    }
+    .slicknav_nav a {
+        padding: 8px 10px
+    }
+    .slicknav_nav a:hover {
+        background: none;
+        border-radius: 0;
+        color: #afd136
+    }
+    ul.header-list {
+        margin-right: 6px
+    }
+    ul.header-list li {
+        margin: 0;
+        padding: 0 5px
+    }
+    ul.header-list li a {
+        text-transform: none
+    }
+    h1.logo a {
+        width: 179px;
+        height: 60px
+    }
+    .header-profile .header-user span {
+        display: none
+    }
+    header h1 {
+        float: left;
+        margin: 0 15px
+    }
+    .header-user {
+        margin-right: 13px
+    }
+    .header-user ul {
+        right: -6px
+    }
+    .header-user ul::before {
+        right: 2px
+    }
+    .home-add,
+    .advertise,
+    .primary-menu {
+        display: none !important
+    }
+    .slicknav_menu {
+        display: block
+    }
+    .wrapper {
+        width: 100%
+    }
+    .exploreslider-main {
+        float: none;
+        width: 100%;
+        margin-right: 0
+    }
+    .home-left {
+        float: none;
+        width: 94%;
+        margin: 0 3%
+    }
+    .home-banner h2 {
+        font-size: 20px;
+        margin-top: 0px
+    }
+    .home-banner p {
+        font-size: 18px
+    }
+    .search-list {
+        margin: 8px 0px;
+        padding: 0;
+        width: 100%
+    }
+    .search-box {
+        margin: 8px 0 0;
+        padding: 0;
+        width: 100%
+    }
+    .search-list .selectricItems ul,
+    .search-list .selectricItems li,
+    .search-list .selectric .label {
+        font-size: 14px
+    }
+    .search-box input[type="text"] {
+        width: 73%
+    }
+    .search-box input[type="submit"] {
+        width: 27%
+    }
+    .home-explore ul li .explore-image .overlay h3 {
+        font-size: 22px
+    }
+    .university-detail {
+        width: 350px
+    }
+    .home-explore {
+        margin-bottom: 20px
+    }
+    .university-rank,
+    .home-explore {
+        float: none;
+        width: 100%
+    }
+    .ranking-left {
+        float: none;
+        width: 100%;
+        margin: 0 0 15px 0
+    }
+    .ranking-right {
+        margin: 0 auto;
+        float: none
+    }
+    .home-contentbottom ul li {
+        float: none;
+        width: 100%;
+        margin: 0 0 15px 0 !important
+    }
+    .home-contentbottom .multishape-bar {
+        display: none
+    }
+    .exploreslider-main .bx-wrapper {
+        width: 520px !important
+    }
+    .home-banner {
+        padding: 20px 10px 10px
+    }
+    body.home .home-banner {
+        height: auto;
+        padding-bottom: 20px
+    }
+    .quick-menus-list li {
+        width: 150px
+    }
+    .search-detail-page,
+    .search-list-page {
+        padding: 25px 10px
+    }
+    .leftsection {
+        float: none;
+        width: 286px;
+		clear:both;
+    }
+    .middlesection {
+        float: left;
+        margin: 0;
+        width: 100%;
+        max-width: 285px
+    }
+    .search-list-page .middlesection {
+        width: 728px;
+        !important
+    }
+    .rev-list h2 {
+        font-size: 20px;
+        margin: 20px 0px 0px;
+        padding-bottom: 10px
+    }
+    .search-detail-page .rev-list .review-title h2 {
+        margin: 0;
+        padding: 0
+    }
+    a.addreview,
+    a.cancelreview {
+        font-size: 14px
+    }
+    .rev-text {
+        float: left;
+        width: 100%
+    }
+    .addcomments input[type="submit"] {
+        font-size: 12px;
+        margin-top: 13px;
+        padding: 6px 12px
+    }
+    .rightsection {
+        display: none;
+    }
+    .rev-list > ul > li .art-text {
+        float: left;
+        margin-top: 15px;
+        position: relative;
+        width: 100%
+    }
+    .leftsection-add {
+        display: block;
+    }
+    .login-main {
+        max-width: 600px;
+        width: 100%
+    }
+    .login-inner {
+        padding: 0 15px;
+        width: 100%
+    }
+    .login-inner h2,
+    .register-left h2 {
+        font-size: 16px;
+        padding-bottom: 10px
+    }
+    .login-inner .input input,
+    .register-right .input input {
+        font-size: 12px;
+        margin-bottom: 2px;
+        padding: 8px 12px
+    }
+    .login-inner .submit a {
+        font-size: 12px;
+        margin-top: 8px
+    }
+    .login-inner .submit input {
+        padding: 8px 0;
+        width: 95px
+    }
+    .social-login a {
+        width: 40px;
+        text-indent: -9999px
+    }
+    .footer-bottom ul li {
+        padding: 0 10px
+    }
+	ul.detail-details li
+	{	
+	   margin-left:0px;
+	}
+	.result-detail .art-image-in.view_page
+	{
+		width:100%;
+	}
+}
+
+@media screen and (min-width:481px) and (max-width:568px) {
+    .rev-list > ul > li .art-text {
+        width: 340px;
+        margin-top: 0
+    }
+    .rev-text {
+        width: 405px
+    }
+}
+
+@media screen and (min-width:569px) and (max-width:640px) {
+    .rev-list > ul > li .art-text {
+        width: 410px;
+        margin-top: 0
+    }
+    .rev-text {
+        width: 480px
+    }
+}
+
+@media screen and (min-width:641px) and (max-width:667px) {
+    .rev-list > ul > li .art-text {
+        width: 435px;
+        margin-top: 0
+    }
+    .rev-text {
+        width: 500px
+    }
+}
+
+@media screen and (min-width:668px) and (max-width:736px) {
+    .rev-list > ul > li .art-text {
+        width: 505px;
+        margin-top: 0
+    }
+    .rev-text {
+        width: 575px
+    }
+}
+
+@media screen and (min-width:568px) and (max-width:736px) {
+    .search-list {
+        width: 48%
+    }
+    .search-list.search-list2 {
+        margin-left: 4%
+    }
+}
+
+@media max-width:768px) {
+    .art-image {
+        border: none
+    }
+    .result-detail .art-image-in {
+        width: 100%;
+    }
+    ul.detail-details li {
+        margin-left: 25px
+    }
+    .related-links1 ul.detail-details {
+        margin-left: 0px
+    }
+    .search-list-page .middlesection {
+        width: 670px;
+        !important
+    }
+}
