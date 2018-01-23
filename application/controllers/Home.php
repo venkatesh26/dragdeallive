@@ -122,7 +122,6 @@ class Home extends CI_Controller {
 		die;
 	}
 	
-	
 	public function one_time_subscription(){
 		
 		$token=$_GET['token'];
@@ -150,7 +149,6 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/customer', $this->data);	
 	}
 
-	
 	### Sms Package Response ###
 	public function sms_credit_response(){
 		
@@ -272,7 +270,6 @@ class Home extends CI_Controller {
 		}
 	}
 	
-	
 	###################### Payment Error ###############
 	public function payu_failure(){
 		
@@ -295,7 +292,7 @@ class Home extends CI_Controller {
 	}
 	
 	###################### Payment Successfully ###############
-   public function payu_success(){
+    public function payu_success(){
 		$status=$_POST["status"];
 		if($status=='success' || $status=='Success'){
 			$this->load->model('advertisment_model');
@@ -310,7 +307,6 @@ class Home extends CI_Controller {
 		}
 	}
 
-	
     public function plan_package_response(){
 		
 		################### Load Instamojo Class Files ###########
@@ -369,7 +365,6 @@ class Home extends CI_Controller {
 	#Home - Index Page
 	public function index() {
 		
-
 		if(isset($_GET['r_url'])) {
 		    if(!$this->_bot_detected()){
     			$this->load->model('campaign_model');
@@ -426,7 +421,6 @@ class Home extends CI_Controller {
 			}
 		}		
 	}
-	
 	
 	#Home - User Auth Check
 	public function user_auth_check(){
@@ -506,6 +500,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/default', $this->data);
 	}
 	
+	#Home - User Email Check
 	public function user_mail_check(){
 		
 	   $email=$this->input->post('email');	
@@ -870,8 +865,7 @@ class Home extends CI_Controller {
 			$this->load->view('layouts/default', $this->data);
 		}
 	}
-	
-	
+		
 	#Twitter  Account
 	public function twitter(){
 		
@@ -908,8 +902,7 @@ class Home extends CI_Controller {
 		}
 	
 	}
-	
-	
+		
 	#Twitter Callback
 	public function twitter_callback(){
 		header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
