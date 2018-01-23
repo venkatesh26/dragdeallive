@@ -1,17 +1,17 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond $1 !^(index\.php|images|robots\.txt|css|docs|js|system)
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^(.*)$ index.php?/$1 [L]
-RewriteCond %{HTTP_HOST} !^www\.dragdeal\.com [NC]
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule (.*) https://www.dragdeal.com/$1 [R=301,L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond $1 !^(index\.php|images|robots\.txt|css|docs|js|system)
+#RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+#RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+#RewriteRule ^(.*)$ index.php?/$1 [L]
+#RewriteCond %{HTTP_HOST} !^www\.dragdeal\.com [NC]
+#RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+#RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+#RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+#RewriteRule (.*) https://www.dragdeal.com/$1 [R=301,L]
 
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
