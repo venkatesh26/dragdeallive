@@ -854,14 +854,7 @@ class Home_model extends CI_Model {
          );
 		$this->db->where('id',$user_id);
       	$this->db->update('users', $data);
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
    	}
 	
 	######### City Find Or Save ######## 

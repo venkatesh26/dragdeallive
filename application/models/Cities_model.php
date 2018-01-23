@@ -49,14 +49,7 @@ class Cities_model extends CI_Model {
 	function remove_images($id=null)
 	{
 		$this->db->delete('city_images',array('id' => $id));
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
 	public function get_cities_list($flag , $conditions = array(), $sort_field=null, $order_type='Desc', $limit_start=null, $limit_end=null)
 	{  
@@ -96,32 +89,16 @@ class Cities_model extends CI_Model {
 	{
 		$this->db->where('id', $id);
 		$this->db->update('cities', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
+	
 	public function update_featured($id, $data)
 	{
 		$this->db->where('id', $id);
 		$this->db->update('cities', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
+	
 	public function update_en_start_your($id, $data)
 	{
 		if($data['is_home_city']==0)
@@ -221,16 +198,7 @@ class Cities_model extends CI_Model {
 	{
 		$this->db->delete('cities',array('id' => $id));
 		$this->db->delete('areas',array('city_id' => $id));
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-				return true;
-		}
-		else
-		{
-				return false;
-		}
+		return true;
 	}
 	function get_auto_cities() 
 	{

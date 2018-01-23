@@ -271,16 +271,7 @@ class Web_user_model extends CI_Model {
 			);
 		$this->db->where('id', $id);
 		$this->db->update('users', $data);		
-		//echo $this->db->last_query();exit;
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 	
 	public function update_subadmin($id,$image_data) {
@@ -297,15 +288,7 @@ class Web_user_model extends CI_Model {
 
 		$this->db->where('user_id', $id);
 		$this->db->update('user_profiles', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 	public function update_subadmin_status($id,$status)
 	 {
@@ -332,14 +315,7 @@ class Web_user_model extends CI_Model {
 			$this->db->update('users', $data);
 		}
 		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 
    	public function update_status($id, $data)
@@ -868,14 +844,7 @@ class Web_user_model extends CI_Model {
 			$this->db->where('id', $this->session->userdata('user_id'));
 			$this->db->update('users', $data);
 		}
-	   $report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 	public function add_review($user_id,$hotel_id) {
 		$notificate_type = $this->config->item('notification_type');
@@ -914,16 +883,7 @@ class Web_user_model extends CI_Model {
 		   $this->db->insert('hotel_comments', $data);
 		   notification_status($hotel_id,$user_id,$hotel_id,$notificate_type[6],$this->config->item('user_review_hotel'),'6','');
 		}
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
 	public function check_user_exists($hotel_name) {
 		$data=array();
@@ -1458,29 +1418,14 @@ class Web_user_model extends CI_Model {
 			'is_deleted'	=> '0'
 		);
 		$this->db->insert('save_filter', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
+	
 	public function delete_filter($user_id,$id){
 		$this->db->where('user_id', $user_id);
 		$this->db->where('id', $id);
 		$this->db->delete('save_filter');
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 }
 ?>

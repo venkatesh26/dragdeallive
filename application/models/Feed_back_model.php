@@ -50,14 +50,7 @@ class Feed_back_model extends CI_Model {
 	public function delete($id) 
 	{
 		$this->db->delete('feed_backs',array('id' => $id));
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
 }
 ?>

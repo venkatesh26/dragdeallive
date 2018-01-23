@@ -147,14 +147,7 @@ class Users_model extends CI_Model {
 			$this->db->where('id',$user_id);
 		}
       	$this->db->update('users', $data);
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
    	}
 	
 	function get_profile() {
@@ -186,30 +179,16 @@ class Users_model extends CI_Model {
 		return $query->row_array();	
 	}
 	function update_profile($data)
-    	{
+    {
 		$this->db->where('user_id', $this->session->userdata('admin_id'));
 		$this->db->update('user_profiles', $data);
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 	
 	function update_email($data) {
 		$this->db->where('id', $this->session->userdata('admin_id'));
 		$this->db->update('users', $data);
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 	
 	function create_member() {
@@ -306,15 +285,13 @@ class Users_model extends CI_Model {
 						'status'=> '1'
 					);
 		$insert = $this->db->insert('calendar_events', $datas);
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
 		if($report !== 0){
 			return $this->db->insert_id();
 		}else{
 			return false;
 		}
 	}
+	
 	function edit_events($id){
 		$edit_details =  array('title'=> $_POST['title']);
 		$this->db->where('id', $id);

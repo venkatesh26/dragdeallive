@@ -58,16 +58,7 @@ class Advertisment_Customer_List_model extends CI_Model {
 	public function update_status($id, $data) {
 		$this->db->where('id', $id);
 		$this->db->update('advertisment_customer_lists', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
 	public function delete($id) {
 		$this->db->delete('advertisment_customer_lists',array('id' => $id));

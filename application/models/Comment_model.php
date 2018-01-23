@@ -113,14 +113,7 @@ class Comment_model extends CI_Model {
 			$this->db->update('advertisements', $data);
 			
 		}
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return true;
 	}
 	public function update_status($id, $data) 
 	{

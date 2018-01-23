@@ -14,16 +14,8 @@ class Remainder_model extends CI_Model {
 	public function update_status($id, $data){
 		$this->db->where('id', $id);
 		$this->db->update('remainder_settings', $data);
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
-	
 	
 	########### Statistics Data#############
 	public function getStatisticsData($user_id,$limit_start,$limit_end) {

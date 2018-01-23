@@ -256,26 +256,10 @@ class Blog_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('blogs', $data);
 		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
 	}
 	public function delete($id) {
 		$this->db->delete('blogs',array('id' => $id));
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+	    return true;
 	}	
 	public function get_main_category($slug=false) {	
 		if($slug){

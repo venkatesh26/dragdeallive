@@ -94,27 +94,11 @@ class Blog_category_model extends CI_Model {
 	public function update_status($id, $data) {
 		$this->db->where('id', $id);
 		$this->db->update('blog_category', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
 	public function delete($id) {
 		$this->db->delete('blog_category',array('id' => $id));
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
 	public function amenities_auto_list($q) {
 		$this->db->from('blog_category');

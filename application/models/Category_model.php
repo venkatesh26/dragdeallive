@@ -108,28 +108,13 @@ class Category_model extends CI_Model {
 	public function update_status($id, $data) {
 		$this->db->where('id', $id);
 		$this->db->update('categories', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
 	public function delete($id) {
 		$this->db->delete('categories',array('id' => $id));
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
+	
 	public function amenities_auto_list($q) {
 		$this->db->from('categories');
 		$this->db->like('categories.name', $q,'after');

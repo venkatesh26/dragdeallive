@@ -73,18 +73,8 @@ class claim_mybussinness_model extends CI_Model {
 	{
 		$this->db->where('id', $id);
 		$this->db->update('contact_us', $data);
-		
-		$report = array();
-		$report['error'] = $this->db->_error_number();
-		$report['message'] = $this->db->_error_message();
-
-		if($report !== 0){
-				return true;
-		}else{
-				return false;
-		}
+		return true;
 	}
-	
 	
 	public function delete($id) {
 		$this->db->delete('claim_my_bussiness',array('id' => $id));
