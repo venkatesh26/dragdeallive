@@ -147,7 +147,14 @@ class Users_model extends CI_Model {
 			$this->db->where('id',$user_id);
 		}
       	$this->db->update('users', $data);
-		return true;
+		$report = array();
+		$report['error'] = $this->db->_error_number();
+		$report['message'] = $this->db->_error_message();
+		if($report !== 0){
+			return true;
+		}else{
+			return false;
+		}
    	}
 	
 	function get_profile() {
@@ -179,16 +186,30 @@ class Users_model extends CI_Model {
 		return $query->row_array();	
 	}
 	function update_profile($data)
-    {
+    	{
 		$this->db->where('user_id', $this->session->userdata('admin_id'));
 		$this->db->update('user_profiles', $data);
-		return true;
+		$report = array();
+		$report['error'] = $this->db->_error_number();
+		$report['message'] = $this->db->_error_message();
+		if($report !== 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	function update_email($data) {
 		$this->db->where('id', $this->session->userdata('admin_id'));
 		$this->db->update('users', $data);
-		return true;
+		$report = array();
+		$report['error'] = $this->db->_error_number();
+		$report['message'] = $this->db->_error_message();
+		if($report !== 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	function create_member() {
@@ -234,7 +255,6 @@ class Users_model extends CI_Model {
 			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
 		}
 		$query = $this->db->get($table);
-		//echo $this->db->last_query();die;
 		$result = $query->row_array();
 		if(!empty($result)){
 			return $result['numrows'];
@@ -242,6 +262,79 @@ class Users_model extends CI_Model {
 			return '0';
 		}
 	}
+	
+	function add_statistics($table, $type=0){
+		$this->db->select('COUNT(*) AS `numrows`');
+		$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		if($type=='active'){
+			$this->db->where("is_active",1);
+		}
+		$query = $this->db->get($table);
+		$result = $query->row_array();
+		if(!empty($result)){
+			return $result['numrows'];
+		}
+		return '0';
+	}
+	
+	function user_statistics($type='all', $table=null){
+		$this->db->select('COUNT(*) AS `numrows`');
+		if($table==null){
+			$table='users';
+		}
+		if($type=='active'){
+			$this->db->where("is_active",1);
+		}
+		else if($type=='facebook'){
+			$this->db->where("register_type",2);
+			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		}
+		else if($type=='twitter'){
+			$this->db->where("register_type",3);
+			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		}
+		else if($type=='google'){
+			$this->db->where("register_type",4);
+			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		}
+		else if($type=='signup'){
+			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		}
+		else if($type=='signin'){
+			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		}
+		$query = $this->db->get($table);
+		$result = $query->row_array();
+		if(!empty($result)){
+			return $result['numrows'];
+		}
+		return '0';
+	}
+
+	function yellowpages_statistics($type=null, $table=null){
+		if($table==null){
+			$table='advertisements';
+		}
+		$this->db->select('COUNT(*) AS `numrows`');
+		
+		if($type=='active'){ 
+			$this->db->where("is_active",1);
+		}
+		else if($type=='today_active'){
+			$this->db->where("is_active",1);
+			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		}
+		else if($type=='today'){
+			$this->db->where("DATE_FORMAT(".$table.".created,'%Y-%m-%d')",date('Y-m-d'));
+		}
+		$query = $this->db->get($table);
+		$result = $query->row_array();
+		if(!empty($result)){
+			return $result['numrows'];
+		}
+		return '0';
+	}	
+	
 	public function recent_messages(){
 		$this->db->select('messages.id,messages.created,messages.is_high_important,
 		messages.message,messages.is_read,messages.is_high_important,
@@ -285,13 +378,15 @@ class Users_model extends CI_Model {
 						'status'=> '1'
 					);
 		$insert = $this->db->insert('calendar_events', $datas);
+		$report = array();
+		$report['error'] = $this->db->_error_number();
+		$report['message'] = $this->db->_error_message();
 		if($report !== 0){
 			return $this->db->insert_id();
 		}else{
 			return false;
 		}
 	}
-	
 	function edit_events($id){
 		$edit_details =  array('title'=> $_POST['title']);
 		$this->db->where('id', $id);

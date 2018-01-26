@@ -134,14 +134,14 @@ class Web_user_model extends CI_Model {
     public function get_user_users($flag , $conditions = array(), $sort_field=null, $order_type='Asc', $limit_start, $limit_end,$export=null) {
 	   if($export=='')
 		{
-		$this->db->select('users.id,users.created,users.register_type,users.email,user_profiles.first_name,user_profiles.last_name,users.image_dir,users.profile_image,users.created,users.is_active,users.is_email_confirmed,user_profiles.gender_id');
+		$this->db->select('users.id,users.created,users.register_type,users.email,user_profiles.first_name,user_profiles.last_name,users.image_dir,users.profile_image,users.created,users.is_active,users.is_email_confirmed,user_profiles.gender_id, users.contact_number');
 		$this->db->from('users');
 		$this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
 		$this->db->where('users.user_type', '3');
 		}
 		else
 		{
-			$this->db->select('users.id,users.created,users.email,user_profiles.first_name,user_profiles.last_name,users.image_dir,users.profile_image,users.created,users.is_active,users.is_email_confirmed,user_profiles.gender_id,user_profiles.mobile_number,user_profiles.telephone_number,user_profiles.address,cities.name as city_name');
+			$this->db->select('users.id,users.created,users.email,user_profiles.first_name,user_profiles.last_name,users.image_dir,users.profile_image,users.created,users.is_active,users.is_email_confirmed,user_profiles.gender_id,user_profiles.mobile_number,user_profiles.telephone_number,user_profiles.address,cities.name as city_name, users.contact_number');
 		    $this->db->from('users');
 		    $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
 			$this->db->join('cities', 'cities.id = users.preferred_city_id', 'left');

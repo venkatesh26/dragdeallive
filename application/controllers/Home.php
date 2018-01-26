@@ -71,8 +71,8 @@ class Home extends CI_Controller {
 						$this->load->model('notification_model');					
 						$email_body = $this->template->load('mail_template/template', 'mail_template/register_via_campaign', $data,TRUE);
 						$this->load->model('cron_model');
-						$this->cron_model->sendElasticEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
-						$extra_array = array('status'=>'success','msg'=>'You Profile Register Successfully.','url'=>base_url().'home/one_time_subscription?token='.$token.'&plan_id='.$plan_id);
+						$this->cron_model->sendElasticEmail($this->input->post('email'), "You Business Profile Registered Successfully -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
+						$extra_array = array('status'=>'success','msg'=>'You Business Profile Registered Successfully.<br/> Once your payment completed after that your  business profile will be activated automatically.','url'=>base_url().'home/one_time_subscription?token='.$token.'&plan_id='.$plan_id);
 						echo json_encode($extra_array);
 						die;
 				} 

@@ -1,5 +1,10 @@
 RewriteEngine On
-RewriteBase /
+RewriteBase /dragdeallive  
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|images|robots\.txt|css|docs|js|system)
+RewriteRule ^(.*)$ /dragdeallive/index.php?/$1 [L]
 
 #RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond %{REQUEST_FILENAME} !-d

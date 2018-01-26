@@ -22,7 +22,7 @@ class Home_model extends CI_Model {
 				'is_approved' 	=> 1,
 				'created'		=> date('Y-m-d h:i:s'),
 				'modified' 		=> date('Y-m-d h:i:s'),
-				'register_type' => 4,
+				'register_type' => 5,
 				'is_active'		=> 1,
 				'uid'			=> $verify_link,
 			);

@@ -1,4 +1,6 @@
-<?php if( ! defined('BASEPATH')) exit('Direct Access not Allowed'); ?>
+<?php if( ! defined('BASEPATH')) exit('Direct Access not Allowed');			
+	$registerTypes=array('1'=>'Site', '2'=>'FaceBook', '3'=>'GooglePlus', '4'=>'Admin',  '5'=>'Campaign');
+ ?>
 <div class="main">
 	<div class="main-inner">
 	    <div class="container">
@@ -139,7 +141,9 @@
 								<th><?php echo form_checkbox(array('id'=>'selecctall','name'=>'selecctall')); ?></th>
 								<th><?php $sort_url = base_url().ADMIN.'/users/'.$type.'/'.$page_num.'/name/'.$order;   if($sort_seg == 'name') {  echo anchor($sort_url ,'Name'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'Name'.$sort_def_img, $sort_att ); }?></th>	
 								<th> <?php $sort_url = base_url().ADMIN.'/users/'.$type.'/'.$page_num.'/email/'.$order;   if($sort_seg == 'email') {  echo anchor($sort_url ,'Email'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'Email'.$sort_def_img, $sort_att ); }?></th>
+								<th> <?php $sort_url = base_url().ADMIN.'/users/'.$type.'/'.$page_num.'/contact_number/'.$order;   if($sort_seg == 'contact_number') {  echo anchor($sort_url ,'Contact Number'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'Contact Number'.$sort_def_img, $sort_att ); }?></th>
 								<th class="create-wt">  <?php $sort_url = base_url().ADMIN.'/users/'.$type.'/'.$page_num.'/created/'.$order;   if($sort_seg == 'created') {  echo anchor($sort_url ,'Created'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'Created'.$sort_def_img, $sort_att ); }?> </th>
+								<th class="td-actions">Register Type </th>
 								<th class="td-actions">Status </th>
 								<th class="td-actions">Email Verified </th>
 								<th class="td-actions<?php if(count($users)) { ?> new-items<?php } ?>">Actions </th>
@@ -147,7 +151,8 @@
 							  </tr>
 							</thead>
 							<tbody>
-							<?php //print_r($users);
+							<?php 
+							
 							if(count($users)) {
 								foreach($users as $vals) { $i++; 
 							?>
@@ -155,15 +160,23 @@
 								<td><?php echo form_checkbox(array('name'=>'checkall_box[]','class'=>'js-checkbox-all'),$vals['id']); ?></td>
 								<td> <?php echo ucfirst($vals['first_name']); ?> </td>
 								<td> <?php echo $vals['email']; ?> </td>
+								<td> <?php echo $vals['contact_number']; ?> </td>
 								<td> <?php echo timespan(strtotime($vals['created']),time()); ?> </td>
+							    <td><?php
+                                
+								if(isset($registerTypes[$vals['register_type']])){
+									echo '<span class="btn btn-md btn-success">';
+										echo $registerTypes[$vals['register_type']];
+									echo '</span>';
+								}
+								?></span> </td>
 								<td class="td-actions">
 								<?php
 								if($vals['is_active']==1) {
 								echo anchor(base_url().ADMIN.'/users/disable/'.$vals['id'].'/'.$pagestatus.'/'.$pagingstatus.'?sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-ok"> </i>',array('class'=>'btn btn-small btn-success','title'=>'Active'));
 								} else { 
 								echo anchor(base_url().ADMIN.'/users/enable/'.$vals['id'].'/'.$pagestatus.'/'.$pagingstatus.'?sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-remove"> </i>',array('class'=>'btn btn-danger btn-small','title'=>'Inactive'));
-								?>
-								<?php } ?>
+								} ?>
 								</td>
 								<td class="td-actions">
 								<?php
@@ -176,7 +189,7 @@
 								<?php 
 								echo anchor(base_url().ADMIN.'/users/view/'.$vals['id'].'?pagemode='.$pagestatus.'&modestatus='.$pagingstatus.'&sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-list-alt"> </i>',array('class'=>'btn btn-big','title'=>'View'));
 								echo anchor(base_url().ADMIN.'/users/edit/'.$vals['id'].'?pagemode='.$pagestatus.'&modestatus='.$pagingstatus.'&sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-edit"> </i>',array('class'=>'btn btn-big','title'=>'Edit'));
-if($vals['register_type']==1 || $vals['register_type']==4){ 
+								if($vals['register_type']==1 || $vals['register_type']==4){ 
 								echo anchor(base_url().ADMIN.'/users/change_password/'.$vals['id'].'?pagemode='.$pagestatus.'&modestatus='.$pagingstatus.'&sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-key"> </i>',array('class'=>'btn btn-big','title'=>'Change Password'));}
 								
 								echo anchor(base_url().ADMIN.'/users_send_mail/'.$vals['id'].'?pagemode='.$pagestatus.'&modestatus='.$pagingstatus.'&sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-envelope"> </i>',array('class'=>'btn btn-big','title'=>'Send Email'));
