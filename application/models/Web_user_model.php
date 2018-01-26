@@ -1427,5 +1427,14 @@ class Web_user_model extends CI_Model {
 		$this->db->delete('save_filter');
 		return true;
 	}
+	
+	public function delete($id) {
+		$this->db->delete('users',array('id' => $id));
+		$this->db->delete('user_profiles',array('user_id' => $id));
+		$this->db->delete('user_logins',array('user_id' => $id));
+		$this->db->delete('coupons',array('user_id' => $id));
+		$this->db->delete('advertisements',array('user_id' => $id));
+		return true;
+	}
 }
 ?>

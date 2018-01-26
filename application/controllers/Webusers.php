@@ -1,8 +1,7 @@
 <?php
 class Webusers extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->model('web_user_model');
 		$this->load->model('countries_model');
@@ -13,6 +12,17 @@ class Webusers extends CI_Controller {
 		sub_admin_permission_check();
 		$this->load->library('breadcrumbs');
     }
+	
+	public function delete($id){
+		$pageredirect=$this->input->get('pagemode');
+		$pageno=$this->input->get('modestatus');
+		$fieldsorts = $this->input->get('sortingfied');
+		$typesorts = $this->input->get('sortype');
+		if($this->web_user_model->delete($id)) {
+			$this->session->set_flashdata('flash_message', $this->lang->line('deleted'));
+		}
+		redirect(base_url().ADMIN.'/users/'.$pageredirect.'/'.$pageno.'/'.$fieldsorts.'/'.$typesorts);
+	}
 
     public function index($type = null, $page_num =1,$sortfield='id',$order='desc') {
 		$this->load->helper('date_helper');
@@ -284,6 +294,7 @@ class Webusers extends CI_Controller {
 		$data['title']="Users";
 		$this->load->view('includes/template', $data);
     }
+	
 	public function formValidate($edit_flag= false){
 		$this->form_validation->set_rules('first_name', 'First Name','trim|required');
 		if(!$edit_flag){
@@ -299,7 +310,8 @@ class Webusers extends CI_Controller {
 			return "false";
 		}
 	}
-    public function add() {
+    
+	public function add() {
 		// add breadcrumbs
 		$this->breadcrumbs->push('Users', base_url().ADMIN.'/users');
 		$this->breadcrumbs->push('Add', base_url().ADMIN.'/users/add');
@@ -349,6 +361,7 @@ class Webusers extends CI_Controller {
 			$this->load->view('includes/template', $this->data);
 		}
     } 
+	
 	public function view($id) {
 			$getValues = $this->web_user_model->get_values($id);
 			$pageredirect=$this->input->get('pagemode');
@@ -418,7 +431,7 @@ class Webusers extends CI_Controller {
 
     }
 
-	function update_status($id, $status, $pageredirect=null,$pageno){ 
+	public function update_status($id, $status, $pageredirect=null,$pageno){ 
 		$fieldsorts = $this->input->get('sortingfied');
 		$typesorts = $this->input->get('sortype');
 		if($status == 'enable'){
@@ -435,7 +448,8 @@ class Webusers extends CI_Controller {
 		$this->web_user_model->update_status($id, $data);
 		redirect(base_url().ADMIN.'/users/'.$pageredirect.'/'.$pageno.'/'.$fieldsorts.'/'.$typesorts);
 	}
-	function bulkautions($pageredirect=null,$pageno){
+	
+	public function bulkautions($pageredirect=null,$pageno){
 		$fieldsorts = $this->input->get('sortingfied');
 		$typesorts = $this->input->get('sortype');
 		$bulk_type= $this->input->post('more_action_id');
@@ -460,7 +474,7 @@ class Webusers extends CI_Controller {
 		redirect(base_url().ADMIN.'/users/'.$pageredirect.'/'.$pageno.'/'.$fieldsorts.'/'.$typesorts);
 	}
 
-	function update_approve_status($id, $status, $pageredirect=null,$pageno){ 
+	public function update_approve_status($id, $status, $pageredirect=null,$pageno){ 
 		if($status == 'approve'){
 			$data = array('is_approved' => '1');
 			$this->session->set_flashdata('flash_message', $this->lang->line('enabled') );
@@ -495,7 +509,7 @@ class Webusers extends CI_Controller {
 		redirect(base_url().ADMIN.'/users/'.$pageredirect.'/'.$pageno);
     }
    
-   ################ Send Email ######################
+    ################ Send Email ######################
 	public function send_email($id) {
 		$getValues = $this->web_user_model->get_values($id);
 		$pageredirect=$this->input->get('pagemode');

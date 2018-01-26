@@ -208,8 +208,7 @@ class Crons extends CI_Controller {
 		}
 	}
 	
-	
-	######### Cron For Service Reaminders ######
+	######### Cron For Service Remainders ######
 	public function service(){
 		$getRemainders=$this->cron_model->getRemainderList(3);	
 	

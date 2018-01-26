@@ -121,7 +121,6 @@ $route[ADMIN.'/users/enable/(:any)/(:any)/(:any)'] = 'webusers/update_status/$1/
 $route[ADMIN.'/users/disable/(:any)/(:any)/(:any)'] = 'webusers/update_status/$1/disable/$2/$3';//$2-status,$3-page no
 $route[ADMIN.'/users/approve/(:any)/(:any)/(:any)'] = 'webusers/update_approve_status/$1/approve/$2/$3';//$2-status,$3-page no
 $route[ADMIN.'/users/disapprove/(:any)/(:any)/(:any)'] = 'webusers/update_approve_status/$1/disapprove/$2/$3';//$2-status,$3-page no
-$route[ADMIN.'/users/delete/(:any)'] = 'hotelusers/delete/$1';
 $route[ADMIN.'/users/(:any)'] = 'webusers/index/$1';
 $route[ADMIN.'/users/(:any)/(:any)'] = 'webusers/index/$1/$2';
 $route[ADMIN.'/users/(:any)/(:any)/(:any)'] = 'webusers/index/$1/$2/$3';

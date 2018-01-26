@@ -195,6 +195,8 @@
 								echo anchor(base_url().ADMIN.'/users_send_mail/'.$vals['id'].'?pagemode='.$pagestatus.'&modestatus='.$pagingstatus.'&sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-envelope"> </i>',array('class'=>'btn btn-big','title'=>'Send Email'));
 								
 								echo anchor(base_url().ADMIN.'/resendActivationLink/'.$vals['id'].'?pagemode='.$pagestatus.'&modestatus='.$pagingstatus.'&sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-link"> </i>',array('class'=>'btn btn-big','title'=>'Resend Activation Email'));
+								
+								echo anchor(base_url().ADMIN.'/users/delete/'.$vals['id'].'?pagemode='.$pagestatus.'&modestatus='.$pagingstatus.'&sortingfied='.$fieldssort.'&sortype='.$ordersort,'<i class="btn-icon-only icon-trash"> </i>',array('class'=>'btn btn-big delete-con','title'=>'Delete'));
 								?>
 								</td>
 							  </tr>
