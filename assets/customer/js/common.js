@@ -55,6 +55,31 @@ function alert_notification(type,message)
 	$.amaran( object1 );
 }
 
+var businessHoursManager;
+function businessHoursManager(business_hours){
+	console.log(business_hours);
+		var width='120px';
+		if(is_mobile){
+			width='100px';
+		}
+	    businessHoursManager = $("#businessHoursContainer").businessHours({
+		operationTime:business_hours,
+		postInit:function(){
+			$('.operationTimeFrom, .operationTimeTill').timepicker({
+				'timeFormat': 'H:i',
+				'step': 15
+				});
+		},
+		dayTmpl:'<div class="col-md-3 dayContainer" style="width:'+width+'">' +
+			'<div data-original-title="" class="colorBox"><input type="checkbox" class="invisible operationState"></div>' +
+			'<div class="weekday"></div>' +
+			'<div class="operationDayTimeContainer">' +
+			'<div class="operationTime input-group"><span class="input-group-addon"><i class="fa fa-sun-o"></i></span><input type="text" name="startTime" class="mini-time form-control operationTimeFrom" value=""></div>' +
+			'<div class="operationTime input-group"><span class="input-group-addon"><i class="fa fa-moon-o"></i></span><input type="text" name="endTime" class="mini-time form-control operationTimeTill" value=""></div>' +
+			'</div></div>'
+	});
+}
+
 $(document).ready(function()
 {	
 
@@ -231,6 +256,8 @@ $(document).ready(function()
 		formData.append('add_id', $('.tab-content').attr('data-addid'));
 		var step=$('#tabs li').find('a.active').attr('rel');		
 		formData.append('step',step);
+
+		formData.append('business_hours',JSON.stringify(businessHoursManager.serialize()));		
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -243,14 +270,9 @@ $(document).ready(function()
 				$.LoadingOverlay("hide");
 				$('.profile-submit').attr('disabled',false);
 				var data=jQuery.parseJSON(data);
-				if(data.status=="error" || data.all_stepcomplete==0 || data.all_stepcomplete==false) 
+				if(data.status=="error") 
 				{
-					if(typeof data.step!='undefined'){
-						
-						$('#tabs li').find('a.step'+data.step).attr('data-step-complete','1');
-						var el=$('#tabs a.step'+data.step);  
-						$(el).trigger('click');
-					}
+				
 					$("#business_form_url input").each(function() {
 						$(this).next('span').remove();
 					});

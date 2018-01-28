@@ -7,6 +7,8 @@ class Comments extends CI_Controller {
         $this->load->model('comment_model');
 		$this->load->library('breadcrumbs');
 		$this->myUserId=$this->session->userdata('user_id');
+		$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
+		$this->detect=new Mobile_Detect();
     }
 	
 	

@@ -515,6 +515,7 @@ class Listings extends CI_Controller {
 		$plan_redirect_url=base_url().'customers/buyPlan?plan_id='.$plan_id;
 		if($_POST) {
 			
+			
 			$step_complete=false;			
 			$profile_image=array();
 			if(!empty($_FILES) && $_FILES['profile_image']['name']!='') {
@@ -548,98 +549,45 @@ class Listings extends CI_Controller {
 			}
 			
 			$validationField=false;
+	
+			$this->form_validation->set_rules('name','Business Name','trim|required');
+			$this->form_validation->set_rules('owner','Contact Person','trim|required');
+			$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|required|valid_email');
+			$this->form_validation->set_rules('website','Website','trim|valid_url_format');
+			$this->form_validation->set_rules('contact_number','Contact Number','trim|required');
+			$this->form_validation->set_rules('since','Since','trim|required|numeric');
+			$this->form_validation->set_rules('main_category','Category','trim|required');
+	
+			$this->form_validation->set_rules('address_line','Address','trim|required');
+			$this->form_validation->set_rules('city','City','trim|required');
+			$this->form_validation->set_rules('area','Area','trim|required');
+			$this->form_validation->set_rules('zip','Zip','trim|required');
+			$this->form_validation->set_rules('working_start','Start Time','trim|required');
+			$this->form_validation->set_rules('working_end','End Time','trim|required');
+
+			$this->form_validation->set_rules('description','Specify Your Business','trim|required');
 				
-			############# Step 1 DATA ##########
-			if($_POST['step']==1)
-			{
-				$this->form_validation->set_rules('name','Business Name','trim|required');
-				$this->form_validation->set_rules('owner','Contact Person','trim|required');
-				$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|required|valid_email');
-				$this->form_validation->set_rules('website','Website','trim|valid_url_format');
-				$this->form_validation->set_rules('contact_number','Contact Number','trim|required');
-				$this->form_validation->set_rules('since','Since','trim|required|numeric');
-				$this->form_validation->set_rules('main_category','Category','trim|required');
-				$validationField=true;
-			}
-			
-			########## Step 2 Data #########
-			if($_POST['step']==2){
-				$this->form_validation->set_rules('address_line','Address','trim|required');
-				$this->form_validation->set_rules('city','City','trim|required');
-				$this->form_validation->set_rules('area','Area','trim|required');
-				$this->form_validation->set_rules('zip','Zip','trim|required');
-				$this->form_validation->set_rules('working_start','Start Time','trim|required');
-				$this->form_validation->set_rules('working_end','End Time','trim|required');
-				$validationField=true;
-			}
-			
-			########### STEP 3 DATA ###########
-			if($_POST['step']==3){	
-				$this->form_validation->set_rules('description','Specify Your Business','trim|required');
-				$validationField=true;
-			}
-			
-			############ Step 4 Data ########
-			if($_POST['step']==4){
-				$this->form_validation->set_rules('facebook_url','Facebook Url','trim|valid_url_format');
-				$this->form_validation->set_rules('googleplus_url','Google+ Url','trim|valid_url_format');
-				$this->form_validation->set_rules('twitter_url','Twiiter Url','trim|valid_url_format');
-				$this->form_validation->set_rules('linkedin_url','Linkedin Url','trim|valid_url_format');
-				$this->form_validation->set_rules('youtube_url','Youtube Url','trim|valid_url_format');
-				$validationField=true;
-			}
-			
-			
-			if($validationField && $this->form_validation->run() == false){ 				
+
+			$this->form_validation->set_rules('facebook_url','Facebook Url','trim|valid_url_format');
+			$this->form_validation->set_rules('googleplus_url','Google+ Url','trim|valid_url_format');
+			$this->form_validation->set_rules('twitter_url','Twiiter Url','trim|valid_url_format');
+			$this->form_validation->set_rules('linkedin_url','Linkedin Url','trim|valid_url_format');
+			$this->form_validation->set_rules('youtube_url','Youtube Url','trim|valid_url_format');
+			if($this->form_validation->run() == false){ 				
 				echo $this->form_validation->get_json();
 				die;
 			}	
             else {
 				
 				if($advertimentsId!=0){
-					if(isset($_POST['add_id']) && $_POST['add_id']==''){
-						$json_array['status']="true";
-						$json_array['step']=$_POST['step'];
-						if($_POST['step']!=5){
-							$json_array['step']=$_POST['step']+1;
-						}
-						$json_array['step'.$_POST['step'].'_complete']=true;
-						$json_array['all_stepcomplete']=($_POST['step']==5) ? true : false;	
-						$json_array['error_msg']="";
-						$success=$this->advertisment_model->edit_business($advertimentsId,$this->session->userdata('user_id'),$profile_image);
-						echo json_encode($json_array);		
-						die;						
-					}
-					else {
-						$success=$this->advertisment_model->edit_business($advertimentsId,$this->session->userdata('user_id'),$profile_image);
-						$extra_array = array('status'=>'success','msg'=>'Your Business Profile Updated Successfully');
-						
-						########## Notifications Create ##############
-						$this->load->model('notification_model');
-						$userinfo=user_profile_info($this->session->userdata('user_id'));
-						$username=$userinfo['name'];
-						$new_data=array('username'=>$username, 'user_id'=>$this->session->userdata('user_id'));
-						$this->notification_model->common_save_notification('business-profile-updated',$new_data);
-						echo json_encode($extra_array);
-						die;
-					}					
+					$success=$this->advertisment_model->edit_business($advertimentsId,$this->session->userdata('user_id'),$profile_image);
+					$extra_array = array('status'=>'success','msg'=>'Your Business Profile Updated Successfully');	
+					echo json_encode($extra_array);
+					die;					
 				}
 				else{
-					$success=$this->advertisment_model->add_business($this->session->userdata('user_id'), $profile_image);	
-					
-					
-					########## Notifications Create ##############
-					$this->load->model('notification_model');
-					$userinfo=user_profile_info($this->session->userdata('user_id'));
-					$username=$userinfo['name'];
-					$new_data=array('username'=>$username, 'user_id'=>$this->session->userdata('user_id'));
-					$this->notification_model->common_save_notification('business-profile-create',$new_data);					
-					
-					
-					$json_array['status']="error";
-					$json_array['step']=2;
-					$json_array['step1_complete']=true;
-					$json_array['all_stepcomplete']=false;	
+					$success=$this->advertisment_model->add_business($this->session->userdata('user_id'), $profile_image);					
+					$json_array['status']="success";	
 					$json_array['error_msg']="";
 					echo json_encode($json_array);
 					die;

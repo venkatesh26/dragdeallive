@@ -88,6 +88,7 @@ class Advertisment_model extends CI_Model {
 			'last_name'	=> strtolower($this->input->post('last_name')),	
 			'preferred_city_id' => $city_id,
 			'preferred_area_id' => $area_id,
+			'business_hours'=>$this->input->post('business_hours')
 		);
 		$this->db->where('user_id', $user_id);
 		$this->db->where('parent_user_id', $parentUserId);
@@ -1550,7 +1551,6 @@ class Advertisment_model extends CI_Model {
  	public function edit_business($addId, $user_id,$profile_image_data)
 	{
 		####### STEP 1 DATA #########
-		if($_POST['step']==1){
 			$all_contact_number='';
 			if($this->input->post('contact_number')){
 				$all_contact_number=$this->input->post('contact_number');
@@ -1562,15 +1562,7 @@ class Advertisment_model extends CI_Model {
 				$all_contact_number=$all_contact_number.','.$this->input->post('contact_number2');
 			}
 			$contact_numbers=explode(',',$all_contact_number);
-			$data = array(
-			'name'=> $this->input->post('name'),			
- 			'owner'=> $this->input->post('owner'),	
-			'email'=>$this->input->post('email'),
-			'no_of_employees'=> $this->input->post('no_of_employees'),			
-			'since'=> $this->input->post('since'),	
-			'website'=>$this->input->post('website'),
-			'contact_number'=>$all_contact_number
-			);
+			
 
 			$contact_numbers=explode(',',$all_contact_number);
 			$this->db->delete('advertisment_phones',array('advertisment_id' => $addId));	
@@ -1589,33 +1581,15 @@ class Advertisment_model extends CI_Model {
 			{
 				$data=array_merge($data,$profile_image_data);
 			}			
-		}
-		########### STEP 2 DATA ###########
-		if($_POST['step']==2){
+
+
 			if($this->input->post('city')){
 				$city_id=$this->cityFindOrSave($this->input->post('city'));
 			}
 			if($this->input->post('area')){
 				$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
 			}
-			$data = array(
-				'address_line'=>$this->input->post('address_line'),
-				'city_id'=> $city_id,
-				'city_name'=>$this->input->post('city'),
-				'area_name'=>$this->input->post('area'),
-				'area_id'=> $area_id,
-				'zip' =>$this->input->post('zip'),
-				'fax'=>$this->input->post('fax'),
-				'working_start'=>$this->input->post('working_start'),
-				'working_end'=>$this->input->post('working_end'),
-				'latitude'=>$this->input->post('latitude'),
-				'longitude'=>$this->input->post('longitude'),
-			);	
-		}
-		
-		########### STEP 3 DATA ###########
-		if($_POST['step']==3){
-			
+
 			if($this->input->post('city')){
 				$city_id=$this->cityFindOrSave($this->input->post('city'));
 			}
@@ -1661,27 +1635,11 @@ class Advertisment_model extends CI_Model {
 			$monthly_analytics=($this->input->post('monthly_analytics')=='on' || $this->input->post('monthly_analytics')==1) ? 1 : 0;
 			$notification_settings=array('custom_meta'=>$custom_meta,'social_media'=>$social_media,'enquiry_via_mail'=>$enquiry_via_mail,'monthly_analytics'=>$monthly_analytics);
 			$notification_settings=serialize($notification_settings);
-			$data = array(	
-				'notification_settings'=>$notification_settings,
-				'category_id'=>$category_data_id_update,
-				'main_category_id'=>$main_category_id,
-				'meta_keywords'=>'',
-				'meta_description'=>'',
-				'description'=>$this->input->post('description'),
-				'short_description'=>$this->input->post('short_description'),
-			);
-		}
-		
-		########### STEP 4 DATA ###########
-		if($_POST['step']==4){
+			
+
 			$other_info=array('facebook_url'=>$this->input->post('facebook_url'),'googleplus_url'=>$this->input->post('googleplus_url'),'twitter_url'=>$this->input->post('twitter_url'),'linkedin_url'=>$this->input->post('linkedin_url'),'youtube_url'=>$this->input->post('youtube_url'),'whatsup_contact_number'=>$this->input->post('whatsup_contact_number'));
 			$other_info=serialize($other_info);
-			$data = array(	
-				'other_info'=>$other_info
-			);
-		}
 		
-		if($_POST['step']==5){
 			if($this->input->post('city')){
 				$city_id=$this->cityFindOrSave($this->input->post('city'));
 			}
@@ -1719,17 +1677,42 @@ class Advertisment_model extends CI_Model {
 				);
 				$this->db->insert('advertisment_customer_service', $listing_data);
 			}
-		}
 			
-	    if(!empty($data))
-		{
+			$data = array(	
+				'name'=> $this->input->post('name'),			
+				'owner'=> $this->input->post('owner'),	
+				'email'=>$this->input->post('email'),
+				'no_of_employees'=> $this->input->post('no_of_employees'),			
+				'since'=> $this->input->post('since'),	
+				'website'=>$this->input->post('website'),
+				'contact_number'=>$all_contact_number,
+				'address_line'=>$this->input->post('address_line'),
+				'city_id'=> $city_id,
+				'city_name'=>$this->input->post('city'),
+				'area_name'=>$this->input->post('area'),
+				'area_id'=> $area_id,
+				'zip' =>$this->input->post('zip'),
+				'fax'=>$this->input->post('fax'),
+				'working_start'=>$this->input->post('working_start'),
+				'working_end'=>$this->input->post('working_end'),
+				'latitude'=>$this->input->post('latitude'),
+				'longitude'=>$this->input->post('longitude'),
+				'notification_settings'=>$notification_settings,
+				'category_id'=>$category_data_id_update,
+				'main_category_id'=>$main_category_id,
+				'meta_keywords'=>'',
+				'meta_description'=>'',
+				'description'=>$this->input->post('description'),
+				'short_description'=>$this->input->post('short_description'),
+				'other_info'=>$other_info,
+				'business_hours'=>$this->input->post('business_hours')
+			);
 			$common_data=array('updated_at'=> date('Y-m-d h:i:s'),'user_id'=>$user_id);
 			$data=array_merge($common_data,$data);
 			$this->db->where('id', $addId);
-			$this->db->update('advertisements', $data);
-		}		
+			$this->db->update('advertisements', $data);		
 	
-	  return true;
+	    return true;
 	}
 	
 	################## Update Advertisment Views Count############
@@ -1917,7 +1900,8 @@ class Advertisment_model extends CI_Model {
 			'meta_keywords'=>$this->input->post('meta_keywords'),
 			'meta_description'=>$this->input->post('meta_description'),
 			'other_info'=>$other_info,
-			'notification_settings'=>$notification_settings
+			'notification_settings'=>$notification_settings,
+			'business_hours'=>$this->input->post('business_hours')
 		);
 		if(!empty($profile_image_data))
 		{

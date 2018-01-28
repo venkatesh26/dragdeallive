@@ -8,6 +8,8 @@ class Groups extends CI_Controller {
 		$this->load->library('breadcrumbs');
 		$this->site_name=admin_settings_initialize('sitename');
 		$this->myUserId=$this->session->userdata('user_id');
+		$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
+		$this->detect=new Mobile_Detect();
     }
 	
 	######## Edit Groups #########

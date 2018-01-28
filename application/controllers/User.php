@@ -7,6 +7,8 @@ class User extends CI_Controller {
 		$this->load->model('webuser_model');
 		$this->load->model('Users_model');
 		$this->load->library('form_validation');
+				$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
+		$this->detect=new Mobile_Detect();
     }
 	function index() 
 	{

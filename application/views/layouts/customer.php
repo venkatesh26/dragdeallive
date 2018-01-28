@@ -16,7 +16,8 @@
 		<link href='<?php echo base_url().'assets/customer';?>/css/jquery.tokenize.css' rel='stylesheet'>
 		<script src="<?php echo base_url();?>assets/new_customer/js/jquery.min.js"></script>    
       <script>
-         var cfg = {"cfg":{"path_absolute":"<?php echo base_url(); ?>"}};		
+        var cfg = {"cfg":{"path_absolute":"<?php echo base_url(); ?>"}};	
+		var is_mobile='<?php echo $this->detect->isMobile();?>';		 
       </script>	
       <script>
          var success_message='<?php echo $this->session->flashdata('success'); ?>';
@@ -120,7 +121,14 @@
 		<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.livequery.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/customer/js/jquery.tokenize.js"></script>
 		<script src="<?php echo base_url();?>assets/customer/js/loadingoverlay.min.js"></script>
-		<script src="<?php echo base_url();?>/assets/customer/js/bootstrap-timepicker.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url();?>assets/customer/js/common.js"></script>
+		<script src="<?php echo base_url();?>assets/customer/js/bootstrap-timepicker.min.js"></script>
+
+
+			<link href='<?php echo base_url().'assets/customer/';?>css/jquery.timepicker.min.css' rel='stylesheet'>
+
+		<script src="<?php echo base_url();?>assets/customer/js/jquery.timepicker.min.js"></script>
+			<script src="<?php echo base_url();?>assets/customer/js/jquery.businessHours.min.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url();?>assets/customer/js/common.js"></script>
    </body>
 </html>

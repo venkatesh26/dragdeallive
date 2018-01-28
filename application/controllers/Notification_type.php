@@ -10,6 +10,8 @@ class Notification_type extends CI_Controller {
         }
 		sub_admin_permission_check();
 		$this->load->library('breadcrumbs');
+				$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
+		$this->detect=new Mobile_Detect();
     }
 
     public function index($type = null, $page_num =1,$sortfield='id',$order='desc') {

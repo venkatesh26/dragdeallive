@@ -12,8 +12,10 @@ class Settings extends CI_Controller {
 			redirect($url);
 		}		
 		$this->load->model('settings_model');
-			$this->load->library('breadcrumbs');
+		$this->load->library('breadcrumbs');
 		$this->site_name=admin_settings_initialize('sitename');
+		$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
+		$this->detect=new Mobile_Detect();
 	}
 	
 	public function add(){
