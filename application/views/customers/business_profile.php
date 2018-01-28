@@ -1,4 +1,23 @@
 <style>
+.box-label{
+margin-left:30px;	
+}
+.red-box{
+position:absolute;
+background:red;
+width:12px;
+height:12px;
+padding:10px;
+margin:2px;	
+}
+.green-box{
+position:absolute;
+background:#85CE36;
+width:12px;
+height:12px;
+padding:10px;
+margin:2px;	
+}
 .clean {
     clear: both;
 }
@@ -22,12 +41,12 @@
 }
 
 .colorBox.WorkingDayState {
-    border: 2px solid #4E8059;
-    background-color: #8ade8f;
+    border: 2px solid #eee;
+    background-color: #85CE36;
 }
 
 .colorBox.RestDayState {
-    border: 2px solid #7a1c44;
+    border: 2px solid #eee;
     background-color: #de5962;
 }
 
@@ -182,12 +201,12 @@
                         </div>
 						<div class="form-group col-md-3">
 						  <label class="control-label" for="maincategory_autocomplete">Category <span style="color:red;">*</span></label>
-						  <input type="text" class="form-control" name="main_category" id="maincategory_autocomplete" value="<?php echo $main_category_name;?>" placeholder="Select Main Category">
+						  <input type="text" class="form-control" name="main_category" id="maincategory_autocomplete" value="<?php echo $main_category_name;?>" placeholder="Select Category">
 						  <input type="hidden" class="form-control" name="main_category_id" id="main_category_id" value="<?php echo $main_category_id;?>">
 						</div>
 
 						<div class="form-group col-md-3">
-						<label class="control-label" for="since">Since <span style="color:red;">*</span></label>
+						<label class="control-label" for="since">Since <span style="color:red;">* </span> <i class="fa fa-question-circle tooltipdiv cursor" style="font-size:12px;">   <span class="tooltiptext">On which year did you start your business ?</span> </i></label>
 						<input type="text" class="form-control" id="since"  name="since" value="<?php echo $since;?>" placeholder="Company Started Year" autocomplete="off">
 						</div>
 						<div class="form-group col-md-3">
@@ -288,9 +307,14 @@
 			    </div>
 				   <div class="box-content clearfix">   
 						<div class="form-group col-md-12">
-						<label class="control-label" for="service">Bussiness Hours (<span class="red-box"></span> - Closed , <span class="green-box"></span> - Opened)</span></label>
-						<div id="businessHoursContainer">
+				
+							<label class="control-label" for="service">Bussiness Hours</label>
+							( <span class="red-box"></span><span class="box-label">- Closed </span>, <span class="green-box"></span> <span class="box-label"> - Opened)</span></span>
 						</div>
+			
+						<div class="form-group col-md-12">
+							<div id="businessHoursContainer">
+							</div>
 						</div>
 					</div>
 
