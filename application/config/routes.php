@@ -649,4 +649,5 @@ $route['my-notifications-settings'] = 'settings/notification_settings';
 $route['my-campaign-offers'] = 'campaigns/my_campaign_offers';
 $route['upgrade-plan'] = 'customers/upgrade_plan_packages_list';
 $route['bussiness-claims'] = 'customers/claim_bussiness';
+$route['change-password'] = 'customers/change_password';
 ?>

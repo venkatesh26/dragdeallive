@@ -149,7 +149,7 @@ class User extends CI_Controller {
 				$this->form_validation->set_rules('password2','Confirm Password','trim|required|min_length[6]|max_length[32]|matches[password]');
 				$this->form_validation->set_error_delimiters('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><strong>', '</strong></div>'); 
 				if ($this->form_validation->run()) { //echo "---	".$this->uri->segment(4).$user_id;exit;
-					if($this->Users_model->change_password($user_id,'',md5($this->input->post('password2')))==true){
+					if($this->Users_model->change_password($user_id, md5($this->input->post('password2')))==true){
 						$getValues = $this->Users_model->get_users_profile($this->uri->segment(2),$user_id);
 						$data = array(
 							'user_name'  => $getValues->name,
@@ -157,7 +157,6 @@ class User extends CI_Controller {
 							'password'	 => $this->input->post('password')	
 						);
 						$email_body=$this->template->load('mail_template/template', 'mail_template/admin_change_users_password', $data,TRUE);
-						//echo $email_body;die;
 						$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
 						$this->email->to($getValues->email);
 						$this->email->subject('Password Changed');
@@ -198,9 +197,8 @@ class User extends CI_Controller {
 				$this->form_validation->set_error_delimiters('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><strong>', '</strong></div>'); 
 				if ($this->form_validation->run()) {//echo "---	".$this->uri->segment(4).$user_id;exit;
 					if($this->Users_model->check_password($user_id) == true){
-						if($this->Users_model->change_password($user_id,md5($this->input->post('old_password')),md5($this->input->post('password2')))==true){
+						if($this->Users_model->change_password($user_id, md5($this->input->post('password2')))==true){
 							$this->session->set_flashdata('flash_message', $this->lang->line('suc-pwd'));
-						//	redirect(ADMIN.'/change_password');
 						if(!$this->uri->segment(4)){
 							redirect(ADMIN.'/change_password');
 						}else{						

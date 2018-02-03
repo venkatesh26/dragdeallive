@@ -17,7 +17,7 @@ class Customers extends CI_Controller {
 		$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
 		$this->detect=new Mobile_Detect();
     }
-    
+	
     ######## After Login Claim My Business #########
 	public function claim_bussiness(){
 		$data=array();
@@ -1121,39 +1121,28 @@ class Customers extends CI_Controller {
 	
 	##########Cusomer Change Password################# 
 	public function change_password()  {
-		if($this->session->userdata('is_user_logged_in'))
-		{
-			if ($this->input->server('REQUEST_METHOD') === 'POST')
-			{
-				$this->form_validation->set_rules('old_password', 'Old password', 'trim|required|min_length[6]|max_length[32]');
-				$this->form_validation->set_rules('new_password','New Password','trim|required|min_length[6]|max_length[32]');
-				$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|min_length[6]|max_length[32]|matches[new_password]');
-				if($this->form_validation->run()) 
-				{
-				    if($this->home_model->check_password($this->session->userdata('user_id')))
-					{
-						$this->home_model->change_password($this->session->userdata('user_id'),md5($this->input->post('old_password')),md5($this->input->post('new_password')));	
-				        $extra_array = array('status'=>'success','msg'=>'Password Changed Successfully...!','url'=>base_url());
-						echo json_encode($extra_array);
-						die;
-					}
-					else
-					{
-					          $json_array['status']="error";
-					          $json_array['sts']="custom_err";
-                              $json_array['msg']="Invali password Try Again";	
-							  $json_array['error_msg']="Invalid Password";
-						      echo json_encode($json_array);
-						      die;		
-					}
-				}
-				else
-				{
-				   echo $this->form_validation->get_json();
-				   die;
-				}
-				
+		if(!$this->session->userdata('is_user_logged_in')) {
+			$url = 'login';
+			redirect($url);
+		}	
+		$this->data=array();
+		if ($this->input->server('REQUEST_METHOD') === 'POST'){
+			$this->form_validation->set_rules('new_password','New Password','trim|required|min_length[6]|max_length[32]');
+			$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|min_length[6]|max_length[32]|matches[new_password]');
+			if($this->form_validation->run()){
+				$this->home_model->change_password($this->session->userdata('user_id'), md5($this->input->post('new_password')));	
+				$extra_array = array('status'=>'success','msg'=>'Password Changed Successfully...!','url'=>base_url());
+				echo json_encode($extra_array);
+				die;
 			}
+			else {
+			   echo $this->form_validation->get_json();
+			   die;
+			}
+		}
+		else{
+			$this->data['main_content']=$this->load->view('customers/change_password', $this->data,true);
+			$this->load->view('layouts/customer', $this->data);	
 		}
 	}
 	

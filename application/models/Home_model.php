@@ -847,7 +847,7 @@ class Home_model extends CI_Model {
 		}
 	}
 	
-	function change_password($user_id=null,$old_pwd=null,$pwd) 
+	function change_password($user_id=null, $pwd) 
 	{
    		$data = array(
           'password' => $pwd
