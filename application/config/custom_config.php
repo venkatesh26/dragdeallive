@@ -19,6 +19,7 @@ $config['cities_image_icon_url']    = 'app_data/cities_images/';
 $config['blog_icon_url']    = 'app_data/blogs/';
 $config['coupon_icon_url']    = 'app_data/coupons/';
 $config['campaign_url']    = 'app_data/campaign/';
+$config['email_profile']    = 'default';
 
 $cis=& get_instance();
 $config['bulkactions'] = array(''=>'Select action','1'=>'Active','2'=>'Inactive');

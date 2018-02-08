@@ -37,14 +37,14 @@ class Crons extends CI_Controller {
 				############ Customer Enquiry Notification ######
 				$notificatiosTemplate="mail_template/customer_keyword_enquiry_notification";
 				$email_body = $this->template->load('mail_template/template', $notificatiosTemplate, $data, TRUE);
-				$this->cron_model->sendElasticEmail($list['email'], "Thanks For Enquiry -".$this->site_name, "",$email_body, $siteEmail, "Dragdeal");
+				$this->cron_model->sendEmail($list['email'], "Thanks For Enquiry -".$this->site_name, "",$email_body, $siteEmail, "Dragdeal");
 				
 				########## Agent Notification ##############
 				$notificatiosTemplate="mail_template/agent_keyword_enquiry_notification";
 				$data=array('username'=>"Sir/Madam",'userInfo'=>$list);
 				$email_body = $this->template->load('mail_template/template', $notificatiosTemplate, $data, TRUE);
 				$customer_emails=implode(',', $customer_emails);
-				$this->cron_model->sendElasticEmail($customer_emails, "Dreagdeal Enquiry -".$this->site_name, "",$email_body, $siteEmail, "Dragdeal");
+				$this->cron_model->sendEmail($customer_emails, "Dreagdeal Enquiry -".$this->site_name, "",$email_body, $siteEmail, "Dragdeal");
 			}
 			
 			$campaign_data=array(

@@ -1704,8 +1704,7 @@ class Advertisment_model extends CI_Model {
 				'meta_description'=>'',
 				'description'=>$this->input->post('description'),
 				'short_description'=>$this->input->post('short_description'),
-				'other_info'=>$other_info,
-				'business_hours'=>$this->input->post('business_hours')
+				'other_info'=>$other_info
 			);
 			$common_data=array('updated_at'=> date('Y-m-d h:i:s'),'user_id'=>$user_id);
 			$data=array_merge($common_data,$data);
@@ -1900,8 +1899,7 @@ class Advertisment_model extends CI_Model {
 			'meta_keywords'=>$this->input->post('meta_keywords'),
 			'meta_description'=>$this->input->post('meta_description'),
 			'other_info'=>$other_info,
-			'notification_settings'=>$notification_settings,
-			'business_hours'=>$this->input->post('business_hours')
+			'notification_settings'=>$notification_settings
 		);
 		if(!empty($profile_image_data))
 		{
@@ -2039,7 +2037,7 @@ class Advertisment_model extends CI_Model {
 			$table_data=array(
 			'created'=>date('Y-m-d h:i:s'),
 			'name'=>$name,
-			'is_active'=>1,
+			'is_active'=>0,
 			);
          $this->db->insert('categories', $table_data);			
 		 return $this->db->insert_id();
@@ -2064,7 +2062,7 @@ class Advertisment_model extends CI_Model {
 				'created'=>date('Y-m-d h:i:s'),
 				'name'=>$name,
 				'type'=>2,
-				'is_active'=>1,
+				'is_active'=>0,
 			);
 			$this->db->insert('categories', $table_data);			
 			return $this->db->insert_id();
@@ -2073,7 +2071,9 @@ class Advertisment_model extends CI_Model {
 	
 	################# Get Advertisment ##################
 	public function get_advertisments($flag , $conditions = array(), $sort_field=null, $order_type='Desc', $limit_start, $limit_end,$r_type=null) {  
-		$this->db->select('SQL_CALC_FOUND_ROWS advertisements.id,advertisements.id,advertisements.created,advertisements.name,advertisements.owner,advertisements.address_line,advertisements.city_name,advertisements.is_active,advertisements.email,advertisements.owner',false);
+		$this->db->select('SQL_CALC_FOUND_ROWS advertisements.id,advertisements.id,advertisements.user_id,advertisements.created,advertisements.name,advertisements.owner,advertisements.address_line,advertisements.city_name,advertisements.is_active,advertisements.email,advertisements.owner,users.email AS user_email ,users.id AS user_id',false);
+
+				$this->db->join('users','users.id=advertisements.user_id','left');
 		if(!empty($conditions))
 		{ 
 				foreach($conditions as $key=>$cond)
@@ -2088,9 +2088,10 @@ class Advertisment_model extends CI_Model {
 		{
 			$this->db->order_by('advertisements.id', $order_type);
 		}
-		else
+		else{
 			$this->db->order_by($sort_field, $order_type);
-
+		}
+		
 		$this->db->limit($limit_start, $limit_end);
 		$query = $this->db->get('advertisements');	
 
@@ -2533,6 +2534,7 @@ class Advertisment_model extends CI_Model {
 		$this->db->join('areas','areas.id=category_listing.area_id');
 		$this->db->join('cities','cities.id=category_listing.city_id');
 	    $this->db->where('category_listing.listing_id',$add_id);
+		$this->db->where('categories.is_active', true);
 		$this->db->from('category_listing');
 	    $query = $this->db->get();	
 		$results=$query->result_array();
@@ -2547,6 +2549,7 @@ class Advertisment_model extends CI_Model {
 		$this->db->join('areas','areas.id=advertisment_customer_service.area_id');
 		$this->db->join('cities','cities.id=advertisment_customer_service.city_id');
 	    $this->db->where('advertisment_customer_service.listing_id',$add_id);
+		$this->db->where('categories.is_active',true);
 		$this->db->from('advertisment_customer_service');
 	    $query = $this->db->get();	
 		$results=$query->result_array();

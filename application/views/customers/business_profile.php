@@ -305,7 +305,7 @@ margin:2px;
 					
 					 </div>
 			    </div>
-				   <div class="box-content clearfix">   
+				   <!--<div class="box-content clearfix">   
 						<div class="form-group col-md-12">
 				
 							<label class="control-label" for="service">Bussiness Hours</label>
@@ -316,7 +316,7 @@ margin:2px;
 							<div id="businessHoursContainer">
 							</div>
 						</div>
-					</div>
+					</div>-->
 
 					   <div class="box-content clearfix">   
 			
@@ -355,9 +355,11 @@ margin:2px;
 <script>
 $(document).ready(function(){
 	$('#service').tokenize({ datas: "customers/search_services"});
-	$('#tokenize').tokenize({ datas: "customers/search_category"});
-    var hours=<?php echo (isset($user_business_data['business_hours']) && $user_business_data['business_hours']!='') ? $user_business_data['business_hours']:'';?>;
-	businessHoursManager(hours);
+	$('#tokenize').tokenize({ datas: "customers/search_category"});	
+	$('.operationTimeFrom, .operationTimeTill').timepicker({
+	'timeFormat': 'H:i',
+	'step': 15
+	});
 });
 </script>
 

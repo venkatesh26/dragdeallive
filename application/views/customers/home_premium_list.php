@@ -4,7 +4,7 @@ $plans=array('1'=>'Basic','2'=>'Bronze','3'=>'Sliver','4'=>'Gold','5'=>'Platinum
 <link rel="stylesheet" href="<?php echo base_url();?>assets/themes/css/bootstrap.min.css" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/themes/css/offers.css"/>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/themes/css/offers_new.css"/>
-<div class="td-pb-row">	
+<div class="td-pb-row">
 <div class="td-pb-span12 td-main-content home-coupon-list">
  <h4 class=block-title><span>DragDeal Premium Bussiness</span></h4>
 <div id="popular" class="itsOffersTab loaded">

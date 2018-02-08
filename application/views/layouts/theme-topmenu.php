@@ -306,6 +306,9 @@ endif;
                   
                         <div class=td-header-rec-wrap style="min-height:90px;width:100% !important;">
                             <div class="td-a-rec td-a-rec-id-header top_header_list_section" style="width:100% !important;padding-top:10px;padding-left:10px;">
+							<?php
+$is_addsense=false;
+							If($is_addsense==true || $this->session->userdata('is_user_logged_in')==true){?>
                                 <div>
 								<?php
 								if($this->router->fetch_class()=='home' && ($this->router->fetch_method()=='register' || $this->router->fetch_method()=='contact_us' ||  $this->router->fetch_method()=='claim_my_bussiness')){
@@ -353,6 +356,14 @@ endif;
 		<?php 	} ?>
 		
               </div>
+			  
+			  <?php }
+			  else{
+					$image_url=base_url().'/assets/images/dragdeal-special-offer.jpg';
+					$link=base_url().'special';
+					echo '<div><a href="'.$link.'"><img src ="'.$image_url.'" alt="Special Offer Campaign"></a></div>';
+			  }
+			  ?>
                             </div>
                         </div>
                     </div>

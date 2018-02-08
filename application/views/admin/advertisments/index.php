@@ -67,7 +67,9 @@
 							<thead>
 							  <tr>
 							  <th><?php echo form_checkbox(array('id'=>'selecctall','name'=>'selecctall')); ?></th>
+							
 							  <th><?php $sort_url = base_url().ADMIN.'/advertisments/'.$type.'/'.$page_num.'/created/'.$order;   if($sort_seg == 'created') {  echo anchor($sort_url ,'Created'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'Created'.$sort_def_img, $sort_att ); }?> </th>
+							    <th class="">Customer Info</th>
 							   <th class="td-actions new-items2"><?php $sort_url = base_url().ADMIN.'/advertisments/'.$type.'/'.$page_num.'/name/'.$order;   if($sort_seg == 'name') {  echo anchor($sort_url ,'Company Name / Shop Name'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'Company Name / Shop Name'.$sort_def_img, $sort_att ); }?> </th>
 							  	<th class="td-actions"><?php $sort_url = base_url().ADMIN.'/advertisments/'.$type.'/'.$page_num.'/owner_name/'.$order;   if($sort_seg == 'owner_name') {  echo anchor($sort_url ,'Owner Name'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'Owner Name'.$sort_def_img, $sort_att ); }?></th>
 								    <th><?php $sort_url = base_url().ADMIN.'/advertisments/'.$type.'/'.$page_num.'/city_name/'.$order;   if($sort_seg == 'city_name') {  echo anchor($sort_url ,'City Name'.$sort_img, $sort_att );  } else { echo anchor($sort_url,'City Name'.$sort_def_img, $sort_att ); }?></th>
@@ -81,10 +83,12 @@
 							<?php 
 							if(count($comments)) {
 								foreach($comments as $vals) { $i++; 
+				
 							?>
 							  <tr class="check-select">
 							  	<td><?php echo form_checkbox(array('name'=>'checkall_box[]','class'=>'js-checkbox-all'),$vals['id']); ?></td>
 							  	<td> <?php echo timespan(strtotime($vals['created']),time()); ?> </td>
+								<td> <a href="<?php echo base_url().ADMIN.'/users/view/'.$vals['user_id'];?>" target="_blank"><?php echo $vals['user_email']; ?> </td>
 								<td> <?php echo $vals['name']; ?> </td>
 								<td> <?php echo ucfirst($vals['owner']); ?> </td>
 								<td> <?php echo ucfirst($vals['city_name']); ?> </td>

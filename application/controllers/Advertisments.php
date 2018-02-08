@@ -70,7 +70,7 @@ class Advertisments extends CI_Controller {
 		$this->load->library('template');
 		$email_body = $this->template->load('mail_template/one_time_profile_activation', 'mail_template/one_time_profile_activation', $data,TRUE);
 		$this->load->model('cron_model');
-		$this->cron_model->sendElasticEmail($email, "Wow ! Almost Done Just One More Step To Activate Your Profile", "",$email_body, $email, "Dragdeal");
+		$this->cron_model->sendEmail($email, "Wow ! Almost Done Just One More Step To Activate Your Profile", "",$email_body, $email, "Dragdeal");
 		$this->session->set_flashdata('flash_message','<span class="alert alert-success" style="float:left"><button class="close" data-dismiss="alert">×</button>Mail Send Successfully</span>');
 		$pageredirect=$this->input->get('pagemode');
 		$pageno=$this->input->get('modestatus');

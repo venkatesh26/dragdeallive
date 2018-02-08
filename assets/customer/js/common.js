@@ -257,7 +257,7 @@ $(document).ready(function()
 		var step=$('#tabs li').find('a.active').attr('rel');		
 		formData.append('step',step);
 
-		formData.append('business_hours',JSON.stringify(businessHoursManager.serialize()));		
+		//formData.append('business_hours',JSON.stringify(businessHoursManager.serialize()));		
 		$.ajax({
 			type: "POST",
 			url: url,

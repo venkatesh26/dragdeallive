@@ -2,8 +2,7 @@
 class Listings extends CI_Controller {
 
     #Magic Method - Construct the object
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 		$this->load->model('advertisment_model');
 		$this->site_name=admin_settings_initialize('sitename');
@@ -235,8 +234,7 @@ class Listings extends CI_Controller {
 	
 	
 	#Advertisment View 
-	public function preview()
-	{
+	public function preview() {
 		$this->myUserId=$this->session->userdata('user_id');
 		if(!$this->session->userdata('is_user_logged_in'))
 		{
@@ -363,8 +361,7 @@ class Listings extends CI_Controller {
 	
 	
 	#Advertisment View 
-	public function view()
-	{	
+	public function view() {	
 	
 		#Query String
 		$city=(isset($_GET['city']) && $_GET['city']!='0')?$_GET['city']:'';
@@ -499,7 +496,6 @@ class Listings extends CI_Controller {
 	
 	#Add Advertismnets
 	public function add(){
-
 		
 		if(!$this->session->userdata('is_user_logged_in'))
 		{

@@ -118,8 +118,8 @@ class Cron_model extends CI_Model {
 		return $status;
 	}
 	
-	############# Send Elastic Email ###############
-	public function sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName){
+	############# Send Email ###############
+	public function sendEmail($to, $subject, $body_text, $body_html, $from, $fromName){
 		$res = "";
 		$data = "username=".urlencode("damovenkatesh@gmail.com");
 		$data .= "&api_key=".urlencode("0771851d-24a6-43f0-9904-f15d1293f017");
@@ -136,7 +136,6 @@ class Cron_model extends CI_Model {
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($data) . "\r\n\r\n";
 		$fp = fsockopen('ssl://api.elasticemail.com', 443, $errno, $errstr, 30);
-
 		if(!$fp)
 		  return "ERROR. Could not open connection";
 		else {

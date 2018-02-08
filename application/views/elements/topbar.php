@@ -20,13 +20,14 @@
                     <div class="header-block header-block-nav">
                         <ul class="nav-profile">
 						<?php 
-						$list=notifications_list($this->session->userdata('user_id'));
+						//$list=notifications_list($this->session->userdata('user_id'));
+						$list=0;
 						if(count($list) > 0):
 						?>
                             <li class="notifications new">
-									<a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+									<!--<a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
 						  <span class="counter"><?php echo $notifications_count=notifications_count($this->session->userdata('user_id'));?></span>
-						</sup> </a>
+						</sup> </a>-->
 									<div class="dropdown-menu notifications-dropdown-menu">
 										<ul class="notifications-container">
 										<?php foreach($list as $lis):?>
@@ -68,8 +69,9 @@
 									</span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="<?php echo base_url().'my-profile';?>"> <i class="fa fa-user icon"></i> Profile </a>
-                                    <a class="dropdown-item" href="<?php echo base_url().'my-notifications';?>"> <i class="fa fa-bell icon"></i> Notifications </a>
+                                    <!--<a class="dropdown-item" href="<?php echo base_url().'my-notifications';?>"> <i class="fa fa-bell icon"></i> Notifications </a>-->
 									<a class="dropdown-item" href="<?php echo base_url().'my-notifications-settings';?>"> <i class="fa fa-cog icon"></i> Notification Settings</a>
+									<a class="dropdown-item" href="<?php echo base_url().'change-password';?>"> <i class="fa fa-lock icon"></i> Change Password</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo base_url().'logout';?>"> <i class="fa fa-power-off icon"></i> Logout </a>
                                 </div>

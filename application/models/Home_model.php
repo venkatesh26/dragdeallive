@@ -89,8 +89,8 @@ class Home_model extends CI_Model {
 		$category_data_id_update =(!empty($category_data_ids['category_id'])) ? $category_data_ids['category_id'] : '';
 		
 		$campaign_data = array(
-			'created'	=> date('Y-m-d h:i:s'),
-		   'category_id'=>$category_data_id_update,
+			'created_at'=> date('Y-m-d h:i:s'),
+			'category_id'=>$category_data_id_update,
 			'name' => $this->input->post('name'),
 			'owner' => $this->input->post('owner'),
 			'contact_number' => trim($this->input->post('contact_number')),
@@ -109,21 +109,37 @@ class Home_model extends CI_Model {
 			'area_id' => $area_id,
 			'user_id'=>$this->input->post('user_id')
 		);
-		$this->db->insert('advertisements', $campaign_data);
-		$addId = $this->db->insert_id();
-		
+		$this->load->model('Advertisment_model');
+		$user_business_data=$this->Advertisment_model->get_user_businessdata($this->input->post('user_id'));
+		$advertimentsId=0;
+		if(!empty($user_business_data)){
+			$advertimentsId=$user_business_data['id'];	
+		}
+		if($advertimentsId!=0) {
+			$this->db->where('id', $advertimentsId);
+			$this->db->update('advertisements', $campaign_data);	
+		}
+		else {
+			$this->db->insert('advertisements', $campaign_data);
+			$advertimentsId = $this->db->insert_id();
+		}
 		foreach($category_data_id as $id) {
 			$listing_data=array(
 				'created_at'=> date('Y-m-d h:i:s'),
-				'listing_id'=>$addId,
+				'listing_id'=>$advertimentsId,
 				'city_id'=>$city_id,
 				'area_id'=>$area_id,
 				'category_id'=>$id,
 			);
-			$this->db->insert('category_listing', $listing_data);
+			if($advertimentsId!=0) {
+				$this->db->where('id', $advertimentsId);
+				$this->db->update('category_listing', $listing_data);	
+			}
+			else{
+				$this->db->insert('category_listing', $listing_data);
+			}
 		}
-		
-		$data=array('add_id'=>$addId , 'user_id'=>$this->input->post('user_id'));
+		$data=array('add_id'=>$advertimentsId , 'user_id'=>$this->input->post('user_id'));
 		return $data;
 	}
 	
@@ -213,37 +229,6 @@ class Home_model extends CI_Model {
 			}			
 		}	
         die;		
-	}
-	
-	########## Elastic EMail #############
-	public function sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName) {
-		$res = "";
-		$data = "username=".urlencode("damovenkatesh@gmail.com");
-		$data .= "&api_key=".urlencode("0771851d-24a6-43f0-9904-f15d1293f017");
-		$data .= "&from=".urlencode($from);
-		$data .= "&from_name=".urlencode($fromName);
-		$data .= "&to=".urlencode($to);
-		$data .= "&subject=".urlencode($subject);
-		if($body_html)
-		  $data .= "&body_html=".urlencode($body_html);
-		if($body_text)
-		  $data .= "&body_text=".urlencode($body_text);
-
-		$header = "POST /mailer/send HTTP/1.0\r\n";
-		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
-		$header .= "Content-Length: " . strlen($data) . "\r\n\r\n";
-		$fp = fsockopen('ssl://api.elasticemail.com', 443, $errno, $errstr, 30);
-
-		if(!$fp)
-		  return "ERROR. Could not open connection";
-		else {
-		  fputs ($fp, $header.$data);
-		  while (!feof($fp)) {
-			$res .= fread ($fp, 1024);
-		  }
-		  fclose($fp);
-		}
-		return $res;                  
 	}
 	
 	#Home Get Home Listings

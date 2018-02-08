@@ -40,7 +40,7 @@ class Home extends CI_Controller {
 		#BreadCrumb Push 
 		$this->load->library('breadcrumbs');
 		$this->breadcrumbs->push($this->site_name,base_url());
-		$this->breadcrumbs->push(ucfirst('Post Adertisment'),base_url());	
+		$this->breadcrumbs->push(ucfirst('Post your add'),base_url());	
 		header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		header('Cache-Control: no-store, no-cache, must-revalidate');
 		header('Cache-Control: post-check=0, pre-check=0',false);
@@ -71,7 +71,7 @@ class Home extends CI_Controller {
 						$this->load->model('notification_model');					
 						$email_body = $this->template->load('mail_template/template', 'mail_template/register_via_campaign', $data,TRUE);
 						$this->load->model('cron_model');
-						$this->cron_model->sendElasticEmail($this->input->post('email'), "You Business Profile Registered Successfully -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
+						$this->cron_model->sendEmail($this->input->post('email'), "You Business Profile Registered Successfully -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
 						$extra_array = array('status'=>'success','msg'=>'You Business Profile Registered Successfully.<br/> Once your payment completed after that your  business profile will be activated automatically.','url'=>base_url().'home/one_time_subscription?token='.$token.'&plan_id='.$plan_id);
 						echo json_encode($extra_array);
 						die;
@@ -81,10 +81,9 @@ class Home extends CI_Controller {
 					die;
 				}
 			}
-			$this->data['title_of_layout']=$this->site_name." - Create Add Campaign";
-			$this->data['meta_keywords']=$this->site_name." - Create Add Campaign";
+			$this->data['title_of_layout']=$this->site_name." - Special Offer Campaign";
+			$this->data['meta_keywords']=$this->site_name." - Special Offer Campaign";
 			$this->data['title']="Sign Up";
-			$this->data['is_header_hide']=true;
 			$this->data['redirect_url']=(isset($_GET['redirect_url']))?$_GET['redirect_url']:'';
 			if(!$this->input->is_ajax_request()){
 				$this->data['main_content']=$this->load->view('users/createAddCampign', $this->data,true);
@@ -116,7 +115,7 @@ class Home extends CI_Controller {
 			);
 			$email_body = $this->template->load('mail_template/template', 'mail_template/register_site_user', $data,TRUE);
 			$this->load->model('cron_model');
-			$this->cron_model->sendElasticEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
+			$this->cron_model->sendEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
 		}
 		echo json_encode($success);
 		die;
@@ -565,7 +564,7 @@ class Home extends CI_Controller {
 						
 						$email_body = $this->template->load('mail_template/template', 'mail_template/register_site_user', $data,TRUE);
 						$this->load->model('cron_model');
-						$this->cron_model->sendElasticEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
+						$this->cron_model->sendEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
 						$extra_array = array('status'=>'success','msg'=>'You Successfully Register.. Pls check your mail to verify your account.','url'=>base_url());
 						echo json_encode($extra_array);
 						die;

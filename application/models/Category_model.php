@@ -42,9 +42,9 @@ class Category_model extends CI_Model {
 				foreach($conditions as $key=>$cond)
 				{
 					if(!$cond['direct'])
-						$this->db->$cond['rule']($cond['field'], $cond['value']);
+						$this->db->where($cond['field'], $cond['value']);
 					else
-						$this->db->$cond['rule']($cond['value']);
+					  $this->db->$cond['rule']($cond['value']);
 				}
 		}	
 		if(!$sort_field)

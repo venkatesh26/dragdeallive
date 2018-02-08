@@ -77,9 +77,6 @@
             <li class="<?php if($this->uri->segment('1')=='my-profile') { echo "active";}?>">
                <a href="<?php echo base_url();?>my-profile"> <i class="fa fa-user"></i> My Profile </a>
             </li>
-            <li class="<?php if($this->uri->segment('1')=='my-notifications') { echo "active";}?>">
-               <a href="<?php echo base_url();?>my-notifications"> <i class="fa fa-comment"></i> Notifications </a>
-            </li>
             <li> <a href="<?php echo base_url().'logout';?>">
                <i class="fa fa-power-off"></i> Logout
                </a> 

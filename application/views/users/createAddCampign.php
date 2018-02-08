@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="<?php echo base_url().'assets/themes/js/bootstrap.min.css';?>">
 <link rel="stylesheet" href="<?php echo base_url().'assets/themes/css/font-awesome.min.css';?>">
 <style>
+
    .clearfix{clear:both;}
    .js-plan-3-feature{width:175px;}
    .pull-right{margin-right: 10px;
@@ -254,19 +255,26 @@
    margin-left: 0px;
    border: 2px solid #85CE36;
    }
+   .td-page-title{
+	   line-height:22px;
+   }
 </style>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/themes/css/bootstrap-tagsinput.css">
 <div class="td-main-content-wrap td-main-page-wrap">
    <div class="td-container">
-      <?php 
+
+
+	  
+      <div class="td-pb-row">
+	        <?php 
          /************ Bread Crumb *****************/ 
          echo $this->load->view('bread_crumb',array(),true); 
          ?>
       <div class="td-page-header">
-         <h1 class="entry-title td-page-title"><span>List your business with India's leading local search engine</span></h1>
-         <h1 class="entry-title td-page-title plan_description">Register Your business as premium listing for Life Time.<span> (Note : This offer is available for limited users only).</span></h1>
+	  <br/>
+         <h1 class="entry-title td-page-title"><span>The Drag-Deal ensures your business listing is featured across our entire digital network, connecting you to millions of potential customers.<br/>Get Unlimited customers by pay once with us. Act now for your business growth.</span></h1>
+         <p class="entry-title td-page-title plan_description"></p>
       </div>
-      <div class="td-pb-row">
          <form action="<?php echo base_url().'home/createAddCampaign';?>" method="post" id="add_campign_form_url">
             <div id="accordion" class="checkout">
                <div class="row">
@@ -317,51 +325,9 @@
                         <div id="plan-1" class="collapse in">
                            <h5 style="font-size:12px;" class="pull-right clearfix"><span style=""><span style="color:red">*</span> denotes mandatory fields</span></h5>
                            <div class="checkout-step-body">
-                              <div class="col-lg-4 js-plan-1-feature plan-feature" style="min-height:180px !important;">
-                                 <h4><i class="fa fa-gift color-green-icon"></i> Plan Features </h4>
-                                 <ul class="plan-feature-list">
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Premium Listing</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Email Leads</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> One Time Actiation</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Multiple Keywords</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Free SEO</li>
-                                 </ul>
-                              </div>
-                              <div class="col-lg-2 js-plan-2-feature plan-feature" style="display:none;min-height:180px !important;">
-                                 <h4><i class="fa fa-gift color-green-icon"></i> Plan Features </h4>
-                                 <ul class="plan-feature-list js-plan-2-feature">
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Premium Listing</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Email Leads</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> One Time Actiation</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Multiple Keywords</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Manage Customer</li>
-                                 </ul>
-                              </div>
-                              <div class="col-lg-2 js-plan-2-feature plan-feature" style="display:none;min-height:180px !important;">
-                                 <ul class="plan-feature-list js-plan-2-feature feature-add-list" style="display:none;">
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> 200 Sms</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Limited Coupons</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Free SEO</li>
-                                 </ul>
-                              </div>
-                              <div class="col-lg-2 js-plan-3-feature plan-feature" style="display:none;min-height:180px !important;">
-                                 <h4><i class="fa fa-gift color-green-icon"></i> Plan Features </h4>
-                                 <ul class="plan-feature-list js-plan-3-feature">
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Premium Listing</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Email Leads</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> One Time Actiation</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Multiple Keywords</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Manage Customer</li>
-                                 </ul>
-                              </div>
-                              <div class="col-lg-2 js-plan-3-feature plan-feature" style="display:none;min-height:180px !important;">
-                                 <ul class="plan-feature-list js-plan-3-feature feature-add-list" style="marign-top:40px;">
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> 400 Sms</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> UnLimited Coupons</li>
-                                    <li> <i class="fa fa-check-circle-o color-green-icon"></i> Free SEO</li>
-                                 </ul>
-                              </div>
-                              <div class="col-lg-8">
+                              
+							   <?php echo $this->load->view('users/plan_features',array(),true); ?>
+							  <div class="col-lg-8">
                                  <div class="col-md-12">
                                     <span class="checkout-step-number js-step-1-circle">Step 1</span>
                                     <h4 class="checkout-step-title"> Email Verification <i class="email-verfiy-title fa fa-check-circle-o color-red-icon"></i></h4>
@@ -503,14 +469,13 @@
        	$('.js-plan-3-feature').hide();
        	$('.js-plan-2-feature').show();
        	$(this).parent('div').addClass('active');
-   		
    		if(is_mobile==1){			
    			$('.plan-2-form').html('');
    			if($('.plan-1-form').html()!=''){
    				$('.plan-2-form').html($('.plan-1-form').html());
    			}
-   			else if($('.plan-2-form').html()!=''){
-   				$('.plan-2-form').html($('.plan-2-form').html());
+			else if($('.plan-3-form').html()!=''){
+   				$('.plan-2-form').html($('.plan-3-form').html());
    			}
    			$('.plan-1-form').html('');
    			$('.plan-3-form').html('');
