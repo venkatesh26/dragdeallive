@@ -14,48 +14,9 @@ function reset($_this)
 
 function alert_notification(type,message)
 {
-	 var object1 = {
-		'message'   :message,
-		'position'  :'top right',
-		'inEffect'  :'slideTop',
-		'clearAll'  :true,
-		'sticky'       :true,
-        'closeOnClick'  :true,
-        'closeButton'   :true
-	};
-	
-	if(type=="success"){
-		var object2 = {
-		'theme'   :'colorful',
-		'delay'   :'4000',
-		'content' :{
-					   bgcolor:"#337ab7",
-					   bg_colorcode:'#fff',
-					   message:message
-					},
-		};
-	} else if(type=="error"){
-		var object2 = {
-		'theme'   :'colorful',
-		'content' :{
-					   bgcolor:"#E3434B",
-					   bg_colorcode:'#fff',
-					   message:message
-					},
-		};
-	}else{
-		var object2 = {
-		'theme'   :'awesome ok',
-		'content' :{					   
-                        message:message,
-                        info:'',
-                        icon:'fa fa-check-square-o'
-					},
-		};
-	}
-	$.extend( object1, object2 );
-	$.amaran( object1 );
+		swal(type, message,type);
 }
+
 function map_initialize() {
   var geocoder;
   var map;
@@ -107,8 +68,7 @@ function map_initialize() {
 }
 
 jQuery(document).ready(function($){
-	
-	
+		
 	setTimeout(function(){document.getElementById("td-header-search-keyword").focus()},200)
 	$('#td-header-enquiry').hide();
 	jQuery(".td-header-enquiry-button-mob").click(function(a){
@@ -442,22 +402,23 @@ jQuery(document).ready(function($){
 					{
 						$("#custom_error").addClass('login-error');
 						$("#custom_error").html(data.msg+"<br/>");
+						
+							alert_notification('error',data.msg);
 					}
 					else
 					{
 						
 						$("#login_form_url input").each(function() {
 							$(this).next('span').remove();
-					    	});
+					    });
+						
 						$.each(data.errorfields,function(key, value){
 							var error="<span class='login-error'>"+value.error+"</span>";
 						  	$this.find("[name="+value.field+"]").after(error);
 						});
-						alert_notification('error','Please complete the required fields.');
 					}
 				}
-				else
-				{
+				else {
 					$("#login_form_url input").each(function() {
 							$(this).next('span').remove();
 					});

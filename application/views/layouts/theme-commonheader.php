@@ -16,8 +16,10 @@
 <script type='text/javascript' src='<?php echo base_url().'assets/themes/js/jquery.js';?>'></script>
 <script type='text/javascript' src='<?php echo base_url().'assets/themes/js/jquery-migrate.min.js';?>'></script>
 <script type='text/javascript' src='<?php echo base_url().'assets/themes/js/jquery-scroll-to.min.js';?>'></script>
-<script type='text/javascript' src='<?php echo base_url().'assets/js/jquery-1.11.1.min.js';?>'></script>
 
+<script type='text/javascript' src='<?php echo base_url().'assets/js/jquery-1.11.1.min.js';?>'></script>
+<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/themes/css/sweetalert.css" media="screen"/>
+<script type="text/javascript" src='<?php echo base_url().'assets/themes/js/sweetalert.min.js';?>'></script>
 <script>var td_is_safari=false;var td_is_ios=false;var td_is_windows_phone=false;var ua=navigator.userAgent.toLowerCase();var td_is_android=ua.indexOf('android')>-1;if(ua.indexOf('safari')!=-1){if(ua.indexOf('chrome')>-1){}else{td_is_safari=true;}}
 if(navigator.userAgent.match(/(iPhone|iPod|iPad)/i)){td_is_ios=true;}
 if(navigator.userAgent.match(/Windows Phone/i)){td_is_windows_phone=true;}
@@ -36,6 +38,7 @@ var tds_snap_menu="smart_snap_always";var tds_logo_on_sticky="show_header_logo";
 <link rel=stylesheet id=td-theme-css href='<?php echo base_url();?>assets/themes/css/new_style.css' type='text/css' media=all />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/css/fonts/fonts.css" media="screen"/>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.css" media="screen"/>
+<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/themes/css/bootstrap.min.css" media="screen"/>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/themes/css/custom.css" media="screen"/>
 <script>
 var cfg = {"cfg":{"path_absolute":"<?php echo base_url(); ?>"}};
@@ -61,56 +64,11 @@ if(info!='')
 	type="info";
 	msg="<?php echo $this->session->flashdata('info'); ?>";
 }
+jQuery(document).ready(function($){
+	
 if(msg!='' && type!='')
 {
-   alert_notification1(type,msg);
+	swal(msg, '',type);
 }
-
-function alert_notification1(type,message){
-	
-$(function(){
-
-    var object1 = {
-		'message'   :message,
-		'position'  :'top right',
-		'inEffect'  :'slideTop',
-		'clearAll'  :true,		
-		'sticky'       :true,
-        'closeOnClick'  :true,
-        'closeButton'   :true
-	};
-	
-	if(type=="success"){
-		var object2 = {
-		'theme'   :'colorful',
-		'delay'   :'4000',
-		'content' :{
-					   bgcolor:"#337ab7",
-					   bg_colorcode:'#fff',
-					   message:message
-					},
-		};
-	} else if(type=="error"){
-		var object2 = {
-		'theme'   :'colorful',
-		'content' :{
-					   bgcolor:"#E3434B",
-					   bg_colorcode:'#fff',
-					   message:message
-					},
-		};
-	}else{
-		var object2 = {
-		'theme'   :'awesome ok',
-		'content' :{					   
-                        message:message,
-                        info:'',
-                        icon:'fa fa-check-square-o'
-					},
-		};
-	}
-	$.extend( object1, object2 );
-	$.amaran( object1 );
-  });  
-}
+});
 </script>

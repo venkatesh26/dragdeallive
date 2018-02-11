@@ -250,7 +250,7 @@ class Home_model extends CI_Model {
 		$this->db->where('advertisements.is_active','1');
 		$this->db->order_by("advertisements.plan_id", "DESC");
 		$this->db->where("advertisements.plan_id >", 0);
-		$this->db->limit('28');
+		$this->db->limit('36');
 		$query = $this->db->get();			
 		$result=$query->result_array(); 
 		return $result;	
@@ -335,7 +335,8 @@ class Home_model extends CI_Model {
 		$profile_data = array(
 			'created'		=> date('Y-m-d h:i:s'),
 			'modified' 		=> date('Y-m-d h:i:s'),
-			'first_name' 	=> $this->input->post('name'),
+			'first_name' 	=> $this->input->post('first_name'),
+			'last_name' 	=> $this->input->post('last_name'),
 			'mobile_number' => $this->input->post('contact_number'),
 			'user_id'		=> $user_id
 		);

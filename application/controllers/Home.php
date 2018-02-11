@@ -522,7 +522,7 @@ class Home extends CI_Controller {
 		#BreadCrumb Push 
 		$this->load->library('breadcrumbs');
 		$this->breadcrumbs->push($this->site_name,base_url());
-		$this->breadcrumbs->push(ucfirst('Register / Login'),base_url());	
+		$this->breadcrumbs->push(ucfirst('Register'),base_url());	
 		header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		header('Cache-Control: no-store, no-cache, must-revalidate');
 		header('Cache-Control: post-check=0, pre-check=0',false);
@@ -539,11 +539,10 @@ class Home extends CI_Controller {
 		{
 			if($_POST) 
 			{
-				$this->form_validation->set_rules('name',ucwords($this->lang->line('name')),'trim|required|min_length[3]');
+				$this->form_validation->set_rules('first_name','First name','trim|required|min_length[3]');
 				$this->form_validation->set_rules('contact_number','Mobile Number','trim|required|min_length[10]|numeric');
 				$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|valid_email|required|is_unique[users.email]');
-				$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|matches[confirm_password]');
-                $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required');
+				$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 				if($this->form_validation->run() == true) 
 				{
 					$email_activation_id = random_string('alnum', 10);
@@ -583,7 +582,7 @@ class Home extends CI_Controller {
 			if(!$this->input->is_ajax_request())
 			{
 			$this->data['reg_login']='1';
-			$this->data['main_content']=$this->load->view('users/register_login', $this->data,true);
+			$this->data['main_content']=$this->load->view('users/register', $this->data,true);
 			$this->load->view('layouts/default', $this->data);
 			}
 			else
@@ -830,7 +829,7 @@ class Home extends CI_Controller {
 					 if($this->home_model->update_password($email))
 				     {
                       $json_array['status']="success";
-					  $json_array['url']=base_url().'user_login';
+					  $json_array['url']=base_url().'login';
 					  $this->session->set_flashdata('success','Password Reset Successfully.Please login below'); 
 					  echo json_encode($json_array);	
                       die;	

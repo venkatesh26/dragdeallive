@@ -19,6 +19,7 @@ if ($detect->isMobile() && !$detect->isTablet()) { ?>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/css/amaran.min.css" media="screen"/>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/css/site.css" media="screen"/>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/css/screen.css" media="screen"/>
+
 <script>
 var cfg = {"cfg":{"path_absolute":"<?php echo base_url(); ?>"}};
 </script>
