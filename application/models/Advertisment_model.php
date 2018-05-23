@@ -14,6 +14,12 @@ class Advertisment_model extends CI_Model {
 		return true;
     }
 	
+	##################### Offers Data #################
+	function get_user_offersData($user_id){
+	
+		
+	}
+	
 	############# Notifications List #####
 	function get_notification_list($user_id, $limit_start, $limit_end){
 		
@@ -87,8 +93,7 @@ class Advertisment_model extends CI_Model {
 			'first_name'	=> strtolower($this->input->post('first_name')),			
 			'last_name'	=> strtolower($this->input->post('last_name')),	
 			'preferred_city_id' => $city_id,
-			'preferred_area_id' => $area_id,
-			'business_hours'=>$this->input->post('business_hours')
+			'preferred_area_id' => $area_id
 		);
 		$this->db->where('user_id', $user_id);
 		$this->db->where('parent_user_id', $parentUserId);

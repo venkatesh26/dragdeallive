@@ -1175,6 +1175,30 @@ class Customers extends CI_Controller {
 	}
 	
 	
+	#####################Delete Posted Customer#################
+	public function reedem_offer()
+	{
+		$reedemOffer=array();
+		if(isset($_POST['offer_id']))
+		{
+			$this->load->model('campaign_model');
+			$reedemOffer=$this->campaign_model->reedemOffer($_POST['offer_id']);
+		}
+		echo json_encode($reedemOffer);
+		die;
+	}
+	
+	public function reedem_points()
+	{
+		$parent_user_id=$_POST['parent_user_id'];
+		$user_id=$_POST['user_id'];
+		$points=$_POST['points'];
+		$this->load->model('campaign_model');
+		$reedemOffer=$this->campaign_model->reedemPoints($parent_user_id, $user_id, $points);
+		echo json_encode($reedemOffer);
+		die;	
+	}
+	
 	public function changeStatus()
 	{
 		$customer_delete=array();
@@ -1353,6 +1377,8 @@ class Customers extends CI_Controller {
 		$this->data['edit_id']=$id;
 		$data['categories_data']=$this->advertisment_model->get_user_remainder_data($this->session->userdata('user_id'));
 		$this->data['remainder_data']=$this->advertisment_model->get_user_remainderdata($this->session->userdata('user_id'),$id);
+		
+	
 		if($_POST) 
 		{
 			$this->form_validation->set_rules('first_name','First Name','trim|required');
@@ -1386,6 +1412,53 @@ class Customers extends CI_Controller {
 		$this->data['main_content']=$this->load->view('customers/customer_edit', $this->data,true);
 		$this->load->view('layouts/customer', $this->data);
 	}
+	
+	public function user_offer_list(){
+		
+	    
+		$post_id=$_POST['customer_id'];
+		$this->load->model('campaign_model');
+		
+		$order_list=array();
+		$page_num=$this->uri->segment(3);
+		
+		$cofig =array();
+		$config = admin_settings_initialize('settings');
+		if(empty($page_num)) $page_num = 1;
+		$limit_end = ($page_num-1) * $config['per_page'];
+		$limit_start = 10;$config['per_page'];
+		$this->pagination->cur_page = $page_num;
+		$config['base_url'] = base_url().'customers/user_offer_list';
+		$config['first_url'] = base_url().'customers/user_offer_list';
+		$config['per_page'] = $config['per_page'];
+		$config['num_links'] = 3;
+		
+		$config["uri_segment"] = ($this->uri->segment(1)!='search') ? 3: 2;
+		$config["full_tag_open"] = '<ul class="pagination">';
+		$config["full_tag_close"] = '</ul>';
+		$config["use_page_numbers"] = TRUE;
+		$config["first_tag_open"] = "<li class='page-item'>";
+		$config["first_tag_close"] = "</li>";
+		$config["next_tag_open"] = "<li class='page-item'>";
+		$config["next_tag_close"] = "</li>";
+		$config["prev_tag_open"] = "<li class='page-item'>";
+		$config["prev_tag_close"] = "</li>";
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+		$config["cur_tag_open"] = '<li class="page-item active"><a class="page-link">';
+		$config["cur_tag_close"] = '</li></a>';
+		$config["last_tag_open"] = "<li class='page-item'>";
+		$config["last_tag_close"] = "</li>";
+		$order_list=$this->campaign_model->getUserCampaignOffersList($this->session->userdata('user_id'), $post_id, $limit_start,$limit_end);	
+		$this->data['order_list']=	$order_list['data'];	
+		$config['total_rows']=$order_list['TotalRecords'];
+		$this->pagination->initialize($config);
+		$this->data["pagination_link"]= $this->pagination->create_links();
+		$this->data['main_content']=$this->load->view('customers/customer_offer_list_json', $this->data,true);
+		echo json_encode($this->data);
+		die;
+	}
+	
 	
 	########### Import Customers ###########
 	public function import_customers() { 
@@ -1508,6 +1581,37 @@ class Customers extends CI_Controller {
 			die;
 		}
 		exit;
+	}
+	
+		
+	##########Reward Settings################# 
+	public function reward_settings()  {
+		if(!$this->session->userdata('is_user_logged_in')) {
+			$url = 'login';
+			redirect($url);
+		}	
+		$this->data=array();
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			
+			$this->form_validation->set_rules('amount','amount','trim|required');
+			$this->form_validation->set_rules('minimum_amount','minimum amount','trim|required');
+			if($this->form_validation->run()){
+				$this->home_model->updateRewards($this->myUserId);	
+				$extra_array = array('status'=>'success','msg'=>'Reward Update Successfully...!','url'=>base_url());
+				echo json_encode($extra_array);
+				die;
+			}
+			else {
+			   echo $this->form_validation->get_json();
+			   die;
+			}
+		}
+		else {
+			
+			$this->data['reward_points_data']=$this->home_model->getRewardSettings($this->myUserId);
+			$this->data['main_content']=$this->load->view('customers/reward_settings', $this->data,true);
+			$this->load->view('layouts/customer', $this->data);	
+		}
 	}
 }
 

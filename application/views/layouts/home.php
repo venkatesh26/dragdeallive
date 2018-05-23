@@ -10,7 +10,9 @@
 	$this->load->view('layouts/theme-commonheader'); 
 	?>
 </head>
+
 <body class="home-page">
+
  <?php $this->load->view('elements/google_analytics'); ?>
     <div class=td-scroll-up><i class=td-icon-menu-up></i>
     </div>

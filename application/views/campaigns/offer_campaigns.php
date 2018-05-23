@@ -149,14 +149,22 @@
 <script>   
    $(document).ready(function(){	
 		$('#campaign_start_date').livequery('focus',function(){
-			   $('#campaign_start_date').datepicker({format: "yyyy-mm-dd"}); 
+			   $('#campaign_start_date').datepicker({
+				   format: "yyyy-mm-dd", 	
+				   changeMonth: true,
+				   changeYear: true
+				}); 
 		});
 		$('#campaign_start_date').livequery('click',function(){
             $(this).trigger('focus');
 		});
 		
 		$('#campaign_end_date').livequery('focus',function(){
-			   $('#campaign_end_date').datepicker({format: "yyyy-mm-dd"}); 
+			   $('#campaign_end_date').datepicker({
+				format: "yyyy-mm-dd", 	
+				changeMonth: true,
+				changeYear: true
+			}); 
 		});
 		$('#campaign_end_date').livequery('click',function(){
             $(this).trigger('focus');

@@ -7,6 +7,66 @@ class Campaign_model extends CI_Model {
 		$this->load->model('cron_model');
     }
 	
+	##### update Reedmed Offer ##########
+    public function reedemPoints($parent_user_id, $user_id, $points){
+		
+		$reponse=array();
+		$this->db->select('advertisment_customer_lists.id,advertisment_customer_lists.total_reward_points,advertisment_customer_lists.total_redeemed_points', false);
+		$this->db->where('advertisment_customer_lists.user_id',$user_id);
+		$this->db->where('advertisment_customer_lists.parent_user_id',$parent_user_id);
+		
+		$this->db->from('advertisment_customer_lists');
+		$query = $this->db->get();
+		$result=$query->row_array();
+		
+		if(!empty($result) && $result['total_reward_points'] >= $points){
+			$total_redeemed_points= $result['total_redeemed_points'];
+			$total_reward_points=$result['total_reward_points'] - $points;
+			$total_redeemed_points=$total_redeemed_points+$points;
+			$campaign_data=array(
+				'total_reward_points'=>$total_reward_points,
+				'total_redeemed_points'=>$total_redeemed_points
+			);
+			$this->db->where('id',$result['id']);
+			$this->db->update('advertisment_customer_lists',$campaign_data);		 
+			$response=array('status'=>true, 'msg'=>'Points Reedmed Successfully');
+		}
+		else{
+			$response=array('status'=>false, 'msg'=>'Invalid Data.Please Try Again');			 	
+		}
+		return $response;
+	}
+	
+	##### update Reedmed Offer ##########
+    public function reedemOffer($id){
+		
+		$campaign_data=array(
+			'is_redeemed'=>1
+		);
+		$this->db->where('id',$id);
+		$this->db->update('advertisments_customers_campaign_list',$campaign_data);
+		return true;
+	}
+	
+	##### My Campaign List ##########
+    public function getUserCampaignOffersList($parent_id, $user_id, $limit_start, $limit_end){
+
+		$this->db->select('SQL_CALC_FOUND_ROWS advertisments_customers_campaign_list.id,advertisments_customers_campaign_list.*,advertisments_customers_campaign.title, advertisements.contact_number, advertisements.name as add_name,advertisements.id as add_id, advertisements.city_name,advertisments_customers_campaign.title',false);
+		$this->db->where('advertisments_customers_campaign_list.user_id',$user_id);
+		$this->db->where('advertisments_customers_campaign_list.parent_user_id',$parent_id);
+		$this->db->join('advertisments_customers_campaign', 'advertisments_customers_campaign.id = advertisments_customers_campaign_list.advertisments_customers_campaign_id');
+		$this->db->join('users', 'users.id = advertisments_customers_campaign_list.parent_user_id');
+		$this->db->join('advertisements', 'advertisements.user_id = users.id');
+		$this->db->from('advertisments_customers_campaign_list');
+		$this->db->order_by('advertisments_customers_campaign_list.id','DESC');
+		$this->db->limit($limit_start, $limit_end);
+		$query = $this->db->get();
+		$result=$query->result_array();
+		$response['TotalRecords']=$this->get_all_rows();
+		$response['data']=$result;
+		return $response;	
+   }
+	
 	##### My Campaign List ##########
     public function getCampaignOffersList($user_id, $limit_start, $limit_end){
 

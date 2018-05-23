@@ -152,7 +152,7 @@
 							<div class="range-section-clone">
 
 							</div>
-							<div><i class="fa fa-question-circle tooltipdiv cursor"></i> If you do not have any service remainders ? Please <a target="_blank" href="<?php echo base_url().'remainders/add';?>">Click Here </a> to add reaminders.</div>
+							<div><i class="fa fa-question-circle tooltipdiv cursor"></i> If you do not have any service remainders ? Please <a target="_blank" href="<?php echo base_url().'remainders/add';?>">Click Here </a> to add remainders.</div>
 					</div>
 					<button class="btn btn-primary btn-md pull-right" style="margin-left:10px;">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="btn btn-primary btn-md pull-right" href="">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

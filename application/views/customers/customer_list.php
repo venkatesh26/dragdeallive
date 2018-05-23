@@ -88,10 +88,10 @@
 			data: $( "#search-users" ).serialize(),
 			async:true,
 			success: function(data) {
-	   $.LoadingOverlay("hide");
-	   var data=jQuery.parseJSON(data);
-	   $('.js-response').html(data.main_content);
-	   $('.js-pagenation').html(data.pagination_link);
+			   $.LoadingOverlay("hide");
+			   var data=jQuery.parseJSON(data);
+			   $('.js-response').html(data.main_content);
+			   $('.js-pagenation').html(data.pagination_link);
 			}
 		});
    }

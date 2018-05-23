@@ -71,6 +71,7 @@
                                     <a class="dropdown-item" href="<?php echo base_url().'my-profile';?>"> <i class="fa fa-user icon"></i> Profile </a>
                                     <!--<a class="dropdown-item" href="<?php echo base_url().'my-notifications';?>"> <i class="fa fa-bell icon"></i> Notifications </a>-->
 									<a class="dropdown-item" href="<?php echo base_url().'my-notifications-settings';?>"> <i class="fa fa-cog icon"></i> Notification Settings</a>
+									<a class="dropdown-item" href="<?php echo base_url().'reward-settings';?>"> <i class="fa fa-gift icon"></i> Reward Settings</a>
 									<a class="dropdown-item" href="<?php echo base_url().'change-password';?>"> <i class="fa fa-lock icon"></i> Change Password</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo base_url().'logout';?>"> <i class="fa fa-power-off icon"></i> Logout </a>

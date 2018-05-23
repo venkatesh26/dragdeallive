@@ -4,6 +4,70 @@ class Home_model extends CI_Model {
     # Construct - Load the database
     public function __construct() {
     }
+	
+	################### Get Reward Settings #################
+	public function getRewardSettings($user_id){
+		$this->db->select('advertisment_customer_bill_rewards.id');
+		$this->db->where('user_id',$user_id);
+		$this->db->from('advertisment_customer_bill_rewards');
+		$query = $this->db->get();			
+		$result=$query->row_array(); 
+		$response=array();
+		if(!empty($result)){
+			$reward_id=$result['id'];	
+			$this->db->select('advertisment_customer_bill_reward_rules.*');
+			$this->db->where('reward_id',$reward_id);
+			$this->db->from('advertisment_customer_bill_reward_rules');
+			$query = $this->db->get();			
+			$response=$query->result_array(); 
+		}
+		return $response;
+	}
+	
+	########################## Update Reward Settings ##########
+	public function updateRewards($user_id){
+		
+		$this->db->select('advertisment_customer_bill_rewards.id');
+		$this->db->where('user_id',$user_id);
+		$this->db->from('advertisment_customer_bill_rewards');
+		$query = $this->db->get();			
+		$result=$query->row_array(); 
+		if(!empty($result)){
+			$reward_id=$result['id'];		
+			$this->db->delete('advertisment_customer_bill_reward_rules',array('user_id' => $user_id));			
+		}
+		else {
+			$data = array(
+				'created'=> date('Y-m-d H:i:s'),			
+				'modified'=> date('Y-m-d H:i:s'),
+				'user_id'=> $user_id
+			);
+			$this->db->insert('advertisment_customer_bill_rewards', $data);
+			$reward_id = $this->db->insert_id();
+		}
+			
+		$reward_data = array(
+			'created'		=> date('Y-m-d h:i:s'),
+			'modified' 		=> date('Y-m-d h:i:s'),
+			'reward_id' 	=> $reward_id,
+			'name' => 'Reward Point Amount',
+			'code'		=> 'reward-point-amount',
+			'value'=>$this->input->post('amount')
+		);
+		$this->db->insert('advertisment_customer_bill_reward_rules', $reward_data);
+		
+		$reward_data = array(
+			'created'		=> date('Y-m-d h:i:s'),
+			'modified' 		=> date('Y-m-d h:i:s'),
+			'reward_id' 	=> $reward_id,
+			'name' => 'Reward Point Minium Amount',
+			'code'		=> 'reward-point-minimum-amount',
+			'value'=>$this->input->post('minimum_amount')
+		);
+		$this->db->insert('advertisment_customer_bill_reward_rules', $reward_data);
+			
+		return true;
+	}
     
    ############# Create User ###################
 	public function saveCampignUser($verify_link, $password){

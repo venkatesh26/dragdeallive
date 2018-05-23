@@ -651,4 +651,5 @@ $route['upgrade-plan'] = 'customers/upgrade_plan_packages_list';
 $route['bussiness-claims'] = 'customers/claim_bussiness';
 $route['change-password'] = 'customers/change_password';
 $route['special'] = 'home/createAddCampaign';
+$route['reward-settings'] = 'customers/reward_settings';
 ?>

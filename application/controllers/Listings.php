@@ -167,7 +167,7 @@ class Listings extends CI_Controller {
 			}
 		}
 		else {
-			
+				
 			$meta_desciptions=admin_settings_initialize('list_meta');		
 		    if($meta_keywords!='') {	
 				if($city!='' || $area!='') {
@@ -409,11 +409,18 @@ class Listings extends CI_Controller {
 		#Set Meta Title And Keyword
 		$category_name=(isset($random_cat_data[$new_data['random_cat_datas'][0]])) ? $random_cat_data[$new_data['random_cat_datas'][0]] : '';
 		$shop_name=(isset($data['result']['name'])) ? $data['result']['name'] : '';
+		
+		$result=$data['result'];
+		$my_adress=$result[ 'address_line']; 
+		if($result[ 'address_line']!='' ) { if($result[ 'area_name']!='' && $result[ 'city_name']!='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'address_line']). ','.ucwords($result[ 'area_name']). ','.ucwords($result[ 'city_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']=='' && $result[ 'city_name']!='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'address_line']). ','.ucwords($result[ 'city_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']!='' && $result[ 'city_name']=='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'address_line']). ','.ucwords($result[ 'area_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']!='' && $result[ 'city_name']=='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'address_line']). ','.ucwords($result[ 'area_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']=='' && $result[ 'city_name']=='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'address_line']). ','.ucwords($result[ 'areas']). '-'.$result[ 'zip']; } else if($result[ 'area_name']!='' && $result[ 'city_name']!='' ) { $my_adress=ucwords($result[ 'address_line']). ','.ucwords($result[ 'area_name']). ','.ucwords($result[ 'city_name']); } } else { if($result[ 'area_name']!='' && $result[ 'city_name']!='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'area_name']). ','.ucwords($result[ 'city_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']=='' && $result[ 'city_name']!='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'city_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']!='' && $result[ 'city_name']=='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'area_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']!='' && $result[ 'city_name']=='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'area_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']=='' && $result[ 'city_name']=='' && ($result[ 'zip']!='' && $result[ 'zip']!=0)) { $my_adress=ucwords($result[ 'area_name']). '-'.$result[ 'zip']; } else if($result[ 'area_name']!='' && $result[ 'city_name']!='' ) { $my_adress=ucwords($result[ 'area_name']). ','.ucwords($result[ 'city_name']); } }
+		
+		$contact_number=$result['contact_number']; 
+
 		$category_name_list=($category_name!='') ? ' | '.$category_name:'';
 		$meta_desciptions=admin_settings_initialize('detail_meta');
 		if(isset($meta_desciptions['description']) && $meta_desciptions['description']!='') {
-			    $listing_data=array($shop_name,$data['result']['city_name'],$data['result']['area_name'],$category_name);
-				$meta_datas=array('##NAME##','##CITY##','##AREA##','##CATEGORY##');
+			    $listing_data=array($shop_name,$data['result']['city_name'],$data['result']['area_name'],$category_name, $my_adress, $contact_number);
+				$meta_datas=array('##NAME##','##CITY##','##AREA##','##CATEGORY##', '##ADDRESS##','##CONTACTNUMBER##');
 				$description = str_replace($meta_datas, $listing_data, $meta_desciptions['description']);
 		}
 		else {
@@ -421,8 +428,8 @@ class Listings extends CI_Controller {
 		}
 		if(isset($meta_desciptions['keywords']) && $meta_desciptions['keywords']!='') {
 			
-			$listing_data=array($shop_name,$data['result']['city_name'],$data['result']['area_name'],$category_name);
-			$meta_datas=array('##NAME##','##CITY##','##AREA##','##CATEGORY##');
+			$listing_data=array($shop_name,$data['result']['city_name'],$data['result']['area_name'],$category_name,$my_adress, $contact_number);
+			$meta_datas=array('##NAME##','##CITY##','##AREA##','##CATEGORY##', '##ADDRESS##', '##CONTACTNUMBER##');
 			$title = str_replace($meta_datas, $listing_data, $meta_desciptions['keywords']);
 		}
 		else {
