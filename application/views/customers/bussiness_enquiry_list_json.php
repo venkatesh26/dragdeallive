@@ -9,7 +9,7 @@
                </div>
                <div class="item-col fixed item-col-title">
                   <div class="item-heading">Customer Info</div>
-                  <div class="no-overflow"> <i class="fa fa-user"></i> <?php echo ucwords($list['name']);?><br/><i class="fa fa-envelope"></i> <?php echo ucwords($list['email']);?>  </div>
+                  <div class="no-overflow"> <i class="fa fa-user"></i> <?php echo ucwords($list['name'])." - ".$list['contact_no'];?><br/><i class="fa fa-envelope"></i> <?php echo ucwords($list['email']);?>  </div>
                </div>
                <div class="item-col item-col-date">
                   <div class="item-heading">Date</div>
@@ -25,7 +25,7 @@
                      <div class="item-actions-block">
                         <ul class="item-actions-list">
                            <li>
-                              <a class="remove enquiry_detail" data-info='<i class="fa fa-user"></i> <?php echo ucwords($list['name']);?><br/><i class="fa fa-envelope"></i> <?php echo ucwords($list['email']);?>' data-date="<?php echo date('d-M-Y',strtotime($list['created']));?> " data-title="<?php echo $list['title'];?>" data-message="<?php echo $list['message'];?>" data-status="<?php echo $list['is_active'];?>" data-toggle="modal" data-target="#enquiry-detail-modal" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-list"></i> </a>
+                              <a class="remove enquiry_detail" data-info='<i class="fa fa-user"></i> <?php echo ucwords($list['name'])." - ".$list['contact_no'];?><br/><i class="fa fa-envelope"></i> <?php echo ucwords($list['email']);?>' data-date="<?php echo date('d-M-Y',strtotime($list['created']));?> " data-title="<?php echo $list['title'];?>" data-message="<?php echo $list['message'];?>" data-status="<?php echo $list['is_active'];?>" data-toggle="modal" data-target="#enquiry-detail-modal" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-list"></i> </a>
                            </li>
                         </ul>
                      </div>

@@ -13399,3 +13399,9 @@ font-size:20px;
 		  width: 13%
 	}
 }
+.rewardsettings .info-text i{
+    color: #85CE36 !important;
+}
+.rewardsettings .info-text{
+font-family:italic;	
+}

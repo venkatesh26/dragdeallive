@@ -5,6 +5,9 @@
    $mobile_number=(isset($user_data['mobile_number']))?$user_data['mobile_number']:'';
    $address=(isset($user_data['address']))?$user_data['address']:'';
    $dob=(isset($user_data['dob']))?$user_data['dob']:'';
+   if($dob=='0000-00-00'){
+	 $dob='';
+   }
    $city_name=(isset($user_data['city_name']))?$user_data['city_name']:'';
    $area_name=(isset($user_data['area_name']))?$user_data['area_name']:'';
    $gender=(isset($user_data['gender_id']))?$user_data['gender_id']:'';
@@ -44,13 +47,17 @@
                <div class="form-group col-md-3">
                   <div class="form-group has-success">
                      <label class="control-label" for="email">Email <span class="required">*</span></label>
-                     <input type="text" name="email" class="form-control" id="email" value="<?php echo $email;?>">
+					 <?php if($email!=''):?>
+                     <input type="text" name="email" readonly class="form-control" id="email" value="<?php echo $email;?>">
+					 <?php else:?>
+					  <input type="text" name="email" class="form-control" id="email" value=""> 
+					 <?php endif;?>
                   </div>
                </div>
                <div class="form-group col-md-3">
                   <div class="form-group has-success">
                      <label class="control-label" for="dob"> Date Of Birth <span class="required">*</span></label>
-                     <input type="text" name="dob" class="form-control" id="dob" value="<?php echo $dob;?>">
+                     <input type="text" name="dob" class="form-control" id="dob" readonly value="<?php echo $dob;?>">
                   </div>
                </div>
                <div class="title-block">
@@ -114,12 +121,12 @@
 <script src="<?php echo base_url();?>assets/customer/js/bootstrap-datepicker.min.js"></script>
 <script>
 $(document).ready(function(){	
-   
     $('#dob').livequery('focus',function() {
 		$('#dob').datepicker({
 			format: "yyyy-mm-dd",
 			changeMonth: true,
 			changeYear: true,
+			maxDate:0,
 			startDate: new Date()
 		});  
 	});

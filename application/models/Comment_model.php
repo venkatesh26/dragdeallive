@@ -7,7 +7,7 @@ class Comment_model extends CI_Model {
 	
 	##### Review List ############
 	public function getMyReviewList($addId, $limit_start, $limit_end) {
-		$this->db->select('SQL_CALC_FOUND_ROWS advertisment_comments.id,advertisements.name as profile_name,advertisment_comments.*,users.email,user_profiles.first_name as first_name',false);
+		$this->db->select('SQL_CALC_FOUND_ROWS advertisment_comments.id,advertisements.name as profile_name,advertisment_comments.*,users.email,user_profiles.first_name as first_name,users.contact_number',false);
 		$this->db->where('advertisment_comments.advertisment_id',$addId);
 		$this->db->from('advertisment_comments');
 		$this->db->join('users', 'users.id = advertisment_comments.user_id', 'left');

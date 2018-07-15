@@ -9,7 +9,7 @@
                </div>
                <div class="item-col fixed item-col-title">
                   <div class="item-heading">Customer Info</div>
-                  <div class="no-overflow"> <i class="fa fa-user"></i> <?php echo ucwords($list['first_name']);?><br/><i class="fa fa-envelope"></i> <?php echo ucwords($list['email']);?>  </div>
+                  <div class="no-overflow"> <i class="fa fa-user"></i> <?php echo ucwords($list['first_name'])." - ".ucwords($list['contact_number']);?><br/><i class="fa fa-envelope"></i> <?php echo ucwords($list['email']);?>  </div>
                </div>
                <div class="item-col item-col-author">
                   <div class="item-heading">Rating </div>

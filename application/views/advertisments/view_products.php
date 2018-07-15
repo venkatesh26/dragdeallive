@@ -9,10 +9,11 @@
 								   <?php 
 								   foreach($gallery as $result):
 								   $image=base_url().'assets/themes/images/281-218x150.png';
+								   $or_image='#';
 									if(!empty($result['profile_image']) && file_exists('./'.$result['image_dir'].$result['profile_image']))
 									{
 									   $img_src = thumb(FCPATH.$result['image_dir'].$result['profile_image'],'218','150','gallery_thumb');
-									   $or_image=base_url().$result['image_dir'].$result['profile_image'];
+									   $or_image="#";
 									   $image = base_url().$result['image_dir'].'gallery_thumb/'.$img_src;
 									}
 								   ?>

@@ -6,11 +6,32 @@
    <div class="title-search-block">
       <div class="title-block1">
          <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                <h3 class="title">
                   <i class="fa fa-legal"></i> My Orders
                </h3>
 			   <br/>
+			   
+			    <div class="row">
+                     <form name="search-stat" id="search-users">
+                        <div class="col-md-12">
+                           <div class="col-md-2">
+                              <label> From Date &nbsp;</label>
+                              <input type="text" name="s_name" class="date form-control" id="s_name">
+                           </div>
+                           <div class="col-md-2">
+                              <label> &nbsp;To Date &nbsp; &nbsp;</label>
+                              <input type="text" name="s_email" class="date form-control" id="s_email">
+                           </div>
+
+                           <div class="col-md-4 search-buttons">
+						       <button type="button" value="Reset" class="btn btn-primary btn-md pull-right search-stat-reset"  ><i class="fa fa-history"></i> Reset	</button>
+                              <button type="submit" value="Search" class="btn btn-primary btn-md pull-right search-stat-submit" style="margin-right:10px;"><i class="fa fa-search"></i> Search	</button>
+                          
+                           </div>
+                        </div>
+                     </form>
+                  </div>
             </div>
          </div>
       </div>

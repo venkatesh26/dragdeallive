@@ -34,7 +34,7 @@ class Home_model extends CI_Model {
 		$result=$query->row_array(); 
 		if(!empty($result)){
 			$reward_id=$result['id'];		
-			$this->db->delete('advertisment_customer_bill_reward_rules',array('user_id' => $user_id));			
+			$this->db->delete('advertisment_customer_bill_reward_rules',array('reward_id' => $reward_id));			
 		}
 		else {
 			$data = array(
@@ -346,9 +346,7 @@ class Home_model extends CI_Model {
 		}
 		
 		$data = array(
-			'email'			=> strtolower($this->input->post('email')),	
-			'sender_id1'			=> strtolower($this->input->post('sender_id1')),	
-			'sender_id2'			=> strtolower($this->input->post('sender_id2')),				
+			'email'			=> strtolower($this->input->post('email')),			
 			'modified' 		=> date('Y-m-d h:i:s'),
 			'preferred_city_id' 		=> $city_id,
 			'preferred_area_id' 		=> $area_id,
@@ -371,7 +369,7 @@ class Home_model extends CI_Model {
 			'mobile_number' => $this->input->post('contact_number'),
 			'address' => $this->input->post('address'),
 			'gender_id' => $this->input->post('gender'),
-			'dob' => $this->input->post('dob'),
+			'dob' => date('Y-m-d', strtotime($this->input->post('dob'))),
 		);
 		$this->db->where('user_id', $user_id);
 		$update = $this->db->update('user_profiles', $profile_data);

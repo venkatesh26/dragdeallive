@@ -14,7 +14,7 @@ if(!empty($reward_points_data)){
 	}
 }
 ?>
-<article class="content cards-page white-bg-art" style="background:#fff">
+<article class="rewardsettings content cards-page white-bg-art" style="background:#fff">
 	<div class="bread-crumb-data">
 	   <?php echo $this->load->view('elements/breadcrumb',array(),true);?>
 	</div>
@@ -41,18 +41,32 @@ if(!empty($reward_points_data)){
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label class="control-label" for="name">How much purchase amount to earn one reward point?<span style="color:red;"> *</span></label>
-											
-											<input min="0" value="<?php echo $amount;?>" type="number" class="form-control" id="amount" name="amount" placeholder="Enter your amount" autocomplete="off">
-											<br/>
-											<span class="info-text">EX: Customer Purchased Bill Amount = 1000<br>
-											One reward point = 2 ;<br>
-											Total Reward Points 1000 / 2 = 500 points; </span>
+											<div class="clearfix col-md-5" style="margin-top:10px;">
+												One Reward Point  = 
+											</div>
+											<div class="col-md-3">
+												<input width="40%" min="0" value="<?php echo $amount;?>" type="number" class="form-control" id="amount" name="amount" autocomplete="off">
+											</div>
+										
+										</div>
+									</div>
+									<div class="row">
+									<div class="form-group col-md-12">
+											<span class="info-text"><i class="fa fa-info-circle"></i> Customer Purchased Bill Amount = 1000<br>
+											<i class="fa fa-info-circle"></i> One reward point = 2 <br>
+											<i class="fa fa-info-circle"></i> Total Reward Points 1000 / 2 = 500 points </span>	
 										</div>
 									</div>
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label class="control-label" for="name">What is the minimum purchase amount required to earn reward points ?<span style="color:red;"> *</span></label>
+											<div class="clearfix col-md-5" style="margin-top:10px;">
+												Min. purchase amount  = 
+											</div>
+											<div class="col-md-3">
+											
 											<input value="<?php echo $minimum_amount;?>"  type="number" class="form-control" id="minimum_amount" name="minimum_amount" placeholder="Enter minimum amount" autocomplete="off">
+											</div>
 										</div>
 									</div>
 
@@ -128,7 +142,6 @@ $(document).ready(function() {
 				else {
 					$("#rewardpoint_form_form_url input").each(function() {
 						$(this).next('span.login-error').remove();
-						$(this).val('');
 					});
 					alert_notification('success','Rewards Updated Successfully');
 				}	
