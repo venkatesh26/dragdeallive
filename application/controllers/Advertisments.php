@@ -26,7 +26,7 @@ class Advertisments extends CI_Controller {
 		{
 			$this->load->helper('thumb_helper');
 			$this->breadcrumbs->push('Advertisments', base_url().ADMIN.'/advertisments');
-			$this->breadcrumbs->push('Send Mail', base_url().ADMIN.'/advertisments/sen_mail');
+			$this->breadcrumbs->push('Send Mail', base_url().ADMIN.'/advertisments/send_mail');
 			if (isset($_POST) && !empty($_POST) && !empty($_POST['subject'])  && !empty($_POST['message']))
 			{
 				$email=$getValues['email'];
@@ -34,13 +34,7 @@ class Advertisments extends CI_Controller {
 				$subject=$_POST['subject'];
 				$message=$_POST['message'];
 				$data=array('user_name'=>$username,'email'=>$email,'message'=>$message);
-				$this->load->library('template');
-				$email_body = $this->template->load('mail_template/template', 'mail_template/admin_add_email', $data,TRUE);
-				$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-				$this->email->to($email);
-				$this->email->subject('Dragdeal -'.$subject);
-				$this->email->message($email_body);
-				if ($this->email->send()) {
+				if ($this->common_model->SendEmail($email, 'Dragdeal -'.$subject, $data, 'admin_add_email')) {
 					$this->session->set_flashdata('flash_message','<span class="alert alert-success" style="float:left"><button class="close" data-dismiss="alert">×</button>Mail Send Successfully</span>');
 				} else {
 				 $this->session->set_flashdata('flash_message','<span class="alert alert-error" style="float:left"><button class="close" data-dismiss="alert">×</button>Mail send Error!</span>');
@@ -67,10 +61,7 @@ class Advertisments extends CI_Controller {
 		$username=$user_profile_info['name'];
 		$bussiness_name=$getValues['name'].", ".$getValues['city_name'];
 		$data=array('user_name'=>$username,'email'=>$email, 'token'=>$id, 'bussiness_name'=>$bussiness_name);
-		$this->load->library('template');
-		$email_body = $this->template->load('mail_template/one_time_profile_activation', 'mail_template/one_time_profile_activation', $data,TRUE);
-		$this->load->model('cron_model');
-		$this->cron_model->sendEmail($email, "Wow ! Almost Done Just One More Step To Activate Your Profile", "",$email_body, $email, "Dragdeal");
+		$this->common_model->sendEmail($email, "Wow ! Almost Done Just One More Step To Activate Your Profile", "",$data, 'one_time_profile_activation', "one_time_profile_activation");
 		$this->session->set_flashdata('flash_message','<span class="alert alert-success" style="float:left"><button class="close" data-dismiss="alert">×</button>Mail Send Successfully</span>');
 		$pageredirect=$this->input->get('pagemode');
 		$pageno=$this->input->get('modestatus');

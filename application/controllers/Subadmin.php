@@ -293,15 +293,9 @@ class Subadmin extends CI_Controller {
 			$data = array(
 				'user_name'  => $this->input->post('first_name'),
 				'user_email' => $this->input->post('email'),
-				'password'	 => $this->input->post('password'),
-				//'verifylink' => $email_activation_id
+				'password'	 => $this->input->post('password')
 			);
-			$email_body = $this->template->load('mail_template/template', 'mail_template/admin_register_subadmin', $data,TRUE);
-			$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-			$this->email->to($this->input->post('email'));
-			$this->email->subject('Sub Administrator Registration');
-			$this->email->message($email_body);
-			if ($this->email->send()) {
+			if ($this->common_model->SendEmail($this->input->post('email'), $this->site_name.' - Sub Administrator Registration', $data, 'admin_register_subadmin')) {
 					$this->session->set_flashdata('flash_message', $this->lang->line('user_add'));
 				} else {
 					$this->session->set_flashdata('flash_message', $this->lang->line('user_error'));

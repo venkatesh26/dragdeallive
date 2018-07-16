@@ -337,12 +337,7 @@ class Webusers extends CI_Controller {
 				'password'	 => $this->input->post('password'),
 				'verifylink' => $email_activation_id
 			);
-			$email_body = $this->template->load('mail_template/template', 'mail_template/admin_register_site_user', $data,TRUE);
-			$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-			$this->email->to($this->input->post('email'));
-			$this->email->subject('User Registration');
-			$this->email->message($email_body);
-			if ($this->email->send()) {
+			if ($this->common_model->SendEmail($this->input->post('email'), $this->site_name.' - User Registration', $data, 'admin_register_site_user')) {
 					$this->session->set_flashdata('flash_message', $this->lang->line('user_add'));
 				} else {
 					$this->session->set_flashdata('flash_message', $this->lang->line('user_error'));
@@ -499,12 +494,7 @@ class Webusers extends CI_Controller {
 			'user_email' => $getValues['profile']['email'],
 			'verifylink' => $email_activation_id
 		);
-		$email_body = $this->template->load('mail_template/template', 'mail_template/admin/resend_activation_link', $data,TRUE);
-		$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-		$this->email->to($getValues['profile']['email']);
-		$this->email->subject(admin_settings_initialize('sitename').'- Activation Link');
-		$this->email->message($email_body);
-		$this->email->send();
+		$this->common_model->SendEmail($getValues['profile']['email'], $this->site_name.' - Activation Link', $data, 'admin/resend_activation_link');
 		$this->session->set_flashdata('flash_message', "Mail Send Successfully");
 		redirect(base_url().ADMIN.'/users/'.$pageredirect.'/'.$pageno);
     }
@@ -528,13 +518,7 @@ class Webusers extends CI_Controller {
 				$subject=$_POST['subject'];
 				$message=$_POST['message'];
 				$data=array('user_name'=>$username,'email'=>$email,'message'=>$message);
-				$this->load->library('template');
-				$email_body = $this->template->load('mail_template/template', 'mail_template/admin/user_mail', $data,TRUE);
-				$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-				$this->email->to($email);
-				$this->email->subject(admin_settings_initialize('sitename').' -'.$subject);
-				$this->email->message($email_body);
-				if ($this->email->send()) {
+				if ($this->common_model->SendEmail($this->input->post('email'), $this->site_name.$subject, $data, 'admin/user_mail')) {
 					$this->session->set_flashdata('flash_message','<span class="alert alert-success" style="float:left"><button class="close" data-dismiss="alert">×</button>Mail Send Successfully</span>');
 				} else {
 				 $this->session->set_flashdata('flash_message','<span class="alert alert-error" style="float:left"><button class="close" data-dismiss="alert">×</button>Mail send Error!</span>');

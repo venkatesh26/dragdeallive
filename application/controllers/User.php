@@ -148,20 +148,15 @@ class User extends CI_Controller {
 				$this->form_validation->set_rules('password','Password','trim|required|min_length[6]|max_length[32]|password_check');
 				$this->form_validation->set_rules('password2','Confirm Password','trim|required|min_length[6]|max_length[32]|matches[password]');
 				$this->form_validation->set_error_delimiters('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><strong>', '</strong></div>'); 
-				if ($this->form_validation->run()) { //echo "---	".$this->uri->segment(4).$user_id;exit;
+				if ($this->form_validation->run()) {
 					if($this->Users_model->change_password($user_id, md5($this->input->post('password2')))==true){
 						$getValues = $this->Users_model->get_users_profile($this->uri->segment(2),$user_id);
 						$data = array(
 							'user_name'  => $getValues->name,
 							'user_email' => $getValues->email,
 							'password'	 => $this->input->post('password')	
-						);
-						$email_body=$this->template->load('mail_template/template', 'mail_template/admin_change_users_password', $data,TRUE);
-						$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-						$this->email->to($getValues->email);
-						$this->email->subject('Password Changed');
-						$this->email->message($email_body);
-						if ($this->email->send()) {
+						);			
+						if ($this->common_model->SendEmail($this->input->post('email'), $this->site_name.' - Password Changed', $data, 'admin_change_users_password')) {
 							$this->session->set_flashdata('flash_message', $this->lang->line('user-suc-pwd'));
 						} else {
 							$this->session->set_flashdata('flash_message', $this->lang->line('user_error'));
@@ -319,15 +314,10 @@ class User extends CI_Controller {
                                                 $user_name=$username['display_name'];
 					$data = array(
 						'user_email' => $this->input->post('email_address'),
-						'admin_resetpassword_url'  => $this->config->item('admin_resetpassword_url').$uid,'username'=>$user_name
+						'admin_resetpassword_url'  => $this->config->item('admin_resetpassword_url').$uid,
+						'username'=>$user_name
 					);
-					$email_body=$this->template->load('mail_template/template', 'mail_template/admin_forgot_password', $data,TRUE);
-					$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-					$this->email->to($this->input->post('email_address'));
-					$this->email->subject('Forgot Password');
-					$this->email->message($email_body);
-					//echo $email_body;die;
-					if ($this->email->send()) {
+					if ($this->common_model->SendEmail($this->input->post('email'), $this->site_name.' - Forgot Password', $data, 'admin_forgot_password')) {
 						$this->session->set_flashdata('flash_message', $this->lang->line('mail_suc'));
 						redirect(ADMIN.'/forgotpassword');
 					} else {

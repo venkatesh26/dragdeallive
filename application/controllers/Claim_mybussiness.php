@@ -166,13 +166,7 @@ class claim_mybussiness extends CI_Controller {
 		{		
 			$getValues = $this->claim_mybussinness_model->add();
 			$data=array('user_name'=>$_POST['username'],'user_email'=>$_POST['email'],'password'=>$_POST['password']);
-			$this->load->library('template');
-			$email_body = $this->template->load('mail_template/template', 'mail_template/admin_register_site_claim_user', $data,TRUE);
-			$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-			$this->email->to($this->input->post('email'));
-			$this->email->subject('Dragdeal Claim Request Approval');
-			$this->email->message($email_body);
-			if ($this->email->send()) {
+			if ($this->common_model->SendEmail($this->input->post('email'), $this->site_name.' - Claim Request Approval', $data, 'admin_register_site_claim_user')) {
 					$this->session->set_flashdata('flash_message', $this->lang->line('user_add'));
 				} else {
 					$this->session->set_flashdata('flash_message', $this->lang->line('user_error'));
@@ -187,17 +181,11 @@ class claim_mybussiness extends CI_Controller {
 		{		
 			$getValues = $this->claim_mybussinness_model->update_account();
 			$data=array('user_name'=>$_POST['username']);
-			$this->load->library('template');
-			$email_body = $this->template->load('mail_template/template', 'mail_template/claim_bussiness', $data,TRUE);
-			$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-			$this->email->to($this->input->post('email'));
-			$this->email->subject('Dialbe Claim Request Approval');
-			$this->email->message($email_body);
-			if ($this->email->send()) {
-					$this->session->set_flashdata('flash_message', $this->lang->line('user_add'));
-				} else {
-					$this->session->set_flashdata('flash_message', $this->lang->line('user_error'));
-				}
+			if ($this->common_model->SendEmail($this->input->post('email'), $this->site_name.' - Claim Request Approval', $data, 'claim_bussiness')) {
+				$this->session->set_flashdata('flash_message', $this->lang->line('user_add'));
+			} else {
+				$this->session->set_flashdata('flash_message', $this->lang->line('user_error'));
+			}
 		}
 		redirect(base_url().ADMIN.'/claim_my_bussiness');	
 	}

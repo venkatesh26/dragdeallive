@@ -64,13 +64,10 @@ class Home extends CI_Controller {
 						$user_id=$this->input->post('user_id');
 						$success = $this->home_model->createAddCampaign();
 						$token=$success['add_id'];
-						$this->load->library('template');
+					
+						$data=array('user_name'=>$this->input->post('owner'));		
+						$this->common_model->SendEmail($this->input->post('email'), "You Business Profile Registered Successfully -".$this->site_name, $data, 'register_via_campaign');
 						
-						$data=array('user_name'=>$this->input->post('owner'));
-						$this->load->model('notification_model');					
-						$email_body = $this->template->load('mail_template/template', 'mail_template/register_via_campaign', $data,TRUE);
-						$this->load->model('cron_model');
-						$this->cron_model->sendEmail($this->input->post('email'), "You Business Profile Registered Successfully -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
 						$extra_array = array('status'=>'success','msg'=>'You Business Profile Registered Successfully.<br/> Once your payment completed after that your  business profile will be activated automatically.','url'=>base_url().'home/one_time_subscription?token='.$token.'&plan_id='.$plan_id);
 						echo json_encode($extra_array);
 						die;
@@ -111,10 +108,8 @@ class Home extends CI_Controller {
 				'user_email' => $this->input->post('email'),
 				'password'	 => $password,
 				'verifylink' => $email_activation_id
-			);
-			$email_body = $this->template->load('mail_template/template', 'mail_template/register_site_user', $data,TRUE);
-			$this->load->model('cron_model');
-			$this->cron_model->sendEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
+			);			
+			$this->common_model->SendEmail($this->input->post('email'),"Thanks For Register -".$this->site_name, $data, 'register_site_user');
 		}
 		echo json_encode($success);
 		die;
@@ -192,25 +187,12 @@ class Home extends CI_Controller {
 					$enquiry_via_mail=true;
 					if($enquiry_via_mail){
 						$data=array('user_name'=>'Customer','customer_name'=>$this->input->post('name'), 'email'=>$this->input->post('email'), 'contact_no'=>$this->input->post('contact_no'), 'title'=>$this->input->post('title'), 'message'=>$this->input->post('message'));
-						$notificatiosTemplate="mail_template/customer_enquiry_notification";
-						$email_body = $this->template->load('mail_template/template', $notificatiosTemplate, $data, TRUE);
-						$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-						$this->email->to($this->input->post('advertisment_email'));
-						$this->email->subject($this->site_name.' - Enquiry Notifications For Your Bussiness');
-						$this->email->message($email_body);
-						if ($this->email->send()) {
-						}
+						$this->common_model->SendEmail($this->input->post('advertisment_email'), $this->site_name.' - Enquiry Notifications For Your Bussiness', $data, 'customer_enquiry_notification');						
 					} 
 					else {
 						$data=array('user_name'=>'Customer','customer_name'=>$this->input->post('name'));
-						$notificatiosTemplate="mail_template/enquiry_notification";
-						$email_body = $this->template->load('mail_template/template', $notificatiosTemplate, $data, TRUE);
-						$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-						$this->email->to($this->input->post('advertisment_email'));
-						$this->email->subject($this->site_name.' - Enquiry Notifications For Your Bussiness');
-						$this->email->message($email_body);
-						if ($this->email->send()) {
-						}
+						$notificatiosTemplate="mail_template/enquiry_notification";			
+						$this->common_model->SendEmail($this->input->post('advertisment_email'), $this->site_name.' - Enquiry Notifications For Your Bussiness', $data, 'enquiry_notification');
 					}
 					
 					#### Sms Settings #####
@@ -558,11 +540,8 @@ class Home extends CI_Controller {
 						);
 						$this->load->model('notification_model');
 						$new_data=array('username'=>$this->input->post('name'),'user_id'=>$success);
-						$this->notification_model->common_save_notification('WELCOME',$new_data);
-						
-						$email_body = $this->template->load('mail_template/template', 'mail_template/register_site_user', $data,TRUE);
-						$this->load->model('cron_model');
-						$this->cron_model->sendEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, "",$email_body, $this->input->post('email'), "Dragdeal");
+						$this->notification_model->common_save_notification('WELCOME',$new_data);						
+						$this->common_model->SendEmail($this->input->post('email'), "Thanks For Register -".$this->site_name, $data, 'register_site_user');
 						$extra_array = array('status'=>'success','msg'=>'You Successfully Register.. Pls check your mail to verify your account.','url'=>base_url());
 						echo json_encode($extra_array);
 						die;
@@ -732,12 +711,7 @@ class Home extends CI_Controller {
 						'user_email' => $this->input->post('email_address'),
 						'resetpassword_url'  => $this->config->item('resetpassword_url').$uid,'username'=>$user_name
 					);
-					$email_body=$this->template->load('mail_template/template', 'mail_template/forgot_password', $data,TRUE);
-					$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-					$this->email->to($this->input->post('email_address'));
-					$this->email->subject('Forgot Password');
-					$this->email->message($email_body);
-					if ($this->email->send()) 
+					if ($this->common_model->SendEmail($this->input->post('email_address'), 'Forgot Password', $data, 'forgot_password')) 
 					{	
 					  $json_array['status']="success";
 					  $json_array['url']=base_url();
@@ -785,19 +759,19 @@ class Home extends CI_Controller {
 			}
 			
 		}
-	        $this->data['title_of_layout']=$this->site_name." - Forgot Password";
-			$this->data['meta_keywords']=$this->site_name." - Forgot Password";
-			$this->data['title']="Forgot Password";		
-			if(!$this->input->is_ajax_request())
-			{
-			$this->data['reg_login']='1';
-			$this->data['main_content']=$this->load->view('users/forgot_password_normal', $this->data,true);
-			$this->load->view('layouts/default', $this->data);
-			}
-			else
-			{
-				$this->load->view('users/forgot_password', $this->data);
-			}
+		$this->data['title_of_layout']=$this->site_name." - Forgot Password";
+		$this->data['meta_keywords']=$this->site_name." - Forgot Password";
+		$this->data['title']="Forgot Password";		
+		if(!$this->input->is_ajax_request())
+		{
+		$this->data['reg_login']='1';
+		$this->data['main_content']=$this->load->view('users/forgot_password_normal', $this->data,true);
+		$this->load->view('layouts/default', $this->data);
+		}
+		else
+		{
+			$this->load->view('users/forgot_password', $this->data);
+		}
 	}
 	
 	#Home - Reset Password

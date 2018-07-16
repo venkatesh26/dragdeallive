@@ -53,5 +53,7 @@ class Common_model extends CI_Model {
 		$insert = $this->db->insert_id() ;
 		return $insert;
 	}
+
+	
 }
 ?>

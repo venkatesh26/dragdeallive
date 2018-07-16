@@ -186,12 +186,7 @@ class contactus extends CI_Controller {
 					'user_name'  => $this->input->post('name'),
 					'message' => $this->input->post('message')
 				);
-				$email_body = $this->template->load('mail_template/template', 'mail_template/admin_contactus_notification', $data,TRUE);
-				$this->email->from(admin_settings_initialize('email'), admin_settings_initialize('sitename'));
-				$this->email->to($toEmail);
-				$this->email->subject($this->input->post('subject'));
-				$this->email->message($email_body);
-				if ($this->email->send()) 
+				if ($this->common_model->SendEmail($this->input->post('email'), $this->input->post('subject'), $data, 'admin_contactus_notification')) 
 				{
 					$this->session->set_flashdata('flash_message',"Mail  Send Successfully");
 				}
