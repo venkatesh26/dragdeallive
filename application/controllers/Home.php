@@ -4,7 +4,6 @@ class Home extends CI_Controller {
 
     #Construct Function
 	public function __construct() {
-		
         parent::__construct();
 		$this->load->model('home_model');
 		
@@ -31,9 +30,9 @@ class Home extends CI_Controller {
 		$this->site_name=admin_settings_initialize('sitename');
 		$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
 		$this->detect=new Mobile_Detect();
-
 	}
 	
+
 	#Home - Create Add Campaign
 	public function createAddCampaign(){
 		

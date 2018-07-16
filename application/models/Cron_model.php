@@ -121,8 +121,8 @@ class Cron_model extends CI_Model {
 	############# Send Email ###############
 	public function sendEmail($to, $subject, $body_text, $body_html, $from, $fromName){
 		$res = "";
-		$data = "username=".urlencode("damovenkatesh@gmail.com");
-		$data .= "&api_key=".urlencode("0771851d-24a6-43f0-9904-f15d1293f017");
+		$data = "username=".urlencode("dhamodaran@constient.com");
+		$data .= "&api_key=".urlencode("12d2d9f1-e893-4726-826b-caacae82877d");
 		$data .= "&from=".urlencode($from);
 		$data .= "&from_name=".urlencode($fromName);
 		$data .= "&to=".urlencode($to);
