@@ -1,8 +1,90 @@
 <?php
 class Users_model extends CI_Model {
 
-	function validate($user_name, $password)
-	{
+
+	#################### User Register ###############
+	public function create_account($verify_link, $user_type) {
+		$data = array(
+			'email'			=> strtolower($this->input->post('email')),			
+			'password'		=> md5($this->input->post('password')),
+			'contact_number' => $this->input->post('contact_number'),
+			'user_type'		=>$user_type,
+			'is_approved' 	=> 1,
+			'created'		=> date('Y-m-d h:i:s'),
+			'modified' 		=> date('Y-m-d h:i:s'),
+			'register_type' => 1,
+			'is_active'		=> 1,
+			'uid'			=> $verify_link,
+		);
+		$this->db->insert('users', $data);
+		$user_id = $this->db->insert_id();
+			
+		$profile_data = array(
+			'created'		=> date('Y-m-d h:i:s'),
+			'modified' 		=> date('Y-m-d h:i:s'),
+			'first_name' 	=> $this->input->post('first_name'),
+			'last_name' 	=> $this->input->post('last_name'),
+			'mobile_number' => $this->input->post('contact_number'),
+			'user_id'		=> $user_id
+		);
+		$this->db->insert('user_profiles', $profile_data);
+		$id = $this->db->insert_id();
+		return $user_id;
+	}
+
+	
+	####### Validate User ##################
+    function validate_users($user_name, $password ,$user_type) {
+		$this->db->select('id,email,user_type,is_email_confirmed,is_active,is_approved,register_type,contact_number');
+		$this->db->where('email', $user_name);
+		$this->db->where('password', $password);
+		$this->db->where('user_type', $user_type);
+		$query = $this->db->get('users');
+		if($query->num_rows() == 1){
+			return $query->row();
+		}		
+	}	
+	
+	
+	#User Last Login Save
+	function last_login_time($email,$user_id=null) {
+		$this->load->helper('date');
+		$this->load->library('user_agent');
+    	$this->db->select('id,email,user_type,last_login_time,current_login_time');
+		if(!empty($email))
+		{
+			$this->db->where('email', $email);
+		}
+		else
+		{
+			$this->db->where('id', $user_id);
+		}
+		$query = $this->db->get('users');
+		$getUserDetails = $query->row();
+		
+		if($getUserDetails->last_login_time == "0000-00-00 00:00:00" ) {
+			$lastlogin=date('Y-m-d h:i:s',now());
+		} else {
+			$lastlogin=$getUserDetails->current_login_time;
+		}
+		$loginDetails =  array('current_login_time'=> date('Y-m-d h:i:s',now()),'last_login_time'=> $lastlogin);
+		$this->db->where('id', $getUserDetails->id);
+		$update = $this->db->update('users', $loginDetails);
+		$logHistory = array('user_id' => $getUserDetails->id,'created'=>date('Y-m-d h:i:s',now()),'ip'=>$this->input->ip_address(),'browser_info'=>$this->agent->agent_string(),'is_deleted' => 0);
+		$insert = $this->db->insert('user_logins', $logHistory);
+	}
+	
+	public function valid_user_type($email) {
+		$this->load->helper('date');
+		$this->db->where('email', $email);
+		$query = $this->db->get('users');
+		if($query->num_rows() == 1) { 
+		return true;
+		}
+		return FALSE;	
+	}
+	
+	function validate($user_name, $password) {
 		$this->db->select('email,user_type,users.id,first_name');
 		$this->db->where('email', $user_name);
 		$this->db->where('password', $password);
@@ -19,55 +101,66 @@ class Users_model extends CI_Model {
 		$this->db->where('uid', $uid);	 	
 		$query = $this->db->get('users');
 			
-		if($query->num_rows() == 1)
-		{
+		if($query->num_rows() == 1) {
 			return true;
-		}else{
+		}
+		return false;
+	}
+	
+	function update_password($email) {
+		$this->db->where('email',$email);
+		$this->db->get('users');
+	    $query = $this->db->get('users');
+        if($query->num_rows() < 0){
 			return false;
+		}else {
+			$new_member_insert_data = array(
+				'password'=> md5($this->input->post('password') ),
+				'uid'=>''
+			);
+			$this->db->where('email', $email);
+			$update = $this->db->update('users', $new_member_insert_data);
+		    return $update;
 		}
 	}
 	
-	function last_login_time($email) {
+	function check_user_available($email,$uid) {
 		$this->load->helper('date');
-		$this->load->library('user_agent');
-    	$this->db->select('id,email,user_type,last_login_time,current_login_time');
 		$this->db->where('email', $email);
+		$this->db->where_in('user_type', array('1','4', '3'));
 		$query = $this->db->get('users');
-		$getUserDetails = $query->row();
-		
-		if($getUserDetails->last_login_time == "0000-00-00 00:00:00" ) {
-			$lastlogin=date('Y-m-d h:i:s',now());
-		} else {
-			$lastlogin=$getUserDetails->current_login_time;
-		}
-		//Update users Last login Details
-		$loginDetails =  array('current_login_time'=> date('Y-m-d h:i:s',now()),'last_login_time'=> $lastlogin);
-		$this->db->where('id', $getUserDetails->id);
-		$update = $this->db->update('users', $loginDetails);
-		//Maintain users log history
-		$logHistory = array('user_id' => $getUserDetails->id,'created'=>date('Y-m-d h:i:s',now()),'ip'=>$this->input->ip_address(),'browser_info'=>$this->agent->agent_string(),'is_deleted' => 0);
-		$insert = $this->db->insert('user_logins', $logHistory);
-	}
 	
-	function check_user_available($email,$uid) 
-	{
-		$this->load->helper('date');
-		$this->db->where('email', $email);
-		$this->db->where_in('user_type', array('1','4'));
-		$query = $this->db->get('users');
 		if($query->num_rows() == 1) { 
 			$my_date = date("Y-m-d h:i:s", time());
 			$new_member_insert_data = array('uid'=> $uid ,
 							'uid_request_date'=> $my_date
 						);
-			$this->db->where('id',$query->id);
+			$query=$query->row_array(); 
+			$this->db->where('id',$query['id']);
 			$update = $this->db->update('users', $new_member_insert_data);
 			return $update;
-		}else{
-			return FALSE;
-		}		
+		}	
+		return FALSE;		
 	}
 
+	public function getUsername($email=null) {
+	    $this->db->select('users.id,users.email,user_profiles.first_name');
+		$this->db->from('users');
+		$this->db->where('users.email',$email);
+		$this->db->join('user_profiles','user_profiles.user_id=users.id','lefts');
+		$query = $this->db->get();
+		$users = $query->row_array(); 
+		return $users;	
+	}
+	
+	function get_user_info($slug=null) {
+		$this->db->select('users.email');
+		$this->db->where('uid',$slug);
+		$query = $this->db->get('users');
+		$users = $query->row_array(); 
+		return $users;
+	}
+	
 	function get_settings() {
 		$this->db->where('id', 1);
 		$query = $this->db->get('settings');
@@ -136,6 +229,7 @@ class Users_model extends CI_Model {
 			return false;
 		}
 	}
+	
 	function change_password($user_id=null,$old_pwd=null,$pwd) {
    		$data = array(
           'password' => $pwd
@@ -163,6 +257,7 @@ class Users_model extends CI_Model {
 		$query = $this->db->get('user_profiles');
 		return $query->row_array();	
 	}
+
 	function get_users_profile($user_type,$user_id) {
 		if($user_type=="hotels") {
 			$this->db->select('users.id,users.email,hotels.name as name');

@@ -28,7 +28,7 @@
                                                     </div>
                                                     <div>
                                                         <div class="screen-reader-response"></div>
-                                                        <form action="<?php echo base_url().'home/forgot_password';?>" method="post" id="forgotpassword_url">
+                                                        <form action="<?php echo base_url().'users/forgot_password';?>" method="post" id="forgotpassword_url">
                                                             <p><span class="wpcf7-form-control-wrap your-email">
 															<input type="text" name="email_address" placeholder="Enter Your Email *" value="" size="40"></span>
                                                             </p>

@@ -1,0 +1,1 @@
+ALTER TABLE `users` CHANGE `user_type` `user_type` TINYINT(1) NOT NULL COMMENT '1-Admin,2-Vendor,3-Site User';

@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class=td-login-form-wrap>
-					<form action="<?php echo base_url().'home/login';?>" method="post" id="new_login_form_url_popup">
+					<form action="<?php echo base_url().'users/login';?>" method="post" id="new_login_form_url_popup">
 						<div class=td-login-panel-title><span>Welcome!</span>Log into your account</div>
 						<div class=td_display_err></div>
 						<div class=td-login-inputs>
@@ -43,7 +43,7 @@
                 <div class=td-login-form-wrap>
                     <div class=td-login-panel-title>Recover your password</div>
                     <div class=td_display_err></div>
-						<form action="<?php echo base_url().'home/forgot_password';?>" method="post" id="forgotpassword_url_popup">
+						<form action="<?php echo base_url().'users/forgot_password';?>" method="post" id="forgotpassword_url_popup">
                     <div class=td-login-inputs>
                         <input class=td-login-input type=text name=email_address id=forgot_email-mob value="">
                         <label>Your Email *</label>

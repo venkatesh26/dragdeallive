@@ -78,7 +78,7 @@ endif;
                         <div class=td-login-wrap>
                             <div class=td_display_err></div>
                             <div id=td-login-div class="">
-								<form method="post" action="<?php echo base_url().'home/login';?>" id="new_login_form_url_popup">
+								<form method="post" action="<?php echo base_url().'users/login';?>" id="new_login_form_url_popup">
                                 <div class=td-login-panel-title>Welcome! Log into your account</div>
                                 <input class=td-login-input type=text name=email  placeholder="Your Email *" value="">
                                 <input class=td-login-input type=password name=password  placeholder="Your Password *">
@@ -98,7 +98,7 @@ endif;
                                 </div>
                             </div>
 
-							<form method="post" action="<?php echo base_url().'home/forgot_password';?>" id="forgotpassword_url_popup">
+							<form method="post" action="<?php echo base_url().'users/forgot_password';?>" id="forgotpassword_url_popup">
                             <div id=td-forgot-pass-div class=td-display-none>
                                 <div class=td-login-panel-title>Recover your password</div>
                                 <input class=td-login-input type=text name=email_address id=forgot_email placeholder="Enter Your Email *" value="">

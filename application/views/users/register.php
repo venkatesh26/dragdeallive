@@ -6,6 +6,17 @@
    .single-form input{
    height:45px;
    }
+   .checkbox-section label,input 
+   {
+	float:left;   
+   }
+   .is-vendor{
+	    margin-top: 16px;
+    margin-left: 10px;   
+   }
+   .cursor{
+	   cursor:pointer;
+   }
 </style>
 <div class="td-main-content-wrap td-main-page-wrap" style="background:#fcfcfc;">
 
@@ -15,7 +26,7 @@
 		echo $this->load->view('bread_crumb',array(),true); 
 		?>
       <div class="col-sm-9">
-         <form class="form-horizontal" action="<?php echo base_url().'home/register';?>" method="post" id="login_form_url">
+         <form class="form-horizontal" action="<?php echo base_url().'users/register';?>" method="post" id="login_form_url">
             <h3>&nbsp;</h3>
             <div class="form-group">
                <label for="firstName" class="col-sm-3 control-label">First Name<span class="required"> *</span></label>
@@ -47,6 +58,13 @@
                   <input type="password" name="password" id="password" placeholder="Enter Your Password" class="form-control" autocomplete="off">
                </div>
             </div>
+			<div class="form-group checkbox-section">
+				 <label for="is_vendor" class="col-sm-3 control-label"></label>
+				<div class="col-sm-9">
+					<input type="checkbox" name="is_vendor" id="is_vendor" value="1"  autocomplete="off"><label for="is_vendor" class="is-vendor cursor">I would like register as vendor</label>
+				</div>
+			 </div>
+			
             <div class="form-group">
                <div class="col-sm-3 col-sm-offset-3 pull-right">
 			

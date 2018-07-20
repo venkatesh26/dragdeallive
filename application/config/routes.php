@@ -487,15 +487,15 @@ $route[ADMIN.'/notification_type/edit/(:any)'] = 'notification_type/edit/$1';
 ################# End Admin Paths #########################
 
 ############Site Paths ###################
-$route['forgot_password'] = 'home/forgot_password';
-$route['reset_password/(:any)'] = 'home/reset_password';
-$route['login'] = 'home/register/$1';
-$route['user_login'] = 'home/login/$1';
-$route['register'] = 'home/register/$1';
+$route['forgot_password'] = 'users/forgot_password';
+$route['reset_password/(:any)'] = 'users/reset_password';
+$route['login'] = 'users/register/$1';
+$route['user_login'] = 'users/login/$1';
+$route['register'] = 'users/register/$1';
 $route['users/verify/(:any)'] = 'home/verify/$1';
 $route['google_login'] = 'site_webusers/google_login';
-$route['logout'] = 'home/logout';
-$route['signup'] = 'home/register';
+$route['logout'] = 'users/logout';
+$route['signup'] = 'users/register';
 $route['facebook'] = 'home/facebook';
 $route['twitter'] = 'home/twitter';
 $route['googleplus'] = 'home/googleplus';
