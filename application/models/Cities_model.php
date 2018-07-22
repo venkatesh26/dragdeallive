@@ -16,6 +16,32 @@ class Cities_model extends CI_Model {
 		}	
 		
 	}
+	
+		
+	######### City Find Or Save ######## 
+	public function cityFindOrSave($name){
+		$table_data=array();
+		$this->db->select('id');        
+		$this->db->where('name',$name);
+		$query = $this->db->get('cities');
+		$res = $query->row();
+		if(!empty($res))
+		{
+			return $res->id;
+		}
+		else
+		{
+			$table_data=array(
+			'created'=>date('Y-m-d h:i:s'),
+			'name'=>$name,
+			'country_id'=>0,
+			'state_id'=>0,
+			'is_active'=>1,
+			);
+         $this->db->insert('cities', $table_data);			
+		 return $this->db->insert_id();
+		}
+	}
 
 	function create_cities($image_data=null)
 	{ 

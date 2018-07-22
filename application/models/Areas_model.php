@@ -8,6 +8,33 @@ class Areas_model extends CI_Model {
 		$this->load->model('cities_model');
     }
 	
+	#######Area Find Or Save ###########
+	public function areaFindOrSave($name,$city_id)
+	{
+		$table_data=array();
+		$this->db->select('id');        
+		$this->db->where('name',$name);
+		$query = $this->db->get('areas');
+		$res = $query->row();
+		if(!empty($res))
+		{
+			return $res->id;
+		}
+		else
+		{
+			$table_data=array(
+			'created'=>date('Y-m-d h:i:s'),
+			'name'=>$name,
+			'country_id'=>0,
+			'state_id'=>0,
+			'city_id'=>$city_id,
+			'is_active'=>1,
+			);
+         $this->db->insert('areas', $table_data);			
+		 return $this->db->insert_id();
+		}
+	}
+	
 	
 	function get_add_area($keyword,$city_id=false)
 	{			

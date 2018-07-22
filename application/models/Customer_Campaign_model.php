@@ -36,7 +36,7 @@ class customer_campaign_model extends CI_Model {
 				}
 		}
 		$this->db->join('advertisments_customers_campaign', 'advertisments_customers_campaign.id = advertisments_customers_campaign_list.advertisments_customers_campaign_id', 'left');		
-		$this->db->join('users', 'users.id = advertisments_customers_campaign_list.user_id', 'left');
+		$this->db->join('users', 'users.customer_id = advertisments_customers_campaign_list.customer_id', 'left');
 		$this->db->join('user_profiles', 'user_profiles.user_id = advertisments_customers_campaign_list.user_id', 'left');
 		if(!$sort_field)
 			$this->db->order_by('advertisments_customers_campaign_list.id', $order_type);

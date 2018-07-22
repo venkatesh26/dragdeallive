@@ -11,6 +11,129 @@ class Users extends CI_Controller {
 		$this->detect=new Mobile_Detect();
 	}
 	
+	#Home - Verify Account
+    public function verify($vid = NULL){
+    	if($this->session->userdata('is_user_logged_in')) {
+			redirect(base_url());
+		} 
+		else {
+			if($vid!="") {
+				if($this->home_model->check_verify_code($vid)){
+					$this->session->set_flashdata('success',"Your Acount activated successfully.");
+					redirect(base_url().'login');
+	
+				}else{
+					$this->session->set_flashdata('error', $this->lang->line('hotel_session_expires'));
+					redirect(base_url().'login');
+				}
+			}
+		}
+    }
+	
+	###############Customer My Profile############
+	public function my_profile() {
+		if(!$this->session->userdata('is_user_logged_in'))
+		{
+			$url = 'login';
+			redirect($url);
+		}
+		$this->data=array();
+		$this->data['title_of_layout']="My Profile";
+		$this->breadcrumbs->push($this->site_name,base_url());		
+		$this->breadcrumbs->push('My Profile',base_url());
+		#Set Meta Title And Keyword
+		$this->data['user_data']=$this->users_model->get_userinfo($this->session->userdata('user_id'));
+		if($_POST) 
+		{
+				$this->form_validation->set_rules('first_name','First Name','trim|required|min_length[3]');
+				$this->form_validation->set_rules('last_name','Last Name','trim|required|min_length[3]');
+				$this->form_validation->set_rules('contact_number',ucwords($this->lang->line('Contact Number')),'trim|required|min_length[10]|numeric');
+				$this->form_validation->set_rules('address',ucwords($this->lang->line('address')),'trim|required');
+				$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|valid_email|required|callback_user_mail_check');
+				$this->form_validation->set_rules('gender',ucwords($this->lang->line('Gender')),'trim|required');
+				$this->form_validation->set_rules('city',ucwords($this->lang->line('City')),'trim|required');
+				$this->form_validation->set_rules('area',ucwords($this->lang->line('Area')),'trim|required');
+				
+				if($this->form_validation->run() == true) 
+				{
+					  $profile_image=array();
+					  if(!empty($_FILES) && $_FILES['profile_image']['name']!='')
+					  {
+						  $config['upload_path']   =   $this->config->item('profile_url');
+						  $config['allowed_types'] =   "gif|jpg|jpeg|png";		 
+						  $this->load->library( 'upload' ,  $config);
+						  if(!$image_up = $this->upload->do_upload('profile_image'))
+						  {
+							  $json_array['status']="error";
+					          $json_array['sts']="custom_err";
+                              $json_array['msg']="Profile Could Not Be Saved";	
+							  $json_array['error_msg']="Invalid File";
+						      echo json_encode($json_array);
+						      die;	
+						  }
+						  else
+						  {
+							 $profile_image['profile_image']=$_FILES['profile_image']['name'];
+                             $profile_image['image_dir']=$upload_path=$this->config->item('profile_url');							 
+							  
+						  }
+					  }
+				        $this->users_model->update_user_profile($this->session->userdata('user_id'),$profile_image);	
+				        $extra_array = array('status'=>'success','msg'=>'Profile Updated Successfully...!','url'=>base_url());
+						echo json_encode($extra_array);
+						die;	
+				}
+				else
+				{
+					echo $this->form_validation->get_json();
+					die;
+					
+				}
+
+		}		
+		$this->data['main_content']=$this->load->view('users/my_profile', $this->data,true);
+		$this->load->view('layouts/customer', $this->data);	
+	}
+	
+	###############Check User Email###############
+	public function user_mail_check() {
+	   $email=$this->input->post('email');	
+	   $userId=$this->session->userdata('user_id');
+	   $user_info=$this->users_model->get_email_info($email,$userId);
+	   if(!empty($user_info)) {
+		 $this->form_validation->set_message('user_mail_check', 'Email Already Exists');
+		 return FALSE;		
+		}
+     	return true;		
+	}
+	
+	##########Cusomer Change Password################# 
+	public function change_password()  {
+		if(!$this->session->userdata('is_user_logged_in')) {
+			$url = 'login';
+			redirect($url);
+		}	
+		$this->data=array();
+		if ($this->input->server('REQUEST_METHOD') === 'POST'){
+			$this->form_validation->set_rules('new_password','New Password','trim|required|min_length[6]|max_length[32]');
+			$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|min_length[6]|max_length[32]|matches[new_password]');
+			if($this->form_validation->run()){
+				$this->home_model->change_password($this->session->userdata('user_id'), md5($this->input->post('new_password')));	
+				$extra_array = array('status'=>'success','msg'=>'Password Changed Successfully...!','url'=>base_url());
+				echo json_encode($extra_array);
+				die;
+			}
+			else {
+			   echo $this->form_validation->get_json();
+			   die;
+			}
+		}
+		else{
+			$this->data['main_content']=$this->load->view('users/change_password', $this->data,true);
+			$this->load->view('layouts/customer', $this->data);	
+		}
+	}
+	
 	#Users - Logout Page
 	public function logout(){
 		$url = 'login';
@@ -107,9 +230,7 @@ class Users extends CI_Controller {
 				if($this->form_validation->run() == true) {
 					$user_name = $this->input->post('email');
 					$password = md5($this->input->post('password'));
-					
-					$type_user = '3';
-					$is_valid = $this->users_model->validate_users($user_name, $password ,$type_user);
+					$is_valid = $this->users_model->validate_users($user_name, $password);
 					if(empty($is_valid)){
 					  $json_array['status']="error";
 					  $json_array['sts']="custom_err";
@@ -317,4 +438,35 @@ class Users extends CI_Controller {
 			$this->load->view('layouts/default', $this->data);
 		}
 	}	
+
+	########## Check User Information ########
+	public function check_customer_availability() {
+		$this->form_validation->set_rules('contact_number','Mobile Number','trim|required|numeric|min_length[10]|max_length[10]');
+		if($this->form_validation->run() == true){
+			$datas=$this->users_model->checkUserInfo($this->session->userdata('user_id'));			
+			if($datas) 
+			{
+				$success=$this->users_model->checkCustomerUsers($this->session->userdata('user_id'),$datas['id']);
+				if($success){
+					$extra_array = array('status'=>'EXISTING_USER','msg'=>'Success !!! Customer Information Already Existing','user_datas'=>$datas,'customer_info'=>$success);
+					echo json_encode($extra_array);
+					die;	
+				}else{
+					$extra_array = array('status'=>'EXISTING_NEW_USER_ADD','msg'=>'Success ! Customer Information Available.','user_datas'=>$datas,'customer_info'=>$success);
+					echo json_encode($extra_array);
+					die;	
+				}				
+			}
+			else {
+				$extra_array = array('status'=>'NEW_USER_ADD','msg'=>'Sorry Customer Information Not Available.');
+				echo json_encode($extra_array);
+				die;	
+			}
+		} 
+		else {
+			echo $this->form_validation->get_json();
+			die;
+		}
+	}	
+
 }

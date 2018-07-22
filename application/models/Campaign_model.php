@@ -49,10 +49,10 @@ class Campaign_model extends CI_Model {
 	}
 	
 	##### My Campaign List ##########
-    public function getUserCampaignOffersList($parent_id, $user_id, $limit_start, $limit_end){
+    public function getUserCampaignOffersList($parent_id, $customer_id, $limit_start, $limit_end){
 
 		$this->db->select('SQL_CALC_FOUND_ROWS advertisments_customers_campaign_list.id,advertisments_customers_campaign_list.*,advertisments_customers_campaign.title, advertisements.contact_number, advertisements.name as add_name,advertisements.id as add_id, advertisements.city_name,advertisments_customers_campaign.title',false);
-		$this->db->where('advertisments_customers_campaign_list.user_id',$user_id);
+		$this->db->where('advertisments_customers_campaign_list.customer_id',$customer_id);
 		$this->db->where('advertisments_customers_campaign_list.parent_user_id',$parent_id);
 		$this->db->join('advertisments_customers_campaign', 'advertisments_customers_campaign.id = advertisments_customers_campaign_list.advertisments_customers_campaign_id');
 		$this->db->join('users', 'users.id = advertisments_customers_campaign_list.parent_user_id');
@@ -68,10 +68,10 @@ class Campaign_model extends CI_Model {
    }
 	
 	##### My Campaign List ##########
-    public function getCampaignOffersList($user_id, $limit_start, $limit_end){
+    public function getCampaignOffersList($customer_id, $limit_start, $limit_end){
 
 		$this->db->select('SQL_CALC_FOUND_ROWS advertisments_customers_campaign_list.id,advertisments_customers_campaign_list.*,advertisments_customers_campaign.title, advertisements.contact_number, advertisements.name as add_name,advertisements.id as add_id, advertisements.city_name,advertisments_customers_campaign.title',false);
-		$this->db->where('advertisments_customers_campaign_list.user_id',$user_id);
+		$this->db->where('advertisments_customers_campaign_list.customer_id',$customer_id);
 		$this->db->join('advertisments_customers_campaign', 'advertisments_customers_campaign.id = advertisments_customers_campaign_list.advertisments_customers_campaign_id');
 		$this->db->join('users', 'users.id = advertisments_customers_campaign_list.parent_user_id');
 		$this->db->join('advertisements', 'advertisements.user_id = users.id');
@@ -210,7 +210,7 @@ class Campaign_model extends CI_Model {
 		$this->db->where('advertisments_customers_campaign_tracking.parent_user_id',$user_id);
 		$this->db->limit($limit_start, $limit_end);
 		$this->db->from('advertisments_customers_campaign_tracking');
-		$this->db->join('advertisment_customer_lists','advertisment_customer_lists.user_id=advertisments_customers_campaign_tracking.user_id');
+		$this->db->join('advertisment_customer_lists','advertisment_customer_lists.customer_id=advertisments_customers_campaign_tracking.customer_id');
 	    $this->db->join('advertisments_customers_campaign','advertisments_customers_campaign.id=advertisments_customers_campaign_tracking.advertisments_customers_camping_id');
 		$this->db->order_by('advertisments_customers_campaign_tracking.id','DESC');
 		$query = $this->db->get();
@@ -223,12 +223,12 @@ class Campaign_model extends CI_Model {
 	########### Statistics Data#############
 	public function getStatisticsData($user_id,$limit_start,$limit_end) {
 
-		$this->db->select('SQL_CALC_FOUND_ROWS advertisments_customers_campaign_list.id,advertisments_customers_campaign_list.*,advertisments_customers_campaign.title as campaign_title,users.contact_number,users.email',false);
+		$this->db->select('SQL_CALC_FOUND_ROWS advertisments_customers_campaign_list.id,advertisments_customers_campaign_list.*,advertisments_customers_campaign.title as campaign_title,advertisment_customer_lists.mobile_number,advertisment_customer_lists.email',false);
 		$this->db->where('advertisments_customers_campaign_list.parent_user_id',$user_id);
 		$this->db->limit($limit_start, $limit_end);
 		$this->db->from('advertisments_customers_campaign_list');
 	    $this->db->join('advertisments_customers_campaign','advertisments_customers_campaign.id=advertisments_customers_campaign_list.advertisments_customers_campaign_id','left');
-		$this->db->join('users','users.id=advertisments_customers_campaign_list.user_id','left');
+		$this->db->join('advertisment_customer_lists','advertisment_customer_lists.customer_id=advertisments_customers_campaign_list.customer_id','left');
 		$this->db->order_by('advertisments_customers_campaign_list.id','DESC');
 		$query = $this->db->get();
 		$result = $query->result_array();	
@@ -264,7 +264,7 @@ class Campaign_model extends CI_Model {
 		$this->db->select('advertisments_customers_campaign_tracking.*');
 		$this->db->where('advertisments_customers_campaign_tracking.advertisments_customers_camping_id',$_GET['UTM_campaign_id']);
 		$this->db->where('advertisments_customers_campaign_tracking.type_id',$_GET['UTM_type_id']);
-		$this->db->where('advertisments_customers_campaign_tracking.user_id',$_GET['UTM_u_id']);
+		$this->db->where('advertisments_customers_campaign_tracking.customer_id',$_GET['UTM_u_id']);
 		$this->db->from('advertisments_customers_campaign_tracking');
 		$query = $this->db->get();
 		$result = $query->row_array();
@@ -278,7 +278,7 @@ class Campaign_model extends CI_Model {
 		else {
 			$table_data=array(
 				'created'=>date('Y-m-d h:i:s'),
-				'user_id'=>$_GET['UTM_u_id'],
+				'customer_id'=>$_GET['UTM_u_id'],
 				'parent_user_id'=>$_GET['UTM_user_id'],
 				'type_id'=>$_GET['UTM_type_id'],
 				'visit_count'=>1,
@@ -290,11 +290,11 @@ class Campaign_model extends CI_Model {
 	} 
 	
 	########### My Offers #############
-	public function getOfferData($user_id,$limit_start,$limit_end) {
+	public function getOfferData($customer_id,$limit_start,$limit_end) {
 		
 		$this->db->select('advertisments_customers_campaign_list.*');
 		$this->db->where('advertisments_customers_campaign_list.id');
-		$this->db->where('advertisments_customers_campaign_list.user_id',$user_id);
+		$this->db->where('advertisments_customers_campaign_list.customer_id',$customer_id);
 		$this->db->limit($limit_start, $limit_end);
 		$this->db->from('advertisments_customers_campaign_list');
 		$this->db->order_by('advertisments_customers_campaign_list.id','DESC');
@@ -312,7 +312,7 @@ class Campaign_model extends CI_Model {
 	}
 	
 	public function get_uer_id($email){
-		$this->db->select('users.id,users.email,users.referer_id');
+		$this->db->select('users.id,users.email');
 		$this->db->where('users.email',$email);
 		$this->db->from('users');
 		$query = $this->db->get();
@@ -545,7 +545,7 @@ class Campaign_model extends CI_Model {
     
     ######## Sms Availbility #########
 	public function sms_availabilty($user_id){	
-		$this->db->select('users.total_sms,users.sender_id1,users.sender_id2');
+		$this->db->select('users.total_sms');
 		$this->db->where('users.id',$user_id);
 		$this->db->from('users');
 		$query = $this->db->get();
@@ -635,7 +635,10 @@ class Campaign_model extends CI_Model {
 	########### Get Shorten Url ########
 	public function googleShortUrl($url,$user_info,$camp_info, $type_id, $paren_user_id){
 		$apiKey = 'AIzaSyDIKdXDrC-mJC0KfSlu1PwdVqTFum6I-Tw';
-		$base_url=base_url()."?r_url=".$url."&UTM_mobilenumber=".$user_info['mobile_number']."&UTM_email=".$user_info['email']."&UTM_campaign_id=".$camp_info."&UTM_user_id=".$paren_user_id."&UTM_type_id=".$type_id."&UTM_u_id=".$user_info['user_id'];
+		$base_url=base_url()."?r_url=".$url."&UTM_mobilenumber=".$user_info['mobile_number']."&UTM_email=".$user_info['email']."&UTM_campaign_id=".$camp_info."&UTM_user_id=".$paren_user_id."&UTM_type_id=".$type_id."&UTM_u_id=".$user_info['customer_id'];
+		
+		return $this->common_model->short_url($base_url);
+		
 		$post_data = json_encode( array( 'longUrl'=>$base_url ) );
 		$ch= curl_init();
 		$arr = array();
@@ -680,7 +683,7 @@ class Campaign_model extends CI_Model {
 		foreach($customer_list as $key=>$list) {
 			
 			$sender_info=array();
-			$sender_info['user_id']=$list['user_id'];
+			$sender_info['user_id']=$list['customer_id'];
 			$sender_info['sender_id']=$sender_id;
 			$datas=array('##URL##','##USERNAME##');
 			$short_url=$this->googleShortUrl($this->input->post('url'), $list, $campaign_id, 1, $this->session->userdata('user_id'));
@@ -698,7 +701,7 @@ class Campaign_model extends CI_Model {
 				'campaign_url_short'=>$short_url,
 				'status'=>$status,
 				'message'=>$this->input->post('message'),
-				'user_id'=>$list['user_id'],
+				'customer_id'=>$list['customer_id'],
 				'camping_type_id'=>$camping_type,
 				'advertisments_customers_campaign_id'=>$campaign_id,
 				'message'=>$this->input->post('message'),
@@ -779,7 +782,7 @@ class Campaign_model extends CI_Model {
 				'campaign_url_short'=>$short_url,
 				'status'=>$status,
 				'message'=>$message,
-				'user_id'=>$list['user_id'],
+				'customer_id'=>$list['customer_id'],
 				'camping_type_id'=>$camping_type,
 				'advertisments_customers_campaign_id'=>$campaign_id,
 				'coupon_code'=>$coupon_code,

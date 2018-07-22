@@ -1,4 +1,10 @@
+<?php
+	$total_reward_points=0;
+	$total_redeemed_points=0;
+	$last_bill_amount=0;
+	$total_bill_amount=0;
 
+?>
 <article class="content dashboard-page customer-add-page">
 	    <?php echo $this->load->view('elements/profile_complete_alert',array(),true);?>
 <div class="white-bg">
@@ -23,7 +29,7 @@
 							<h3 class="title" style="font-size:16px;"> <b> <i class="fa fa-search"></i>  Check Customer Availability </b>	</h3>
 						</div>
 
-							<form id="customer_check_info_url" action="<?php echo base_url().'customers/check_user_info';?>" method="post">
+							<form id="customer_check_info_url" action="<?php echo base_url().'users/check_customer_availability';?>" method="post">
 								<div class="row">
 									<div class="form-group col-md-4"> 
 										<label class="control-label" for="mobile_number" style="font-size:14px;"><i class="fa fa-mobile"></i> Mobile Number <span class="required"> * </span></label>
@@ -47,76 +53,118 @@
 				</div>
 				<div class="card newUserAdd" style="display:none;">
 				   <div class="card-block" style="height:auto;">
-						<div class="title-block">
-							<h3 class="title"><i class="fa fa-bullhorn"></i> Basic Information
-							</h3>
-						</div>
+					
 				    	<form id="customer_form_url" action="<?php echo base_url().'customers/customer_add';?>" method="post">
 							<input type="hidden" name="mobile_number" class="form-control" id="mobile_number">
 							<input type="hidden" name="user_id" class="form-control" id="user_id">
+	
 							<div class="control-group">
-							<div class="controls">
-								<div class="form-group col-md-3">
-									<label class="control-label" for="first_name">First Name <span style="color:red;">*</span></label>
-									<input type="text" name="first_name" class="form-control" id="first_name">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="last_name">Last Name </label>
-									<input type="text" name="last_name" class="form-control" id="last_name">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="address"> Address </label>
-									<input type="text" name="address" class="form-control" id="address">
-								</div>
-								<div class="form-group col-md-3">
-									 <label class="control-label" for="email">Email <span style="color:red;">*</span></label>
-									 <input type="text" name="email" class="form-control" id="email" value="">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="selectError">Select Gender <span style="color:red;">*</span></label>
-									<select id="selectError" name="gender" class="common-select-box form-control" style="width:100%;">
-										<option value="">Select Gender</option>
-										<option value="1">Male</option>
-										<option value="2">Female</option>
-									</select>
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="city_autocomplete">City </label>
-									<input type="text" name="city" class="form-control" id="city_autocomplete" autocomplete="off">
-									<input type="hidden" name="add_city_id" class="form-control" id="add_city_id">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="area_autocomplete">Area </label>
-									<input type="text" name="area" class="form-control" id="area_autocomplete" autocomplete="off">
-										<input type="hidden" name="add_area_id" class="form-control" id="add_city_id">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="area_autocomplete">ZIpCode </label>
-									<input type="text" name="zipcode" class="form-control" id="zipcode" autocomplete="off">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="group_autocomplete">Group </label>
-									<input type="text" name="group_name" class="form-control" id="group_autocomplete" autocomplete="off">
-										<input type="hidden" name="group_id" class="form-control" id="group_id">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="last_bill_amount_paid">Bill Amount </label>
-									<input type="number" name="last_bill_amount_paid" class="form-control" id="last_bill_amount_paid">
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="dob"> Date Of Birth </label>
-									<input type="text" name="dob" class="form-control" id="dob" readonly>
-								</div>
-								<div class="form-group col-md-3">
-									<label class="control-label" for="doa"> Date Of Anversery </label>
-									<input type="text" name="doa" class="form-control" id="doa" readonly>
-								</div>
+								
+								<div class="controls">
+									<div class="title-block">
+										<h3 class="title"><i class="fa fa-bullhorn"></i> Basic Information</h3>
+									</div>
+									<div class="row">
+						
+											<div class="form-group col-md-3">
+												<label class="control-label" for="first_name">First Name <span style="color:red;">*</span></label>
+												<input type="text" name="first_name" class="form-control" id="first_name">
+											</div>
+											<div class="form-group col-md-3">
+												<label class="control-label" for="last_name">Last Name </label>
+												<input type="text" name="last_name" class="form-control" id="last_name">
+											</div>
+											<div class="form-group col-md-3">
+												<label class="control-label" for="address"> Address </label>
+												<input type="text" name="address" class="form-control" id="address">
+											</div>
+											<div class="form-group col-md-3">
+												 <label class="control-label" for="email">Email </label>
+												 <input type="text" name="email" class="form-control" id="email" value="">
+											</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-3">
+											<label class="control-label" for="selectError">Select Gender <span style="color:red;">*</span></label>
+											<select id="selectError" name="gender" class="common-select-box form-control" style="width:100%;">
+												<option value="">Select Gender</option>
+												<option value="1">Male</option>
+												<option value="2">Female</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="control-label" for="city_autocomplete">City </label>
+											<input type="text" name="city" class="form-control" id="city_autocomplete" autocomplete="off">
+											<input type="hidden" name="add_city_id" class="form-control" id="add_city_id">
+										</div>
+										<div class="form-group col-md-3">
+											<label class="control-label" for="area_autocomplete">Area </label>
+											<input type="text" name="area" class="form-control" id="area_autocomplete" autocomplete="off">
+												<input type="hidden" name="add_area_id" class="form-control" id="add_city_id">
+										</div>
+										<div class="form-group col-md-3">
+											<label class="control-label" for="area_autocomplete">ZIpCode </label>
+											<input type="text" name="zipcode" class="form-control" id="zipcode" autocomplete="off">
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-3">
+											<label class="control-label" for="group_autocomplete">Group </label>
+											<input type="text" name="group_name" class="form-control" id="group_autocomplete" autocomplete="off">
+												<input type="hidden" name="group_id" class="form-control" id="group_id">
+										</div>
+										<div class="form-group col-md-3">
+										<label class="control-label" for="dob"> Date Of Birth </label>
+										<input type="text" name="dob" class="form-control" id="dob" readonly>
+									</div>
 									<div class="form-group col-md-3">
-									<label class="control-label" for="is_active">
-									<input type="checkbox" name="is_active" id="is_active"  checked="checked" class="checkbox">
-									<span> Make as active</span> 
-									</label>
+										<label class="control-label" for="doa"> Date Of Anversery </label>
+										<input type="text" name="doa" class="form-control" id="doa" readonly>
+									</div>
+									
+								
+									</div>
 								</div>
+								
+								<div class="controls">
+									<div class="title-block">
+											<h3 class="title"><i class="fa fa-list"></i> Billing Section</h3>
+										</div>
+										<div class="row">
+
+										<div class="form-group col-md-3">
+											<label class="control-label" for="last_bill_amount_paid">Bill Amount </label>
+											<input type="number" name="last_bill_amount_paid" class="form-control" id="last_bill_amount_paid">
+										</div>
+										</div>
+										<div class="row">
+										<div class="form-group col-md-3">
+										   <label class="control-label" for="first_name">Total Bill Amount : <b style="color:green;"><?php echo number_format($total_bill_amount);?></b></label>
+										</div>
+										 <div class="form-group col-md-3">
+										   <label class="control-label" for="first_name">Total Redeemed Points : <b style="color:green;"><?php echo number_format($total_redeemed_points);?></b></label>
+										</div>
+										<div class="form-group col-md-3">
+										   <label class="control-label" for="first_name">Total Reward Points : <b style="color:green;"><?php echo number_format($total_reward_points);?></b></label>
+										</div>
+									</div>
+								</div>
+							
+								<div class="controls bg-section">
+									
+									
+									
+									<div class="title-block">
+										<h3 class="title"><i class="fa fa-calendar"></i> Remainder Settings</h3>
+									</div>
+
+										<div class="form-group col-md-3">
+										<label class="control-label" for="is_active">
+										<input type="checkbox" name="is_active" id="is_active"  checked="checked" class="checkbox">
+										<span> Make as active</span> 
+										</label>
+									</div>
 								<div class="form-group col-md-3">
 								<label class="control-label" for="is_birthday_remainder">
 									<input type="checkbox" name="is_birthday_remainder" id="is_birthday_remainder"  checked="checked" data-no-uniform="true" class="checkbox">

@@ -155,10 +155,8 @@ class Cron_model extends CI_Model {
 	
 	######## Get Users List #########
     public function getUsersList() {
-	 	$this->db->select('users.id,users.total_sms,users.sender_id1,users.sender_id2');
+	 	$this->db->select('users.id,users.total_sms');
 		$this->db->where('users.total_sms >=',1);
-		$this->db->where('users.sender_id1 !=','');
-		$this->db->where('users.sender_id2 !=','');
 		$this->db->from('users');
 		$query = $this->db->get();
 		$result=$query->result_array();

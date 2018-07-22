@@ -5,6 +5,33 @@ class Common_model extends CI_Model {
 		parent::__construct();
     }
 	
+	############# Get Long Url ##########
+	public function get_long_url($code){
+		$reponse=array();
+		$this->db->select('shorten_url.long_url', false);
+		$this->db->where('shorten_url.code',$code);
+		$this->db->from('shorten_url');
+		$query = $this->db->get();
+		$result=$query->row_array();
+		if(!empty($result)){
+			return $result['long_url'];
+		}
+		return false;
+	}
+	
+	################ Short Url ##########
+	public function short_url($long_url){
+		
+		$code=incrementalHash();
+		$table_data=array(
+			'created'=>date('Y-m-d h:i:s'),
+			'code'=>$code,
+			'long_url'=>$long_url
+		);
+		$this->db->insert('shorten_url', $table_data);		
+		return base_url().'s/'.$code;
+	}
+	
 	############# Send Email ###############
 	public function SendEmail($to, $subject, $emailData, $templateName = null, $layoutName = 'template', $from = null, $replyTo = null, $attachment = null, $cc = null, $bcc = null){
 		

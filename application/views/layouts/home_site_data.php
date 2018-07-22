@@ -59,7 +59,7 @@
 								</td>									
 								<td class="td-review-summary">
 								<span class="block-title td-post-category-new-background">SUMMARY</span> 
-								<div class="td-review-summary-content">Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.</div> 
+								<div class="td-review-summary-content">We provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.</div> 
 								</td> 
 								</tr> 
 							</tbody>
@@ -114,7 +114,7 @@
 								</td>									
 								<td class="td-review-summary">
 								<span class="block-title td-post-category-new-background">SUMMARY</span> 
-								<div class="td-review-summary-content">Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.</div> 
+								<div class="td-review-summary-content">We provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.</div> 
 								</td> 
 								</tr> 
 							</tbody>
@@ -169,7 +169,7 @@
 								</td>									
 								<td class="td-review-summary">
 								<span class="block-title td-post-category-new-background">SUMMARY</span> 
-								<div class="td-review-summary-content">Dialbe.com provides a excellent information services between local business and users in various cities across India.</div> 
+								<div class="td-review-summary-content">We provides a excellent information services between local business and users in various cities across India.</div> 
 								</td> 
 								</tr> 
 							</tbody>
@@ -223,7 +223,7 @@
 								</td>									
 								<td class="td-review-summary">
 								<span class="block-title td-post-category-new-background">SUMMARY</span> 
-								<div class="td-review-summary-content">Dialbe.com provides a excellent information services between local business and users in various cities across India.</div> 
+								<div class="td-review-summary-content">We provides a excellent information services between local business and users in various cities across India.</div> 
 								</td> 
 								</tr> 
 							</tbody>

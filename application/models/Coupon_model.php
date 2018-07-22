@@ -756,7 +756,7 @@ class Coupon_model extends CI_Model {
 				'campaign_url_short'=>'',
 				'status'=>$status,
 				'message'=>$this->input->post('message'),
-				'user_id'=>$list['id'],
+				'customer_id'=>$list['id'],
 				'camping_type_id'=>$camping_type,
 				'advertisments_customers_campaign_id'=>$campaign_id,
 				'message'=>$this->input->post('message'),

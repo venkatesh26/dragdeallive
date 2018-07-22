@@ -186,9 +186,6 @@ class Reports extends CI_Controller {
 		}
 	}
 	
-	
-	
-	
 	################### My Stastics #################
 	public function my_stastics() {
 		$this->data=array();

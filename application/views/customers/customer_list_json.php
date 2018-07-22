@@ -44,13 +44,13 @@
 				 <div class="item-actions-block">
 					<ul class="item-actions-list">
 					   <li>
-						  <a class="remove view-btn-setting" href="#"  rel="<?php echo $list['user_id'];?>" > <i class="fa fa-list"></i> </a>
+						  <a class="remove view-btn-setting" href="#"  rel="<?php echo $list['customer_id'];?>" > <i class="fa fa-list"></i> </a>
 					   </li>
 					   <li>
-						  <a class="remove cutomer_detail_delete" href="#" rel="<?php echo $list['user_id'];?>" data-toggle="modal" data-target="#confirm-delete-modal"> <i class="fa fa-trash"></i> </a>
+						  <a class="remove cutomer_detail_delete" href="#" rel="<?php echo $list['customer_id'];?>" data-toggle="modal" data-target="#confirm-delete-modal"> <i class="fa fa-trash"></i> </a>
 					   </li>
 					   <li>
-						  <a class="remove order_detail" href="<?php echo base_url().'customers/edit/'.$list['user_id'];?>"> <i class="fa fa-pencil"></i> </a>
+						  <a class="remove order_detail" href="<?php echo base_url().'customers/edit/'.$list['customer_id'];?>"> <i class="fa fa-pencil"></i> </a>
 					   </li>
 					</ul>
 				 </div>

@@ -862,7 +862,7 @@ function sms_remainder_histroy($user_id){
 	$result=array();
 	foreach($info as $key=>$new_result){
 		$result[$key]['day']=date('F, d',strtotime($new_result['date']));
-		$result[$key]['sms_counts']=$new_result['send_sms'];
+		$result[$key]['sms_counts']=$new_result['send_sms'];	
 	}
 	return $result;
 }
@@ -873,10 +873,10 @@ function getCampaignTrackList($user_id){
 	$ci->db->select('distinct advertisments_customers_campaign_tracking.id, advertisments_customers_campaign_tracking.created,advertisments_customers_campaign.title,
 	advertisment_customer_lists.first_name as name,advertisment_customer_lists.mobile_number',false);
 	$ci->db->where('advertisments_customers_campaign_tracking.parent_user_id',$user_id);
-    $ci->db->join('advertisment_customer_lists', 'advertisment_customer_lists.user_id = advertisments_customers_campaign_tracking.user_id');
+    $ci->db->join('advertisment_customer_lists', 'advertisment_customer_lists.customer_id = advertisments_customers_campaign_tracking.customer_id');
 	$ci->db->join('advertisments_customers_campaign', 'advertisments_customers_campaign.id = advertisments_customers_campaign_tracking.advertisments_customers_camping_id');
 	$ci->db->limit(3);
-	$ci->db->order_by('advertisments_customers_campaign_tracking.id','DESC');
+	$ci->db->order_by('advertisments_customers_campaign_tracking.id','DESC');	
 	$query = $ci->db->get('advertisments_customers_campaign_tracking');
 	$info=$query->result_array();
 	return $info;

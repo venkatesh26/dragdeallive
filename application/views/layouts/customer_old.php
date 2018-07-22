@@ -200,7 +200,7 @@ $plan_mess="Now your in ".$dashboardData['plan_name']." Plan";
                 <br>
                 <br>
     <footer class="row">
-        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="http://www.dialbe.com" target="_blank">Dialbe</a></p>
+        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="<?php echo base_url();?>" target="_blank">Dialbe</a></p>
     </footer>
 </div>
 <?php $this->load->view('elements/customer_js'); ?>

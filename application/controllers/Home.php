@@ -4,6 +4,7 @@ class Home extends CI_Controller {
 
     #Construct Function
 	public function __construct() {
+		
         parent::__construct();
 		$this->load->model('home_model');
 		
@@ -30,6 +31,13 @@ class Home extends CI_Controller {
 		$this->site_name=admin_settings_initialize('sitename');
 		$this->load->library('Mobile_Detect'); ######## Agent Notifications ############
 		$this->detect=new Mobile_Detect();
+	}
+	
+	######  Short To Long Url ###############
+	public function shortToLongUrl($short_code){
+
+		echo $this->common_model->get_long_url($short_code);die;
+		
 	}
 	
 	#Home - Create Add Campaign
@@ -345,11 +353,9 @@ class Home extends CI_Controller {
 	public function index() {
 		
 		if(isset($_GET['r_url'])) {
-		    if(!$this->_bot_detected()){
-    			$this->load->model('campaign_model');
-    			$all_list=$this->campaign_model->track_campagin();
-    			header('Location:'.$_GET['r_url']);
-		    }
+			$this->load->model('campaign_model');
+			$all_list=$this->campaign_model->track_campagin();
+			header('Location:'.$_GET['r_url']);
 		}
 		$this->data['meta_rating']='General';
 		$this->data['home_cities']=$this->home_model->get_home_cities('7');
@@ -357,26 +363,14 @@ class Home extends CI_Controller {
 		$this->data['home_premium_listing']=$this->home_model->get_home_premium_listings();
 		$this->load->view('layouts/home', $this->data);
     }
-    
-    function _bot_detected() {
-
-	  return (
-		isset($_SERVER['HTTP_USER_AGENT'])
-		&& preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT'])
-	  );
-	}
 	
 	############### Keyword Enquiry ############
-	public function keyword_enquiry(){
-		
-		if($_POST) 
-		{
+	public function keyword_enquiry() {
+		if($_POST) {
 			$this->form_validation->set_rules('name',ucwords($this->lang->line('Name')),'trim|name|required');
 			$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|valid_email|required');
-			$this->form_validation->set_rules('contact_no','Contact Number','trim|required');
 			$this->form_validation->set_rules('contact_no','Contact Number','trim|required|min_length[10]|numeric');
-			if($this->form_validation->run() == true) 
-			{
+			if($this->form_validation->run() == true)  {
 				 if($this->home_model->add_keyword_enquiry())
 				 {
 					$json_array['status']="success";
@@ -393,100 +387,13 @@ class Home extends CI_Controller {
 					  die;	
 				 }						 
 			}
-			else
-			{
+			else {
 				echo $this->form_validation->get_json();
 				die;		
 			}
 		}		
 	}
 	
-	#Home - User Auth Check
-	public function user_auth_check(){
-		$json_array=array();
-		$json_array['status']='0';
-	    if($this->session->userdata('is_user_logged_in')) 
-		{	
-	      $this->session->set_flashdata('success','Sorry...You already loged in...!');
-		  $json_array['status']='1';
-		}
-		echo json_encode($json_array);
-		die;
-	}
-	
-	#Home - My Profile
-	public function my_profile(){
-		
-		if(!$this->session->userdata('is_user_logged_in'))
-		{
-			$url = 'login';
-			redirect($url);
-		}
-		$this->data=array();
-		$this->data['title_of_layout']="My Profile";
-		$this->data['user_data']=$this->home_model->get_userinfo($this->session->userdata('user_id'));
-		if($_POST) 
-		{
-				$this->form_validation->set_rules('name',ucwords($this->lang->line('name')),'trim|required|min_length[3]');
-				$this->form_validation->set_rules('contact_number',ucwords($this->lang->line('Contact Number')),'trim|required|min_length[10]|numeric');
-				$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|valid_email|required|callback_user_mail_check');
-				if($this->form_validation->run() == true) 
-				{
-					  $profile_image=array();
-					  if(!empty($_FILES) && $_FILES['profile_image']['name']!='')
-					  {
-						  $config['upload_path']   =   $this->config->item('profile_url');
-						  $config['allowed_types'] =   "gif|jpg|jpeg|png";		 
-						  $this->load->library( 'upload' ,  $config);
-						  if(!$image_up = $this->upload->do_upload('profile_image'))
-						  {
-							  $json_array['status']="error";
-					          $json_array['sts']="custom_err";
-                              $json_array['msg']="Profile Could Not Be Saved";	
-							  $json_array['error_msg']="Invalid File";
-						      echo json_encode($json_array);
-						      die;	
-						  }
-						  else
-						  {
-							 $profile_image['profile_image']=$_FILES['profile_image']['name'];
-                             $profile_image['image_dir']=$upload_path=$this->config->item('profile_url');							 
-							  
-						  }
-					  }
-				        $this->home_model->update_profile($this->session->userdata('user_id'),$profile_image);	
-				        $extra_array = array('status'=>'success','msg'=>'Profile Updated Successfully...!','url'=>base_url());
-						echo json_encode($extra_array);
-						die;	
-				}
-				else
-				{
-					echo $this->form_validation->get_json();
-					die;
-					
-				}
-
-		}				
-		$this->data['main_content']=$this->load->view('users/my_profile', $this->data,true);
-		$this->load->view('layouts/default', $this->data);
-	}
-	
-	#Home - User Email Check
-	public function user_mail_check(){
-		
-	   $email=$this->input->post('email');	
-	   $userId=$this->session->userdata('user_id');
-	   $user_info=$this->home_model->get_email($email,$userId);
-		if(!empty($user_info))
-		{
-		$this->form_validation->set_message('user_mail_check', 'Email Already Exists');
-		return FALSE;	
-		}
-        else
-		{
-		 return true;		
-		}			
-	}
 			
 	#Twitter  Account
 	public function twitter(){
@@ -736,26 +643,7 @@ class Home extends CI_Controller {
        }
 	   }
 	}
-	
-	#Home - Verify Account
-    public function verify($vid = NULL){
-    	if($this->session->userdata('is_user_logged_in')) {
-			redirect(base_url());
-		} 
-		else {
-			if($vid!="") {
-				if($this->home_model->check_verify_code($vid)){
-					$this->session->set_flashdata('success',"Your Acount activated successfully.");
-					redirect(base_url().'login');
-	
-				}else{
-					$this->session->set_flashdata('error', $this->lang->line('hotel_session_expires'));
-					redirect(base_url().'login');
-				}
-			}
-		}
-    }
-	
+		
 	#Home Google Plus Login
 	public function googleplus(){
 		

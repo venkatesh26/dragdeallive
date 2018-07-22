@@ -1,20 +1,167 @@
 <?php
 class Users_model extends CI_Model {
 
+	#Magic Method - Construct the object
+    public function __construct() {
+        parent::__construct();
+		$this->load->model('cities_model');
+		$this->load->model('areas_model');
+		$this->load->model('groups_model');
+		$this->load->model('advertisment_customer_remainders_model');	
+    }
+	
+	#Check User Code verify
+	public function check_verify_code($vid) {
+		$today_date = date("Y-m-d h:i:s", time());
+		$this->db->where('uid', $vid);    	 	
+		$query = $this->db->get('users');
+		$numRows = $query->num_rows();
+		$result = $query->row_array();
+		if($numRows == 1) {
+			$update_vid = array('uid'=>'','email_verified_date'=>date('Y-m-d h:i:s'),'is_email_confirmed'=>'1');
+			$this->db->where('id',$result['id']);
+			$this->db->update('users', $update_vid);
+			return true;
+		}else{
+			return false;
+		}
+	}	
+	
+	# User Info
+	function get_userinfo($id=null) {
+	    $this->db->select('users.*,user_profiles.*,cities.name city_name,areas.name area_name');
+		$this->db->where('users.id',$id);
+		$this->db->join('user_profiles','user_profiles.user_id=users.id','left');
+		$this->db->join('cities','cities.id=users.preferred_city_id','left');
+		$this->db->join('areas','areas.id=users.preferred_area_id','left');
+		$query = $this->db->get('users');
+		$users = $query->row_array(); 
+		return $users;		
+	}
+	
+	# Email Info
+	public function get_email_info($email=null,$user_id=null) {
+	    $this->db->select('users.id,users.email');
+		$this->db->from('users');	
+		$this->db->where('users.id !=',$user_id);
+		$this->db->where('users.email',$email);
+		$query = $this->db->get();
+		return $query->row_array();
+	}
+	
+	#Update Profile
+	public function update_user_profile($user_id=null,$profile_image=null){
+		if($this->input->post('city'))
+		{	
+			$city_id=$this->cities_model->cityFindOrSave($this->input->post('city'));
+		}
+		if($this->input->post('area'))
+		{
+			$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
+		}
+		
+		$data = array(
+			'email'			=> strtolower($this->input->post('email')),			
+			'modified' 		=> date('Y-m-d h:i:s'),
+			'preferred_city_id' 		=> $city_id,
+			'preferred_area_id' 		=> $area_id,
+		);
+		if(!empty($profile_image))
+		{
+			$image_data = array(
+			'image_dir'			=> $profile_image['image_dir'],			
+			'profile_image' 	=> $profile_image['profile_image'],
+		     );
+		  $data=array_merge($image_data,$data);
+		}
+		$this->db->where('id', $user_id);
+		$update = $this->db->update('users', $data);
+		
+		$profile_data = array(
+			'first_name'	=> strtolower($this->input->post('first_name')),			
+			'last_name'	=> strtolower($this->input->post('last_name')),			
+			'modified' 		=> date('Y-m-d h:i:s'),
+			'mobile_number' => $this->input->post('contact_number'),
+			'address' => $this->input->post('address'),
+			'gender_id' => $this->input->post('gender'),
+			'dob' => date('Y-m-d', strtotime($this->input->post('dob'))),
+		);
+		$this->db->where('user_id', $user_id);
+		$update = $this->db->update('user_profiles', $profile_data);
+	}
+
+    ############# Check User Info #######
+	public function checkUserInfo(){
+		$this->db->select('users.*,user_profiles.first_name,user_profiles.last_name,user_profiles.address,user_profiles.gender_id,user_profiles.dob,user_profiles.doa,cities.name as city_name,areas.name as area_name');
+		$this->db->where('users.contact_number',$_POST['contact_number']);
+		$this->db->join('user_profiles','users.id=user_profiles.user_id','left');
+		$this->db->join('cities','cities.id=users.preferred_city_id','left');
+		$this->db->join('areas','areas.id=users.preferred_area_id','left');
+		$this->db->from('users');
+		$query = $this->db->get();
+		$result=$query->row_array();
+		
+		if(empty($result)){	
+			$this->db->select('advertisment_customers.*,user_profiles.address,user_profiles.gender_id,user_profiles.dob,user_profiles.doa,cities.name as city_name,areas.name as area_name');
+			$this->db->where('advertisment_customers.mobile_number',$_POST['contact_number']);
+			$this->db->join('users','users.customer_id=advertisment_customers.id','left');
+			$this->db->join('user_profiles','users.id=user_profiles.user_id','left');
+			$this->db->join('cities','cities.id=users.preferred_city_id','left');
+			$this->db->join('areas','areas.id=users.preferred_area_id','left');
+			$this->db->from('advertisment_customers');
+			$query = $this->db->get();
+			$result=$query->row_array();
+		}
+        return $result;		
+	}
+	
+	######### Check Customer Data #######
+	public function checkCustomerUsers($parent_user_id,$user_id){
+		$this->db->select('advertisment_customer_lists.id');
+		$this->db->where('advertisment_customer_lists.parent_user_id',$parent_user_id);
+		$this->db->where('advertisment_customer_lists.customer_id',$user_id);
+		$this->db->from('advertisment_customer_lists');
+		$query = $this->db->get();
+		$result=$query->row_array();
+		return $result;
+	}
 
 	#################### User Register ###############
 	public function create_account($verify_link, $user_type) {
+		
+		############### Checking Cutomer Inforamtion #################
+		$this->db->select('id');
+		$this->db->where('email', strtolower($this->input->post('email')));
+		$this->db->or_where('mobile_number', strtolower($this->input->post('contact_number')));
+		$query = $this->db->get('advertisment_customers');
+		if($query->num_rows() == 1){
+			$customers=$query->row_array();
+			$customer_id=$customers['id'];
+		}
+		else {		
+			$customer_data = array(
+				'created'		=> date('Y-m-d h:i:s'),
+				'modified' 		=> date('Y-m-d h:i:s'),
+				'first_name' 	=> $this->input->post('first_name'),
+				'last_name' 	=> $this->input->post('last_name'),
+				'mobile_number' => $this->input->post('contact_number'),
+				'email'		=> strtolower($this->input->post('email')),
+			);
+			$this->db->insert('advertisment_customers', $customer_data);
+			$customer_id = $this->db->insert_id();
+		}
+		
 		$data = array(
 			'email'			=> strtolower($this->input->post('email')),			
 			'password'		=> md5($this->input->post('password')),
 			'contact_number' => $this->input->post('contact_number'),
 			'user_type'		=>$user_type,
-			'is_approved' 	=> 1,
 			'created'		=> date('Y-m-d h:i:s'),
 			'modified' 		=> date('Y-m-d h:i:s'),
 			'register_type' => 1,
 			'is_active'		=> 1,
 			'uid'			=> $verify_link,
+			'customer_id'  => $customer_id
 		);
 		$this->db->insert('users', $data);
 		$user_id = $this->db->insert_id();
@@ -29,22 +176,24 @@ class Users_model extends CI_Model {
 		);
 		$this->db->insert('user_profiles', $profile_data);
 		$id = $this->db->insert_id();
+		
+		
 		return $user_id;
 	}
 
-	
 	####### Validate User ##################
-    function validate_users($user_name, $password ,$user_type) {
-		$this->db->select('id,email,user_type,is_email_confirmed,is_active,is_approved,register_type,contact_number');
+    function validate_users($user_name, $password ,$user_type=null) {
+		$this->db->select('id,email,user_type,is_email_confirmed,is_active,register_type,contact_number');
 		$this->db->where('email', $user_name);
 		$this->db->where('password', $password);
-		$this->db->where('user_type', $user_type);
+		if($user_type!=''){
+			$this->db->where('user_type', $user_type);
+		}
 		$query = $this->db->get('users');
 		if($query->num_rows() == 1){
 			return $query->row();
 		}		
 	}	
-	
 	
 	#User Last Login Save
 	function last_login_time($email,$user_id=null) {

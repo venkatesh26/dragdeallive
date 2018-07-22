@@ -78,5 +78,32 @@ class Groups_model extends CI_Model {
 		$query = $this->db->get();
 		return $result=$query->row_array();
 	}
+	
+		
+	########## Find Or Save Customer #######
+	public function findOrSaveGroup($parent_user_id,$name){
+		if($name==''){
+			return 0;
+		}
+		$this->db->select('groups.id');
+		$this->db->where('groups.user_id',$parent_user_id);
+		$this->db->where('groups.name',$name);
+		$this->db->from('groups');
+		$query = $this->db->get();			
+		$result=$query->row_array();
+		if($result){
+		  return $result['id'];	
+		}
+		else{
+			$table_data=array(
+				'created'=>date('Y-m-d h:i:s'),
+				'name'=>$name,
+				'user_id'=>$parent_user_id,
+				'is_active'=>1,
+			);
+			$this->db->insert('groups', $table_data);			
+			return $this->db->insert_id();	
+		}
+	}
 }
 ?>

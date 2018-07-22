@@ -6,6 +6,7 @@ class Customers extends CI_Controller {
         parent::__construct();
 		$this->load->model('home_model');
 		$this->load->model('advertisment_model');
+		$this->load->model('advertisment_customers_model');
 		if(!$this->session->userdata('is_user_logged_in'))
 		{
 			$url = 'login';
@@ -60,7 +61,6 @@ class Customers extends CI_Controller {
 			$this->load->view('layouts/customer', $data);
 		}		
 	}
-	
 	   
 	######## SMS Credit #########
 	public function sms_credit(){
@@ -443,125 +443,7 @@ class Customers extends CI_Controller {
 		echo json_encode($data);
 		die;
 	}
-	
-	################### Add Gallery #################
-	public function gallery_add() {
 		
-		$this->MyaddId=get_my_addId($this->myUserId);
-		$profile_image=array();
-		if($this->MyaddId=='' || $this->MyaddId==0){
-			
-				$json_array['status']="error";
-				$json_array['sts']="custom_err";
-				$json_array['msg']="Please Complete Your  Business Profile.!";	
-				$json_array['error_msg']="Please Complete Your  Business Profile.!";
-				echo json_encode($json_array);
-				die;	
-		}
-		else {
-			
-			if(!empty($_FILES) && $_FILES['profile_image']['name']!='')
-			{
-			  
-                $dir=$this->config->item('profile_url').$this->session->userdata('user_id').'/';    
-                if (!is_dir($$dir))
-                {
-                  mkdir($dir, 0777, true);
-                }
-			  $config['upload_path']   =  $dir;
-			  $config['allowed_types'] =   "gif|jpg|jpeg|png";
-			  $config['file_name'] =   md5(date('Ymdhis'));
-			  $this->load->library( 'upload' ,  $config);
-			  if(!$image_up = $this->upload->do_upload('profile_image'))
-			  {
-				  $json_array['status']="error";
-				  $json_array['sts']="custom_err";
-				  $json_array['msg']="Image Could Not Be Saved !";	
-				  $json_array['error_msg']="Invalid File !";
-				  echo json_encode($json_array);
-				  die;	
-			  }
-			  else
-			  {
-				$ext = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
-				$profile_image['profile_image']= $config['file_name'].'.'.$ext;
-				$profile_image['image_dir']=$dir;	
-				$success=$this->advertisment_model->add_advertisments_image($profile_image,$this->MyaddId);
-				if($success) 
-				{
-					$extra_array = array('status'=>'success','msg'=>'Image Updated Successfully');
-					echo json_encode($extra_array);
-					die;					
-				} 
-			  }
-			}
-			else{
-				  $json_array['status']="error";
-				  $json_array['sts']="custom_err";
-				  $json_array['msg']="No Data Posted";	
-				  $json_array['error_msg']="Invalid File";
-				  echo json_encode($json_array);
-				  die;
-			}	
-		}		
-	}
-	
-	#################### Get Gallery Images ####################
-	public function galleryList(){
-		
-		$this->MyaddId=get_my_addId($this->myUserId);
-		$datas=$this->advertisment_model->get_advertisments_image($this->MyaddId);
-		$content='';
-		if(!empty($datas)){
-			foreach($datas as $image_list) {
-							
-				   if(!empty($image_list['image_dir']) && file_exists('./'.$image_list['image_dir'].$image_list['profile_image']))
-				   {
-					   $img_src = thumb(FCPATH.$image_list['image_dir'].$image_list['profile_image'],'300','170','new_list_thumb');
-					   $image = base_url().$image_list['image_dir'].'new_list_thumb/'.$img_src;
-				   }
-				   else
-				   {
-					   $image = base_url().'assets/img/list_logo.png';
-				   }				
-				$content.= '<div class="image-container">
-					<div class="controls">
-					<a href="#" class="control-btn remove delete-gallery" data-toggle="modal" data-target="#confirm-delete-modal" rel="'.$image_list['id'].'"> <i class="fa fa-trash-o"></i> </a>
-					</div>
-					<div class="image" style="background-image:url('.$image.')"></div>
-					</div> ';
-			}
-		}
-		else {
-			$content='<span class="sms_chart no_sms_data" style="color: red;"> - No Gallery Found <span></span></span>';
-		}
-		echo json_encode($content);
-		die;					
-	}
-	
-	#####################Delete Gallery#################
-	public function deleteGallery(){
-		$gallery_delete=array();
-		if(isset($_POST['id']))
-		{
-			$this->MyaddId=get_my_addId($this->myUserId);
-			$gallery_delete=$this->advertisment_model->deleteGallery($_POST['id'], $this->MyaddId);
-		}
-		echo json_encode($gallery_delete);
-		die;
-	}
-	
-	################### My Gallery #################
-	public function my_gallery() {
-		$this->data=array();
-		$this->breadcrumbs->push($this->site_name,base_url());		
-		$this->breadcrumbs->push('Business Gallery',base_url());
-		#Set Meta Title And Keyword
-		$this->data['title_of_layout']=$this->site_name." - ".'My Gallery';
-		$this->data['main_content']=$this->load->view('customers/gallery', $this->data,true);
-		$this->load->view('layouts/customer', $this->data);	
-	}
-	
 	####################### Buy Packages ##################
 	public function buyPackage() {
 		
@@ -926,7 +808,7 @@ class Customers extends CI_Controller {
 			redirect($url);
 		}
 		$this->data['title_of_layout']=$this->site_name." - Add Customer";
-		$this->breadcrumbs->push('Dialbe',base_url());		
+		$this->breadcrumbs->push($this->site_name,base_url());		
 		$this->breadcrumbs->push('My Profile',base_url());
 		if($_POST) 
 		{
@@ -935,7 +817,7 @@ class Customers extends CI_Controller {
 				$this->form_validation->set_rules('gender','Gender','trim|required');
 				if($this->form_validation->run() == true) 
 				{
-					$success=$this->advertisment_model->add_customers($this->session->userdata('user_id'));
+					$success=$this->advertisment_customers_model->add_customers($this->session->userdata('user_id'));
 					if($this->input->post('send_notification')==1 || $this->input->post('send_notification')=='on'){
 						
 						$this->load->model('campaign_model');
@@ -982,7 +864,7 @@ class Customers extends CI_Controller {
 				$this->form_validation->set_rules('gender','Gender','trim|required');
 				if($this->form_validation->run() == true) 
 				{
-					$success=$this->advertisment_model->add_customers($this->session->userdata('user_id'));				
+					$success=$this->advertisment_customers_model->add_customers($this->session->userdata('user_id'));				
 					if($this->input->post('send_notification')==1 || $this->input->post('send_notification')=='on'){
 						
 						$this->load->model('campaign_model');
@@ -1054,113 +936,8 @@ class Customers extends CI_Controller {
 		$this->load->view('layouts/customer', $data);	
 	}
 	
-	###############Customer My Profile############
-	public function my_profile() {
-		if(!$this->session->userdata('is_user_logged_in'))
-		{
-			$url = 'login';
-			redirect($url);
-		}
-		$this->data=array();
-		$this->data['title_of_layout']="My Profile";
-		$this->breadcrumbs->push($this->site_name,base_url());		
-		$this->breadcrumbs->push('My Profile',base_url());
-		#Set Meta Title And Keyword
-		$this->data['user_data']=$this->home_model->get_userinfo($this->session->userdata('user_id'));
-		if($_POST) 
-		{
-				$this->form_validation->set_rules('first_name','First Name','trim|required|min_length[3]');
-				$this->form_validation->set_rules('last_name','Last Name','trim|required|min_length[3]');
-				$this->form_validation->set_rules('contact_number',ucwords($this->lang->line('Contact Number')),'trim|required|min_length[10]|numeric');
-				$this->form_validation->set_rules('address',ucwords($this->lang->line('address')),'trim|required');
-				$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|valid_email|required|callback_user_mail_check');
-				$this->form_validation->set_rules('gender',ucwords($this->lang->line('Gender')),'trim|required');
-				$this->form_validation->set_rules('city',ucwords($this->lang->line('City')),'trim|required');
-				$this->form_validation->set_rules('area',ucwords($this->lang->line('Area')),'trim|required');
-				
-				if($this->form_validation->run() == true) 
-				{
-					  $profile_image=array();
-					  if(!empty($_FILES) && $_FILES['profile_image']['name']!='')
-					  {
-						  $config['upload_path']   =   $this->config->item('profile_url');
-						  $config['allowed_types'] =   "gif|jpg|jpeg|png";		 
-						  $this->load->library( 'upload' ,  $config);
-						  if(!$image_up = $this->upload->do_upload('profile_image'))
-						  {
-							  $json_array['status']="error";
-					          $json_array['sts']="custom_err";
-                              $json_array['msg']="Profile Could Not Be Saved";	
-							  $json_array['error_msg']="Invalid File";
-						      echo json_encode($json_array);
-						      die;	
-						  }
-						  else
-						  {
-							 $profile_image['profile_image']=$_FILES['profile_image']['name'];
-                             $profile_image['image_dir']=$upload_path=$this->config->item('profile_url');							 
-							  
-						  }
-					  }
-				        $this->home_model->update_profile($this->session->userdata('user_id'),$profile_image);	
-				        $extra_array = array('status'=>'success','msg'=>'Profile Updated Successfully...!','url'=>base_url());
-						echo json_encode($extra_array);
-						die;	
-				}
-				else
-				{
-					echo $this->form_validation->get_json();
-					die;
-					
-				}
 
-		}		
-		$this->data['main_content']=$this->load->view('customers/my_profile', $this->data,true);
-		$this->load->view('layouts/customer', $this->data);	
-	}
-	
-	##########Cusomer Change Password################# 
-	public function change_password()  {
-		if(!$this->session->userdata('is_user_logged_in')) {
-			$url = 'login';
-			redirect($url);
-		}	
-		$this->data=array();
-		if ($this->input->server('REQUEST_METHOD') === 'POST'){
-			$this->form_validation->set_rules('new_password','New Password','trim|required|min_length[6]|max_length[32]');
-			$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|min_length[6]|max_length[32]|matches[new_password]');
-			if($this->form_validation->run()){
-				$this->home_model->change_password($this->session->userdata('user_id'), md5($this->input->post('new_password')));	
-				$extra_array = array('status'=>'success','msg'=>'Password Changed Successfully...!','url'=>base_url());
-				echo json_encode($extra_array);
-				die;
-			}
-			else {
-			   echo $this->form_validation->get_json();
-			   die;
-			}
-		}
-		else{
-			$this->data['main_content']=$this->load->view('customers/change_password', $this->data,true);
-			$this->load->view('layouts/customer', $this->data);	
-		}
-	}
-	
-	###############Check User Email###############
-	public function user_mail_check() {
-	   $email=$this->input->post('email');	
-	   $userId=$this->session->userdata('user_id');
-	   $user_info=$this->home_model->get_email($email,$userId);
-		if(!empty($user_info))
-		{
-		$this->form_validation->set_message('user_mail_check', 'Email Already Exists');
-		return FALSE;		
-		}
-        else
-		{
-		 return true;		
-		}			
-	}
+
 	
 	#####################Delete Posted Customer#################
 	public function deleteCustomer()
@@ -1328,56 +1105,26 @@ class Customers extends CI_Controller {
 		die;
 	}
 	
-	########## Check User Information ########
-	public function check_user_info() {
-		$this->form_validation->set_rules('contact_number','Mobile Number','trim|required|numeric|min_length[10]|max_length[10]');
-		if($this->form_validation->run() == true){
-			$datas=$this->advertisment_model->checkUserInfo($this->session->userdata('user_id'));			
-			if($datas) 
-			{
-				$success=$this->advertisment_model->checkCustomerUsers($this->session->userdata('user_id'),$datas['id']);
-				if($success){
-					$extra_array = array('status'=>'EXISTING_USER','msg'=>'Success !!! Customer Information Already Existing','user_datas'=>$datas,'customer_info'=>$success);
-					echo json_encode($extra_array);
-					die;	
-				}else{
-					$extra_array = array('status'=>'EXISTING_NEW_USER_ADD','msg'=>'Success ! Customer Information Available.','user_datas'=>$datas,'customer_info'=>$success);
-					echo json_encode($extra_array);
-					die;	
-				}				
-			}
-			else {
-				$extra_array = array('status'=>'NEW_USER_ADD','msg'=>'Sorry Customer Information Not Available.');
-				echo json_encode($extra_array);
-				die;	
-			}
-		} 
-		else {
-			echo $this->form_validation->get_json();
-			die;
-		}
-	}
-	
 	###################### Customer Edit #####################
-	public function edit($id)
-	{
+	public function edit($id) {
+		
 		$this->data=array();
 		if(!$this->session->userdata('is_user_logged_in'))
 		{
 			$url = 'login';
 			redirect($url);
 		}
+		
 		#Set Meta Title And Keyword
-		$this->data['user_data']=$this->advertisment_model->get_customeruserinfo($this->session->userdata('user_id'),$id);
+		$this->data['user_data']=$this->advertisment_customers_model->get_customeruserinfo($this->session->userdata('user_id'),$id);
 		if(empty($this->data['user_data']))
 		{
 			$url = 'customer-list';
 			redirect($url);
 		}
-		$this->data['edit_id']=$id;
-		$data['categories_data']=$this->advertisment_model->get_user_remainder_data($this->session->userdata('user_id'));
-		$this->data['remainder_data']=$this->advertisment_model->get_user_remainderdata($this->session->userdata('user_id'),$id);
 		
+		$this->data['edit_id']=$id;
+		$this->data['remainder_data']=$this->advertisment_customer_remainders_model->get_user_remainderdata($this->session->userdata('user_id'),$id);
 	
 		if($_POST) 
 		{
@@ -1385,7 +1132,7 @@ class Customers extends CI_Controller {
 			$this->form_validation->set_rules('gender','Gender','trim|required');
 			if($this->form_validation->run() == true) 
 			{
-				$success=$this->advertisment_model->update_customer_info($id,$this->session->userdata('user_id'),$this->data['user_data']);		
+				$success=$this->advertisment_customers_model->update_customer_info($id,$this->session->userdata('user_id'),$this->data['user_data']);		
 				if($this->input->post('send_notification')==1 || $this->input->post('send_notification')=='on'){
 						$this->load->model('campaign_model');
 						$this->data['user_info']=$this->campaign_model->sms_availabilty($this->session->userdata('user_id'));
@@ -1415,7 +1162,6 @@ class Customers extends CI_Controller {
 	
 	public function user_offer_list(){
 		
-	    
 		$post_id=$_POST['customer_id'];
 		$this->load->model('campaign_model');
 		
@@ -1458,7 +1204,6 @@ class Customers extends CI_Controller {
 		echo json_encode($this->data);
 		die;
 	}
-	
 	
 	########### Import Customers ###########
 	public function import_customers() { 
@@ -1583,7 +1328,6 @@ class Customers extends CI_Controller {
 		exit;
 	}
 	
-		
 	##########Reward Settings################# 
 	public function reward_settings()  {
 		if(!$this->session->userdata('is_user_logged_in')) {

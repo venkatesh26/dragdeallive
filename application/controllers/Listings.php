@@ -524,7 +524,7 @@ class Listings extends CI_Controller {
 			if(!empty($_FILES) && $_FILES['profile_image']['name']!='') {
 			
                 $dir=$this->config->item('profile_url').$this->session->userdata('user_id').'/';    
-                if (!is_dir($$dir))
+                if (!is_dir($dir))
                 {
                   mkdir($dir, 0777, true);
                 }

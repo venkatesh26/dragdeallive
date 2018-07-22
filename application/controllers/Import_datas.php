@@ -10,8 +10,9 @@ class Import_datas extends CI_Controller
             redirect(ADMIN.'/login');
         }
 		$this->load->model('advertisment_model');
+		$this->load->model('cities_model');
+		$this->load->model('areas_model');
     }
-     
   
    #Import Excel From File
    public function index()
@@ -60,8 +61,8 @@ class Import_datas extends CI_Controller
 							$category=explode(',',$category);
 							$category=array_unique($category);
 							$category=implode(',',$category);
-							$city_id=($city!='')?$this->advertisment_model->cityFindOrSave($city):0;
-							$area_id=($area!='')?$this->advertisment_model->areaFindOrSave($area,$city_id):0;
+							$city_id=($city!='')?$this->cities_model->cityFindOrSave($city):0;
+							$area_id=($area!='')?$this->areas_model->areaFindOrSave($area,$city_id):0;
 							if($owner==null || $owner==NULL)
 							{
 								$owner='Not Available';
@@ -85,7 +86,7 @@ class Import_datas extends CI_Controller
 										 "user_id"=>1,
 										 "overall_score"=>5,
 										 "site_score"=>4,
-										 "short_description"=>'Dialbe.com provides a excellent information services between local business and users in various cities across India.We Provide the most accurate data to users and businesses.'
+										 "short_description"=>'Dragdeal.com provides a excellent information services between local business and users in various cities across India.We Provide the most accurate data to users and businesses.'
 										 );											 
 							  if(!$this->advertisment_model->add_data($data_user,$category,$contact_number))
 							  {

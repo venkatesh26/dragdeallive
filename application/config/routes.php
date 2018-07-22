@@ -1,6 +1,10 @@
 <?php  
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+############ Short url #################
+$route['s/(:any)'] = 'home/shortToLongUrl/$1';
+
 ########### Jobs ###############
 $route[ADMIN.'/jobs'] = 'jobs/admin_index';
 $route[ADMIN.'/jobs/getReports'] = 'jobs/getReports';
@@ -492,7 +496,6 @@ $route['reset_password/(:any)'] = 'users/reset_password';
 $route['login'] = 'users/register/$1';
 $route['user_login'] = 'users/login/$1';
 $route['register'] = 'users/register/$1';
-$route['users/verify/(:any)'] = 'home/verify/$1';
 $route['google_login'] = 'site_webusers/google_login';
 $route['logout'] = 'users/logout';
 $route['signup'] = 'users/register';
@@ -503,7 +506,6 @@ $route['privacy-policy'] = 'home/privacy_policy';
 $route['terms-and-conditions'] = 'home/get_pages';
 $route['about-us'] = 'home/about_us';
 $route['contact-us'] = 'home/contact_us';
-$route['my_profile'] = 'home/my_profile';
 $route['claim-my-bussiness'] = 'home/claim_my_bussiness';
 $route['how-it-works'] = 'home/how_it_works';
 
@@ -577,7 +579,7 @@ $route['merchant'] = 'customers/set_role';
 $route['dashboard'] = 'customers/dashboard';
 $route['dashboard'] = 'customers/dashboard';
 $route['business-profile'] = 'customers/business_profile';
-$route['my-profile'] = 'customers/my_profile';
+$route['my-profile'] = 'users/my_profile';
 $route['customer-list'] = 'customers/customer_list';
 $route['customer-add'] = 'customers/customer_add';
 $route['invite-customer'] = 'customers/customer_list';
@@ -600,7 +602,7 @@ $route['my-plans']='customers/plan_packages_list';
 $route['coupons-list'] = 'coupons/coupons_list';
 $route['coupons-add'] = 'coupons/coupons_add';
 $route['import-customer'] = 'customers/import_customers';
-$route['gallery'] = 'customers/my_gallery';
+$route['gallery'] = 'advertisments_images/my_gallery';
 $route['downloaded-coupons-list'] = 'coupons/downloaded_coupon_list';
 $route['business-enquires'] = 'customers/enquiry_list';
 
@@ -649,7 +651,7 @@ $route['my-notifications-settings'] = 'settings/notification_settings';
 $route['my-campaign-offers'] = 'campaigns/my_campaign_offers';
 $route['upgrade-plan'] = 'customers/upgrade_plan_packages_list';
 $route['bussiness-claims'] = 'customers/claim_bussiness';
-$route['change-password'] = 'customers/change_password';
+$route['change-password'] = 'users/change_password';
 $route['special'] = 'home/createAddCampaign';
 $route['reward-settings'] = 'customers/reward_settings';
 ?>

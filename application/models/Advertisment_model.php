@@ -5,6 +5,9 @@ class Advertisment_model extends CI_Model {
     public function __construct(){
         parent::__construct();
 		$this->load->model('notification_model');
+		$this->load->model('cities_model');
+		$this->load->model('areas_model');
+		$this->load->model('groups_model');
     }
 	
 	public function update_notification_count($id){
@@ -40,133 +43,6 @@ class Advertisment_model extends CI_Model {
 		$response['iTotalRecords']=$this->get_all_rows();
 		$response['data']=$newresult;
 		return $response;
-	}
-	
-	######## Customer Info ########
-	function get_customeruserinfo($parent_id,$user_id) {
-	 	$this->db->select('advertisment_customer_lists.*, groups.name as group_name,cities.name as city_name,cities.id as city_id,areas.name as area_name');
-		$this->db->where('advertisment_customer_lists.parent_user_id',$parent_id);
-		$this->db->where('advertisment_customer_lists.user_id',$user_id);
-		$this->db->join('groups','groups.id=advertisment_customer_lists.group_id','left');
-		$this->db->join('cities','cities.id=advertisment_customer_lists.preferred_city_id','left');
-		$this->db->join('areas','areas.id=advertisment_customer_lists.preferred_area_id','left');
-		$query = $this->db->get('advertisment_customer_lists');
-		$result = $query->row_array();	
-		return $result;
-	}
-	
-	##### Update Customer Info #########
-	public function update_customer_info($user_id,$parentUserId,$user_info){
-		
-		$city_id=0;
-		$area_id=0;
-		if($this->input->post('city'))
-		{	
-			$city_id=$this->cityFindOrSave($this->input->post('city'));
-		}	
-		if($this->input->post('area'))
-		{
-			$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
-		}
-		
-		$group_id=$this->findOrSaveGroup($parentUserId,$this->input->post('group_name'));
-		$is_active=($this->input->post('is_active')=='on') ? 1 : 0;
-		$is_birthday_remainder=($this->input->post('is_birthday_remainder')=='on') ? 1 : 0;
-		$is_aniversy_reminder=($this->input->post('is_aniversy_reminder')=='on') ? 1 : 0;
-			
-		$data = array(
-			'parent_user_id'=> $parentUserId,
-			'user_id'=> $user_id,			
-			'modified' => date('Y-m-d h:i:s'),	
-			'is_active'=>$is_active,
-			'group_id'=>$group_id,
-			'is_birthday_remainder'=>$is_birthday_remainder,
-			'is_aniversy_reminder'=>$is_aniversy_reminder,
-			'visit_count'=>$user_info['visit_count']+1,
-			'next_service_date'=>$this->input->post('next_service_date'),
-			'mobile_number' => $this->input->post('mobile_number'),
-			'address' => $this->input->post('address'),
-			'gender_id' => $this->input->post('gender'),
-			'email' => $this->input->post('email'),
-			'dob' => date('Y-m-d',strtotime($this->input->post('dob'))),
-			'doa' =>  date('Y-m-d',strtotime($this->input->post('doa'))),
-			'first_name'	=> strtolower($this->input->post('first_name')),			
-			'last_name'	=> strtolower($this->input->post('last_name')),	
-			'preferred_city_id' => $city_id,
-			'preferred_area_id' => $area_id
-		);
-		$this->db->where('user_id', $user_id);
-		$this->db->where('parent_user_id', $parentUserId);
-		$this->db->update('advertisment_customer_lists', $data);
-		
-		if($this->input->post('last_bill_amount_paid') > 0) {
-			$data = array(	
-				'last_bill_amount_paid'=>$this->input->post('last_bill_amount_paid'),
-				'total_amount'=>$user_info['total_amount']+$this->input->post('last_bill_amount_paid'),		
-			);
-			$this->db->where('user_id', $user_id);
-			$this->db->where('parent_user_id', $parentUserId);
-			$this->db->update('advertisment_customer_lists', $data);
-			$data = array(
-				'parent_user_id'=> $parentUserId,
-				'user_id'=> $user_id,			
-				'created'=> date('Y-m-d h:i:s'),
-				'modified' => date('Y-m-d h:i:s'),	
-				'amount'=>$this->input->post('last_bill_amount_paid'),			
-			);
-			$this->db->insert('advertisment_customer_bills', $data);	
-		}
-		
-		$this->saveRemainderSettings($parentUserId,$user_id,'edit');
-		return true;	
-	}
-	
-	########## Save Remainder ##########
-	public function saveRemainderSettings($parent_user_id,$user_id,$type='add'){
-
-		$serviceDates=$this->input->post('service_date');
-		$serviceIDs=$this->input->post('service_id');
-		$service_data=array();
-		$rem_service_data =array();
-		if(!is_array($serviceIDs)){
-		   $serviceIDs=array();	
-		}
-		foreach($serviceIDs as $key=>$data){
-			
-			$service_data[$key]['remainder_setting_id']=$data;
-			$service_data[$key]['service_date']=$serviceDates[$key];
-			$rem_service_data[$key]=$data;
-		}
-		
-		$table_data=array();
-		$this->db->select('remainder_setting_id');        
-		$this->db->where('parent_user_id',$parent_user_id);
-		$this->db->where('user_id',$user_id);
-		$query = $this->db->get('advertisment_customer_remainders');
-		$res = $query->result_array();
-		$list_data=array();
-		foreach($res as $key=>$datas){
-			$list_data[$key]=$datas['remainder_setting_id'];
-		}
-		if($type!='add') {
-			foreach($list_data as $data) {	
-				$this->db->delete('advertisment_customer_remainders',array('remainder_setting_id' => $data,'user_id' => $user_id,'parent_user_id'=>$parent_user_id));
-			}	
-		}
-		
-		foreach($service_data as $data) {
-			if($data > 0 && $data['service_date']!=''){
-				$table_data=array(
-					'created'=>date('Y-m-d h:i:s'),
-					'parent_user_id'=>$parent_user_id,
-					'user_id'=>$user_id,
-					'remainder_setting_id'=>$data['remainder_setting_id'],
-					'service_date'=>date('Y-m-d',strtotime($data['service_date'])),
-				);
-				$this->db->insert('advertisment_customer_remainders', $table_data);	
-			}
-		}
-		
 	}
 	
 	############# Save/ update Customers Remainder Data ######
@@ -208,11 +84,11 @@ class Advertisment_model extends CI_Model {
 		
 		if($this->input->post('city'))
 		{	
-			$city_id=$this->cityFindOrSave($this->input->post('city'));
+			$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
 		}	
 		if($this->input->post('area'))
 		{
-			$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+			$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 		}
 		$data = array(			
 			'contact_number' => $this->input->post('mobile_number'),
@@ -237,7 +113,7 @@ class Advertisment_model extends CI_Model {
 		$this->db->where('user_id', $user_id);
 		$update = $this->db->update('user_profiles', $profile_data);
 		
-		$group_id=$this->findOrSaveGroup($parentUserId,$this->input->post('group_name'));
+		$group_id=$this->groups_model->findOrSaveGroup($parentUserId,$this->input->post('group_name'));
 		$is_active=($this->input->post('is_active')=='on') ? 1 : 0;
 		$is_birthday_remainder=($this->input->post('is_birthday_remainder')=='on') ? 1 : 0;
 		$is_aniversy_reminder=($this->input->post('is_aniversy_reminder')=='on') ? 1 : 0;
@@ -362,30 +238,6 @@ class Advertisment_model extends CI_Model {
 		return $arr;
 	}
 	
-	############# Check User Info #######
-	public function checkUserInfo(){
-		$this->db->select('users.*,user_profiles.first_name,user_profiles.last_name,user_profiles.address,user_profiles.gender_id,user_profiles.dob,user_profiles.doa,cities.name as city_name,areas.name as area_name');
-		$this->db->where('users.contact_number',$_POST['contact_number']);
-		$this->db->join('user_profiles','users.id=user_profiles.user_id','left');
-		$this->db->join('cities','cities.id=users.preferred_city_id','left');
-		$this->db->join('areas','areas.id=users.preferred_area_id','left');
-		$this->db->from('users');
-		$query = $this->db->get();
-		$result=$query->row_array();
-        return $result;		
-	}
-	
-	######### Check Customer Data #######
-	public function checkCustomerUsers($parent_user_id,$user_id){
-		$this->db->select('advertisment_customer_lists.id');
-		$this->db->where('advertisment_customer_lists.parent_user_id',$parent_user_id);
-		$this->db->where('advertisment_customer_lists.user_id',$user_id);
-		$this->db->from('advertisment_customer_lists');
-		$query = $this->db->get();
-		$result=$query->row_array();
-		return $result;
-	}
-	
 	########### Save User Info ########
 	public function SaveUserInfo(){
 		
@@ -432,132 +284,6 @@ class Advertisment_model extends CI_Model {
 		$id = $this->db->insert_id();
 	} 
 	
-	################  Add Customer Data#############
-    public function add_customers($parentUserId)	{
-		
-		$is_active=($this->input->post('is_active')=="on") ? 1 : 0;
-		$city_id=0;
-		$area_id=0;   
-		if($this->input->post('city'))
-		{	
-			$city_id=$this->cityFindOrSave($this->input->post('city'));
-			if($this->input->post('area'))
-			{
-				$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
-			}
-		}	
-	
-			if(!$_POST['user_id']){
-				$save_user_data = array(		
-					'created'		 => date('Y-m-d h:i:s'),
-					'modified' 		 => date('Y-m-d h:i:s'),
-					'contact_number'=>$this->input->post('mobile_number'),
-					'email'=>$this->input->post('email'),
-					'password'=>md5('dialbe2016'),
-					'referer_id'=>$parentUserId,
-					'preferred_city_id'=>$city_id,
-					'preferred_area_id'=>$area_id,
-					'user_type'=>3,
-					'is_active'=>1,				
-				);
-				$this->db->insert('users', $save_user_data);
-				$user_id = $this->db->insert_id();
-			}
-			else {
-				$user_id=$_POST['user_id'];
-			}
-			$user_profiles_data = array(
-				'user_id'		=> $user_id,			
-				'created'		=> date('Y-m-d h:i:s'),
-				'modified' 		=> date('Y-m-d h:i:s'),	
-				'first_name'    => $this->input->post('first_name'),
-				'last_name'    => $this->input->post('last_name'),	
-				'display_name' => $this->input->post('first_name'),
-				'dob' => date('Y-m-d',strtotime($this->input->post('dob'))),
-				'doa' => date('Y-m-d',strtotime($this->input->post('doa'))),				
-				'mobile_number' => $this->input->post('mobile_number'),		
-				'telephone_number' => $this->input->post('contact_number'),		
-				'address' => $this->input->post('address'),						
-			);
-			$this->db->insert('user_profiles', $user_profiles_data);
-			$id = $this->db->insert_id();
-			
-			$group_id=0;
-			if($this->input->post('group_name') !=''){
-				$group_id=$this->findOrSaveGroup($parentUserId,$this->input->post('group_name'));
-			}
-			$is_birthday_remainder=($this->input->post('is_birthday_remainder')=='on') ? 1 : 0;
-			$is_aniversy_reminder=($this->input->post('is_aniversy_reminder')=='on') ? 1 : 0;
-			
-			$data = array(
-				'parent_user_id'=> $parentUserId,
-				'user_id'=> $user_id,			
-				'created'=> date('Y-m-d h:i:s'),
-				'modified' => date('Y-m-d h:i:s'),	
-				'last_bill_amount_paid'=>$this->input->post('last_bill_amount_paid'),
-				'total_amount'=>$this->input->post('last_bill_amount_paid'),
-				'is_active'=>$is_active,
-				'group_id'=>$group_id,
-				'is_birthday_remainder'=>$is_birthday_remainder,
-				'is_aniversy_reminder'=>$is_aniversy_reminder,
-				'visit_count'=>1,
-				'first_name'    => $this->input->post('first_name'),
-				'last_name'    => $this->input->post('last_name'),	
-				'display_name' => $this->input->post('first_name'),
-				'dob' => date('Y-m-d',strtotime($this->input->post('dob'))),
-				'doa' => date('Y-m-d',strtotime($this->input->post('doa'))),	
-				'next_service_date' => date('Y-m-d',strtotime($this->input->post('next_service_date'))),					
-				'mobile_number' => $this->input->post('mobile_number'),			
-				'address' => $this->input->post('address'),		
-				'preferred_city_id'=>$city_id,
-				'preferred_area_id'=>$area_id,	
-				'gender_id'=> $this->input->post('gender'),			
-				'email'=>$this->input->post('email'),
-			);
-			$this->db->insert('advertisment_customer_lists', $data);
-			$id = $this->db->insert_id();
-			
-			if($this->input->post('last_bill_amount_paid') > 0){
-				$data = array(
-					'parent_user_id'=> $parentUserId,
-					'user_id'=> $user_id,			
-					'created'=> date('Y-m-d h:i:s'),
-					'modified' => date('Y-m-d h:i:s'),	
-					'amount'=>$this->input->post('last_bill_amount_paid'),			
-				);
-				$this->db->insert('advertisment_customer_bills', $data);
-				$id = $this->db->insert_id();	
-			}
-	   $this->saveRemainderSettings($parentUserId,$user_id);
-		return true;	
-	}
-	
-	########## Find Or Save Customer #######
-	public function findOrSaveGroup($parent_user_id,$name){
-		if($name==''){
-			return 0;
-		}
-		$this->db->select('groups.id');
-		$this->db->where('groups.user_id',$parent_user_id);
-		$this->db->where('groups.name',$name);
-		$this->db->from('groups');
-		$query = $this->db->get();			
-		$result=$query->row_array();
-		if($result){
-		  return $result['id'];	
-		}
-		else{
-			$table_data=array(
-				'created'=>date('Y-m-d h:i:s'),
-				'name'=>$name,
-				'user_id'=>$parent_user_id,
-				'is_active'=>1,
-			);
-			$this->db->insert('groups', $table_data);			
-			return $this->db->insert_id();	
-		}
-	}
-	
 	################ Get Import List ####################
 	public function getMyImportList($userId,$limit_start=10,$limit_end=0) {
 	    $this->db->select('SQL_CALC_FOUND_ROWS customer_import_history.id,customer_import_history.*',false);
@@ -577,197 +303,6 @@ class Advertisment_model extends CI_Model {
 	
 		$this->db->insert('customer_import_history', $data);
 		$user_id = $this->db->insert_id();		
-	}
-	
-	################  Add Customer Data#############
-    public function import_customer_data($data,$parentUserId) {
-		$city_id=0;
-		$area_id=0;
-		if(isset($data['city']) && $data['city']!=''){
-			$city_id=$this->cityFindOrSave($data['city']);
-		}
-		if($data['area']){
-			$area_id=$this->areaFindOrSave($data['area'],$city_id);
-		}
-		$isActive=1;
-		$field='created';
-		$new_data = array(
-			'created'=>date('Y-m-d H:i:s'),
-			'email'=> $data['email'],
-			'first_name'=> $data['first_name'],
-			'last_name'=> $data['last_name'],
-            'display_name'=> $data['last_name'],	
-			'user_type'=>1,
-			'preferred_city_id'=> $city_id,
-			'preferred_area_id'=> $area_id,
-			'email'=>$data['email'],
-			'gender_id'=>1,
-			'address'=>$data['address'],
-			'dob' => date('Y-m-d',strtotime($data['dob'])),
-			'doa' =>  date('Y-m-d',strtotime($data['doa'])),
-			'user_id'=>$parentUserId,
-			'is_active'=>$isActive,
-			$field => date('Y-m-d h:i:s'),
-			'bill_amount'=>$data['bill_amount'],
-			'contact_number'=>$data['contact_number'],
-		);
-		$userId=$this->findOrSaveuserInfo($new_data,$parentUserId);
-		$customerInfo=$this->findOrSaveCustomer($userId,$parentUserId,$data);	
-		return true;
-	}
-	
-	###### Save User Info #############
-	public function findOrSaveuserInfo($data,$parentUserId){	
-		$this->db->select('users.id');
-		$this->db->where('users.contact_number',$data['contact_number']);
-		$this->db->from('users');
-		$query = $this->db->get();
-		$result=$query->row_array();
-		if(count($result) >=1 ){
-			return $result['id'];
-		} else {
-			
-			$city_id=0;
-			$area_id=0;
-			if(isset($data['city']))
-			{	
-				$city_id=$this->cityFindOrSave($data['city']);
-				if(isset($data['area']))
-				{
-					$area_id=$this->areaFindOrSave($data['area'],$city_id);
-				}
-			}	
-			$save_user_data = array(		
-				'created'		 => date('Y-m-d h:i:s'),
-				'modified' 		 => date('Y-m-d h:i:s'),
-				'contact_number'=>$data['contact_number'],
-				'email'=>$data['email'],
-				'password'=>md5('dialbe2016'),
-				'referer_id'=>$parentUserId,
-				'preferred_city_id'=>$data['preferred_city_id'],
-				'preferred_area_id'=>$data['preferred_area_id'],
-				'user_type'=>3,
-				'is_active'=>1,				
-			);
-			$this->db->insert('users', $save_user_data);
-			$user_id = $this->db->insert_id();
-		
-			$user_profiles_data = array(
-				'user_id'			=> $user_id,			
-				'created'		=> date('Y-m-d h:i:s'),
-				'modified' 		=> date('Y-m-d h:i:s'),	
-				'first_name'    => $data['first_name'],
-				'last_name'    => $data['last_name'],	
-				'display_name' => $data['first_name'],
-				'dob' => date('Y-m-d',strtotime($data['dob'])),	
-				'doa' => date('Y-m-d',strtotime($data['doa'])),					
-				'mobile_number' => $data['contact_number'],		
-				'telephone_number' => $data['contact_number'],		
-				'address' => $data['address'],						
-			);
-			$this->db->insert('user_profiles', $user_profiles_data);
-			$id = $this->db->insert_id();
-			return $user_id;
-		}
-	}
-	
-	### Check Already Customer Imaported ####
-	public function findOrSaveCustomer($userId,$parentUserId,$alldata){
-
-   		$this->db->select('advertisment_customer_lists.id,advertisment_customer_lists.visit_count,advertisment_customer_lists.total_amount');
-		$this->db->where('advertisment_customer_lists.user_id',$userId);
-		$this->db->where('advertisment_customer_lists.parent_user_id',$parentUserId);
-		$this->db->from('advertisment_customer_lists');
-		$query = $this->db->get();
-		$results=$query->row_array();
-		if($results){
-			$city_id=0;
-			$area_id=0;
-			if($alldata['city'])
-			{	
-				$city_id=$this->cityFindOrSave($alldata['city']);
-				if($alldata['area'])
-				{
-					$area_id=$this->areaFindOrSave($alldata['area'],$city_id);
-				}
-			}	
-			$data=array(
-				'modified'=>date('Y-m-d h:i:s'),
-				'visit_count'=>$results['visit_count']+1,
-				'total_amount'=>$alldata['bill_amount']+$results['total_amount'],
-				'last_bill_amount_paid'=>$alldata['bill_amount'],
-				'email'=> $alldata['email'],
-				'first_name'=> $alldata['first_name'],
-				'last_name'=> $alldata['last_name'],
-				'display_name'=> $alldata['last_name'],	
-				'preferred_city_id'=> $city_id,
-				'preferred_area_id'=> $area_id,
-				'email'=>$alldata['email'],
-				'gender_id'=>1,
-				'address'=>$alldata['address'],
-				'mobile_number'=>$alldata['contact_number'],
-				'dob'=>$alldata['dob'],
-				'doa'=>$alldata['doa']
-			);
-			$this->db->where('advertisment_customer_lists.id', $results['id']);
-			$this->db->update('advertisment_customer_lists', $data);
-			$this->saveBillingInfo($parentUserId,$userId,$alldata);
-		}
-		else {
-			$city_id=0;
-			$area_id=0;
-			if($alldata['city'])
-			{	
-				$city_id=$this->cityFindOrSave($alldata['city']);
-				if($alldata['area'])
-				{
-					$area_id=$this->areaFindOrSave($alldata['area'],$city_id);
-				}
-			}	
-			$data = array(
-				'parent_user_id'=> $parentUserId,
-				'user_id'=> $userId,			
-				'created'=> date('Y-m-d h:i:s'),
-				'modified' => date('Y-m-d h:i:s'),	
-				'last_bill_amount_paid'=>$alldata['bill_amount'],
-				'total_amount'=>$alldata['bill_amount'],
-				'is_active'=>1,
-				'visit_count'=>1,
-				'modified'=>date('Y-m-d h:i:s'),
-				'email'=> $alldata['email'],
-				'first_name'=> $alldata['first_name'],
-				'last_name'=> $alldata['last_name'],
-				'display_name'=> $alldata['last_name'],	
-				'preferred_city_id'=> $city_id,
-				'preferred_area_id'=> $area_id,
-				'mobile_number'=>$alldata['contact_number'],
-				'email'=>$alldata['email'],
-				'gender_id'=>1,
-				'address'=>$alldata['address'],
-				'dob'=>$alldata['dob'],
-				'doa'=>$alldata['doa']
-			);
-			$this->db->insert('advertisment_customer_lists', $data);
-			$id = $this->db->insert_id();
-			$this->saveBillingInfo($parentUserId,$userId,$alldata);
-			return true;	
-		}
-	}
-	
-	########### Save Bill Amount ########
-	public function saveBillingInfo($parentUserId,$userId,$alldata){
-	   if($alldata['bill_amount'] < 0){
-	    return false;
-	   }
-		$data = array(
-			'parent_user_id'=> $parentUserId,
-			'user_id'=> $userId,			
-			'created'=> date('Y-m-d h:i:s'),
-			'modified' => date('Y-m-d h:i:s'),	
-			'amount'=>$alldata['bill_amount'],			
-		);
-		$this->db->insert('advertisment_customer_bills', $data);
-		$id = $this->db->insert_id();	
 	}
 	
 	################ Send Feed Back ############
@@ -1425,7 +960,7 @@ class Advertisment_model extends CI_Model {
 
     ################ Get Customer List ####################
 	public function getCustomerList($userId,$limit_start=10,$limit_end=0) {
-	    $this->db->select('SQL_CALC_FOUND_ROWS advertisment_customer_lists.user_id,advertisment_customer_lists.first_name,advertisment_customer_lists.email,advertisment_customer_lists.visit_count,advertisment_customer_lists.is_active,advertisment_customer_lists.created,groups.name as group_name,advertisment_customer_lists.total_amount,advertisment_customer_lists.mobile_number',false);
+	    $this->db->select('SQL_CALC_FOUND_ROWS advertisment_customer_lists.customer_id,advertisment_customer_lists.first_name,advertisment_customer_lists.email,advertisment_customer_lists.visit_count,advertisment_customer_lists.is_active,advertisment_customer_lists.created,groups.name as group_name,advertisment_customer_lists.total_amount,advertisment_customer_lists.mobile_number',false);
 		if(isset($_POST['s_name']) && !empty($_POST['s_name']))
 		{
 			$this->db->like('advertisment_customer_lists.first_name',$_POST['s_name'],'after'); 
@@ -1490,11 +1025,11 @@ class Advertisment_model extends CI_Model {
 		$area_id=0;
 		if($this->input->post('city'))
 		{
-			$city_id=$this->cityFindOrSave($this->input->post('city'));
+			$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
 		}
 		if($this->input->post('area'))
 		{
-			$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+			$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 		}
 		$isActive=($this->input->post('is_active') && $this->input->post('is_active')=='on') ? 1 : 0;
 		$data = array(
@@ -1540,18 +1075,6 @@ class Advertisment_model extends CI_Model {
 		}
 	}
 	
-	############### Get User Bussiness Data ############
-    public function get_user_remainderdata($parent_user_id,$user_id){
-		$this->db->select('remainder_settings.id,advertisment_customer_remainders.remainder_setting_id,advertisment_customer_remainders.service_date,remainder_settings.name');
-		$this->db->where('advertisment_customer_remainders.user_id',$user_id);
-		$this->db->where('advertisment_customer_remainders.parent_user_id',$parent_user_id);
-		$this->db->from('advertisment_customer_remainders');
-		$this->db->join('remainder_settings','remainder_settings.id=advertisment_customer_remainders.remainder_setting_id','left');
-		$query = $this->db->get();			
-		$result=$query->result_array(); 
-		return $result;
-	}
-	
 	################ Edit My Business######################
  	public function edit_business($addId, $user_id,$profile_image_data)
 	{
@@ -1581,25 +1104,20 @@ class Advertisment_model extends CI_Model {
 					'type'=>$type,
 					);
 				$this->db->insert('advertisment_phones', $advertisment_phones_data);
-			}		
-			if(!empty($profile_image_data))
-			{
-				$data=array_merge($data,$profile_image_data);
-			}			
-
+			}	
 
 			if($this->input->post('city')){
-				$city_id=$this->cityFindOrSave($this->input->post('city'));
+				$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
 			}
 			if($this->input->post('area')){
-				$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 			}
 
 			if($this->input->post('city')){
 				$city_id=$this->cityFindOrSave($this->input->post('city'));
 			}
 			if($this->input->post('area')){
-				$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 			}
 			$main_category_id=0;
 			if($this->input->post('main_category'))
@@ -1646,10 +1164,10 @@ class Advertisment_model extends CI_Model {
 			$other_info=serialize($other_info);
 		
 			if($this->input->post('city')){
-				$city_id=$this->cityFindOrSave($this->input->post('city'));
+				$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
 			}
 			if($this->input->post('area')){
-				$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 			}
 			
 			$category_data_id=array();
@@ -1711,6 +1229,12 @@ class Advertisment_model extends CI_Model {
 				'short_description'=>$this->input->post('short_description'),
 				'other_info'=>$other_info
 			);
+			
+			if(!empty($profile_image_data))
+			{
+				$data=array_merge($data,$profile_image_data);
+			}	
+			
 			$common_data=array('updated_at'=> date('Y-m-d h:i:s'),'user_id'=>$user_id);
 			$data=array_merge($common_data,$data);
 			$this->db->where('id', $addId);
@@ -1838,11 +1362,11 @@ class Advertisment_model extends CI_Model {
 		$contact_numbers=explode(',',$all_contact_number);
 		if($this->input->post('city'))
 		{
-			$city_id=$this->cityFindOrSave($this->input->post('city'));
+			$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
 		}
 		if($this->input->post('area'))
 		{
-			$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+			$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 		}
 		$main_category_id=0;
 		if($this->input->post('main_category'))
@@ -1950,57 +1474,6 @@ class Advertisment_model extends CI_Model {
 		   $this->db->insert('advertisment_phones', $advertisment_phones_data);
 	  }
 	  return true;
-	}
-	
-	######### City Find Or Save ######## 
-	public function cityFindOrSave($name){
-		$table_data=array();
-		$this->db->select('id');        
-		$this->db->where('name',$name);
-		$query = $this->db->get('cities');
-		$res = $query->row();
-		if(!empty($res))
-		{
-			return $res->id;
-		}
-		else
-		{
-			$table_data=array(
-			'created'=>date('Y-m-d h:i:s'),
-			'name'=>$name,
-			'country_id'=>0,
-			'state_id'=>0,
-			'is_active'=>1,
-			);
-         $this->db->insert('cities', $table_data);			
-		 return $this->db->insert_id();
-		}
-	}
-	
-	#######Area Find Or Save ###########
-	public function areaFindOrSave($name,$city_id){
-		$table_data=array();
-		$this->db->select('id');        
-		$this->db->where('name',$name);
-		$query = $this->db->get('areas');
-		$res = $query->row();
-		if(!empty($res))
-		{
-			return $res->id;
-		}
-		else
-		{
-			$table_data=array(
-			'created'=>date('Y-m-d h:i:s'),
-			'name'=>$name,
-			'country_id'=>0,
-			'state_id'=>0,
-			'city_id'=>$city_id,
-			'is_active'=>1,
-			);
-         $this->db->insert('areas', $table_data);			
-		 return $this->db->insert_id();
-		}
 	}
 	
 	#######Area Find Or Save ###########
@@ -2508,10 +1981,10 @@ class Advertisment_model extends CI_Model {
 			$city_id='0';
 			$area_id='0';
 			if($this->input->post('city')){	
-				$city_id=$this->cityFindOrSave($this->input->post('city'));
+				$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
 			}	
 			if($this->input->post('area')){
-				$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 			}
 			$data = array(
 				'city_name'=> $this->input->post('city_name'),

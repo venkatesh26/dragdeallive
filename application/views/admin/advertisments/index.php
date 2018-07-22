@@ -117,7 +117,7 @@
 							<?php }
 							} else { ?>
 							<tr>
-							<th colspan="8" class="norecordfound">No Records found.</th>
+							<th colspan="9" class="norecordfound">No Records found.</th>
 							</tr>
 							<?php } ?>
 							</tbody>

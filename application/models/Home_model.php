@@ -3,7 +3,11 @@ class Home_model extends CI_Model {
 	
     # Construct - Load the database
     public function __construct() {
-    }
+	
+		parent::__construct();
+		$this->load->model('cities_model');
+		$this->load->model('areas_model');
+	}
 	
 	################### Get Reward Settings #################
 	public function getRewardSettings($user_id){
@@ -125,12 +129,13 @@ class Home_model extends CI_Model {
 	public function createAddCampaign() {
 		
 		$this->load->model('Advertisment_model');
+		$this->load->model('Cities_model');
 		if($this->input->post('city')){
 			If($this->input->post('city_id')==''){
 				$city_id=$this->input->post('city_id');
 			}
 			else {
-				$city_id=$this->cityFindOrSave($this->input->post('city'));
+				$city_id=$this->Cities_model->cityFindOrSave($this->input->post('city'));
 			}
 		}
 		if($this->input->post('area')){
@@ -138,7 +143,7 @@ class Home_model extends CI_Model {
 				$area_id=$this->input->post('area_id');
 			}
 			else {
-				$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
+				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 			}
 		}
 		
@@ -332,69 +337,7 @@ class Home_model extends CI_Model {
 		$query = $this->db->get('cities');
 	    $results=$query->result_array();
         return $results; 	
-	}
-	
-	#Home Update Profile
-	public function update_profile($user_id=null,$profile_image=null){
-		if($this->input->post('city'))
-		{	
-			$city_id=$this->cityFindOrSave($this->input->post('city'));
-		}
-		if($this->input->post('area'))
-		{
-			$area_id=$this->areaFindOrSave($this->input->post('area'),$city_id);
-		}
-		
-		$data = array(
-			'email'			=> strtolower($this->input->post('email')),			
-			'modified' 		=> date('Y-m-d h:i:s'),
-			'preferred_city_id' 		=> $city_id,
-			'preferred_area_id' 		=> $area_id,
-		);
-		if(!empty($profile_image))
-		{
-			$image_data = array(
-			'image_dir'			=> $profile_image['image_dir'],			
-			'profile_image' 	=> $profile_image['profile_image'],
-		     );
-		  $data=array_merge($image_data,$data);
-		}
-		$this->db->where('id', $user_id);
-		$update = $this->db->update('users', $data);
-		
-		$profile_data = array(
-			'first_name'	=> strtolower($this->input->post('first_name')),			
-			'last_name'	=> strtolower($this->input->post('last_name')),			
-			'modified' 		=> date('Y-m-d h:i:s'),
-			'mobile_number' => $this->input->post('contact_number'),
-			'address' => $this->input->post('address'),
-			'gender_id' => $this->input->post('gender'),
-			'dob' => date('Y-m-d', strtotime($this->input->post('dob'))),
-		);
-		$this->db->where('user_id', $user_id);
-		$update = $this->db->update('user_profiles', $profile_data);
-		
-		
-	}
-	
-
-	#Check User Code verify
-	public function check_verify_code($vid) 
-	{
-		$today_date = date("Y-m-d h:i:s", time());
-		$this->db->where('uid', $vid);    	 	
-		$query = $this->db->get('users');
-		$numRows = $query->num_rows();
-		$result = $query->row_array();
-		if($numRows == 1) {
-			$update_vid = array('uid'=>'','email_verified_date'=>date('Y-m-d h:i:s'),'is_email_confirmed'=>'1');
-			$this->db->where('id',$result['id']);
-			$this->db->update('users', $update_vid);
-			return true;
-		}else{
-			return false;
-		}
-	}	  
+	}  
 	  
 	#socail Account Create
 	public function social_create_account($user_data,$user_type,$profile_image_data=null)
@@ -482,17 +425,7 @@ class Home_model extends CI_Model {
 		}
 	}
 	
-	function get_userinfo($id=null)
-	{
-	    $this->db->select('users.*,user_profiles.*,cities.name city_name,areas.name area_name');
-		$this->db->where('users.id',$id);
-		$this->db->join('user_profiles','user_profiles.user_id=users.id','left');
-		$this->db->join('cities','cities.id=users.preferred_city_id','left');
-		$this->db->join('areas','areas.id=users.preferred_area_id','left');
-		$query = $this->db->get('users');
-		$users = $query->row_array(); 
-		return $users;		
-	}
+
 	
 	function get_pages($slug)
 	{
@@ -732,16 +665,6 @@ class Home_model extends CI_Model {
 		}
 	}
 	
-	public function get_email($email=null,$user_id=null)
-	{
-	    $this->db->select('users.id,users.email');
-		$this->db->from('users');	
-		$this->db->where('users.id !=',$user_id);
-		$this->db->where('users.email',$email);
-		$query = $this->db->get();
-		return $query->row_array();
-	}
-	
 	function check_password($user_id=false) 
 	{
 		$this->db->select('id');
@@ -787,33 +710,6 @@ class Home_model extends CI_Model {
 			'is_active'=>1,
 			);
          $this->db->insert('cities', $table_data);			
-		 return $this->db->insert_id();
-		}
-	}
-	
-	#######Area Find Or Save ###########
-	public function areaFindOrSave($name,$city_id)
-	{
-		$table_data=array();
-		$this->db->select('id');        
-		$this->db->where('name',$name);
-		$query = $this->db->get('areas');
-		$res = $query->row();
-		if(!empty($res))
-		{
-			return $res->id;
-		}
-		else
-		{
-			$table_data=array(
-			'created'=>date('Y-m-d h:i:s'),
-			'name'=>$name,
-			'country_id'=>0,
-			'state_id'=>0,
-			'city_id'=>$city_id,
-			'is_active'=>1,
-			);
-         $this->db->insert('areas', $table_data);			
 		 return $this->db->insert_id();
 		}
 	}

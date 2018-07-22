@@ -7,7 +7,7 @@
 		<?php echo $message;?>
 			<br/>
 			<br/>
-		You can verfiry you details by <a href="http://www.dialbe.com">click Here</a>
+		You can verfiry you details by <a href="<?php echo base_url();?>">click Here</a>
 	 <br/>
 	 <br/>
 	</td>        

@@ -31,7 +31,7 @@
       <?php echo $this->load->view('elements/breadcrumb',array(),true);?>
    </div>
     <?php echo $this->load->view('elements/profile_complete_alert',array(),true);?>
-   <form id="upload_logo_image" action="<?php echo base_url().'customers/gallery_add';?>" method="Post" class="overlay-section">
+   <form id="upload_logo_image" action="<?php echo base_url().'advertisments_images/gallery_add';?>" method="Post" class="overlay-section">
       <div class="card card-block">
          <div class="form-group row">
             <label class="col-sm-2 form-control-label text-xs-right">
@@ -93,7 +93,7 @@
 	});
 	
 	function deleteGallery(id) {
-			var new_url="<?php echo base_url();?>"+'customers/deleteGallery';
+			var new_url="<?php echo base_url();?>"+'advertisments_images/deleteGallery';
 			$.ajax({
 			type: 'POST',
 			async: false,
@@ -141,7 +141,7 @@
    	
    getImage();
    	function getImage() {
-   		var url="<?php echo base_url();?>"+'customers/galleryList';
+   		var url="<?php echo base_url();?>"+'advertisments_images/galleryList';
    		$.ajax({
    				type: 'POST',
    				async: false,

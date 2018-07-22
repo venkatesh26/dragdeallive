@@ -203,7 +203,7 @@
 							<?php }
 							} else { ?>
 							<tr>
-							<th colspan="7" class="norecordfound">No Record Found</th>
+							<th colspan="9" class="norecordfound">No Record Found</th>
 							</tr>
 							<?php } ?>
 							</tbody>

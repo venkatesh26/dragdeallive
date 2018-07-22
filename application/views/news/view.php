@@ -31,7 +31,7 @@ $link='http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 								
                                 <a onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;" href="http://plus.google.com/share?url=<?php echo $share_link;?>" class="td-social-sharing-buttons td-social-google"><i class="fa fa-google-plus"></i></a>
 								
-                                <a onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $share_link;?>&title=<?php echo ucwords($result['name']);?>&summary=&source=dialbe.com" class="td-social-sharing-buttons td-social-pinterest"><i class="fa fa-linkedin"></i></a>
+                                <a onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $share_link;?>&title=<?php echo ucwords($result['name']);?>&summary=&source=<?php echo base_url();?>" class="td-social-sharing-buttons td-social-pinterest"><i class="fa fa-linkedin"></i></a>
                             </div>
                         </div>
 							<?php 
