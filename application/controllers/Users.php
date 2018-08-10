@@ -446,7 +446,7 @@ class Users extends CI_Controller {
 			$datas=$this->users_model->checkUserInfo($this->session->userdata('user_id'));			
 			if($datas) 
 			{
-				$success=$this->users_model->checkCustomerUsers($this->session->userdata('user_id'),$datas['id']);
+				$success=$this->users_model->checkCustomerUsers($this->session->userdata('user_id'),$datas['customer_id']);
 				if($success){
 					$extra_array = array('status'=>'EXISTING_USER','msg'=>'Success !!! Customer Information Already Existing','user_datas'=>$datas,'customer_info'=>$success);
 					echo json_encode($extra_array);

@@ -8,7 +8,20 @@ class Advertisment_customers_model extends CI_Model {
 		$this->load->model('areas_model');
 		$this->load->model('groups_model');
 		$this->load->model('advertisment_customer_remainders_model');	
+		$this->load->model('advertisment_customers_bills_model');		
     }
+	
+	####################Delete Customer#################
+	public function deleteCustomer($id,$parent_user_id) {
+	   $this->db->delete('advertisment_customer_lists',array('customer_id' => $id,'parent_user_id'=>$parent_user_id));
+	   return true;
+	}
+	
+	####################Delete Gallery#################
+	public function deleteGallery($id, $advertisment_id) {
+	   $this->db->delete('advertisment_images',array('id' => $id,'advertisment_id'=>$advertisment_id));
+	   return true;
+	}
 	
 	################  Add Customer Data#############
     public function add_customers($parentUserId)	{
@@ -52,7 +65,7 @@ class Advertisment_customers_model extends CI_Model {
 			'customer_id'=> $customer_id,			
 			'created'=> date('Y-m-d h:i:s'),
 			'modified' => date('Y-m-d h:i:s'),	
-			'last_bill_amount_paid'=>$this->input->post('last_bill_amount_paid'),
+			'last_bill_amount_paid'=>0,
 			'total_amount'=>$this->input->post('last_bill_amount_paid'),
 			'is_active'=>$is_active,
 			'group_id'=>$group_id,
@@ -75,17 +88,8 @@ class Advertisment_customers_model extends CI_Model {
 		$this->db->insert('advertisment_customer_lists', $data);
 		$id = $this->db->insert_id();
 			
-		if($this->input->post('last_bill_amount_paid') > 0){
-			$data = array(
-				'parent_user_id'=> $parentUserId,
-				'customer_id'=> $customer_id,			
-				'created'=> date('Y-m-d h:i:s'),
-				'modified' => date('Y-m-d h:i:s'),	
-				'amount'=>$this->input->post('last_bill_amount_paid'),			
-			);
-			$this->db->insert('advertisment_customer_bills', $data);
-			$id = $this->db->insert_id();	
-		}
+		$this->advertisment_customers_bills_model->saveBillingInfo($parentUserId, $customer_id, $_POST);
+		
 		$this->advertisment_customer_remainders_model->saveRemainderSettings($parentUserId,$customer_id);
 		return true;	
 	}
@@ -134,23 +138,7 @@ class Advertisment_customers_model extends CI_Model {
 		$this->db->where('parent_user_id', $parentUserId);
 		$this->db->update('advertisment_customer_lists', $data);
 		
-		if($this->input->post('last_bill_amount_paid') > 0) {
-			$data = array(	
-				'last_bill_amount_paid'=>$this->input->post('last_bill_amount_paid'),
-				'total_amount'=>$user_info['total_amount']+$this->input->post('last_bill_amount_paid'),		
-			);
-			$this->db->where('customer_id', $customer_id);
-			$this->db->where('parent_user_id', $parentUserId);
-			$this->db->update('advertisment_customer_lists', $data);
-			$data = array(
-				'parent_user_id'=> $parentUserId,
-				'customer_id'=> $customer_id,			
-				'created'=> date('Y-m-d h:i:s'),
-				'modified' => date('Y-m-d h:i:s'),	
-				'amount'=>$this->input->post('last_bill_amount_paid'),			
-			);
-			$this->db->insert('advertisment_customer_bills', $data);	
-		}
+        $this->advertisment_customers_bills_model->saveBillingInfo($parentUserId, $customer_id, $_POST);
 		$this->advertisment_customer_remainders_model->saveRemainderSettings($parentUserId,$customer_id,'edit');
 		return true;	
 	}
@@ -173,7 +161,7 @@ class Advertisment_customers_model extends CI_Model {
 		$city_id=0;
 		$area_id=0;
 		if(isset($data['city']) && $data['city']!=''){
-			$city_id=$this->cites_nodel->cityFindOrSave($data['city']);
+			$city_id=$this->cities_model->cityFindOrSave($data['city']);
 		}
 		if($data['area']){
 			$area_id=$this->areas_model->areaFindOrSave($data['area'],$city_id);
@@ -244,7 +232,7 @@ class Advertisment_customers_model extends CI_Model {
 			);
 			$this->db->where('advertisment_customer_lists.id', $results['id']);
 			$this->db->update('advertisment_customer_lists', $data);
-			$this->saveBillingInfo($parentUserId,$customer_id,$alldata);
+			$this->advertisment_customers_bills_model->saveBillingInfo($parentUserId,$customer_id,$alldata);
 		}
 		else {
 			$city_id=0;
@@ -282,7 +270,7 @@ class Advertisment_customers_model extends CI_Model {
 			);
 			$this->db->insert('advertisment_customer_lists', $data);
 			$id = $this->db->insert_id();
-			$this->saveBillingInfo($parentUserId,$userId,$alldata);
+			$this->advertisment_customers_bills_model->saveBillingInfo($parentUserId,$userId,$alldata);
 			return true;	
 		}
 	}

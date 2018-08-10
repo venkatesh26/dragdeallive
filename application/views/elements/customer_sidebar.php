@@ -23,7 +23,7 @@
 				  <li <?php if($this->uri->segment('1')=='upgrade-plan'){ echo 'class="active"';}?>> <a href="<?php echo base_url();?>upgrade-plan"><i class="fa fa-arrow-up"></i> Upgrade Plan</a></li>
                </ul>
             </li>
-            <li class="<?php if($this->uri->segment('1')=='import-customer' || $this->uri->segment('1')=='customer-list'  || $this->uri->segment('1')=='my-groups' || $this->uri->segment('1')=='customer-add' || $this->uri->segment('1')=='customers' ) { echo "active open";}?>">
+            <li class="<?php if($this->uri->segment('1')=='import-customer' || $this->uri->segment('1')=='customer-list'  || $this->uri->segment('1')=='my-groups' || $this->uri->segment('1')=='customer-add' || $this->uri->segment('1')=='customers' || $this->uri->segment('1')=='customer-orders' ) { echo "active open";}?>">
                <a href=""> <i class="fa fa-group"></i> Manage Customers <i class="fa arrow"></i> </a>
                <ul>
 			    
@@ -31,8 +31,23 @@
 				   <li <?php if($this->uri->segment('1')=='customer-add'){ echo 'class="active"';}?>> <a href="<?php echo base_url().'customer-add';?>"><i class="fa fa-plus-circle"></i> New Entry</a></li>
                   <li <?php if($this->uri->segment('1')=='import-customer'){ echo 'class="active"';}?>> <a href="<?php echo base_url().'import-customer';?>"><i class="fa fa-cloud-upload"></i> Import Customers</a></li>
                   <li <?php if($this->uri->segment('1')=='my-groups'){ echo 'class="active"';}?>> <a href="<?php echo base_url();?>my-groups"><i class="fa fa-comment"></i> Groups</a></li>
+				  
+				  <li <?php if($this->uri->segment('1')=='customer-orders'){ echo 'class="active"';}?>> <a href="<?php echo base_url();?>customer-orders"><i class="fa fa-shopping-cart"></i> Orders</a></li>
                </ul>
             </li>
+			
+			
+			 <li class="<?php if($this->uri->segment('1')=='products-list' || $this->uri->segment('1')=='product-add' || $this->uri->segment('1')=='products' || $this->uri->segment('1')=='import-products') { echo "active open";}?>">
+               <a href=""> <i class="fa fa-group"></i> Manage Products <i class="fa arrow"></i> </a>
+               <ul>
+			    
+                  <li <?php if($this->uri->segment('1')=='products-list'){ echo 'class="active"';}?>> <a href="<?php echo base_url().'products-list';?>"><i class="fa fa-user-md"></i> Products List</a></li>
+				   <li <?php if($this->uri->segment('1')=='product-add'){ echo 'class="active"';}?>> <a href="<?php echo base_url().'product-add';?>"><i class="fa fa-plus-circle"></i> New Entry</a></li>
+                  <li <?php if($this->uri->segment('1')=='import-products'){ echo 'class="active"';}?>> <a href="<?php echo base_url().'import-products';?>"><i class="fa fa-cloud-upload"></i> Import Products</a></li>
+			   
+			   </ul>
+            </li>
+			
             <li  class="<?php if($this->uri->segment('1')=='my-senderID' || $this->uri->segment('1')=='sms-credit' || $this->uri->segment('1')=='sms-order-histroy' || $this->uri->segment('1')=='general-campaign' || $this->uri->segment('1')=='offer-campaign' || $this->uri->segment('1')=='campaign-histroy' || $this->uri->segment('1')=='campaign-interset') { echo "active open";}?>">
                <a href=""> <i class="fa fa fa-comments-o"></i> SMS Campaign <i class="fa arrow"></i> </a>
                <ul>

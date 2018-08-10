@@ -73,7 +73,7 @@
 					</div>
 					
 					   
-				<?php echo $this->load->view('elements/campaign_filter',array(),true);?>
+				<?php echo $this->load->view('elements/campaign_filter',array('type'=>'general_campaings_form_url'),true);?>
 					
 					
 				<div class="box-content clearfix">

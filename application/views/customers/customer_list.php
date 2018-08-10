@@ -162,8 +162,11 @@
 						
 						$('.last_name').html('-');
 					}
-   					$('.email').html(json.email);
-   					$('.contact_number').html(json.contact_number);
+					$('.email').html('-');
+						if($.trim(json.email)!=''){
+							$('.email').html(json.email);
+						}
+   					$('.contact_number').html(json.mobile_number);
    					$('.address').html(json.address);
 					if($.trim(json.address)!=''){
 						$('.address').html(json.address);

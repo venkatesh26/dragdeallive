@@ -1021,10 +1021,9 @@ function offerCode($len = 5){
 	
 ## incremental hash #########
 function incrementalHash($len = 5){
-	  $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	  $charset=random_string('alnum',100);	
 	  $base = strlen($charset);
 	  $result = '';
-
 	  $now = explode(' ', microtime())[1];
 	  while ($now >= $base){
 		$i = $now % $base;
@@ -1032,4 +1031,48 @@ function incrementalHash($len = 5){
 		$now /= $base;
 	  }
 	  return substr($result, -5);
+}
+
+function getCustomerBillInformation($user_id){
+	
+	################## Total Revenue #########################
+	$new_result=array();
+	$ci=& get_instance();
+	$ci->load->database();
+	$ci->db->select('SUM(advertisment_customer_bills.amount) AS total_amount, COUNT(advertisment_customer_bills.id) AS total_orders');
+	$ci->db->where('advertisment_customer_bills.parent_user_id',$user_id);
+	$ci->db->from('advertisment_customer_bills');
+	$query = $ci->db->get();
+	$new_result=$query->row_array();
+	$result['total_revenue']=(isset($new_result['total_amount']) && $new_result['total_amount']!='') ? $new_result['total_amount'] :'0';
+	$result['total_orders']=(isset($new_result['total_orders']) && $new_result['total_orders']!='') ? $new_result['total_orders'] :'0';
+	
+	####### Today Revenue ##############
+	$today=date('Y-m-d');
+	$new_result=array();
+	$ci=& get_instance();
+	$ci->load->database();
+	$ci->db->select('SUM(advertisment_customer_bills.amount) AS total_amount');
+	$ci->db->where('advertisment_customer_bills.parent_user_id',$user_id);
+	$ci->db->where('advertisment_customer_bills.created >=',$today);
+	$ci->db->from('advertisment_customer_bills');
+	$query = $ci->db->get();
+	$new_result=$query->row_array();
+    $result['today_revenue'] = ($new_result['total_amount']!='') ? $new_result['total_amount']:0;	
+	
+	####### Current Month Revenue ##############
+	$today=date('Y-m-01');
+	$new_result=array();
+	$ci=& get_instance();
+	$ci->load->database();
+	$ci->db->select('SUM(advertisment_customer_bills.amount) AS total_amount');
+	$ci->db->where('advertisment_customer_bills.parent_user_id',$user_id);
+	$ci->db->where('advertisment_customer_bills.created >=',$today);
+	$ci->db->from('advertisment_customer_bills');
+	$query = $ci->db->get();
+	$new_result=$query->row_array();
+	$result['current_month_revenue'] = ($new_result['total_amount']!='') ? $new_result['total_amount']:0;
+	
+
+    return $result;
 }

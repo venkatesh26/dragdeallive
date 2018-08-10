@@ -24,7 +24,7 @@ $plans=array('1'=>'Basic','2'=>'Bronze','3'=>'Sliver','4'=>'Gold','5'=>'Platinum
 					<a href="<?php echo $link;?>" target="_blank" class="offerName" title="<?php echo ucwords($result['name']);?>">
 					
 					<h3 class="offerTitleSpan premimum-title">
-					<?php echo ucwords(substr($result['name'],0,20))."..., ";?><br/><?php echo ucwords(htmlentities(nl2br($result['area_name'])))." , ".ucwords(htmlentities(nl2br($result['city_name'])));?></h3>
+					<?php echo ucwords(substr($result['name'],0,20))."..., ";?><br/><?php ucwords(htmlentities(nl2br($result['city_name'])));?></h3>
 					<hr class="marginTB5">
 					
 						<span class="off"><?php echo $plans[$result['plan_id']];?></span>

@@ -572,8 +572,17 @@ $route['offers-category-search/(:any)/(:any)'] = 'offers/index/$1/$2';
 $route['offers-category-search/(:any)'] = 'offers/index/$1';
 
 ######################Customers##########################
-$route['my-orders']='customers/my_orders';
 
+
+################ Products ##################
+############################################
+
+$route['products-list'] = 'advertisments_store_products/index';
+$route['product-add'] = 'advertisments_store_products/add';
+$route['products-edit/%'] = 'advertisments_store_products/edit/$1';
+$route['import-products'] = 'advertisments_store_products/import_products';
+
+$route['my-orders']='customers/my_orders';
 $route['buyer'] = 'customers/set_role';
 $route['merchant'] = 'customers/set_role';
 $route['dashboard'] = 'customers/dashboard';
@@ -654,4 +663,5 @@ $route['bussiness-claims'] = 'customers/claim_bussiness';
 $route['change-password'] = 'users/change_password';
 $route['special'] = 'home/createAddCampaign';
 $route['reward-settings'] = 'customers/reward_settings';
+$route['customer-orders'] = 'advertisments_customer_bills/index';
 ?>

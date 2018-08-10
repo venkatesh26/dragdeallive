@@ -102,7 +102,7 @@ class Users_model extends CI_Model {
 		$result=$query->row_array();
 		
 		if(empty($result)){	
-			$this->db->select('advertisment_customers.*,user_profiles.address,user_profiles.gender_id,user_profiles.dob,user_profiles.doa,cities.name as city_name,areas.name as area_name');
+			$this->db->select('advertisment_customers.*,advertisment_customers.id as customer_id,user_profiles.address,user_profiles.gender_id,user_profiles.dob,user_profiles.doa,cities.name as city_name,areas.name as area_name');
 			$this->db->where('advertisment_customers.mobile_number',$_POST['contact_number']);
 			$this->db->join('users','users.customer_id=advertisment_customers.id','left');
 			$this->db->join('user_profiles','users.id=user_profiles.user_id','left');

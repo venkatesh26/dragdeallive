@@ -7,14 +7,14 @@
                   <div class="no-overflow"> <?php echo substr($list['title'],0,85);?>  </div>
                </div>
 			   <div class="item-col fixed item-col-author" style="padding-left:45px;">
-                  <div class="item-heading">Number Of Customer Recieved</div>
+                  <div class="item-heading">No Of Sms Delivered</div>
                 <div class="no-overflow">
 				  <span class='btn btn-primary btn-sm'><i title="No Of Sms Send" class="cursor fa fa-cloud-upload"></i> <?php echo $list['number_of_user_send'];?></span>
-				    <span class='btn btn-primary btn-sm'><i title="No Of Sms Recieved" class="cursor fa fa-cloud-download"></i> <?php echo ucwords($list['number_of_user_received']);?></span>
+				    <span class='btn btn-primary btn-sm'><i title="No Of Sms Delivered" class="cursor fa fa-cloud-download"></i> <?php echo ucwords($list['number_of_user_received']);?></span>
 				</div>
 				</div>
 			    <div class="item-col item-col-author">
-                  <div class="item-heading">Number Of Customer Recieved</div>
+                  <div class="item-heading">No Of Sms Delivered</div>
 				  <div class="no-overflow"> <?php
                     if($list['campaign_type_id']==1){
 						

@@ -124,6 +124,65 @@
                                  <label class="control-label" for="send_notification">
                                  <input type="checkbox" name="send_notification" id="send_notification"  checked="checked" data-no-uniform="true" class="checkbox"><span>Send Sms Notification</span></label>
                               </div>
+							  
+							  <div class="controls">
+									<div class="title-block">
+											<h3 class="title"><i class="fa fa-list"></i> Billing Section</h3>
+										</div>
+										<div class="row">
+
+										    <div id="product_range_section">
+											
+												<div class="col-md-12 product-range-section"  id="">	
+												
+													<div class="form-group col-md-3">
+														<label class="control-label" for="product_name">Product </label>
+														<input type="text" rel="product_name" name="advertisment_customer_bill_details[key_0][product_name]" class="form-control products_autocomplete">
+														<input type="hidden" rel="product_id" name="advertisment_customer_bill_details[key_0][product_id]" class="js_product_id">
+													</div>
+												
+													<div class="form-group col-md-2">
+														<label class="control-label" for="quantity">Qunatity </label>
+														<input type="number" rel="quantity" value="1" name="advertisment_customer_bill_details[key_0][quantity]" class="form-control quantity">
+													</div>
+												
+												
+													<div class="form-group col-md-2">
+														<label class="control-label" for="amount">Price </label>
+														<input type="number" rel="amount" name="advertisment_customer_bill_details[key_0][amount]" class="form-control bill_amount">
+													</div>
+													
+													<div class="form-group col-md-2">
+														<label class="control-label" for="amount">Amount </label>
+														<br>
+														<b><span class="row_total_amount">0.00</span></b>
+													</div>
+													
+													<div class="form-group col-md-3">
+													
+													
+													 <label class="control-label" for="email" style="margin-top:34px;">	<i class="fa fa-plus-circle product-clone-data cursor"></i></label>
+													&nbsp;<label class="control-label" for="email" style="margin-top:34px;color:red;">	
+													 <i style="color:red;display:none;" class="fa fa-close product-clone-remove-data cursor"></i></label>
+												   </div>
+												  </div>
+											</div>
+											<div class="product-range-section-clone">
+
+											</div>
+						                    <div class="col-md-12">
+											 <div class="col-md-6">
+											 </div>
+											 <div class="col-md-3">
+											 <p style="float:right">Total : <span class="js-total-amount">0.00</span></p>
+											 </div>
+											<div>
+										</div>
+
+								</div>
+							
+							  
+							  
                               <div id="range_section">
                                  <div class="form-group range-section col-md-12" id="">
                                     <div class="col-md-4">
@@ -250,6 +309,22 @@
 </article>
 <script src="<?php echo base_url();?>assets/customer/js/bootstrap-datepicker.min.js"></script>
 <script>
+
+	function totalBillAmount(){
+		
+		var sub_total=0;
+			$(".product-range-section").each(function() {			
+				var quantity=$(this).find('.quantity').val();
+				var bill_amount=$(this).find('.bill_amount').val();
+				$(this).find('.row_total_amount').html(quantity*bill_amount)
+				
+				sub_total=sub_total+(quantity*bill_amount);
+			});		
+			
+			$('.js-total-amount').html(sub_total);
+	}
+	
+
    var offer_url="<?php echo base_url();?>"+'customers/user_offer_list';
    var reedem_url="<?php echo base_url();?>"+'customers/reedem_offer';
    var reedem_points_url="<?php echo base_url();?>"+'customers/reedem_points';
@@ -312,6 +387,36 @@
 	}
       
     $(document).ready(function(){
+		
+		
+		$('.products_autocomplete').livequery('keyup',function(){
+	    var _this=$(this);	   
+		_this.parents('div.product-range-section').find('.bill_amount').val('0.00');
+		_this.parents('div.product-range-section').find('.js_product_id').val('');
+		$(this).autocomplete({
+			source: __cfg('path_absolute')+'advertisments_store_products/get_products_autocomplete?type=1',
+			select: function(event, ui) 
+			{
+				_this.parents('div.product-range-section').find('.bill_amount').val(ui.item.amount);
+				_this.parents('div.product-range-section').find('.js_product_id').val(ui.item.id);
+			}
+		}).data( "ui-autocomplete" )._renderItem = function( ul, item )
+		{				
+			var inner_html = '<a id="'+ item.id +'"  href="javascript:void(0)">' + item.label + '</a>';
+			return $("<li></li>")
+			.data( "item.autocomplete", item )
+			.append(inner_html)
+			.appendTo( ul );
+		}
+	});
+	
+	$('.products_autocomplete').livequery('blur',function(){
+		var _this=$(this);
+		if(_this.parents('div.product-range-section').find('.js_product_id').val()==''){
+			_this.parents('div.product-range-section').find('.bill_amount').val('0.00');	
+			_this.parents('div.product-range-section').find('.products_autocomplete').val('');
+		}
+	});
    
    		getallCustomerOfferList(offer_url);   
       
@@ -399,6 +504,50 @@
 			reedemPoints(reedem_points_url);
 		});
 		
+		
+		$('.product-clone-data').livequery('click',function(){
+		$("#product_range_section div.product-range-section").clone().appendTo("div.product-range-section-clone");	
+		$('div.product-range-section-clone').find('.product-clone-remove-data').show();	
+		var i=0;
+		$("div.product-range-section").each(function() {
+			$(this).find("input").each(function() {
+				var new_name='key_'+i;
+				string='advertisment_customer_bill_details['+new_name+']['+$(this).attr('rel')+']';
+				$(this).attr('name', string); 
+			});			
+			i++;
+		});
+		
+		$("div.product-range-section:last").each(function() {
+			$(this).find("input").each(function() {
+				if($(this).attr('rel')!='qunatity'){
+						$(this).val('');
+				}
+			});
+		});
+		return false;
+	});
+
+	$('.product-clone-remove-data').livequery('click',function(){
+		$(this).parents('div.product-range-section').remove();
+		$(this).parents('div.product-range-section').parents('div.product-range-section-clone').find('div.dummy-div').remove();
+		var i=0;
+		$("div.product-range-section").each(function() {
+			$(this).find("input").each(function() {
+				var new_name='key_'+i;
+				string='advertisment_customer_bill_details['+new_name+']['+$(this).attr('rel')+']';
+				$(this).attr('name', string); 
+			});			
+			i++;
+		});
+		totalBillAmount();
+		return false;
+	});
+		
+			$('.bill_amount,.products_autocomplete,.quantity').livequery('change',function(){
+		totalBillAmount();
+	});
+	
 		
       });
 </script>

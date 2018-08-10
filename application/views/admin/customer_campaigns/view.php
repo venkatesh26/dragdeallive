@@ -37,7 +37,7 @@
 									 <div class="control-group views1">											
 										<label class="control-label" for="username">Contact Number :</label>
 										<div class="controls views">
-										<?php echo $campaign['contact_number']; ?>
+										<?php echo $campaign['mobile_number']; ?>
 										</div> <!-- /controls -->				
 									</div> <!-- /control-group -->
 

@@ -657,7 +657,6 @@ $(document).ready(function()
 						$('.newUserAdd').show();	
 						$('#user_email').val($('#email').val());
 						$('#mobile_number').val($('#contact_number').val());
-						alert_notification('success',data.msg);
 					}
 					else if(data.status=="EXISTING_NEW_USER_ADD") {
 						$('.newUserAdd').show();	
@@ -676,7 +675,6 @@ $(document).ready(function()
 						$('#city_autocomplete').val(data.user_datas.city_name);
 						$('#last_name').val(data.user_datas.last_name);
 						$('#first_name').val(data.user_datas.first_name);
-						alert_notification('success',data.msg);
 					}
 					else {
 						alert_notification('error',data.msg);

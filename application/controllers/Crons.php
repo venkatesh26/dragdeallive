@@ -165,7 +165,9 @@ class Crons extends CI_Controller {
 									$coupon_code=incrementalHash(5);
 								}
 								$datas=array('##URL##','##CODE##', '##USERNAME##');
-								$short_url=$this->campaign_model->googleShortUrl($data['url'],$newData,$data['id'],2,$data['parent_user_id']);
+								
+								$base_url=base_url()."?r_url=".$data['url']."&UTM_mobilenumber=".$newData['mobile_number']."&UTM_email=".$newData['email']."&UTM_campaign_id=".$data['id']."&UTM_user_id=".$data['parent_user_id']."&UTM_type_id=2&UTM_u_id=".$userInfo['customer_id'];
+								$short_url=$this->common_model->short_url($base_url);
 								$replace_data=array($short_url,$coupon_code, $newData['first_name']);
 								$message = str_replace($datas, $replace_data, $data['message']);
 								$sender_info=array('user_id'=>$newData['user_id'], 'sender_id'=>$sendIdInfo['sender_id']);
@@ -231,7 +233,11 @@ class Crons extends CI_Controller {
 						foreach($customer_list as $newData) {
 								$coupon_code=incrementalHash(6);
 								$datas=array('##URL##','##CODE##', '##USERNAME##');
-								$short_url=$this->campaign_model->googleShortUrl($data['url'],$newData,$data['id'],2,$data['parent_user_id']);
+								
+								$longUrl=base_url()."?r_url=".$data['url']."&UTM_mobilenumber=".$newData['mobile_number']."&UTM_email=".$newData['email']."&UTM_campaign_id=".$data['id']."&UTM_user_id=".$data['parent_user_id']."&UTM_type_id=2&UTM_u_id=".$newData['customer_id']";
+			
+								$short_url=$this->common_model->short_url($longUrl);
+								
 								$replace_data=array($short_url, $coupon_code, $newData['first_name']);
 								$message = str_replace($datas, $replace_data, $data['message']);
 								$sender_info=array('user_id'=>$newData['user_id'], 'sender_id'=>$sendIdInfo['sender_id']);

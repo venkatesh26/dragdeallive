@@ -132,7 +132,7 @@ class Advertisments_images extends CI_Controller {
 		if(isset($_POST['id']))
 		{
 			$this->MyaddId=get_my_addId($this->myUserId);
-			$gallery_delete=$this->advertisment_model->deleteGallery($_POST['id'], $this->MyaddId);
+			$gallery_delete=$this->advertisment_customers_model->deleteGallery($_POST['id'], $this->MyaddId);
 		}
 		echo json_encode($gallery_delete);
 		die;

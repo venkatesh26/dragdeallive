@@ -33,11 +33,62 @@ class Home extends CI_Controller {
 		$this->detect=new Mobile_Detect();
 	}
 	
+	public function user_migration(){
+		
+		$ci=& get_instance();
+		$ci->load->database(); 
+		
+		$ci->db->select('users.contact_number,users.email,users.id,user_profiles.first_name as name,users.profile_image,users.image_dir,user_profiles.mobile_number,user_profiles.first_name,user_profiles.last_name,user_profiles.address');
+		$ci->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
+		$ci->db->where('customer_id', NULL);
+		$ci->db->order_by('id', 'ASC');
+		$query = $ci->db->get('users');
+		$row = $query->result_array();
+		
+		foreach($row as $data){
+		
+			$email=$data['email'];
+			$contact_number=$data['contact_number'];
+			if($contact_number=''){
+				$contact_number=$data['mobile_number'];
+			}	
+			$ci->db->select('id');
+			$ci->db->where('email', strtolower($email));
+			if($contact_number!=''){
+				$ci->db->or_where('mobile_number', $contact_number);
+			}
+			$query = $ci->db->get('advertisment_customers');
+						
+			if($query->num_rows() == 1){
+				$customers=$query->row_array();
+				$customer_id=$customers['id'];
+			}
+			else{
+				#################### Customer Data ###############
+				$customer_data = array(
+					'created'		=> date('Y-m-d h:i:s'),
+					'modified' 		=> date('Y-m-d h:i:s'),
+					'first_name' 	=> $data['first_name'],
+					'last_name' 	=> $data['last_name'],
+					'mobile_number' => $contact_number,
+					'email'		=> strtolower($data['email']),
+				);
+				
+				$ci->db->insert('advertisment_customers', $customer_data);
+				$customer_id = $ci->db->insert_id();
+			}
+			$ci->db->where('id', $data['id']);
+			$updatedata['customer_id']=$customer_id;
+			$ci->db->update('users', $updatedata);
+		}
+		die;		
+	}
+	
 	######  Short To Long Url ###############
 	public function shortToLongUrl($short_code){
 
-		echo $this->common_model->get_long_url($short_code);die;
-		
+		$long_url=$this->common_model->get_long_url($short_code);
+		header("Location:".$long_url);
 	}
 	
 	#Home - Create Add Campaign
@@ -350,8 +401,7 @@ class Home extends CI_Controller {
 	}	
 	
 	#Home - Index Page
-	public function index() {
-		
+	public function index() {		
 		if(isset($_GET['r_url'])) {
 			$this->load->model('campaign_model');
 			$all_list=$this->campaign_model->track_campagin();

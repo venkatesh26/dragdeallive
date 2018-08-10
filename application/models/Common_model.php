@@ -65,7 +65,6 @@ class Common_model extends CI_Model {
 		return false;
 	}
 
-	
 	############## Count Action ##################
 	function count_action($id=false,$count_field=false,$action=false,$table=false,$count =false){	
 		$inc=1;

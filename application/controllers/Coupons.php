@@ -220,7 +220,7 @@ class Coupons extends CI_Controller {
 		$this->load->model('cron_model');
 		$datas=array('##CODE##', '##TITLE##', '##NAME##', '##SHOPNAME##', '##ADD##', '##URL##');
 		$url=base_url().'coupons/'.$coupon_data['id'].'/'.url_title(strtolower($coupon_data['name']));
-		$url=$this->googleShortUrl($url);
+		$url=$this->common_model->short_url($url);
 		$senderInfo=$this->cron_model->getSendId($coupon_data['user_id']);
 		$address=$coupon_data['address_line']." ".$coupon_data['city_name'];
 		$replace_data=array($coupon_code, $coupon_data['name'], $user_profile_info['name'], ucwords($coupon_data['add_name']), $address, $url);
@@ -234,28 +234,6 @@ class Coupons extends CI_Controller {
 		$noOfMessage=1;
 		$total_sms_send= 1 * $noOfMessage;
 		$this->campaign_model->debitSms($coupon_data['user_id'], $total_sms_send);	
-	}
-	
-	########### Get Shorten Url ########
-	public function googleShortUrl($url){
-		$apiKey = 'AIzaSyDIKdXDrC-mJC0KfSlu1PwdVqTFum6I-Tw';
-		$post_data = json_encode( array( 'longUrl'=>$url ) );
-		$ch= curl_init();
-		$arr = array();
-		array_push($arr, 'Content-Type: application/json; charset=utf-8');
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $arr);
-		curl_setopt($ch, CURLOPT_URL,"https://www.googleapis.com/urlshortener/v1/url?key=".$apiKey);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_REFERER,base_url());
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-		$output = curl_exec($ch);
-		$short_url = json_decode($output);
-		$msg = $short_url->id;
-		curl_close($ch);
-		return $msg;
 	}
 	
 	############### Admin Panel ##################### 

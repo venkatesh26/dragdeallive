@@ -817,6 +817,7 @@ class Customers extends CI_Controller {
 				$this->form_validation->set_rules('gender','Gender','trim|required');
 				if($this->form_validation->run() == true) 
 				{
+					
 					$success=$this->advertisment_customers_model->add_customers($this->session->userdata('user_id'));
 					if($this->input->post('send_notification')==1 || $this->input->post('send_notification')=='on'){
 						
@@ -935,8 +936,6 @@ class Customers extends CI_Controller {
 		$data['main_content']=$this->load->view('customers/business_profile', $data,true);
 		$this->load->view('layouts/customer', $data);	
 	}
-	
-
 
 	
 	#####################Delete Posted Customer#################
@@ -945,7 +944,7 @@ class Customers extends CI_Controller {
 		$customer_delete=array();
 		if(isset($_POST['customer_id']))
 		{
-			$customer_delete=$this->advertisment_model->deleteCustomer($_POST['customer_id'],$this->session->userdata('user_id'));
+			$customer_delete=$this->advertisment_customers_model->deleteCustomer($_POST['customer_id'],$this->session->userdata('user_id'));
 		}
 		echo json_encode($customer_delete);
 		die;
@@ -981,7 +980,7 @@ class Customers extends CI_Controller {
 		$customer_delete=array();
 		if(isset($_POST['customer_id']))
 		{
-			$customer_delete=$this->advertisment_model->deleteCustomer($_POST['customer_id'],$_POST['customer_status']);
+			$customer_delete=$this->advertisment_customers_model->deleteCustomer($_POST['customer_id'],$_POST['customer_status']);
 		}
 		echo json_encode($customer_delete);
 		die;
@@ -1107,6 +1106,7 @@ class Customers extends CI_Controller {
 	
 	###################### Customer Edit #####################
 	public function edit($id) {
+
 		
 		$this->data=array();
 		if(!$this->session->userdata('is_user_logged_in'))
@@ -1247,7 +1247,7 @@ class Customers extends CI_Controller {
 								'bill_amount' => ltrim($objWorksheet->getCellByColumnAndRow(9,$i)->getValue()),
 								'doa' => ltrim($objWorksheet->getCellByColumnAndRow(10,$i)->getValue())
 							);
-							$this->advertisment_model->import_customer_data($data_user,$this->session->userdata('user_id'));
+							$this->advertisment_customers_model->import_customer_data($data_user,$this->session->userdata('user_id'));
 						}
 					}
 					

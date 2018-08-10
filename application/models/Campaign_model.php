@@ -526,19 +526,18 @@ class Campaign_model extends CI_Model {
     ####### Customer Mobile Number Search #####
     public function customer_mobile_data($keyword,$user_id){
 
-		$this->db->select('SQL_CALC_FOUND_ROWS users.id,users.*',false);
+		$this->db->select('SQL_CALC_FOUND_ROWS advertisment_customer_lists.id,advertisment_customer_lists.*',false);
 		if($keyword) 
 		{
-			$this->db->like('users.contact_number', $keyword,'after'); 
+			$this->db->like('advertisment_customer_lists.mobile_number', $keyword,'after'); 
 		}
 		$this->db->where('advertisment_customer_lists.parent_user_id',$user_id);
 		$this->db->where('advertisment_customer_lists.is_active',1);
-		$this->db->join('advertisment_customer_lists','users.id=advertisment_customer_lists.user_id');
-		$query = $this->db->get('users');
+		$query = $this->db->get('advertisment_customer_lists');
 		$result = $query->result();	
 		$arr = array();
 		foreach($result as $g) {
-			$arr[]=array('value'=> ucfirst($g->contact_number),'text'=>$g->contact_number."-".$g->email);
+			$arr[]=array('value'=> ucfirst($g->mobile_number),'text'=>$g->mobile_number."-".$g->email);
 		}
 		return $arr;
    }
@@ -564,6 +563,9 @@ class Campaign_model extends CI_Model {
 				$this->db->where('advertisment_customer_lists.total_amount >=',10000);
 				$this->db->where('advertisment_customer_lists.total_amount <=',50000);
 			}
+			else if($this->input->post('bill_filter')=='bill_amount_lessthan_1000') {
+				$this->db->where('advertisment_customer_lists.total_amount <=',1000);
+			}
 			else if($this->input->post('bill_filter')=='bill_amount_lessthan_10000') {
 				$this->db->where('advertisment_customer_lists.total_amount <=',10000);
 			}
@@ -577,7 +579,6 @@ class Campaign_model extends CI_Model {
 				$this->db->where('advertisment_customer_lists.total_amount >=',$this->input->post('bill_from'));
 				$this->db->where('advertisment_customer_lists.total_amount <=',$this->input->post('bill_to'));
 			}
-			
 		}
 		else if($this->input->post('filter_type')=='2') {
 			
@@ -631,32 +632,6 @@ class Campaign_model extends CI_Model {
 			return $result;
 		}
 	}
-	
-	########### Get Shorten Url ########
-	public function googleShortUrl($url,$user_info,$camp_info, $type_id, $paren_user_id){
-		$apiKey = 'AIzaSyDIKdXDrC-mJC0KfSlu1PwdVqTFum6I-Tw';
-		$base_url=base_url()."?r_url=".$url."&UTM_mobilenumber=".$user_info['mobile_number']."&UTM_email=".$user_info['email']."&UTM_campaign_id=".$camp_info."&UTM_user_id=".$paren_user_id."&UTM_type_id=".$type_id."&UTM_u_id=".$user_info['customer_id'];
-		
-		return $this->common_model->short_url($base_url);
-		
-		$post_data = json_encode( array( 'longUrl'=>$base_url ) );
-		$ch= curl_init();
-		$arr = array();
-		array_push($arr, 'Content-Type: application/json; charset=utf-8');
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $arr);
-		curl_setopt($ch, CURLOPT_URL,"https://www.googleapis.com/urlshortener/v1/url?key=".$apiKey);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_REFERER,base_url());
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-		$output = curl_exec($ch);
-		$short_url = json_decode($output);
-		$msg = $short_url->id;
-		curl_close($ch);
-		return $msg;
-	}
 
 	############ Save General Campaings #######
 	public function saveGeneralCampaigns($user_id,$campaign_type){
@@ -686,7 +661,10 @@ class Campaign_model extends CI_Model {
 			$sender_info['user_id']=$list['customer_id'];
 			$sender_info['sender_id']=$sender_id;
 			$datas=array('##URL##','##USERNAME##');
-			$short_url=$this->googleShortUrl($this->input->post('url'), $list, $campaign_id, 1, $this->session->userdata('user_id'));
+			
+			$longUrl=base_url()."?r_url=".$this->input->post('url')."&UTM_mobilenumber=".$list['mobile_number']."&UTM_email=".$list['email']."&UTM_campaign_id=".$campaign_id."&UTM_user_id=".$this->session->userdata('user_id')."&UTM_type_id=1&UTM_u_id=".$list['customer_id'];
+			
+			$short_url=$this->common_model->short_url($longUrl);
 			$replace_data=array($short_url,$list['first_name']);
 			$message = str_replace($datas, $replace_data, $this->input->post('message'));
 			$status=$this->cron_model->send_message($list['mobile_number'], $message, $sender_info);
@@ -764,7 +742,11 @@ class Campaign_model extends CI_Model {
 				$coupon_code=$this->input->post('coupon_code');
 			}
 			$datas=array('##URL##','##CODE##', '##USERNAME##');
-			$short_url=$this->googleShortUrl($this->input->post('url'),$list,$campaign_id,2,$this->session->userdata('user_id'));
+			$base_url=base_url()."?r_url=".$this->input->post('url')."&UTM_mobilenumber=".$list['mobile_number']."&UTM_email=".$list['email']."&UTM_campaign_id=".$campaign_id."&UTM_user_id=".$this->session->userdata('user_id')."&UTM_type_id=2&UTM_u_id=".$list['customer_id'];
+		
+			
+			
+			$short_url=$this->common_model->short_url($this->input->post('url'),$list,$campaign_id,2,$this->session->userdata('user_id'));
 			$replace_data=array($short_url,$coupon_code, $list['first_name']);
 			$message = str_replace($datas, $replace_data, $this->input->post('message'));
 			$sender_info=array();

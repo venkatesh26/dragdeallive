@@ -84,7 +84,7 @@ class Advertisment_model extends CI_Model {
 		
 		if($this->input->post('city'))
 		{	
-			$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
+			$city_id=$this->cities_model->cityFindOrSave($this->input->post('city'));
 		}	
 		if($this->input->post('area'))
 		{
@@ -932,31 +932,18 @@ class Advertisment_model extends CI_Model {
 	
 	####################Customer Details#################
 	
-	public function customersDetails($user_id,$parent_id) {
-		$this->db->select('users.email,users.id,users.contact_number,advertisment_customer_lists.visit_count,advertisment_customer_lists.is_birthday_remainder,advertisment_customer_lists.is_aniversy_reminder,advertisment_customer_lists.user_id,advertisment_customer_lists.total_amount,advertisment_customer_lists.last_bill_amount_paid,advertisment_customer_lists.is_active,user_profiles.*,groups.name as group_name,cities.name as city_name,cities.id as city_id,areas.name as area_name');
+	public function customersDetails($customer_id,$parent_id) {
+		$this->db->select('advertisment_customer_lists.address,advertisment_customer_lists.first_name,advertisment_customer_lists.last_name, advertisment_customer_lists.created, advertisment_customer_lists.email,advertisment_customer_lists.id,advertisment_customer_lists.mobile_number,advertisment_customer_lists.visit_count,advertisment_customer_lists.is_birthday_remainder,advertisment_customer_lists.is_aniversy_reminder,advertisment_customer_lists.customer_id,advertisment_customer_lists.total_amount,advertisment_customer_lists.last_bill_amount_paid,advertisment_customer_lists.is_active,groups.name as group_name,cities.name as city_name,cities.id as city_id,areas.name as area_name');
 		$this->db->where('advertisment_customer_lists.parent_user_id',$parent_id);
-		$this->db->where('advertisment_customer_lists.user_id',$user_id);
-		$this->db->join('advertisment_customer_lists','users.id=advertisment_customer_lists.user_id');
-		$this->db->join('user_profiles','user_profiles.user_id=users.id','left');
+		$this->db->where('advertisment_customer_lists.customer_id',$customer_id);
 		$this->db->join('groups','groups.id=advertisment_customer_lists.group_id','left');
-		$this->db->join('cities','cities.id=users.preferred_city_id','left');
-		$this->db->join('areas','areas.id=users.preferred_area_id','left');
-		$query = $this->db->get('users');
+		$this->db->join('cities','cities.id=advertisment_customer_lists.preferred_city_id','left');
+		$this->db->join('areas','areas.id=advertisment_customer_lists.preferred_area_id','left');
+		$query = $this->db->get('advertisment_customer_lists');
 		$result = $query->row_array();	
 		return $result;
 	}
-	
-	####################Delete Customer#################
-	public function deleteCustomer($id,$parent_user_id) {
-	   $this->db->delete('advertisment_customer_lists',array('user_id' => $id,'parent_user_id'=>$parent_user_id));
-	   return true;
-	}
-	
-	####################Delete Gallery#################
-	public function deleteGallery($id, $advertisment_id) {
-	   $this->db->delete('advertisment_images',array('id' => $id,'advertisment_id'=>$advertisment_id));
-	   return true;
-	}
+
 
     ################ Get Customer List ####################
 	public function getCustomerList($userId,$limit_start=10,$limit_end=0) {
@@ -1025,7 +1012,7 @@ class Advertisment_model extends CI_Model {
 		$area_id=0;
 		if($this->input->post('city'))
 		{
-			$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
+			$city_id=$this->cities_model->cityFindOrSave($this->input->post('city'));
 		}
 		if($this->input->post('area'))
 		{
@@ -1107,18 +1094,12 @@ class Advertisment_model extends CI_Model {
 			}	
 
 			if($this->input->post('city')){
-				$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
+				$city_id=$this->cities_model->cityFindOrSave($this->input->post('city'));
 			}
 			if($this->input->post('area')){
 				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
 			}
 
-			if($this->input->post('city')){
-				$city_id=$this->cityFindOrSave($this->input->post('city'));
-			}
-			if($this->input->post('area')){
-				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
-			}
 			$main_category_id=0;
 			if($this->input->post('main_category'))
 			{
@@ -1164,7 +1145,7 @@ class Advertisment_model extends CI_Model {
 			$other_info=serialize($other_info);
 		
 			if($this->input->post('city')){
-				$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
+				$city_id=$this->cities_model->cityFindOrSave($this->input->post('city'));
 			}
 			if($this->input->post('area')){
 				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);
@@ -1362,7 +1343,7 @@ class Advertisment_model extends CI_Model {
 		$contact_numbers=explode(',',$all_contact_number);
 		if($this->input->post('city'))
 		{
-			$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
+			$city_id=$this->cities_model->cityFindOrSave($this->input->post('city'));
 		}
 		if($this->input->post('area'))
 		{
@@ -1981,7 +1962,7 @@ class Advertisment_model extends CI_Model {
 			$city_id='0';
 			$area_id='0';
 			if($this->input->post('city')){	
-				$city_id=$this->cites_nodel->cityFindOrSave($this->input->post('city'));
+				$city_id=$this->cities_model->cityFindOrSave($this->input->post('city'));
 			}	
 			if($this->input->post('area')){
 				$area_id=$this->areas_model->areaFindOrSave($this->input->post('area'),$city_id);

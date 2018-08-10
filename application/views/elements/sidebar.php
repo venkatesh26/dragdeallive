@@ -36,6 +36,14 @@
 								<li><a href="<?php echo base_url();?>my-groups"><i class="fa fa-group"></i><span> Groups</span></a></li>	
                             </ul>
                         </li>
+						<li class="accordion">
+                            <a href="#"><i class="glyphicon glyphicon-user"></i><span> Manage Products</span></a>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="<?php echo base_url();?>customer-list"><i class="glyphicon glyphicon-list"></i><span> Customers List</span></a></li>
+								<li><a href="<?php echo base_url();?>import-customer"><i class="glyphicon glyphicon-plus"></i><span> Import Customers</span></a></li>
+								<li><a href="<?php echo base_url();?>my-groups"><i class="fa fa-group"></i><span> Groups</span></a></li>	
+                            </ul>
+                        </li>
 						<li><a class="ajax-link" href="sms-packages"><i class="glyphicon glyphicon-tags"></i><span> Sms Plan</span></a></li>
 						<li class="accordion">
                             <a href="#"><i class="glyphicon glyphicon-comment"></i><span> Sms Campaign</span></a>

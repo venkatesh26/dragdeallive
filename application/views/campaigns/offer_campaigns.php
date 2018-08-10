@@ -87,7 +87,7 @@
                            </div>
 						   
 						   
-						<?php echo $this->load->view('elements/campaign_filter',array(),true);?>
+						<?php echo $this->load->view('elements/campaign_filter',array('type'=>'offer_campaings_form_url'),true);?>
 						<div class="form-group col-md-12">
 				          <div class="col-md-12 control-group">
 						    <label for="display_as_offer" class="cursor control-label"><input type="checkbox" name="display_as_offer" rel="0" id="display_as_offer" class="clearfix checkbox cursor"><span>&nbsp;Yes ! I Want to display as offer &nbsp;&nbsp;</span></label>

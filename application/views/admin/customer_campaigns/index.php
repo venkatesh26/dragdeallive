@@ -76,7 +76,7 @@
 							  	<td><?php echo form_checkbox(array('name'=>'checkall_box[]','class'=>'js-checkbox-all'),$vals['id']); ?></td>
 							  	<td> <?php echo timespan(strtotime($vals['created']),time()); ?> </td>
 								<td> <?php echo $vals['title']; ?> </td>
-								<td> <?php echo ucfirst($vals['contact_number']); ?> </td>
+								<td> <?php echo ucfirst($vals['mobile_number']); ?> </td>
 								<td> <?php echo ucfirst($vals['email']); ?> </td>
 					
 								<td class="td-actions">

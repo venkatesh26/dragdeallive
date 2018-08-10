@@ -1,3 +1,4 @@
+
 <div class="control-group">
 						<div class="controls">
 							<div class="form-group col-md-7">
@@ -214,7 +215,8 @@ function sms_counts() {
    		$('#filter_type_visit').trigger('change');
    	});
    
-   	$('#bill_filter').on("change",function(){
+   	$('#bill_filter').on("change",function(){ 
+	
    		$('.custom_bill_filter').hide();
    		if($('#bill_filter').val()!='') {
    			if($('#bill_filter').val()=='custom_range'){
@@ -271,7 +273,7 @@ function sms_counts() {
    			if($('#bill_filter').val()==''){
    				return false;
    			}
-   			if($('#bill_filter').val()=='custom_range' && $('#bill_from').val() =='' || $('#bill_to').val() ==''){
+   			if($('#bill_filter').val()=='custom_range' && ($('#bill_from').val() =='' || $('#bill_to').val() =='')){
    				return false;
    			}
    		}
@@ -309,7 +311,7 @@ function sms_counts() {
    		$.ajax({
    			type: "POST",
    			url: url,
-   			data:$("#offer_campaings_form_url").serialize(),
+   			data:$("#<?php echo $type;?>").serialize(),
    			datatype:"json",
    			success: function(data)
    			{

@@ -63,7 +63,9 @@ class Settings_model extends CI_Model {
 		if($result){		
 			$getAddDetails=$this->getAddDetails($user_id);
 			$link=base_url().'business'.'/'.$getAddDetails['id'].'/'.url_title(strtolower($getAddDetails['name'])).'/'.url_title(strtolower($getAddDetails['city_name']));
-			$short_url=$this->googleShortUrl($link, $userInfo, 0, 1, $this->session->userdata('user_id'));
+		
+			$base_url=base_url()."?r_url=".$link."&UTM_mobilenumber=".$userInfo['mobile_number']."&UTM_email=".$userInfo['email']."&UTM_campaign_id=0&UTM_user_id=".$user_id."&UTM_type_id=1&UTM_u_id=".$userInfo['customer_id'];
+			$short_url=$this->common_model->short_url($base_url);
 			$datas=array('##SHOPURL##', '##SHOPNAME##', '##USERNAME##');
 			$replace_data=array($short_url,$getAddDetails['name'], $userInfo['first_name']);
 			$message = str_replace($datas, $replace_data, $result['message']);
@@ -86,28 +88,5 @@ class Settings_model extends CI_Model {
 		$result = $query->row_array();	
 		
 		return $result;
-	}
-	
-	########### Get Shorten Url ########
-	public function googleShortUrl($url,$user_info,$camp_info, $type_id, $paren_user_id){
-		$apiKey = 'AIzaSyDIKdXDrC-mJC0KfSlu1PwdVqTFum6I-Tw';
-		$base_url=base_url()."?r_url=".$url."&UTM_mobilenumber=".$user_info['mobile_number']."&UTM_email=".$user_info['email']."&UTM_campaign_id=".$camp_info."&UTM_user_id=".$paren_user_id."&UTM_type_id=".$type_id;
-		$post_data = json_encode( array( 'longUrl'=>$base_url ) );
-		$ch= curl_init();
-		$arr = array();
-		array_push($arr, 'Content-Type: application/json; charset=utf-8');
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $arr);
-		curl_setopt($ch, CURLOPT_URL,"https://www.googleapis.com/urlshortener/v1/url?key=".$apiKey);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_REFERER,base_url());
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-		$output = curl_exec($ch);
-		$short_url = json_decode($output);
-		$msg = $short_url->id;
-		curl_close($ch);
-		return $msg;
 	}
 }
