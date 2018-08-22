@@ -7,6 +7,26 @@ class Advertisment_store_products_model extends CI_Model {
 		$this->load->model('advertisment_products_model');
     }
 	
+	public function get_all_products_list($user_id, $type=null){
+		$this->db->where('advertisment_products.is_active','1');
+		if($type!=null){
+			$this->db->where('advertisment_store_products.user_id',$user_id);
+			$this->db->join('advertisment_store_products','advertisment_store_products.product_id=advertisment_products.id');
+			$this->db->select('advertisment_products.id,advertisment_products.name,advertisment_store_products.price as amount');
+		}
+		else{
+			$this->db->select('advertisment_products.id,advertisment_products.name, advertisment_products.price as amount');
+		}
+		$query = $this->db->get('advertisment_products');		
+		$result = $query->result();	
+		$arr = array();
+		foreach($result as $g) 
+		{
+			$arr[]=array('value'=> ucfirst($g->name),'id'=>$g->id, 'amount'=>$g->amount);
+		}
+		return $arr;
+	}
+	
 	public function get_products_list($keyword,$user_id, $type=null){
 		if($keyword) 
 		{
@@ -98,7 +118,7 @@ class Advertisment_store_products_model extends CI_Model {
 	################# Add Products ###################
 	public function add_products($user_id){
 		foreach($_POST['product_name'] as $key=>$product){	
-			$price=$_POST['product_price'][$key] ?? 0;
+			$price=$_POST['product_price'][$key];
             $product_id=$this->advertisment_products_model->productFindOrSave($product, $price);
 			if(!$this->check_product_exists($user_id, $product_id)){
 				$advertisment_store_products=array(

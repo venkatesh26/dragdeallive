@@ -112,6 +112,19 @@ $result = @unserialize($data['setting_fields']);
 									</div> <!-- /control-group -->
 									
 										<br />
+									<div class="widget-header" style="padding-left:10px;" > Short Url Settings	</div>
+									<br />
+									<div class="control-group">	
+									<label class="control-label" for="lastname">Base Url</label>
+										<div class="controls">
+											<?php  echo form_input(array('name'=>'fields[short_url_domain]','value'=>set_value('fields[short_url_domain]', $this->input->post('fields[short_url_domain]') ? $this->input->post('fields[short_url_domain]') : $result['short_url_domain']),'class'=> 'span3','id'=>'short_url_domain') ); ?>
+											<span class="text-danger"><?php echo form_error('fields[short_url_domain]'); ?></span>
+																	
+										</div> <!-- /controls -->		
+                                    </div>										
+									
+									
+									
 									<div class="widget-header" style="padding-left:10px;" >Instamojo Settings	</div>
 									<br />
 									

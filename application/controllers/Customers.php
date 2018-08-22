@@ -732,6 +732,18 @@ class Customers extends CI_Controller {
 		$this->breadcrumbs->push('Dashboard',base_url());
 		#Set Meta Title And Keyword
 		$this->data['title_of_layout']=$this->site_name." - ".'Customer Dashboard';
+		$this->data['main_content']=$this->load->view('customers/vendor_dashboard', $this->data,true);
+		$this->load->view('layouts/customer', $this->data);	
+	}
+	
+	###############Customer Dashboard#############
+	public function my_dashboard()
+	{
+		$this->data=array();
+		$this->breadcrumbs->push($this->site_name,base_url());		
+		$this->breadcrumbs->push('Dashboard',base_url());
+		#Set Meta Title And Keyword
+		$this->data['title_of_layout']=$this->site_name." - ".'Customer Dashboard';
 		$this->data['main_content']=$this->load->view('customers/dashboard', $this->data,true);
 		$this->load->view('layouts/customer', $this->data);	
 	}
@@ -1356,6 +1368,60 @@ class Customers extends CI_Controller {
 			$this->data['main_content']=$this->load->view('customers/reward_settings', $this->data,true);
 			$this->load->view('layouts/customer', $this->data);	
 		}
+	}
+	
+	####################### My Vendors #########################
+	public function my_vendors(){
+		
+		$this->load->model('advertisment_customer_list_model');
+		$this->data=array();
+		$this->breadcrumbs->push($this->site_name,base_url());		
+		$this->breadcrumbs->push('My Vendors',base_url());
+		#Set Meta Title And Keyword
+		$this->data['title_of_layout']=$this->site_name." - ".'My Vendors';
+		if ($this->input->is_ajax_request()) {
+		$order_list=array();
+		$page_num=$this->uri->segment(3);
+		
+		$cofig =array();
+		$config = admin_settings_initialize('settings');
+		if(empty($page_num)) $page_num = 1;
+		$limit_end = ($page_num-1) * $config['per_page'];
+		$limit_start = 10;$config['per_page'];
+		$this->pagination->cur_page = $page_num;
+		$config['base_url'] = base_url().'customers/my_vendors';
+		$config['first_url'] = base_url().'customers/my_vendors';
+		$config['per_page'] = $config['per_page'];
+		$config['num_links'] = 3;
+		
+		$config["uri_segment"] = ($this->uri->segment(1)!='search') ? 3: 2;
+		$config["full_tag_open"] = '<ul class="pagination">';
+		$config["full_tag_close"] = '</ul>';
+		$config["use_page_numbers"] = TRUE;
+		$config["first_tag_open"] = "<li class='page-item'>";
+		$config["first_tag_close"] = "</li>";
+		$config["next_tag_open"] = "<li class='page-item'>";
+		$config["next_tag_close"] = "</li>";
+		$config["prev_tag_open"] = "<li class='page-item'>";
+		$config["prev_tag_close"] = "</li>";
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+		$config["cur_tag_open"] = '<li class="page-item active"><a class="page-link">';
+		$config["cur_tag_close"] = '</li></a>';
+		$config["last_tag_open"] = "<li class='page-item'>";
+		$config["last_tag_close"] = "</li>";
+		$order_list=$this->advertisment_customer_list_model->getMyVendorList($this->session->userdata('customer_id'),$limit_start,$limit_end);	
+		$this->data['order_list']=	$order_list['data'];	
+		$config['total_rows']=$order_list['TotalRecords'];
+		$this->pagination->initialize($config);
+		$this->data["pagination_link"]= $this->pagination->create_links();
+		$this->data['main_content']=$this->load->view('customers/my_vendor_list_json', $this->data,true);
+		echo json_encode($this->data);
+		die;
+		} else {
+			$this->data['main_content']=$this->load->view('customers/my_vendor_list', $this->data,true);
+			$this->load->view('layouts/customer', $this->data);	
+		}	
 	}
 }
 

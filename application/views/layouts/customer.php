@@ -99,8 +99,15 @@
    <body>
       <div class="main-wrapper">
          <div class="app sidebar-fixed" id="app">
-            <?php echo $this->load->view('elements/topbar',array(),true);?>
-            <?php echo $this->load->view('elements/customer_sidebar',array(),true);?>
+            <?php 
+			if($this->session->userdata('user_type')==2){
+				echo $this->load->view('elements/vendor_topbar',array(),true);
+				echo $this->load->view('elements/vendor_sidebar',array(),true);
+			}
+			else{
+				echo $this->load->view('elements/topbar',array(),true);
+				echo $this->load->view('elements/customer_sidebar',array(),true);
+			}?>
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
           
             <?php echo $main_content;?>

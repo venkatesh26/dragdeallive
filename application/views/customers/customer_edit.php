@@ -227,37 +227,7 @@
                            </div>
                            <div><i class="fa fa-question-circle tooltipdiv cursor"></i> If you do not have any service remainders ? Please <a target="_blank" href="<?php echo base_url().'remainders/add';?>">Click Here </a> to add remainders.</div>
                            <div class="box-content clearfix" >
-                              <div class="box-header well" data-original-title="">
-                                 <div class="title-block">
-                                    <h3 class="title">
-                                       <i class="fa fa-gift"></i> Offers
-                                    </h3>
-                                 </div>
-                              </div>
-                              <div class="card items">
-                                 <ul class="item-list striped">
-                                    <li class="item item-list-header hidden-sm-down td-header-bar">
-                                       <div class="item-row">
-										  <div class="item-col item-col-header item-col-title">
-                                             <div> <span> <i class="fa fa-calendar"> </i> Offer Posted Date</span> </div>
-                                          </div>
-                                          <div class="item-col item-col-header item-col-title">
-                                             <div> <span><i class="fa fa-money"> </i> Offer Name</span> </div>
-                                          </div>
-                                          <div class="item-col item-col-header item-col-author">
-                                             <div class="no-overflow"> <span><i class="fa fa-thumbs-o-up"> </i> Status</span> </div>
-                                          </div>
-										  
-                                          
-                                          <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
-                                       </div>
-                                    </li>
-                                 </ul>
-                                 <ul class="item-list striped js-response">
-                                 </ul>
-                              </div>
-                              <nav class="text-xs-right js-pagenation">
-                              </nav>
+
                            </div>
                            <?php if($total_bill_amount > 0):?>
                            <div class="box-content clearfix" >
@@ -280,15 +250,6 @@
 									<div class="form-group col-md-3">
                                        <label class="control-label" for="first_name">Total Reward Points : <b style="color:green;"><?php echo number_format($total_reward_points);?></b></label>
                                     </div>
-									<div class="form-group col-md-3">
-                                           <label class="control-label" for="points">How much Point to reedem ? </label>
-									<input type="number" name="points" class="form-control" id="points" autocomplete="off" value="">
-									<input type="hidden" name="parent_user_id" id="parent_user_id" value="<?php echo $parent_user_id;?>">
-                                    </div>
-									<div class="form-group col-md-2">
-									 <label class="control-label" for="points">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-									 <a class="btn btn-primary btn-md pull-right js-reddem-points">Reedem</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 </div>
                                     <br/>
                                  </div>
                               </div>
@@ -544,12 +505,10 @@
 		return false;
 	});
 		
-			$('.bill_amount,.products_autocomplete,.quantity').livequery('change',function(){
+     $('.bill_amount,.products_autocomplete,.quantity').livequery('change',function(){
 		totalBillAmount();
-	});
-	
-		
-      });
+	});	
+    });
 </script>
 <div class="modal fade" id="confirm-reedem-modal">
 	<div class="modal-dialog" role="document">

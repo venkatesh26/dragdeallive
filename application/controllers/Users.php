@@ -249,6 +249,7 @@ class Users extends CI_Controller {
 					else{
 					   
 					    $maindata = array (
+								'customer_id'       => $is_valid->customer_id,
 								'user_email'		=> $is_valid->email,
 								'user_id'			=> $is_valid->id,
 								'contact_number'        => $is_valid->contact_number,

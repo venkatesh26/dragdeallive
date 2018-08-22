@@ -15,6 +15,29 @@ class Advertisment_Customer_List_model extends CI_Model {
 		return $results;
 	}
 	
+		
+		
+	################ Get My Vendor List ####################
+	public function getMyVendorList($userId,$limit_start=10,$limit_end=0) {
+	    $this->db->select('SQL_CALC_FOUND_ROWS advertisment_customer_lists.id,advertisment_customer_lists.total_amount, advertisment_customer_lists.parent_user_id,advertisment_customer_lists.id,advertisment_customer_lists.created, advertisements.name as shop_name, advertisements.email AS contact_email, advertisements.contact_number as contact_phone_number',false);
+		if(isset($_POST['s_name']) && $_POST['s_name']!=''){
+			$this->db->like('advertisements.name',$_POST['s_name'],'after'); 		
+		}
+		$this->db->join('advertisements','advertisements.user_id=advertisment_customer_lists.parent_user_id', 'LEFT');
+		$this->db->where('advertisment_customer_lists.customer_id',$userId);
+		$this->db->from('advertisment_customer_lists');
+		$this->db->order_by('advertisment_customer_lists.created','DESC');
+		$this->db->limit($limit_start, $limit_end);
+		$this->db->group_by('advertisment_customer_lists.customer_id');
+		$query = $this->db->get();			
+		$result=$query->result_array();
+		$response['TotalRecords']=$this->get_all_rows();
+		$response['data']=$result;
+		return $response;
+    }
+	
+	
+	
 	public function advertisment_customer_lists($flag , $conditions = array(), $sort_field=null, $order_type='Desc', $limit_start, $limit_end,$type) {  
 		$this->db->select('advertisment_customer_lists.*');
 		$this->db->from('advertisment_customer_lists');

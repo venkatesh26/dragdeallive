@@ -118,7 +118,7 @@ class Advertisments_store_products extends CI_Controller {
 		$config = admin_settings_initialize('settings');
 		if(empty($page_num)) $page_num = 1;
 		$limit_end = ($page_num-1) * $config['per_page'];
-		$limit_start = 10;$config['per_page'];
+		$limit_start = 10;
 		$this->pagination->cur_page = $page_num;
 		$config['base_url'] = base_url().'advertisments_store_products/index';
 		$config['first_url'] = base_url().'advertisments_store_products/index';

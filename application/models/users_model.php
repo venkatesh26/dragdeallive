@@ -183,7 +183,7 @@ class Users_model extends CI_Model {
 
 	####### Validate User ##################
     function validate_users($user_name, $password ,$user_type=null) {
-		$this->db->select('id,email,user_type,is_email_confirmed,is_active,register_type,contact_number');
+		$this->db->select('id,email,user_type,is_email_confirmed,is_active,register_type,contact_number,customer_id');
 		$this->db->where('email', $user_name);
 		$this->db->where('password', $password);
 		if($user_type!=''){
@@ -228,7 +228,7 @@ class Users_model extends CI_Model {
 		$this->db->where('email', $email);
 		$query = $this->db->get('users');
 		if($query->num_rows() == 1) { 
-		return true;
+			return true;
 		}
 		return FALSE;	
 	}

@@ -3,6 +3,9 @@ class Common_model extends CI_Model {
 
 	public function __construct(){ 
 		parent::__construct();
+		
+		$sms_settings=admin_settings_initialize('short_url_domain');
+		$this->short_url_domain=$sms_settings['short_url_domain'];
     }
 	
 	############# Get Long Url ##########
@@ -21,7 +24,6 @@ class Common_model extends CI_Model {
 	
 	################ Short Url ##########
 	public function short_url($long_url){
-		
 		$code=incrementalHash();
 		$table_data=array(
 			'created'=>date('Y-m-d h:i:s'),
@@ -29,7 +31,7 @@ class Common_model extends CI_Model {
 			'long_url'=>$long_url
 		);
 		$this->db->insert('shorten_url', $table_data);		
-		return base_url().'s/'.$code;
+		return $this->short_url_domain.'/'.$code;
 	}
 	
 	############# Send Email ###############

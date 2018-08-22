@@ -664,4 +664,7 @@ $route['change-password'] = 'users/change_password';
 $route['special'] = 'home/createAddCampaign';
 $route['reward-settings'] = 'customers/reward_settings';
 $route['customer-orders'] = 'advertisments_customer_bills/index';
+$route['my-bills'] = 'advertisments_customer_bills/my_bills';
+$route['my-vendors'] = 'customers/my_vendors';
+$route['my-dashboard'] = 'customers/my_dashboard';
 ?>

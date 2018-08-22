@@ -89,6 +89,10 @@ function admin_settings_initialize($getId=null) {
 	{
 			$adminDatas['footer_email'] = $settingFields['footer_email'];
 	}
+	else if($getId=='short_url_domain')
+	{
+			$adminDatas['short_url_domain'] = $settingFields['short_url_domain'];
+	}
 	return $adminDatas;
 }
 
@@ -1074,5 +1078,49 @@ function getCustomerBillInformation($user_id){
 	$result['current_month_revenue'] = ($new_result['total_amount']!='') ? $new_result['total_amount']:0;
 	
 
+    return $result;
+}
+
+
+function getMyBillInformation($customer_id){
+	
+	################## Total Revenue #########################
+	$new_result=array();
+	$ci=& get_instance();
+	$ci->load->database();
+	$ci->db->select('SUM(advertisment_customer_bills.amount) AS total_amount, COUNT(advertisment_customer_bills.id) AS total_orders');
+	$ci->db->where('advertisment_customer_bills.customer_id',$customer_id);
+	$ci->db->from('advertisment_customer_bills');
+	$query = $ci->db->get();
+	$new_result=$query->row_array();
+	$result['total_revenue']=(isset($new_result['total_amount']) && $new_result['total_amount']!='') ? $new_result['total_amount'] :'0';
+	$result['total_orders']=(isset($new_result['total_orders']) && $new_result['total_orders']!='') ? $new_result['total_orders'] :'0';
+	
+	####### Today Revenue ##############
+	$today=date('Y-m-d');
+	$new_result=array();
+	$ci=& get_instance();
+	$ci->load->database();
+	$ci->db->select('SUM(advertisment_customer_bills.amount) AS total_amount');
+	$ci->db->where('advertisment_customer_bills.customer_id',$customer_id);
+	$ci->db->where('advertisment_customer_bills.created >=',$today);
+	$ci->db->from('advertisment_customer_bills');
+	$query = $ci->db->get();
+	$new_result=$query->row_array();
+    $result['today_revenue'] = ($new_result['total_amount']!='') ? $new_result['total_amount']:0;	
+	
+	####### Current Month Revenue ##############
+	$today=date('Y-m-01');
+	$new_result=array();
+	$ci=& get_instance();
+	$ci->load->database();
+	$ci->db->select('SUM(advertisment_customer_bills.amount) AS total_amount');
+	$ci->db->where('advertisment_customer_bills.customer_id',$customer_id);
+	$ci->db->where('advertisment_customer_bills.created >=',$today);
+	$ci->db->from('advertisment_customer_bills');
+	$query = $ci->db->get();
+	$new_result=$query->row_array();
+	$result['current_month_revenue'] = ($new_result['total_amount']!='') ? $new_result['total_amount']:0;
+	
     return $result;
 }

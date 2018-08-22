@@ -11,7 +11,8 @@ class Advertisment_customers_model extends CI_Model {
 		$this->load->model('advertisment_customers_bills_model');		
     }
 	
-	####################Delete Customer#################
+	
+	#################### Delete Customer #################
 	public function deleteCustomer($id,$parent_user_id) {
 	   $this->db->delete('advertisment_customer_lists',array('customer_id' => $id,'parent_user_id'=>$parent_user_id));
 	   return true;
