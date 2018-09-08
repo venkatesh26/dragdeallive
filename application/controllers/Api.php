@@ -9,6 +9,7 @@ class Api extends CI_Controller {
 		$this->load->model('countries_model');
 		$this->load->model('advertisment_model');
 		$this->load->model('countries_model');
+		$this->load->model('home_model');
     }
 	
 	########### Dashboard List #############
@@ -127,6 +128,31 @@ class Api extends CI_Controller {
         die;			
 	}
 
+	##########Cusomer Change Password################# 
+	public function change_password()  {
+		$response['code']=500;
+		$response['message']="Invalid Request1";	
+		$response['status']=FALSE;		
+		if($_POST) {
+			$response['code']=200;
+			$this->form_validation->set_rules('new_password','New Password','trim|required|min_length[6]|max_length[32]');
+			$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|min_length[6]|max_length[32]|matches[new_password]');
+			$this->form_validation->set_rules('user_id',"User Id",'trim|required');
+			if($this->form_validation->run()){
+				$this->home_model->change_password($_POST['user_id'], md5($_POST['new_password']));	
+				$response['status']=TRUE;
+				$response['message']="Password Changed Successfully.";			
+			}
+			else {
+				$errors=$this->form_validation->get_json();
+				$errors=json_decode($errors, true);
+				$response['errors']=$errors['errorfields'];
+			}
+		}
+		echo json_encode($response);
+        die;	
+	}
+	
 	############# Get Vendor Product List ###############
 	public function allproductlist($user_id=null){
 		
@@ -222,30 +248,69 @@ class Api extends CI_Controller {
    
     ############## Update Product #############################
 	public function updateProduct(){
-
-
+		$response['code']=500;
+		$response['message']="Invalid Request";		
+		$response['status']=false;
+		if($_POST) {
+			$response['code']=200;
+			$this->form_validation->set_rules('name',"Name",'trim|required');
+			$this->form_validation->set_rules('amount',"amount",'trim|required');
+			$this->form_validation->set_rules('user_id',"User ID",'trim|required');
+			$this->form_validation->set_rules('product_id',"Product ID",'trim|required');
+			if($this->form_validation->run() == true) {
+				$user_id=$_POST['user_id'];	
+				$product_id=$_POST['product_id'];	
+				$success=$this->advertisment_store_products_model->update_products($user_id, $product_id);
+				$response['message']="Product Updated Successfully";	
+				$response['status']=TRUE;	
+			}
+			else{
+				$errors=$this->form_validation->get_json();
+				$errors=json_decode($errors, true);
+				$response['errors']=$errors['errorfields'];
+			}				
+		}
+		echo json_encode($response);
+        die;	
 	}	
-		
+	
+    public function getProductDetails($product_id=null, $user_id=null){
+		$response['code']=500;
+		$response['message']="Invalid Request";	
+		$response['status']=FALSE;
+		if($product_id && $user_id){
+			$response['code']=200;
+			$response['message']="Success";
+			$response['data']=$this->advertisment_store_products_model->get_product($user_id, $product_id);
+		}		
+		echo json_encode($response);
+        die;
+	}
+	
     ######## Check Customer Avaibilty Checking ############
 	public function checkCustomerAvailibity(){
 		$response['code']=500;
 		$response['message']="Invalid Request";	
 		$response['status']=FALSE;
 		if($_POST) {
+			$response['code']=200;
 			$this->form_validation->set_rules('contact_number','Mobile Number','trim|required|numeric|min_length[10]|max_length[10]');
 			$this->form_validation->set_rules('user_id','User ID','trim|required');
 			if($this->form_validation->run() == true){
-				$datas=$this->users_model->checkUserInfo($this->input->post('user_id'));			
+				$user_id=$_POST['user_id'];
+				$datas=$this->users_model->checkUserInfo($user_id);			
 				if($datas) {
-					$success=$this->users_model->checkCustomerUsers($this->session->userdata('user_id'),$datas['customer_id']);
+					$success=$this->users_model->checkCustomerUsers($user_id, $datas['customer_id']);
 					if($success){
-						$extra_array = array('status'=>'EXISTING_USER','msg'=>'Success !!! Customer Information Already Existing','user_datas'=>$datas,'customer_info'=>$success);
-						echo json_encode($extra_array);
-						die;	
+						$response['status']=TRUE;
+						$response['CUSTOMER_STATUS']="EXISTING_USER";
+						$response['message']="Error !!! Customer Information Already Existing";
+						$response['data']=$datas;
 					}else{
-						$extra_array = array('status'=>'EXISTING_NEW_USER_ADD','msg'=>'Success ! Customer Information Available.','user_datas'=>$datas,'customer_info'=>$success);
-						echo json_encode($extra_array);
-						die;	
+						$response['status']=TRUE;
+						$response['CUSTOMER_STATUS']="EXISTING_USER";
+						$response['message']="Error !!! Customer Information Available";
+						$response['data']=$datas;
 					}				
 				}
 				else {
@@ -254,12 +319,96 @@ class Api extends CI_Controller {
 					die;	
 				}
 			} 
-			else {
-				echo $this->form_validation->get_json();
-				die;
+			else{
+				$errors=$this->form_validation->get_json();
+				$errors=json_decode($errors, true);
+				$response['errors']=$errors['errorfields'];
 			}
 		}
 		echo json_encode($response);
         die;
 	}
+     
+	###################### Customer Add #####################
+	public function customer_edit() {
+
+		$this->data=array();
+		if(!$this->session->userdata('is_user_logged_in'))
+		{
+			$url = 'login';
+			redirect($url);
+		}
+		if($_POST) 
+		{
+				$this->form_validation->set_rules('first_name','First Name','trim|required');
+				$this->form_validation->set_rules('email',ucwords($this->lang->line('Email')),'trim|required|valid_email');
+				$this->form_validation->set_rules('contact_number','Contact Number','trim|required');
+				$this->form_validation->set_rules('gender','Gender','trim|required');
+				if($this->form_validation->run() == true) 
+				{
+					$success=$this->advertisment_customers_model->add_customers($this->session->userdata('user_id'));				
+					if($this->input->post('send_notification')==1 || $this->input->post('send_notification')=='on'){
+						
+						$this->load->model('campaign_model');
+						$this->data['user_info']=$this->campaign_model->sms_availabilty($this->session->userdata('user_id'));
+						$this->data['total_sms']=$this->data['user_info']['total_sms'];
+						if($this->data['total_sms'] >=0) {
+							$this->load->model('settings_model');
+							$postData=$_POST;
+							$new_success=$this->settings_model->send_sms($this->session->userdata('user_id'), 'customer-thanks', $postData);
+						}
+					}
+					if($success) 
+					{
+                        $extra_array = array('status'=>'success','msg'=>'Customer Details Updated Successfully.');
+						echo json_encode($extra_array);
+						die;					
+					}				
+				} 
+				else 
+				{
+					echo $this->form_validation->get_json();
+					die;
+				}
+		}
+	} 
+	 
+	###################### Customer Add #####################
+	public function CustomerAdd() {
+		$this->data=array();
+		if($_POST) 
+		{
+				$this->form_validation->set_rules('email','Email','trim|valid_email');
+				$this->form_validation->set_rules('first_name','First Name','trim|required');
+				$this->form_validation->set_rules('gender','Gender','trim|required');
+				if($this->form_validation->run() == true) 
+				{
+					$success=$this->advertisment_customers_model->add_customers($this->session->userdata('user_id'));
+					if($this->input->post('send_notification')==1 || $this->input->post('send_notification')=='on'){
+						
+						$this->load->model('campaign_model');
+						$this->data['user_info']=$this->campaign_model->sms_availabilty($this->session->userdata('user_id'));
+						$this->data['total_sms']=$this->data['user_info']['total_sms'];
+						if($this->data['total_sms'] >=0) {
+							$this->load->model('settings_model');
+							$postData=$_POST;
+							$new_success=$this->settings_model->send_sms($this->session->userdata('user_id'), 'customer-thanks', $postData);
+						}
+					}
+					if($success) 
+					{						
+                        $extra_array = array('status'=>'success','msg'=>'Customer Add Successfully.');
+						echo json_encode($extra_array);
+						die;					
+					}				
+				} 
+				else 
+				{
+					echo $this->form_validation->get_json();
+					die;
+				}
+		}
+		$this->data['main_content']=$this->load->view('customers/customer_add', $this->data,true);
+		$this->load->view('layouts/customer', $this->data);
+	} 
 }

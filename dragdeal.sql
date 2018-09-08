@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2018 at 04:25 AM
+-- Generation Time: Sep 08, 2018 at 04:45 AM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -41,101 +41,6 @@ CREATE DEFINER=`venkywhm`@`localhost` FUNCTION `getPoints` (`amount` DECIMAL, `p
 END$$
 
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `accounts`
---
-
-CREATE TABLE `accounts` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `account_type_id` bigint(20) NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `accounts`
---
-
-INSERT INTO `accounts` (`id`, `created`, `modified`, `user_id`, `account_type_id`, `is_active`) VALUES
-(1, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 1, 1, 1),
-(2, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 2, 1, 1),
-(3, '2017-10-29 18:15:29', '0000-00-00 00:00:00', 3, 1, 0),
-(4, '2017-10-29 18:16:30', '0000-00-00 00:00:00', 4, 1, 1),
-(5, '2017-10-29 18:17:43', '0000-00-00 00:00:00', 5, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `account_details`
---
-
-CREATE TABLE `account_details` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `account_id` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `value` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `account_details`
---
-
-INSERT INTO `account_details` (`id`, `created`, `modified`, `account_id`, `name`, `code`, `value`) VALUES
-(1, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 1, 'Deposit', 'deposit', 0),
-(2, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 1, 'Withdrawal', 'withdrawl', 0),
-(3, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 1, 'Purchase', 'purchase', 0),
-(4, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 1, 'Commissions', 'commission', 0),
-(5, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 1, 'Balance', 'balance', 0),
-(6, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 2, 'Deposit', 'deposit', 100),
-(7, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 2, 'Withdrawal', 'withdrawl', 500),
-(8, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 2, 'Purchase', 'purchase', 450),
-(9, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 2, 'Commissions', 'commission', 200),
-(10, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 2, 'Balance', 'balance', 750),
-(11, '2017-10-29 18:15:29', '0000-00-00 00:00:00', 3, '', '1', 0),
-(12, '2017-10-29 18:15:29', '0000-00-00 00:00:00', 3, '', '1', 0),
-(13, '2017-10-29 18:15:29', '0000-00-00 00:00:00', 3, '', '1', 0),
-(14, '2017-10-29 18:15:29', '0000-00-00 00:00:00', 3, '', '1', 0),
-(15, '2017-10-29 18:15:29', '0000-00-00 00:00:00', 3, '', '1', 0),
-(16, '2017-10-29 18:16:30', '0000-00-00 00:00:00', 4, '', 'deposit', 0),
-(17, '2017-10-29 18:16:30', '0000-00-00 00:00:00', 4, '', 'withdrawl', 0),
-(18, '2017-10-29 18:16:30', '0000-00-00 00:00:00', 4, '', 'purchase', 0),
-(19, '2017-10-29 18:16:30', '0000-00-00 00:00:00', 4, '', 'commission', 0),
-(20, '2017-10-29 18:16:30', '0000-00-00 00:00:00', 4, '', 'balance', 0),
-(21, '2017-10-29 18:17:43', '0000-00-00 00:00:00', 5, 'Deposit', 'deposit', 0),
-(22, '2017-10-29 18:17:43', '0000-00-00 00:00:00', 5, 'Withdrawl', 'withdrawl', 0),
-(23, '2017-10-29 18:17:43', '0000-00-00 00:00:00', 5, 'Purchase', 'purchase', 0),
-(24, '2017-10-29 18:17:43', '0000-00-00 00:00:00', 5, 'Commission', 'commission', 0),
-(25, '2017-10-29 18:17:43', '0000-00-00 00:00:00', 5, 'Balance', 'balance', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `account_types`
---
-
-CREATE TABLE `account_types` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `account_types`
---
-
-INSERT INTO `account_types` (`id`, `created`, `modified`, `name`, `code`, `is_active`) VALUES
-(1, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Dragdeal', 'dragdeal', 1);
 
 -- --------------------------------------------------------
 
@@ -205,35 +110,7 @@ CREATE TABLE `advertisements` (
 --
 
 INSERT INTO `advertisements` (`id`, `expiry_date`, `created_at`, `rating`, `total_user_rated`, `view_count`, `name`, `owner`, `address_line`, `city_id`, `zip`, `state_id`, `country_id`, `logo`, `fax`, `email`, `website`, `video_url`, `job`, `description`, `short_description`, `contact_number`, `areas`, `working_start`, `working_end`, `latitude`, `longitude`, `created`, `updated_at`, `user_id`, `category`, `plan_id`, `status`, `payment_type`, `area_id`, `category_id`, `main_category_id`, `is_active`, `overall_score`, `site_score`, `image_dir`, `profile_image`, `city_name`, `area_name`, `category_name`, `since`, `no_of_employees`, `is_notification_send`, `meta_keywords`, `meta_description`, `notification_settings`, `other_info`, `is_onetime_subscription`, `business_hours`) VALUES
-(1, '0000-00-00', '2017-01-21 01:46:47', 0, 0, 2, 'Dialbe1', 'venkatesh', 'no 28,main road', 1, '123456', 0, 0, 0, 123456, 'damovenkatesh@gmail.com', 'http://www.dialbe.comfff', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', NULL, '9791447542,9791447542,97914475', NULL, '10:00', '20:15', '13.0012', '80.2565', '2017-01-21 12:46:47', '2018-02-04 02:22:03', 2, 0, '4', 1, 0, 36, '1138,1139,1085,414,1280,1281,1241,1245,1240', 1, 1, 5, 4, 'app_data/profile/', '3b3b853635b32a4620d4876413a828ff63af8bc1.jpg', 'Chennai', 'Adambakkam', '', '1990', '100', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:0;s:16:\"enquiry_via_mail\";i:0;s:17:\"monthly_analytics\";i:0;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:10:\"9890900900\";}', 0, '[{\"isActive\":true,\"timeFrom\":\"09:00\",\"timeTill\":\"18:00\"},{\"isActive\":true,\"timeFrom\":\"09:00\",\"timeTill\":\"18:00\"},{\"isActive\":true,\"timeFrom\":\"09:00\",\"timeTill\":\"18:00\"},{\"isActive\":true,\"timeFrom\":\"09:00\",\"timeTill\":\"18:00\"},{\"isActive\":true,\"timeFrom\":\"09:00\",\"timeTill\":\"18:00\"},{\"isActive\":true,\"timeFrom\":\"09:45\",\"timeTill\":\"18:00\"},{\"isActive\":true,\"timeFrom\":\"09:45\",\"timeTill\":\"18:45\"}]'),
-(2, '0000-00-00', '2017-01-21 02:01:44', 4, 1, 3, 'Edial', 'Deva', 'no.28,Main Road', 1, '123456', 0, 0, 0, 123456, 'deva@gmail.com', 'http://www.dialbe.com', '', 0, 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', '9791447543,9791447543,97914475', NULL, '6:30 AM', '6:30 PM', '', '', '2017-01-21 13:01:44', '2017-01-20 20:37:05', 3, 0, '4', 1, 0, 36, '', 14, 1, 5, 4, 'app_data/profile/', 'images_(1).jpg', 'Chennai', 'Adambakkam', '', '1990', '', 0, '', '', 'a:4:{s:11:\"custom_meta\";b:0;s:12:\"social_media\";b:0;s:16:\"enquiry_via_mail\";b:0;s:17:\"monthly_analytics\";b:0;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:10:\"9791447542\";}', 0, NULL),
-(3, '0000-00-00', '2017-01-21 02:01:44', 4, 1, 4, 'Edial', 'Deva', 'no.28,Main Road', 1, '123456', 0, 0, 0, 123456, 'deva@gmail.com', 'http://www.dialbe.com', '', 0, 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', '9791447543,9791447543,97914475', NULL, '6:30 AM', '6:30 PM', '', '', '2017-01-21 13:01:44', '2017-01-20 20:37:05', 3, 0, '4', 1, 0, 36, '', 14, 1, 5, 4, 'app_data/profile/', 'images_(1).jpg', 'Chennai', 'Adambakkam', '', '1990', '', 0, '', '', 'a:4:{s:11:\"custom_meta\";b:0;s:12:\"social_media\";b:0;s:16:\"enquiry_via_mail\";b:0;s:17:\"monthly_analytics\";b:0;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:10:\"9791447542\";}', 0, NULL),
-(4, '0000-00-00', '2017-01-21 01:46:47', 4, 2, 5, 'Dialbe', 'venkatesh', 'no 28,main road', 1, '123456', 0, 0, 0, 123456, 'damovenkatesh@gmail.com', 'http://www.dialbe.com', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '9791447542,9791447542,97914475', NULL, '10:00 AM', '8:15 PM', '', '', '2017-01-21 12:46:47', '2017-01-20 20:25:35', 2, 0, '4', 1, 0, 36, '', 14, 1, 5, 4, 'app_data/profile/', '3b3b853635b32a4620d4876413a828ff63af8bc1.jpg', 'Chennai', 'Adambakkam', '', '1990', '100', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:1;s:16:\"enquiry_via_mail\";i:1;s:17:\"monthly_analytics\";i:1;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:7:\"9890900\";}', 0, NULL),
-(5, '0000-00-00', '2017-01-21 01:46:47', 0, 0, 6, 'Dialbe', 'venkatesh', 'no 28,main road', 1, '123456', 0, 0, 0, 123456, 'damovenkatesh@gmail.com', 'http://www.dialbe.com', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '9791447542,9791447542,97914475', NULL, '10:00 AM', '8:15 PM', '', '', '2017-01-21 12:46:47', '2017-01-20 20:25:35', 2, 0, '4', 1, 0, 36, '', 14, 1, 5, 4, 'app_data/profile/', '3b3b853635b32a4620d4876413a828ff63af8bc1.jpg', 'Chennai', 'Adambakkam', '', '1990', '100', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:1;s:16:\"enquiry_via_mail\";i:1;s:17:\"monthly_analytics\";i:1;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:7:\"9890900\";}', 0, NULL),
-(6, '0000-00-00', '2017-01-21 01:46:47', 0, 0, 5, 'Dialbe', 'venkatesh', 'no 28,main road', 1, '123456', 0, 0, 0, 123456, 'damovenkatesh@gmail.com', 'http://www.dialbe.com', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '9791447542,9791447542,97914475', NULL, '10:00 AM', '8:15 PM', '', '', '2017-01-21 12:46:47', '2017-01-20 20:25:35', 2, 0, '4', 1, 0, 36, '', 14, 1, 5, 4, 'app_data/profile/', '3b3b853635b32a4620d4876413a828ff63af8bc1.jpg', 'Chennai', 'Adambakkam', '', '1990', '100', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:1;s:16:\"enquiry_via_mail\";i:1;s:17:\"monthly_analytics\";i:1;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:7:\"9890900\";}', 0, NULL),
-(7, '2017-08-13', '2017-01-29 07:51:56', 1, 17, 8, 'Dialbe', 'venkatesh', 'no 28,main road', 1, '123456', 0, 0, 0, 123456, 'venkatesh@gmail.com', 'http://www.dialbe.com', '', 0, 'The Google URL Shortener at goo.gl is a service that takes long URLs and squeezes them into fewer characters to make a link that is easier to share, tweet, or email to friends. The Google URL Shortener API allows you to develop applications that interface with this service. You can use simple HTTP methods to create, inspect, and manage goo.gl short URLs from your desktop, mobile, or web application.', 'The Google URL Shortener at goo.gl is a service that takes long URLs and squeezes them into fewer characters to make a link that is easier to share, tweet, or email to friends. The Google URL Shortener API allows you to develop applications that interface with this service. You can use simple HTTP methods to create, inspect, and manage goo.gl short URLs from your desktop, mobile, or web application.', '9791447542,9791447542,97914475', NULL, '10:30 PM', '12:30 PM', '', '', '2017-01-29 06:51:56', '2017-05-28 04:49:53', 13, 0, '4', 1, 0, 82, '1242,1240,1241', 14, 1, 5, 4, 'app_data/profile/', 'list_logo.png', 'Chennai', 'Adyar', '', '1990', '100', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:1;s:12:\"social_media\";i:1;s:16:\"enquiry_via_mail\";i:1;s:17:\"monthly_analytics\";i:1;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:10:\"9791447545\";}', 0, NULL),
-(8, '0000-00-00', '2017-02-24 06:02:49', 0, 0, 0, 'Constient Global Solution', 'Nazzar', 'no.28,Main Road', 1, '600012', 0, 0, 0, 123456, 'nazzar@gmail.com', 'http://www.dialbe.com', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.\r\n\r\n\r\nDialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '9791447542,9791447542,97914475', NULL, '9:30 AM', '7:30 PM', '', '', '2017-02-24 17:02:49', '0000-00-00 00:00:00', 14, 0, '4', 1, 0, 20, '414,134,912', 14, 0, 5, 4, 'app_data/profile/', 'DSC_0304.JPG', 'Chennai', 'Mylapore', '', '1990', '100', 0, '', '', 'a:4:{s:11:\"custom_meta\";s:2:\"on\";s:12:\"social_media\";s:2:\"on\";s:16:\"enquiry_via_mail\";s:2:\"on\";s:17:\"monthly_analytics\";s:2:\"on\";}', 'a:6:{s:12:\"facebook_url\";s:21:\"http://www.dialbe.com\";s:14:\"googleplus_url\";s:0:\"\";s:11:\"twitter_url\";s:0:\"\";s:12:\"linkedin_url\";s:0:\"\";s:11:\"youtube_url\";s:0:\"\";s:22:\"whatsup_contact_number\";s:0:\"\";}', 0, NULL),
-(9, '0000-00-00', '2017-04-09 08:45:22', 5, 1, 0, 'Blazedream Technology', 'Venkatesh', 'no 28,main road', 1, '123456', 0, 0, 0, 0, 'venkatesh@gmail.com', 'http://www.dialbe.com', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '9791447542,9791447542,97914475', NULL, '10:15 PM', '12:15 PM', '', '', '2017-04-09 06:45:22', '2017-04-09 03:15:38', 18, 0, '4', 1, 0, 36, '1139,646,1038,1037,926', 14, 0, 5, 4, 'app_data/profile/', '393160.png', 'Chennai', 'Adambakkam', '', '1990', '100', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:0;s:16:\"enquiry_via_mail\";i:0;s:17:\"monthly_analytics\";i:0;}', 'a:6:{s:12:\"facebook_url\";s:25:\"http://localhost/indiabe/\";s:14:\"googleplus_url\";s:25:\"http://localhost/indiabe/\";s:11:\"twitter_url\";s:25:\"http://localhost/indiabe/\";s:12:\"linkedin_url\";s:25:\"http://localhost/indiabe/\";s:11:\"youtube_url\";s:25:\"http://localhost/indiabe/\";s:22:\"whatsup_contact_number\";s:10:\"9791447542\";}', 0, NULL),
-(10, '0000-00-00', '2017-04-21 07:42:34', 0, 0, 11, 'Constient Global Solution', 'Venkatesh', 'no 28,main road', 1, '600012', 0, 0, 0, 12345678, 'damovenkatesh@gmail.com', 'http://www.google.com', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses\r\n\r\n\r\n\r\nDialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businessesDialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businessesDialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businessesDialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '9791447542,0444-2345680,0444-2', NULL, '11:15 PM', '11:15 PM', '', '', '2017-04-21 17:42:34', '2017-04-21 02:14:20', 20, 0, '4', 1, 0, 5, '1257', 14, 1, 5, 4, 'app_data/profile/', '393160.png', 'Chennai', 'Arumbakkam', '', '1900', '100+', 0, 'test1\r\n', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:0;s:16:\"enquiry_via_mail\";i:0;s:17:\"monthly_analytics\";i:0;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:23:\"http://www.facebook.com\";s:22:\"whatsup_contact_number\";s:9:\"791447542\";}', 0, NULL),
-(13, '0000-00-00', '2017-05-07 06:39:37', 5, 1, 14, 'Blazedream Technlogy', 'Venkatesh', 'no 28,main road', 1, '123456', 0, 0, 0, 123456, 'venkates@gmail.com', 'http://www.dialbe.com', '', 0, 'A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate.\r\n\r\n\r\nA Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate D', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides ', '9791447542,9791447542,97914475', NULL, '10:15 PM', '10:15 PM', '', '', '2017-05-07 16:39:37', '0000-00-00 00:00:00', 29, 0, '4', 1, 0, 36, '926,243,247', 14, 1, 5, 4, 'app_data/profile/', 'DSC01291.jpg', 'Chennai', 'Adambakkam', '', '1990', '', 0, '', '', 'a:4:{s:11:\"custom_meta\";N;s:12:\"social_media\";N;s:16:\"enquiry_via_mail\";N;s:17:\"monthly_analytics\";N;}', 'a:6:{s:12:\"facebook_url\";s:0:\"\";s:14:\"googleplus_url\";s:0:\"\";s:11:\"twitter_url\";s:0:\"\";s:12:\"linkedin_url\";s:0:\"\";s:11:\"youtube_url\";s:0:\"\";s:22:\"whatsup_contact_number\";s:0:\"\";}', 0, NULL),
-(21, '0000-00-00', '2017-07-16 07:49:27', 0, 0, 22, 'Venkatesh', 'chenn', 'chennai', 47, '1243443', 0, 0, 0, 0, 'fdffdffd@gmil.com', 'http://www.google.com', '', 0, 'dfffffffffffffffffffffffffffffff', NULL, '9791447542,9791447542,97914475', NULL, '11:30 AM', '11:30 AM', '', '', '2017-07-16 05:49:27', '2017-07-16 02:40:05', 47, 0, '4', 1, 0, 308, '1139,655', 1, 1, 5, 4, 'app_data/profile/', 'download_(1).jpg', 'adyar', 'select', '', '1990', '1990', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:0;s:16:\"enquiry_via_mail\";i:0;s:17:\"monthly_analytics\";i:0;}', 'a:6:{s:12:\"facebook_url\";s:0:\"\";s:14:\"googleplus_url\";s:0:\"\";s:11:\"twitter_url\";s:0:\"\";s:12:\"linkedin_url\";s:0:\"\";s:11:\"youtube_url\";s:0:\"\";s:22:\"whatsup_contact_number\";s:0:\"\";}', 0, NULL),
-(24, '0000-00-00', '2017-10-28 06:55:26', 0, 0, 25, 'dfddgggdd', 'ddd', '1233443', 0, 'sddddsddssd', 0, 0, 0, 0, 'damovenkatesh@gmail.com', 'https://www.google.com', '', 0, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', NULL, '9791447542,9791447542,97914475', NULL, '12:45 PM', '500', '12344.45', '12344.45', '2017-07-23 07:03:12', '2017-07-23 03:36:43', 2, 0, '4', 1, 0, 0, '100,243,857,845,926', 14, 1, 5, 4, 'app_data/profile/', '331985_10150477492051070_226856981069_11055459_1226852240_o.jpg', 'Chennai', 'adambakkam', '', '', '', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:0;s:16:\"enquiry_via_mail\";i:0;s:17:\"monthly_analytics\";i:0;}', 'a:6:{s:12:\"facebook_url\";s:23:\"http://www.facebook.com\";s:14:\"googleplus_url\";s:23:\"http://www.facebook.com\";s:11:\"twitter_url\";s:23:\"http://www.facebook.com\";s:12:\"linkedin_url\";s:23:\"http://www.facebook.com\";s:11:\"youtube_url\";s:24:\"http://www.facesbook.com\";s:22:\"whatsup_contact_number\";s:7:\"9890900\";}', 0, NULL),
-(25, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 26, 'sddffdf', 'ddgg', 'dfdfdfdfddfdfd', 0, '2233434434', 0, 0, 0, NULL, 'ssdsddfff@gmail.comr', NULL, '', 0, NULL, NULL, '454554454554', NULL, NULL, NULL, '', '', '2017-11-11 03:48:06', '0000-00-00 00:00:00', 53, 0, '', 1, 0, 0, NULL, 0, 1, 5, 4, NULL, NULL, 'ddfdfdf', 'dfdfdfdf', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(26, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'chennai', 'chenani', 'n0.28', 1, '344334', 0, 0, 0, NULL, 'test@gmail.com', NULL, '', 0, ' I know, I\'m a pop-up, after all. Our clan has had its fair share of notoriety, lately. But not all pop-ups are the same.\r\nI wanted to ask you something.\r\nDo you like what you\'re reading? Would you want in on more lessons, observations and stories from the SaaS universe?\r\nIf you hit subscribe, I\'d personally get them delivered to your inbox whenever a post is published. Makes sense?', NULL, '9791447542', NULL, '9 AM', '9 PM', '', '', '2017-11-12 01:07:16', '0000-00-00 00:00:00', 54, 0, '', 1, 0, 0, NULL, 0, 0, 5, 4, NULL, NULL, 'Chennai', 'adyar', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(27, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 28, 'chennai', 'DFDFDFF', 'dvvdgg', 0, '123456', 0, 0, 0, NULL, 'ddfdc@FFF.COM', NULL, '', 0, ' I know, I\'m a pop-up, after all. Our clan has had its fair share of notoriety, lately. But not all pop-ups are the same.\r\nI wanted to ask you something.\r\nDo you like what you\'re reading? Would you want in on more lessons, observations and stories from the SaaS universe?\r\nIf you hit subscribe, I\'d personally get them delivered to your inbox whenever a post is published. Makes sense?', NULL, '9791447542', NULL, '9 AM', '9 PM', '', '', '2017-11-12 01:11:37', '0000-00-00 00:00:00', 57, 0, '', 1, 0, 0, NULL, 0, 1, 5, 4, NULL, NULL, 'CHENNI', 'DFDDFF', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(28, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'dsdfdfd', 'sdffd', 'dfdddfdgdgdg', 1, '5466665', 0, 0, 0, NULL, 'dddfdff@gmail.com', NULL, '', 0, 'bhhbjjvcxcv', NULL, '566565656776', NULL, '9 AM', '9 PM', '', '', '2017-11-13 01:08:51', '0000-00-00 00:00:00', 58, 0, '', 1, 0, 0, '1274,1275', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(29, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'Venkatesh', 'chennai', 'chennai', 1, '123456', 0, 0, 0, NULL, '', NULL, '', 0, 'HGHGHGHGHG', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 01:58:17', '0000-00-00 00:00:00', 62, 0, '', 1, 0, 0, '1276', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adyar', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(30, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'venkatesh', '23456', 'chennai', 1, '123456', 0, 0, 0, NULL, '', NULL, '', 0, 'cvcvvvvcv', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 02:11:35', '0000-00-00 00:00:00', 65, 0, '', 1, 0, 0, '1258,1277', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(31, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'Venkatesh', 'ddffdfdfd', 'dfdfdfdf', 1, '123456', 0, 0, 0, NULL, '', NULL, '', 0, '', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 02:15:10', '0000-00-00 00:00:00', 66, 0, '', 1, 0, 0, '', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(32, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'b456', 'dfdf', 'dfdff', 1, '12344', 0, 0, 0, NULL, '', NULL, '', 0, '', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 02:24:25', '0000-00-00 00:00:00', 67, 0, '', 1, 0, 0, '', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adyar', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(33, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'damo', 'rtyy', 'ghghhg', 1, '123456', 0, 0, 0, NULL, '', NULL, '', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 03:02:51', '0000-00-00 00:00:00', 68, 0, '', 1, 0, 0, '1278', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(34, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'hgggjdf', 'dffddff', 'ddfdffd', 1, '123456', 0, 0, 0, NULL, '', NULL, '', 0, 'dfddddf\r\n', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 03:05:20', '0000-00-00 00:00:00', 69, 0, '', 1, 0, 0, '1279', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(35, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'hgggjdf', 'dffddff', 'ddfdffd', 1, '123456', 0, 0, 0, NULL, '', NULL, '', 0, 'dfddddf\r\n', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 03:06:37', '0000-00-00 00:00:00', 69, 0, '', 1, 0, 0, '1279', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(36, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'hgggjdf', 'dffddff', 'ddfdffd', 1, '123456', 0, 0, 0, NULL, '', NULL, '', 0, 'dfddddf\r\n', NULL, '', NULL, '9 AM', '9 PM', '', '', '2017-12-25 03:07:46', '0000-00-00 00:00:00', 69, 0, '', 1, 0, 0, '1279', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(37, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'test', 'test', '4', 1, '123456', 0, 0, 0, NULL, 'ddd@gmail.com', NULL, '', 0, '', NULL, '1234567890', NULL, '9 AM', '9 PM', '', '', '2017-12-24 23:31:07', '0000-00-00 00:00:00', 0, 0, '', 1, 0, 0, '', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(38, '0000-00-00', '0000-00-00 00:00:00', 0, 0, 0, 'test', 'test', '4', 1, '123456', 0, 0, 0, NULL, 'ddd@gmail.com', NULL, '', 0, '', NULL, '1234567890', NULL, '9 AM', '9 PM', '', '', '2017-12-24 23:31:19', '0000-00-00 00:00:00', 0, 0, '', 1, 0, 0, '', 0, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '', '', 0, NULL, NULL, '', '', 0, NULL),
-(39, '0000-00-00', '2018-01-26 06:34:31', 0, 0, 40, 'chenani', 'owner', 'chnnennai', 1, '123456', 0, 0, 0, 0, 'test@gmail.com', 'https://www.dragdeal.com', '', 0, 'test', NULL, '9791447542,9791447542', NULL, '11:15 PM', '11:15 PM', '', '', '2018-01-26 17:34:31', '2018-01-26 01:06:18', 81, 0, '', 1, 0, 36, '1258', 14, 0, 5, 4, NULL, NULL, 'Chennai', 'Adambakkam', '', '1990', '', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:0;s:16:\"enquiry_via_mail\";i:0;s:17:\"monthly_analytics\";i:0;}', 'a:6:{s:12:\"facebook_url\";s:0:\"\";s:14:\"googleplus_url\";s:0:\"\";s:11:\"twitter_url\";s:0:\"\";s:12:\"linkedin_url\";s:0:\"\";s:11:\"youtube_url\";s:0:\"\";s:22:\"whatsup_contact_number\";s:0:\"\";}', 0, NULL),
-(40, '0000-00-00', '2018-05-12 06:13:33', 4, 2, 41, 'Dradeal', 'venkatesh', 'chennai', 1, '123456', 0, 0, 0, 0, 'damovenkatesh@gmail.com', '', '', 0, 'test', NULL, '9791447542', NULL, '01:00', '01:00', '', '', '2018-05-12 04:13:33', '0000-00-00 00:00:00', 49, 0, '3', 1, 0, 82, '', 14, 1, 5, 4, NULL, NULL, 'Chennai', 'Adyar', '', '1990', '', 0, NULL, NULL, 'a:4:{s:11:\"custom_meta\";N;s:12:\"social_media\";N;s:16:\"enquiry_via_mail\";N;s:17:\"monthly_analytics\";N;}', 'a:6:{s:12:\"facebook_url\";s:0:\"\";s:14:\"googleplus_url\";s:0:\"\";s:11:\"twitter_url\";s:0:\"\";s:12:\"linkedin_url\";s:0:\"\";s:11:\"youtube_url\";s:0:\"\";s:22:\"whatsup_contact_number\";s:0:\"\";}', 0, NULL);
+(1, '0000-00-00', '2018-07-22 07:12:45', 0, 0, 2, 'Consistent Global Solution', 'Nazar', 'No. 89, MVP Double Road, Sector-1', 1, '600014', 0, 0, 0, 0, 'nazar@gmail.com', 'https://www.constient.com', '', 0, 'dragdeal.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses. Our Mission: Our mission is to provide genuine information to users in fast manner.\r\n\r\nFor Businesses: Want to increase the number of customers? Need an advertising medium which will give you the best Return on Investment(ROI)? Which dragdeal.com is the medium you needed. Information anytime anywhere : The information is available across online voice.', NULL, '9791447542,9791447542,97914475', NULL, '09:30', '06:30', '13.0827', '80.2707', '2018-07-22 05:12:45', '2018-07-28 23:38:17', 2, 0, '2', 1, 0, 163, '926,652,1243', 1, 1, 5, 4, 'app_data/profile/2/', '022ecd8b6d8a03189249493dfc09fe44.jpg', 'Chennai', 'Santhome', '', '2005', '50+', 0, '', '', 'a:4:{s:11:\"custom_meta\";i:0;s:12:\"social_media\";i:0;s:16:\"enquiry_via_mail\";i:0;s:17:\"monthly_analytics\";i:0;}', 'a:6:{s:12:\"facebook_url\";s:24:\"https://www.facebook.com\";s:14:\"googleplus_url\";s:24:\"https://www.facebook.com\";s:11:\"twitter_url\";s:24:\"https://www.facebook.com\";s:12:\"linkedin_url\";s:24:\"https://www.facebook.com\";s:11:\"youtube_url\";s:24:\"https://www.facebook.com\";s:22:\"whatsup_contact_number\";s:0:\"\";}', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -276,91 +153,9 @@ CREATE TABLE `advertisments_customers_campaign` (
 --
 
 INSERT INTO `advertisments_customers_campaign` (`id`, `created`, `modified`, `user_id`, `campaign_type_id`, `title`, `message`, `message_length`, `coupon_type`, `campaign_start_date`, `campaign_end_date`, `number_of_user_send`, `number_of_user_received`, `number_of_user_opened`, `image_dir`, `profile_image`, `sender_id`, `description`, `short_description`, `display_as_offer`, `is_active`, `total_interset`, `url`, `offer_type`, `mrp_price`, `offer_price`, `percentage`) VALUES
-(2, '2017-01-30 06:33:21', '0000-00-00 00:00:00', 13, 2, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', 144, 1, '2017-01-27 00:00:00', '2017-01-24 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(3, '2017-02-01 07:14:09', '0000-00-00 00:00:00', 13, 2, 'Gentle Remainder Alert', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now ##URL## To know more details.', 89, 1, '2017-02-22 00:00:00', '2017-03-08 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(4, '2017-02-01 07:17:06', '0000-00-00 00:00:00', 13, 2, 'Gentle Remainder Alert', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit ##URL##', 122, 1, '2017-02-22 00:00:00', '2017-03-08 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(5, '2017-02-04 05:46:07', '0000-00-00 00:00:00', 13, 1, 'Sms Alert Campaign', 'Sms Alert Campaign', 18, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(6, '2017-03-12 06:15:17', '0000-00-00 00:00:00', 13, 1, 'Number of sms will be Debit', 'Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will12.', 161, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 5, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(7, '2017-03-12 05:25:08', '0000-00-00 00:00:00', 13, 1, 'Bike Due Alert', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', 88, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(8, '2017-03-13 05:52:59', '0000-00-00 00:00:00', 13, 2, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing.', 343, 1, '2017-03-01 00:00:00', '2017-03-01 00:00:00', 7, 0, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(9, '2017-03-13 05:54:05', '0000-00-00 00:00:00', 13, 2, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 244, 1, '2017-03-29 00:00:00', '2017-03-31 00:00:00', 7, 0, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(10, '2017-03-13 05:58:03', '0000-00-00 00:00:00', 13, 2, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 440, 1, '2017-03-16 00:00:00', '2017-03-18 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(11, '2017-03-19 01:05:52', '0000-00-00 00:00:00', 13, 1, 'Mt First Campaign', 'Thank you for visiting our Shop Dialbe. Your bill amount is Rs.500. for more visit: https://goo.gl/lzs7ma', 105, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(12, '2017-03-19 01:08:21', '0000-00-00 00:00:00', 13, 1, 'Hello Thank you for visiting our Shop Dialbe.', 'Hello Thank you for visiting our Shop Dialbe. Your bill amount is Rs.500. for more visit: https://goo.gl/lzs7ma', 111, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 1, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(13, '2017-04-06 07:06:31', '0000-00-00 00:00:00', 13, 1, 'provides a excellent information services between local business', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', 192, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(14, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 13, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.', 55, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(15, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 13, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.', 55, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(16, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 13, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.', 55, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(17, '2017-04-06 07:55:23', '0000-00-00 00:00:00', 13, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.', 55, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(18, '2017-04-06 08:02:01', '0000-00-00 00:00:00', 13, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', 165, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(19, '2017-04-06 08:03:13', '0000-00-00 00:00:00', 13, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.', 55, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 1, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(20, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 13, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', 110, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(21, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 7, 1, 'Provide the most accurate data to users and businesses.', 'Provide the most accurate data to users and businesses.', 55, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 7, 0, '', '', 0, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(22, '2017-04-09 05:25:34', '0000-00-00 00:00:00', 13, 1, 'Advertisments View Notifications', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', 384, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 2, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(23, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 13, 1, 'Advertisments View Notifications', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', 352, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 5, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(24, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 13, 1, 'Advertisments View Notifications', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', 128, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(25, '2017-04-08 05:27:05', '0000-00-00 00:00:00', 13, 1, 'Advertisments View Notifications', 'Advertisments View Notifications', 32, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(26, '2017-04-09 05:31:08', '0000-00-00 00:00:00', 13, 2, 'Advertisments View Notifications', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', 160, 1, '2017-04-20 00:00:00', '2017-04-14 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(27, '2017-04-09 06:58:44', '0000-00-00 00:00:00', 13, 1, 'Font Awesome gives you scalable vector icons that can instantly be customized', 'Font Awesome gives you scalable vector icons that can instantly be customized', 77, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(28, '2017-04-09 06:59:42', '0000-00-00 00:00:00', 13, 1, 'getTotalSmsCounts', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', 68, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 5, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(29, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 13, 1, 'Font Awesome gives you scalable vector icons that can instantly be customized', 'Font Awesome gives you scalable vector icons that can instantly be customized', 77, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(30, '2017-04-09 07:01:12', '0000-00-00 00:00:00', 13, 1, 'Font Awesome gives you scalable vector icons that can instantly be customized', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', 231, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 5, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(31, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 13, 1, 'Font Awesome gives you scalable vector icons that can instantly be customized', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', 154, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(32, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 13, 1, 'Font Awesome gives you scalable vector icons that can instantly be customized', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', 154, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(33, '2017-04-09 07:02:04', '0000-00-00 00:00:00', 13, 1, 'Font Awesome gives you scalable vector icons that can instantly be customized', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', 154, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(34, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 13, 1, 'Font Awesome gives you scalable vector icons that can instantly be customized', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', 154, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 5, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(35, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 0, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(36, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 0, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(37, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 0, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(38, '2017-04-20 06:46:25', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 0, 0, '', '', 5, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(39, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information s', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 0, 0, '', '', 4, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(40, '2017-04-20 06:53:21', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(41, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(42, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(43, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(44, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(45, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(46, '2017-04-20 07:01:52', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(47, '2017-04-20 07:03:20', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(48, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(49, '2017-04-20 07:05:27', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 5, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(50, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 13, 1, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 528, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 8, 8, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(51, '2017-04-20 08:09:42', '0000-00-00 00:00:00', 20, 1, 'Dialbe.com provides a excellent information services', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 2, 0, '', '', 8, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(52, '2017-04-20 08:18:26', '0000-00-00 00:00:00', 20, 2, 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 528, 1, '2017-04-21 00:00:00', '2017-05-04 00:00:00', 2, 2, 0, '', '', 8, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(53, '2017-04-20 08:33:53', '0000-00-00 00:00:00', 20, 1, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 176, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 2, 0, '', '', 8, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(54, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 29, 1, 'Lorem Ipsum Is Simply', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 195, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 10, 10, 0, '', '', 9, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(55, '2017-05-06 07:20:25', '0000-00-00 00:00:00', 29, 1, 'Lorem Ipsum Is Simply', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 195, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 90, 10, 0, '', '', 9, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(56, '2017-05-05 07:20:25', '0000-00-00 00:00:00', 29, 1, 'Lorem Ipsum Is Simply', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 195, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 10, 10, 0, '', '', 9, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(57, '2017-05-24 07:36:42', '0000-00-00 00:00:00', 13, 1, 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', 266, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(58, '2017-05-24 07:37:07', '0000-00-00 00:00:00', 13, 1, 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', 266, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(59, '2017-05-24 07:38:22', '0000-00-00 00:00:00', 13, 1, 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', 'Hi ##USERNAME##, Thanks For Purchasing A Product .pls visit our Site ##URL## .', 78, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 0, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(60, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 13, 2, 'when an unknown printer took a galley', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', 427, 1, '2017-05-02 00:00:00', '2017-05-23 00:00:00', 10, 10, 0, '', '', 6, '427when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', 1, 1, 2, NULL, 0, 0, 0, 0),
-(61, '2017-05-26 06:29:10', '0000-00-00 00:00:00', 13, 2, 'when an unknown printer took a galley', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', 342, 1, '2017-05-02 00:00:00', '2017-05-02 00:00:00', 10, 10, 0, 'app_data/campaign/', 'images.jpg', 6, '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 1, 1, 1, NULL, 0, 0, 0, 0),
-(62, '2017-05-29 07:48:37', '0000-00-00 00:00:00', 13, 1, 'known printer took a galley of type', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', 140, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 17, 17, 0, '', '', 6, '', '', 0, 0, 0, NULL, 0, 0, 0, 0),
-(63, '2017-07-27 07:39:55', '0000-00-00 00:00:00', 2, 2, 'savu da', 'dffdfffdfd', 10, 1, '2017-07-27 00:00:00', '2017-07-27 00:00:00', 10, 10, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 1, NULL, 0, 0, 0, 0),
-(64, '2017-07-28 06:50:43', '0000-00-00 00:00:00', 2, 2, 'dfgfgg', 'fff', 3, 1, '2017-07-19 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(65, '2017-07-30 05:12:11', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 74, 1, '2017-07-23 00:00:00', '2017-07-31 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 1, NULL, 0, 0, 0, 0),
-(66, '2017-07-30 05:12:49', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Hia ##USERNAME## , Use coupon code ##CODE## reedme.', 125, 1, '2017-07-23 00:00:00', '2017-07-31 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(67, '2017-07-30 05:13:11', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Hia ##USERNAME## , Use coupon code ##CODE## reedme.', 125, 1, '2017-07-23 00:00:00', '2017-07-31 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(68, '2017-07-30 05:13:28', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Hia ##USERNAME## , Use coupon code ##CODE## reedme.', 125, 1, '2017-07-23 00:00:00', '2017-07-31 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(69, '2017-07-30 05:14:12', '0000-00-00 00:00:00', 2, 2, 'ffgff', 'hi ##USERNAME##,pls use ##CODE## to', 35, 1, '2017-07-07 00:00:00', '2017-07-25 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(70, '2017-07-30 05:15:02', '0000-00-00 00:00:00', 2, 2, 'hi', 'hi ##CODE##', 11, 1, '2017-07-12 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(71, '2017-07-30 05:20:14', '0000-00-00 00:00:00', 2, 2, 'hi', 'hi ##CODE##', 11, 1, '2017-07-12 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(72, '2017-07-30 05:50:35', '0000-00-00 00:00:00', 2, 2, 'hi', 'hi ##CODE##', 11, 1, '2017-07-12 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(73, '2017-07-30 05:51:40', '0000-00-00 00:00:00', 2, 2, 'hi', 'hi ##CODE##', 11, 1, '2017-07-12 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(74, '2017-07-30 05:53:09', '0000-00-00 00:00:00', 2, 2, 'hi', 'hi ##CODE##', 11, 1, '2017-07-12 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(75, '2017-07-30 05:53:33', '0000-00-00 00:00:00', 2, 2, 'hi', 'hi ##CODE##', 11, 1, '2017-07-12 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(76, '2017-07-30 05:53:50', '0000-00-00 00:00:00', 2, 2, 'hi', 'hi ##CODE##', 11, 1, '2017-07-12 00:00:00', '2017-07-26 00:00:00', 10, 0, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, '', '', 0, 1, 0, NULL, 0, 0, 0, 0),
-(77, '2017-08-13 07:34:49', '0000-00-00 00:00:00', 2, 2, 'Best Offer Campaign', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 370, 1, '2017-08-13 00:00:00', '2017-08-13 00:00:00', 10, 10, 0, 'app_data/campaign/', 'download (3).jpg', 0, '', '', 1, 1, 0, NULL, 0, 0, 0, 0),
-(78, '2017-08-13 06:25:35', '0000-00-00 00:00:00', 2, 2, 'Provides A Excellent Information', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 412, 1, '2017-08-13 00:00:00', '2017-08-15 00:00:00', 10, 10, 0, 'app_data/campaign/', 'chickendinner_640x480.jpg', 0, 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', '', 1, 1, 1, 'https://www.dragdeal.com/', 1, 100, 75, 0),
-(79, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 2, 2, 'Provides A Excellent Information', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 266, 1, '2017-08-13 00:00:00', '2017-08-29 00:00:00', 10, 10, 0, 'app_data/campaign/', 'download (4).jpg', 0, 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', '', 1, 1, 0, 'https://www.dragdeal.com/', 2, 0, 0, 45.1),
-(80, '2017-08-13 07:02:22', '0000-00-00 00:00:00', 2, 2, 'hrello', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 266, 1, '2017-08-13 00:00:00', '2017-08-30 00:00:00', 10, 10, 0, 'app_data/campaign/', 'download (3).jpg', 0, 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', '', 1, 1, 0, 'https://www.dragdeal.com/', 1, 5100, 500, 0),
-(81, '2017-08-15 05:59:48', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Pls user ##CODE## the code', 26, 1, '2017-08-15 00:00:00', '2017-08-16 00:00:00', 10, 0, 0, '', '', 0, '', '', 0, 1, 0, 'https://www.dragdeal.com/', 1, 0, 0, 0),
-(82, '2017-08-15 06:00:20', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Pls user ##CODE## the code', 26, 2, '2017-08-15 00:00:00', '2017-08-16 00:00:00', 10, 0, 0, '', '', 0, '', '', 0, 1, 0, 'https://www.dragdeal.com/', 1, 0, 0, 0),
-(83, '2017-08-15 06:09:41', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 74, 2, '2017-08-15 00:00:00', '2017-08-29 00:00:00', 10, 0, 0, 'app_data/campaign/', 'download (3).jpg', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not', '', 1, 1, 0, 'https://www.dragdeal.com/', 1, 500, 120, 0),
-(84, '2017-08-15 06:10:04', '0000-00-00 00:00:00', 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry pls use##CODE##', 89, 2, '2017-08-15 00:00:00', '2017-08-29 00:00:00', 10, 0, 0, 'app_data/campaign/', 'download (3).jpg', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not', '', 1, 1, 0, 'https://www.dragdeal.com/', 1, 500, 120, 0),
-(85, '2018-05-20 07:03:41', '0000-00-00 00:00:00', 49, 2, 'Special Offer Of this Season', 'The Google URL Shortener At Goo.gl Is A Service That Takes Long URLs And Squeezes Them Into Fewer Characters To Make A Link That Is Easier To Share, Tweet .For More Visit ##URL##.', 179, 1, '2018-05-20 00:00:00', '2018-05-21 00:00:00', 1, 0, 0, '', '', 0, '', '', 0, 1, 0, 'https://www.dragdeal.com/', 1, 0, 0, 0),
-(86, '2018-05-20 01:58:41', '0000-00-00 00:00:00', 49, 2, 'MySQL returned an empty result set', 'MySQL returned an empty result set', 34, 1, '2018-05-20 00:00:00', '2018-05-23 00:00:00', 1, 0, 0, 'app_data/campaign/', 'IMG_20171005_231749.jpg', 0, '', '', 0, 1, 0, 'https://www.dragdeal.com/', 1, 0, 0, 0);
+(1, '2018-08-09 06:49:26', '0000-00-00 00:00:00', 2, 1, 'Thanks For Visit', 'Hi ##USERNAME##. Thanks For Visiting Our Shop. For More visit ##URL##', 69, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0, '', '', 0, '', '', 0, 0, 0, 'https://www.dragdeal.com', 0, 0, 0, 0),
+(2, '2018-08-10 06:27:31', '0000-00-00 00:00:00', 2, 1, 'My First Campaign', 'Hi ##USERNAME##, Thanks For ##URL##', 35, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 0, 0, '', '', 0, '', '', 0, 0, 0, 'https://www.dragdeal.com', 0, 0, 0, 0),
+(3, '2018-08-10 06:45:40', '0000-00-00 00:00:00', 2, 1, 'Hello First Campaign', 'Hi ##USERNAME##, Thanks For ##URL##', 35, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 0, 0, '', '', 0, '', '', 0, 0, 0, 'https://www.dragdeal.com', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -375,7 +170,7 @@ CREATE TABLE `advertisments_customers_campaign_list` (
   `camping_type_id` bigint(20) NOT NULL,
   `advertisments_customers_campaign_id` bigint(20) NOT NULL,
   `parent_user_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   `mobileno` varchar(20) NOT NULL,
   `message` varchar(500) NOT NULL,
   `coupon_code` varchar(10) NOT NULL,
@@ -391,453 +186,20 @@ CREATE TABLE `advertisments_customers_campaign_list` (
 -- Dumping data for table `advertisments_customers_campaign_list`
 --
 
-INSERT INTO `advertisments_customers_campaign_list` (`id`, `created`, `modified`, `camping_type_id`, `advertisments_customers_campaign_id`, `parent_user_id`, `user_id`, `mobileno`, `message`, `coupon_code`, `campaign_url`, `campaign_url_short`, `token`, `status`, `is_verified`, `is_redeemed`) VALUES
-(1, '2017-01-28 04:05:55', '0000-00-00 00:00:00', 1, 1, 13, 2, '9791447547', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(2, '2017-01-28 04:05:55', '0000-00-00 00:00:00', 1, 1, 13, 4, '9791447539', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(3, '2017-01-28 04:05:55', '0000-00-00 00:00:00', 1, 1, 13, 5, '97914475400', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(4, '2017-01-28 04:05:56', '0000-00-00 00:00:00', 1, 1, 13, 6, '9791447541', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(5, '2017-01-28 04:05:56', '0000-00-00 00:00:00', 1, 1, 13, 7, '9791447541', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(6, '2017-01-28 04:05:56', '0000-00-00 00:00:00', 1, 1, 13, 8, '9791447541', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(7, '2017-01-28 04:05:56', '0000-00-00 00:00:00', 1, 1, 13, 9, '9791447541', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(8, '2017-01-28 04:05:56', '0000-00-00 00:00:00', 1, 1, 13, 10, '8989891221', 'it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically. it will grow automatically.', '', '', '', '', 1, 0, 0),
-(9, '2017-01-30 06:33:22', '0000-00-00 00:00:00', 1, 2, 13, 2, '9791447547', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', '', 'https://yts.ag/movie/terminator-genisys-2015', 'https://yts.ag/movie/terminator-genisys-2015', '', 1, 0, 0),
-(10, '2017-01-30 06:33:22', '0000-00-00 00:00:00', 1, 2, 13, 4, '9791447539', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', '', 'https://yts.ag/movie/terminator-genisys-2015', 'https://yts.ag/movie/terminator-genisys-2015', '', 1, 0, 0),
-(11, '2017-01-30 06:33:22', '0000-00-00 00:00:00', 1, 2, 13, 5, '97914475400', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', '', 'https://yts.ag/movie/terminator-genisys-2015', 'https://yts.ag/movie/terminator-genisys-2015', '', 1, 0, 0),
-(12, '2017-01-30 06:33:22', '0000-00-00 00:00:00', 1, 2, 13, 6, '9791447541', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', '', 'https://yts.ag/movie/terminator-genisys-2015', 'https://yts.ag/movie/terminator-genisys-2015', '', 1, 0, 0),
-(13, '2017-01-30 06:33:22', '0000-00-00 00:00:00', 1, 2, 13, 7, '9791447541', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', '', 'https://yts.ag/movie/terminator-genisys-2015', 'https://yts.ag/movie/terminator-genisys-2015', '', 1, 0, 0),
-(14, '2017-01-30 06:33:22', '0000-00-00 00:00:00', 1, 2, 13, 8, '9791447541', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', '', 'https://yts.ag/movie/terminator-genisys-2015', 'https://yts.ag/movie/terminator-genisys-2015', '', 1, 0, 0),
-(15, '2017-01-30 06:33:22', '0000-00-00 00:00:00', 1, 2, 13, 9, '9791447541', 'Lorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printingLorem Ipsum is simply dummy text of the printing', '', 'https://yts.ag/movie/terminator-genisys-2015', 'https://yts.ag/movie/terminator-genisys-2015', '', 1, 0, 0),
-(16, '2017-02-01 07:14:10', '0000-00-00 00:00:00', 1, 3, 13, 2, '9791447547', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now http://www.dialbe.com/ To know more details.', '', 'http://www.dialbe.com/', 'https://goo.gl/bfJJH8', '', 1, 0, 0),
-(17, '2017-02-01 07:14:11', '0000-00-00 00:00:00', 1, 3, 13, 4, '9791447539', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now http://www.dialbe.com/ To know more details.', '', 'http://www.dialbe.com/', 'https://goo.gl/bfJJH8', '', 1, 0, 0),
-(18, '2017-02-01 07:14:11', '0000-00-00 00:00:00', 1, 3, 13, 5, '97914475400', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now http://www.dialbe.com/ To know more details.', '', 'http://www.dialbe.com/', 'https://goo.gl/bfJJH8', '', 1, 0, 0),
-(19, '2017-02-01 07:14:11', '0000-00-00 00:00:00', 1, 3, 13, 6, '9791447541', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now http://www.dialbe.com/ To know more details.', '', 'http://www.dialbe.com/', 'https://goo.gl/bfJJH8', '', 1, 0, 0),
-(20, '2017-02-01 07:14:11', '0000-00-00 00:00:00', 1, 3, 13, 7, '9791447541', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now http://www.dialbe.com/ To know more details.', '', 'http://www.dialbe.com/', 'https://goo.gl/bfJJH8', '', 1, 0, 0),
-(21, '2017-02-01 07:14:12', '0000-00-00 00:00:00', 1, 3, 13, 8, '9791447541', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now http://www.dialbe.com/ To know more details.', '', 'http://www.dialbe.com/', 'https://goo.gl/bfJJH8', '', 1, 0, 0),
-(22, '2017-02-01 07:14:12', '0000-00-00 00:00:00', 1, 3, 13, 9, '9791447541', 'Last Gentle Reminder Alert For Your Bike Loan Pls Visit Now http://www.dialbe.com/ To know more details.', '', 'http://www.dialbe.com/', 'https://goo.gl/bfJJH8', '', 1, 0, 0),
-(23, '2017-02-01 07:17:07', '0000-00-00 00:00:00', 1, 4, 13, 2, '9791447547', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit http://www.dialbe.com/', '', 'http://www.dialbe.com/', 'https://goo.gl/ahc21G', '', 1, 0, 0),
-(24, '2017-02-01 07:17:08', '0000-00-00 00:00:00', 1, 4, 13, 4, '9791447539', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit http://www.dialbe.com/', '', 'http://www.dialbe.com/', 'https://goo.gl/K9QMqg', '', 1, 0, 0),
-(25, '2017-02-01 07:17:08', '0000-00-00 00:00:00', 1, 4, 13, 5, '97914475400', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit http://www.dialbe.com/', '', 'http://www.dialbe.com/', 'https://goo.gl/CJf4pJ', '', 1, 0, 0),
-(26, '2017-02-01 07:17:09', '0000-00-00 00:00:00', 1, 4, 13, 6, '9791447541', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit http://www.dialbe.com/', '', 'http://www.dialbe.com/', 'https://goo.gl/2IQkjg', '', 1, 0, 0),
-(27, '2017-02-01 07:17:09', '0000-00-00 00:00:00', 1, 4, 13, 7, '9791447541', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit http://www.dialbe.com/', '', 'http://www.dialbe.com/', 'https://goo.gl/AhJ7gU', '', 1, 0, 0),
-(28, '2017-02-01 07:17:10', '0000-00-00 00:00:00', 1, 4, 13, 8, '9791447541', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit http://www.dialbe.com/', '', 'http://www.dialbe.com/', 'https://goo.gl/r5tQjZ', '', 1, 0, 0),
-(29, '2017-02-01 07:17:10', '0000-00-00 00:00:00', 1, 4, 13, 9, '9791447541', 'Reliable and affordable bulk SMS provider for businesses & enterprises. Buy Now! 25000+ Customer In India.Pl visit http://www.dialbe.com/', '', 'http://www.dialbe.com/', 'https://goo.gl/dkgFFu', '', 1, 0, 0),
-(30, '2017-02-04 05:46:08', '0000-00-00 00:00:00', 1, 5, 13, 2, '9791447547', 'Sms Alert Campaign', '', '', '', '', 1, 0, 0),
-(31, '2017-02-04 05:46:08', '0000-00-00 00:00:00', 1, 5, 13, 4, '9791447539', 'Sms Alert Campaign', '', '', '', '', 1, 0, 0),
-(32, '2017-02-04 05:46:08', '0000-00-00 00:00:00', 1, 5, 13, 5, '97914475400', 'Sms Alert Campaign', '', '', '', '', 1, 0, 0),
-(33, '2017-02-04 05:46:08', '0000-00-00 00:00:00', 1, 5, 13, 6, '9791447541', 'Sms Alert Campaign', '', '', '', '', 1, 0, 0),
-(34, '2017-02-04 05:46:09', '0000-00-00 00:00:00', 1, 5, 13, 7, '9791447541', 'Sms Alert Campaign', '', '', '', '', 1, 0, 0),
-(35, '2017-02-04 05:46:09', '0000-00-00 00:00:00', 1, 5, 13, 8, '9791447541', 'Sms Alert Campaign', '', '', '', '', 1, 0, 0),
-(36, '2017-02-04 05:46:09', '0000-00-00 00:00:00', 1, 5, 13, 9, '9791447541', 'Sms Alert Campaign', '', '', '', '', 1, 0, 0),
-(37, '2017-03-12 06:15:18', '0000-00-00 00:00:00', 1, 6, 13, 5, '97914475400', 'Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will12.', '', '', '', '', 1, 0, 0),
-(38, '2017-03-12 06:15:18', '0000-00-00 00:00:00', 1, 6, 13, 6, '9791447541', 'Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will12.', '', '', '', '', 1, 0, 0),
-(39, '2017-03-12 06:15:18', '0000-00-00 00:00:00', 1, 6, 13, 7, '9791447541', 'Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will12.', '', '', '', '', 1, 0, 0),
-(40, '2017-03-12 06:15:18', '0000-00-00 00:00:00', 1, 6, 13, 8, '9791447541', 'Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will12.', '', '', '', '', 1, 0, 0),
-(41, '2017-03-12 06:15:18', '0000-00-00 00:00:00', 1, 6, 13, 9, '9791447541', 'Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will be Debit Number of sms will12.', '', '', '', '', 1, 0, 0),
-(42, '2017-03-12 05:25:08', '0000-00-00 00:00:00', 1, 7, 13, 2, '9791447547', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', '', '', '', '', 1, 0, 0),
-(43, '2017-03-12 05:25:08', '0000-00-00 00:00:00', 1, 7, 13, 4, '9791447539', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', '', '', '', '', 1, 0, 0),
-(44, '2017-03-12 05:25:08', '0000-00-00 00:00:00', 1, 7, 13, 5, '97914475400', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', '', '', '', '', 1, 0, 0),
-(45, '2017-03-12 05:25:08', '0000-00-00 00:00:00', 1, 7, 13, 6, '9791447541', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', '', '', '', '', 1, 0, 0),
-(46, '2017-03-12 05:25:09', '0000-00-00 00:00:00', 1, 7, 13, 7, '9791447541', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', '', '', '', '', 1, 0, 0),
-(47, '2017-03-12 05:25:09', '0000-00-00 00:00:00', 1, 7, 13, 8, '9791447541', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', '', '', '', '', 1, 0, 0),
-(48, '2017-03-12 05:25:09', '0000-00-00 00:00:00', 1, 7, 13, 9, '9791447541', 'Last Gentle Remainder to avoid due. Pls Visit <a href=\"http://www.dialbe.com\">Dialbe</a>', '', '', '', '', 1, 0, 0),
-(49, '2017-03-13 05:58:03', '0000-00-00 00:00:00', 1, 10, 13, 2, '9791447547', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(50, '2017-03-13 05:58:03', '0000-00-00 00:00:00', 1, 10, 13, 4, '9791447539', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(51, '2017-03-13 05:58:03', '0000-00-00 00:00:00', 1, 10, 13, 5, '97914475400', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(52, '2017-03-13 05:58:03', '0000-00-00 00:00:00', 1, 10, 13, 6, '9791447541', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(53, '2017-03-13 05:58:03', '0000-00-00 00:00:00', 1, 10, 13, 7, '9791447541', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(54, '2017-03-13 05:58:03', '0000-00-00 00:00:00', 1, 10, 13, 8, '9791447541', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(55, '2017-03-13 05:58:04', '0000-00-00 00:00:00', 1, 10, 13, 9, '9791447541', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(56, '2017-03-19 01:08:21', '0000-00-00 00:00:00', 1, 12, 13, 2, '9791447542', 'Hello Thank you for visiting our Shop Dialbe. Your bill amount is Rs.500. for more visit: https://goo.gl/lzs7ma', '', '', '', '', 1, 0, 0),
-(57, '2017-04-06 07:06:32', '0000-00-00 00:00:00', 1, 13, 13, 2, '9791447542', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', '', '', '', '', 1, 0, 0),
-(58, '2017-04-06 07:06:32', '0000-00-00 00:00:00', 1, 13, 13, 4, '9791447539', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', '', '', '', '', 1, 0, 0),
-(59, '2017-04-06 07:06:32', '0000-00-00 00:00:00', 1, 13, 13, 5, '97914475400', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', '', '', '', '', 1, 0, 0),
-(60, '2017-04-06 07:06:32', '0000-00-00 00:00:00', 1, 13, 13, 6, '9791447541', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', '', '', '', '', 1, 0, 0),
-(61, '2017-04-06 07:06:32', '0000-00-00 00:00:00', 1, 13, 13, 7, '9791447541', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', '', '', '', '', 1, 0, 0),
-(62, '2017-04-06 07:06:32', '0000-00-00 00:00:00', 1, 13, 13, 8, '9791447541', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', '', '', '', '', 1, 0, 0),
-(63, '2017-04-06 07:06:32', '0000-00-00 00:00:00', 1, 13, 13, 9, '9791447541', 'provides a excellent information services between local businessprovides a excellent information services between local businessprovides a excellent information services between local business', '', '', '', '', 1, 0, 0),
-(64, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 1, 14, 13, 2, '9791447542', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(65, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 1, 14, 13, 4, '9791447539', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(66, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 1, 14, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(67, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 1, 14, 13, 6, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(68, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 1, 14, 13, 7, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(69, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 1, 14, 13, 8, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(70, '2017-04-06 07:54:37', '0000-00-00 00:00:00', 1, 14, 13, 9, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(71, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 1, 15, 13, 2, '9791447542', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(72, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 1, 15, 13, 4, '9791447539', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(73, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 1, 15, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(74, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 1, 15, 13, 6, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(75, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 1, 15, 13, 7, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(76, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 1, 15, 13, 8, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(77, '2017-04-06 07:54:48', '0000-00-00 00:00:00', 1, 15, 13, 9, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(78, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 1, 16, 13, 2, '9791447542', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(79, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 1, 16, 13, 4, '9791447539', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(80, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 1, 16, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(81, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 1, 16, 13, 6, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(82, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 1, 16, 13, 7, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(83, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 1, 16, 13, 8, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(84, '2017-04-06 07:55:09', '0000-00-00 00:00:00', 1, 16, 13, 9, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(85, '2017-04-06 07:55:24', '0000-00-00 00:00:00', 1, 17, 13, 2, '9791447542', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(86, '2017-04-06 07:55:24', '0000-00-00 00:00:00', 1, 17, 13, 4, '9791447539', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(87, '2017-04-06 07:55:24', '0000-00-00 00:00:00', 1, 17, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(88, '2017-04-06 07:55:24', '0000-00-00 00:00:00', 1, 17, 13, 6, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(89, '2017-04-06 07:55:24', '0000-00-00 00:00:00', 1, 17, 13, 7, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(90, '2017-04-06 07:55:24', '0000-00-00 00:00:00', 1, 17, 13, 8, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(91, '2017-04-06 07:55:24', '0000-00-00 00:00:00', 1, 17, 13, 9, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(92, '2017-04-06 08:02:01', '0000-00-00 00:00:00', 1, 18, 13, 2, '9791447542', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(93, '2017-04-06 08:02:01', '0000-00-00 00:00:00', 1, 18, 13, 4, '9791447539', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(94, '2017-04-06 08:02:01', '0000-00-00 00:00:00', 1, 18, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(95, '2017-04-06 08:02:02', '0000-00-00 00:00:00', 1, 18, 13, 6, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(96, '2017-04-06 08:02:02', '0000-00-00 00:00:00', 1, 18, 13, 7, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(97, '2017-04-06 08:02:02', '0000-00-00 00:00:00', 1, 18, 13, 8, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(98, '2017-04-06 08:02:02', '0000-00-00 00:00:00', 1, 18, 13, 9, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(99, '2017-04-06 08:03:13', '0000-00-00 00:00:00', 1, 19, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(100, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 1, 20, 13, 2, '9791447542', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(101, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 1, 20, 13, 4, '9791447539', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(102, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 1, 20, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(103, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 1, 20, 13, 6, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(104, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 1, 20, 13, 7, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(105, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 1, 20, 13, 8, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(106, '2017-04-06 08:04:52', '0000-00-00 00:00:00', 1, 20, 13, 9, '9791447541', 'Provide the most accurate data to users and businesses.Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(107, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 1, 21, 13, 2, '9791447542', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(108, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 1, 21, 13, 4, '9791447539', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(109, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 1, 21, 13, 5, '97914475400', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(110, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 1, 21, 13, 6, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(111, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 1, 21, 13, 7, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(112, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 1, 21, 13, 8, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(113, '2017-04-06 08:05:23', '0000-00-00 00:00:00', 1, 21, 13, 9, '9791447541', 'Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(114, '2017-04-09 05:25:34', '0000-00-00 00:00:00', 1, 22, 13, 6, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(115, '2017-04-09 05:25:35', '0000-00-00 00:00:00', 1, 22, 13, 10, '8989891221', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(116, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 2, '9791447542', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(117, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 4, '9791447539', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(118, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 5, '97914475400', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(119, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 6, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(120, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 7, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(121, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 8, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(122, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 9, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(123, '2017-04-09 05:26:06', '0000-00-00 00:00:00', 1, 23, 13, 10, '8989891221', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(124, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 1, 24, 13, 2, '9791447542', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(125, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 1, 24, 13, 4, '9791447539', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(126, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 1, 24, 13, 5, '97914475400', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(127, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 1, 24, 13, 6, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(128, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 1, 24, 13, 7, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(129, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 1, 24, 13, 8, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(130, '2017-04-09 05:26:45', '0000-00-00 00:00:00', 1, 24, 13, 9, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(131, '2017-04-09 05:26:46', '0000-00-00 00:00:00', 1, 24, 13, 10, '8989891221', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', '', '', '', 1, 0, 0),
-(132, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 2, '9791447542', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(133, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 4, '9791447539', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(134, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 5, '97914475400', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(135, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 6, '9791447541', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(136, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 7, '9791447541', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(137, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 8, '9791447541', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(138, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 9, '9791447541', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(139, '2017-04-09 05:27:05', '0000-00-00 00:00:00', 1, 25, 13, 10, '8989891221', 'Advertisments View Notifications', '', '', '', '', 1, 0, 0),
-(140, '2017-04-09 05:31:08', '0000-00-00 00:00:00', 1, 26, 13, 2, '9791447542', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(141, '2017-04-09 05:31:08', '0000-00-00 00:00:00', 1, 26, 13, 4, '9791447539', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(142, '2017-04-09 05:31:08', '0000-00-00 00:00:00', 1, 26, 13, 5, '97914475400', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(143, '2017-04-09 05:31:08', '0000-00-00 00:00:00', 1, 26, 13, 6, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(144, '2017-04-09 05:31:08', '0000-00-00 00:00:00', 1, 26, 13, 7, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(145, '2017-04-09 05:31:09', '0000-00-00 00:00:00', 1, 26, 13, 8, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(146, '2017-04-09 05:31:09', '0000-00-00 00:00:00', 1, 26, 13, 9, '9791447541', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(147, '2017-04-09 05:31:09', '0000-00-00 00:00:00', 1, 26, 13, 10, '8989891221', 'Advertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View NotificationsAdvertisments View Notifications', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(148, '2017-04-09 06:58:44', '0000-00-00 00:00:00', 1, 27, 13, 2, '9791447542', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(149, '2017-04-09 06:58:44', '0000-00-00 00:00:00', 1, 27, 13, 4, '9791447539', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(150, '2017-04-09 06:58:44', '0000-00-00 00:00:00', 1, 27, 13, 5, '97914475400', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(151, '2017-04-09 06:58:44', '0000-00-00 00:00:00', 1, 27, 13, 6, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(152, '2017-04-09 06:58:44', '0000-00-00 00:00:00', 1, 27, 13, 7, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(153, '2017-04-09 06:58:44', '0000-00-00 00:00:00', 1, 27, 13, 8, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(154, '2017-04-09 06:58:45', '0000-00-00 00:00:00', 1, 27, 13, 9, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(155, '2017-04-09 06:58:45', '0000-00-00 00:00:00', 1, 27, 13, 10, '8989891221', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(156, '2017-04-09 06:59:42', '0000-00-00 00:00:00', 1, 28, 13, 2, '9791447542', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(157, '2017-04-09 06:59:42', '0000-00-00 00:00:00', 1, 28, 13, 4, '9791447539', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(158, '2017-04-09 06:59:43', '0000-00-00 00:00:00', 1, 28, 13, 5, '97914475400', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(159, '2017-04-09 06:59:43', '0000-00-00 00:00:00', 1, 28, 13, 6, '9791447541', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(160, '2017-04-09 06:59:43', '0000-00-00 00:00:00', 1, 28, 13, 7, '9791447541', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(161, '2017-04-09 06:59:43', '0000-00-00 00:00:00', 1, 28, 13, 8, '9791447541', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(162, '2017-04-09 06:59:43', '0000-00-00 00:00:00', 1, 28, 13, 9, '9791447541', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(163, '2017-04-09 06:59:43', '0000-00-00 00:00:00', 1, 28, 13, 10, '8989891221', 'getTotalSmsCountsgetTotalSmsCountsgetTotalSmsCountsgetTotalSmsCounts', '', '', '', '', 1, 0, 0),
-(164, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 2, '9791447542', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(165, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 4, '9791447539', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(166, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 5, '97914475400', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(167, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 6, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(168, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 7, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(169, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 8, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(170, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 9, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(171, '2017-04-09 07:00:56', '0000-00-00 00:00:00', 1, 29, 13, 10, '8989891221', 'Font Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(172, '2017-04-09 07:01:12', '0000-00-00 00:00:00', 1, 30, 13, 2, '9791447542', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(173, '2017-04-09 07:01:13', '0000-00-00 00:00:00', 1, 30, 13, 4, '9791447539', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(174, '2017-04-09 07:01:13', '0000-00-00 00:00:00', 1, 30, 13, 5, '97914475400', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(175, '2017-04-09 07:01:13', '0000-00-00 00:00:00', 1, 30, 13, 6, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(176, '2017-04-09 07:01:13', '0000-00-00 00:00:00', 1, 30, 13, 7, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(177, '2017-04-09 07:01:13', '0000-00-00 00:00:00', 1, 30, 13, 8, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(178, '2017-04-09 07:01:13', '0000-00-00 00:00:00', 1, 30, 13, 9, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(179, '2017-04-09 07:01:13', '0000-00-00 00:00:00', 1, 30, 13, 10, '8989891221', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(180, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 2, '9791447542', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(181, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 4, '9791447539', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(182, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 5, '97914475400', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(183, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 6, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(184, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 7, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(185, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 8, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(186, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 9, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(187, '2017-04-09 07:01:42', '0000-00-00 00:00:00', 1, 31, 13, 10, '8989891221', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(188, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 2, '9791447542', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(189, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 4, '9791447539', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(190, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 5, '97914475400', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(191, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 6, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(192, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 7, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(193, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 8, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(194, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 9, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(195, '2017-04-09 07:01:54', '0000-00-00 00:00:00', 1, 32, 13, 10, '8989891221', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(196, '2017-04-09 07:02:04', '0000-00-00 00:00:00', 1, 33, 13, 2, '9791447542', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0);
-INSERT INTO `advertisments_customers_campaign_list` (`id`, `created`, `modified`, `camping_type_id`, `advertisments_customers_campaign_id`, `parent_user_id`, `user_id`, `mobileno`, `message`, `coupon_code`, `campaign_url`, `campaign_url_short`, `token`, `status`, `is_verified`, `is_redeemed`) VALUES
-(197, '2017-04-09 07:02:04', '0000-00-00 00:00:00', 1, 33, 13, 4, '9791447539', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(198, '2017-04-09 07:02:04', '0000-00-00 00:00:00', 1, 33, 13, 5, '97914475400', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(199, '2017-04-09 07:02:04', '0000-00-00 00:00:00', 1, 33, 13, 6, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(200, '2017-04-09 07:02:04', '0000-00-00 00:00:00', 1, 33, 13, 7, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(201, '2017-04-09 07:02:04', '0000-00-00 00:00:00', 1, 33, 13, 8, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(202, '2017-04-09 07:02:05', '0000-00-00 00:00:00', 1, 33, 13, 9, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(203, '2017-04-09 07:02:05', '0000-00-00 00:00:00', 1, 33, 13, 10, '8989891221', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(204, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 2, '9791447542', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(205, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 4, '9791447539', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(206, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 5, '97914475400', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(207, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 6, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(208, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 7, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(209, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 8, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(210, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 9, '9791447541', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(211, '2017-04-09 07:02:46', '0000-00-00 00:00:00', 1, 34, 13, 10, '8989891221', 'Font Awesome gives you scalable vector icons that can instantly be customizedFont Awesome gives you scalable vector icons that can instantly be customized', '', '', '', '', 1, 0, 0),
-(212, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(213, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(214, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(215, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(216, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(217, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(218, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(219, '2017-04-20 06:42:20', '0000-00-00 00:00:00', 1, 35, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(220, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 1, 36, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(221, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 1, 36, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(222, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 1, 36, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(223, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 1, 36, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(224, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 1, 36, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(225, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 1, 36, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(226, '2017-04-20 06:43:00', '0000-00-00 00:00:00', 1, 36, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(227, '2017-04-20 06:43:01', '0000-00-00 00:00:00', 1, 36, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(228, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(229, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(230, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(231, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(232, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(233, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(234, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(235, '2017-04-20 06:45:06', '0000-00-00 00:00:00', 1, 37, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(236, '2017-04-20 06:46:25', '0000-00-00 00:00:00', 1, 38, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(237, '2017-04-20 06:46:25', '0000-00-00 00:00:00', 1, 38, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(238, '2017-04-20 06:46:25', '0000-00-00 00:00:00', 1, 38, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(239, '2017-04-20 06:46:25', '0000-00-00 00:00:00', 1, 38, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(240, '2017-04-20 06:46:26', '0000-00-00 00:00:00', 1, 38, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(241, '2017-04-20 06:46:26', '0000-00-00 00:00:00', 1, 38, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(242, '2017-04-20 06:46:26', '0000-00-00 00:00:00', 1, 38, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(243, '2017-04-20 06:46:26', '0000-00-00 00:00:00', 1, 38, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(244, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(245, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(246, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(247, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(248, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(249, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(250, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(251, '2017-04-20 06:47:22', '0000-00-00 00:00:00', 1, 39, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 0, 0, 0),
-(252, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(253, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(254, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(255, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(256, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(257, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(258, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(259, '2017-04-20 06:53:22', '0000-00-00 00:00:00', 1, 40, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(260, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(261, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(262, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(263, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(264, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(265, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(266, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(267, '2017-04-20 06:55:09', '0000-00-00 00:00:00', 1, 41, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(268, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(269, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(270, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(271, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(272, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(273, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(274, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(275, '2017-04-20 06:56:41', '0000-00-00 00:00:00', 1, 42, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(276, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(277, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(278, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(279, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(280, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(281, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(282, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(283, '2017-04-20 06:59:19', '0000-00-00 00:00:00', 1, 43, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(284, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(285, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(286, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(287, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(288, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(289, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(290, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(291, '2017-04-20 07:00:01', '0000-00-00 00:00:00', 1, 44, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(292, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(293, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(294, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(295, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(296, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(297, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(298, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(299, '2017-04-20 07:00:45', '0000-00-00 00:00:00', 1, 45, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(300, '2017-04-20 07:01:52', '0000-00-00 00:00:00', 1, 46, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(301, '2017-04-20 07:01:52', '0000-00-00 00:00:00', 1, 46, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(302, '2017-04-20 07:01:52', '0000-00-00 00:00:00', 1, 46, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(303, '2017-04-20 07:01:52', '0000-00-00 00:00:00', 1, 46, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(304, '2017-04-20 07:01:52', '0000-00-00 00:00:00', 1, 46, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(305, '2017-04-20 07:01:52', '0000-00-00 00:00:00', 1, 46, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(306, '2017-04-20 07:01:53', '0000-00-00 00:00:00', 1, 46, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(307, '2017-04-20 07:01:53', '0000-00-00 00:00:00', 1, 46, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(308, '2017-04-20 07:03:20', '0000-00-00 00:00:00', 1, 47, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(309, '2017-04-20 07:03:20', '0000-00-00 00:00:00', 1, 47, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(310, '2017-04-20 07:03:20', '0000-00-00 00:00:00', 1, 47, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(311, '2017-04-20 07:03:20', '0000-00-00 00:00:00', 1, 47, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(312, '2017-04-20 07:03:20', '0000-00-00 00:00:00', 1, 47, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(313, '2017-04-20 07:03:21', '0000-00-00 00:00:00', 1, 47, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(314, '2017-04-20 07:03:21', '0000-00-00 00:00:00', 1, 47, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(315, '2017-04-20 07:03:21', '0000-00-00 00:00:00', 1, 47, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(316, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(317, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(318, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(319, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(320, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(321, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(322, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(323, '2017-04-20 07:03:56', '0000-00-00 00:00:00', 1, 48, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(324, '2017-04-20 07:05:27', '0000-00-00 00:00:00', 1, 49, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(325, '2017-04-20 07:05:27', '0000-00-00 00:00:00', 1, 49, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(326, '2017-04-20 07:05:27', '0000-00-00 00:00:00', 1, 49, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(327, '2017-04-20 07:05:27', '0000-00-00 00:00:00', 1, 49, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(328, '2017-04-20 07:05:27', '0000-00-00 00:00:00', 1, 49, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(329, '2017-04-20 07:05:27', '0000-00-00 00:00:00', 1, 49, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(330, '2017-04-20 07:05:28', '0000-00-00 00:00:00', 1, 49, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(331, '2017-04-20 07:05:28', '0000-00-00 00:00:00', 1, 49, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(332, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 2, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(333, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 4, '9791447539', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(334, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 5, '97914475400', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(335, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 6, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(336, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 7, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(337, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 8, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(338, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 9, '9791447541', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(339, '2017-04-20 07:06:14', '0000-00-00 00:00:00', 1, 50, 13, 10, '8989891221', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', '', '', '', 1, 0, 0),
-(340, '2017-04-20 08:09:42', '0000-00-00 00:00:00', 1, 51, 20, 13, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(341, '2017-04-20 08:09:42', '0000-00-00 00:00:00', 1, 51, 20, 21, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(342, '2017-04-20 08:18:26', '0000-00-00 00:00:00', 1, 52, 20, 13, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(343, '2017-04-20 08:18:26', '0000-00-00 00:00:00', 1, 52, 20, 21, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate d', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(344, '2017-04-20 08:33:53', '0000-00-00 00:00:00', 1, 53, 20, 13, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(345, '2017-04-20 08:33:53', '0000-00-00 00:00:00', 1, 53, 20, 21, '9791447542', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', '', '', '', '', 1, 0, 0),
-(346, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 25, '8097914475', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(347, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 26, '9791407538', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(348, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 27, '9791407539', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(349, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 28, '9914875400', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(350, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 29, '9790449541', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(351, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 30, '9790447541', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(352, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 31, '9791487540', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(353, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 32, '9791497541', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(354, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 33, '9791447546', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(355, '2017-05-07 07:20:25', '0000-00-00 00:00:00', 1, 54, 29, 34, '8989891228', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', '', '', '', 1, 0, 0),
-(356, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 2, '9791447542', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(357, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 31, '9791407538', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0);
-INSERT INTO `advertisments_customers_campaign_list` (`id`, `created`, `modified`, `camping_type_id`, `advertisments_customers_campaign_id`, `parent_user_id`, `user_id`, `mobileno`, `message`, `coupon_code`, `campaign_url`, `campaign_url_short`, `token`, `status`, `is_verified`, `is_redeemed`) VALUES
-(358, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 32, '9791407539', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(359, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 33, '9914875400', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(360, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 34, '9790449541', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(361, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 35, '9790447541', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(362, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 36, '9791487540', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(363, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 37, '9791497541', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(364, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 38, '9791447546', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(365, '2017-05-25 07:17:23', '0000-00-00 00:00:00', 1, 60, 13, 39, '8989891228', 'when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specime.when an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specimewhen an unknown printer took a galley of type and scrambled it to make a type specime', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(366, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 2, '9791447542', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(367, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 31, '9791407538', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(368, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 32, '9791407539', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(369, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 33, '9914875400', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(370, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 34, '9790449541', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(371, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 35, '9790447541', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(372, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 36, '9791487540', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(373, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 37, '9791497541', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(374, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 38, '9791447546', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(375, '2017-05-26 06:29:11', '0000-00-00 00:00:00', 1, 61, 13, 39, '8989891228', '427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.427when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specime.when An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Spe.', '', 'http://www.dialbe.com/', NULL, '', 1, 0, 0),
-(376, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 1, '9791447542', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(377, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 2, '9791407538', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(378, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 3, '9791407539', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(379, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 4, '9914875400', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(380, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 5, '9790449541', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(381, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 6, '9790447541', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(382, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 7, '9791487540', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(383, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 8, '9791497541', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(384, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 9, '9791447546', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(385, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 10, '8989891228', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(386, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 11, '9791447540', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(387, '2017-05-29 07:48:38', '0000-00-00 00:00:00', 1, 62, 13, 12, '9791445656', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(388, '2017-05-29 07:48:39', '0000-00-00 00:00:00', 1, 62, 13, 13, '9897891237', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(389, '2017-05-29 07:48:39', '0000-00-00 00:00:00', 1, 62, 13, 14, '9791447540', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(390, '2017-05-29 07:48:39', '0000-00-00 00:00:00', 1, 62, 13, 15, '9791447540', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(391, '2017-05-29 07:48:39', '0000-00-00 00:00:00', 1, 62, 13, 16, '9791447578', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(392, '2017-05-29 07:48:39', '0000-00-00 00:00:00', 1, 62, 13, 17, '9791447532', 'Hai ##USERNAME## known printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '', '', '', '', 1, 0, 0),
-(393, '2017-07-27 07:39:56', '0000-00-00 00:00:00', 1, 63, 2, 2, '9791447542', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/ZeS4wG', '', 1, 0, 0),
-(394, '2017-07-27 07:39:57', '0000-00-00 00:00:00', 1, 63, 2, 38, '9791447546', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/hmdRTM', '', 1, 0, 0),
-(395, '2017-07-27 07:39:57', '0000-00-00 00:00:00', 1, 63, 2, 31, '9791407538', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/kXje5W', '', 1, 0, 0),
-(396, '2017-07-27 07:39:58', '0000-00-00 00:00:00', 1, 63, 2, 32, '9791407539', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/VzatwT', '', 1, 0, 0),
-(397, '2017-07-27 07:39:58', '0000-00-00 00:00:00', 1, 63, 2, 33, '9914875400', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/nUX8JZ', '', 1, 0, 0),
-(398, '2017-07-27 07:39:59', '0000-00-00 00:00:00', 1, 63, 2, 34, '9790449541', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/uii1rY', '', 1, 0, 0),
-(399, '2017-07-27 07:40:00', '0000-00-00 00:00:00', 1, 63, 2, 35, '9790447541', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/fLE3Xn', '', 1, 0, 0),
-(400, '2017-07-27 07:40:00', '0000-00-00 00:00:00', 1, 63, 2, 36, '9791487540', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/ubR6We', '', 1, 0, 0),
-(401, '2017-07-27 07:40:01', '0000-00-00 00:00:00', 1, 63, 2, 37, '9791497541', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/wwe6kP', '', 1, 0, 0),
-(402, '2017-07-27 07:40:01', '0000-00-00 00:00:00', 1, 63, 2, 39, '8989891228', 'dffdfffdfd', '', 'https://www.dragdeal.com/', 'https://goo.gl/gfkFZ4', '', 1, 0, 0),
-(403, '2017-08-13 07:34:50', '0000-00-00 00:00:00', 1, 77, 2, 2, '9791447542', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTM', 'https://www.dragdeal.com/', 'https://goo.gl/1C92eM', '', 1, 0, 0),
-(404, '2017-08-13 07:34:51', '0000-00-00 00:00:00', 1, 77, 2, 38, '9791447546', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTM', 'https://www.dragdeal.com/', 'https://goo.gl/HN6crM', '', 1, 0, 0),
-(405, '2017-08-13 07:34:52', '0000-00-00 00:00:00', 1, 77, 2, 31, '9791407538', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTN', 'https://www.dragdeal.com/', 'https://goo.gl/zyPXXg', '', 1, 0, 0),
-(406, '2017-08-13 07:34:53', '0000-00-00 00:00:00', 1, 77, 2, 32, '9791407539', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTO', 'https://www.dragdeal.com/', 'https://goo.gl/TH8qVM', '', 1, 0, 0),
-(407, '2017-08-13 07:34:54', '0000-00-00 00:00:00', 1, 77, 2, 33, '9914875400', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTP', 'https://www.dragdeal.com/', 'https://goo.gl/1Z9mLZ', '', 1, 0, 0),
-(408, '2017-08-13 07:34:54', '0000-00-00 00:00:00', 1, 77, 2, 34, '9790449541', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTQ', 'https://www.dragdeal.com/', 'https://goo.gl/N4QaRx', '', 1, 0, 0),
-(409, '2017-08-13 07:34:55', '0000-00-00 00:00:00', 1, 77, 2, 35, '9790447541', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTQ', 'https://www.dragdeal.com/', 'https://goo.gl/5x9Uwe', '', 1, 0, 0),
-(410, '2017-08-13 07:34:56', '0000-00-00 00:00:00', 1, 77, 2, 36, '9791487540', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTR', 'https://www.dragdeal.com/', 'https://goo.gl/afu4Zq', '', 1, 0, 0),
-(411, '2017-08-13 07:34:57', '0000-00-00 00:00:00', 1, 77, 2, 37, '9791497541', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTS', 'https://www.dragdeal.com/', 'https://goo.gl/fw6gWg', '', 1, 0, 0),
-(412, '2017-08-13 07:34:58', '0000-00-00 00:00:00', 1, 77, 2, 39, '8989891228', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dia-MDSTT', 'https://www.dragdeal.com/', 'https://goo.gl/CPw4Gk', '', 1, 0, 0),
-(413, '2017-08-13 06:25:35', '0000-00-00 00:00:00', 1, 78, 2, 2, '9791447542', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNF', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(414, '2017-08-13 06:25:35', '0000-00-00 00:00:00', 1, 78, 2, 38, '9791447546', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNF', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(415, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 31, '9791407538', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(416, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 32, '9791407539', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(417, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 33, '9914875400', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(418, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 34, '9790449541', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(419, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 35, '9790447541', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(420, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 36, '9791487540', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(421, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 37, '9791497541', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(422, '2017-08-13 06:25:36', '0000-00-00 00:00:00', 1, 78, 2, 39, '8989891228', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between', 'Dia-MFYNG', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(423, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 2, '9791447542', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(424, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 38, '9791447546', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(425, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 31, '9791407538', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(426, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 32, '9791407539', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(427, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 33, '9914875400', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(428, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 34, '9790449541', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(429, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 35, '9790447541', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(430, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 36, '9791487540', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(431, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 37, '9791497541', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(432, '2017-08-13 06:58:26', '0000-00-00 00:00:00', 1, 79, 2, 39, '8989891228', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBLA', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(433, '2017-08-13 07:02:22', '0000-00-00 00:00:00', 1, 80, 2, 2, '9791447542', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUC', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(434, '2017-08-13 07:02:22', '0000-00-00 00:00:00', 1, 80, 2, 38, '9791447546', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUC', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(435, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 31, '9791407538', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(436, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 32, '9791407539', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(437, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 33, '9914875400', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(438, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 34, '9790449541', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(439, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 35, '9790447541', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(440, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 36, '9791487540', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(441, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 37, '9791497541', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(442, '2017-08-13 07:02:23', '0000-00-00 00:00:00', 1, 80, 2, 39, '8989891228', 'In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 'Dia-MGBUD', 'https://www.dragdeal.com/', NULL, '', 1, 0, 0),
-(443, '2018-05-20 07:03:41', '0000-00-00 00:00:00', 1, 85, 49, 86, '9848104055', 'The Google URL Shortener At Goo.gl Is A Service That Takes Long URLs And Squeezes Them Into Fewer Characters To Make A Link That Is Easier To Share, Tweet .For More Visit .', 'Dra-NCAZD', 'https://www.dragdeal.com/', NULL, '', 0, 0, 1),
-(444, '2018-05-20 01:58:42', '0000-00-00 00:00:00', 1, 86, 49, 86, '9848104055', 'MySQL returned an empty result set', 'Dra-NDLUW', 'https://www.dragdeal.com/', NULL, '', 0, 0, 1);
+INSERT INTO `advertisments_customers_campaign_list` (`id`, `created`, `modified`, `camping_type_id`, `advertisments_customers_campaign_id`, `parent_user_id`, `customer_id`, `mobileno`, `message`, `coupon_code`, `campaign_url`, `campaign_url_short`, `token`, `status`, `is_verified`, `is_redeemed`) VALUES
+(1, '2018-08-09 06:49:26', '0000-00-00 00:00:00', 1, 1, 2, 6, '9791447570', 'Hi ##USERNAME##. Thanks For Visiting Our Shop. For More visit ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/PUPG', '', 0, 0, 0),
+(2, '2018-08-09 06:49:26', '0000-00-00 00:00:00', 1, 1, 2, 7, '9791447533', 'Hi ##USERNAME##. Thanks For Visiting Our Shop. For More visit ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/8h87', '', 0, 0, 0),
+(3, '2018-08-10 06:27:31', '0000-00-00 00:00:00', 1, 2, 2, 1, '8989891212', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/dxyb', '', 0, 0, 0),
+(4, '2018-08-10 06:27:31', '0000-00-00 00:00:00', 1, 2, 2, 2, '9791447545', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/Dlvu', '', 0, 0, 0),
+(5, '2018-08-10 06:27:32', '0000-00-00 00:00:00', 1, 2, 2, 3, '8989123456', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/zyGx', '', 0, 0, 0),
+(6, '2018-08-10 06:27:32', '0000-00-00 00:00:00', 1, 2, 2, 5, '9840810900', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/i1pc', '', 0, 0, 0),
+(7, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 1, 3, 2, 1, '8989891212', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/iEWR', '', 0, 0, 0),
+(8, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 1, 3, 2, 2, '9791447545', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/mB3p', '', 0, 0, 0),
+(9, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 1, 3, 2, 3, '8989123456', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/afDM', '', 0, 0, 0),
+(10, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 1, 3, 2, 4, '9898112345', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/O0gD', '', 0, 0, 0),
+(11, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 1, 3, 2, 5, '9840810900', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/q9gR', '', 0, 0, 0),
+(12, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 1, 3, 2, 6, '9791447570', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/nlbr', '', 0, 0, 0),
+(13, '2018-08-10 06:45:42', '0000-00-00 00:00:00', 1, 3, 2, 7, '9791447533', 'Hi ##USERNAME##, Thanks For ##URL##', '', 'https://www.dragdeal.com', 'http://localhost/dragdeallive/s/A14N', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -849,7 +211,7 @@ CREATE TABLE `advertisments_customers_campaign_tracking` (
   `id` bigint(20) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   `advertisments_customers_camping_id` bigint(20) NOT NULL,
   `parent_user_id` bigint(20) NOT NULL,
   `visit_count` bigint(20) NOT NULL,
@@ -860,11 +222,9 @@ CREATE TABLE `advertisments_customers_campaign_tracking` (
 -- Dumping data for table `advertisments_customers_campaign_tracking`
 --
 
-INSERT INTO `advertisments_customers_campaign_tracking` (`id`, `created`, `modified`, `user_id`, `advertisments_customers_camping_id`, `parent_user_id`, `visit_count`, `type_id`) VALUES
-(1, '2017-07-28 06:56:31', '0000-00-00 00:00:00', 2, 64, 2, 1, 2),
-(2, '2017-07-28 07:24:32', '0000-00-00 00:00:00', 2, 64, 2, 1, 2),
-(3, '2018-01-07 05:46:35', '0000-00-00 00:00:00', 31, 77, 2, 1, 2),
-(4, '2018-01-07 05:49:40', '0000-00-00 00:00:00', 32, 77, 2, 2, 2);
+INSERT INTO `advertisments_customers_campaign_tracking` (`id`, `created`, `modified`, `customer_id`, `advertisments_customers_camping_id`, `parent_user_id`, `visit_count`, `type_id`) VALUES
+(1, '2018-08-10 06:46:06', '0000-00-00 00:00:00', 7, 3, 2, 1, 1),
+(2, '2018-08-10 06:46:59', '0000-00-00 00:00:00', 5, 3, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -887,33 +247,35 @@ CREATE TABLE `advertisment_comments` (
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `advertisment_comments`
+-- Table structure for table `advertisment_customers`
 --
 
-INSERT INTO `advertisment_comments` (`id`, `created`, `modified`, `user_id`, `advertisment_id`, `title`, `comments`, `negative_comments`, `rating`, `ip`, `browser_info`, `is_active`) VALUES
-(1, '2017-01-21 02:08:40', '2017-01-21 02:08:40', 3, 2, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 4, '', '', 1),
-(23, '2018-07-15 03:22:35', '2018-07-15 03:22:35', 49, 40, 'Get more detailed location and contact information about.', 'Get more detailed location and contact information about various business enterprises of', '', 4, '', '', 1),
-(24, '2018-07-15 03:23:12', '2018-07-15 03:23:12', 49, 40, 'Lorium Lipsum', 'Get more detailed location and contact information about various business enterprises of', '', 3, '', '', 1),
-(21, '2018-02-11 10:22:08', '2018-02-11 10:22:08', 49, 4, 'sdasdsddsds', 'sdaasdsdadsds', '', 4, '', '', 1),
-(22, '2018-02-11 10:23:25', '2018-02-11 10:23:25', 49, 4, 'reerw', 'dsfsdfdf', '', 3, '', '', 1),
-(4, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(5, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(6, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 4, '', '', 1),
-(7, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(8, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(9, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 0),
-(10, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(11, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(12, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(13, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(14, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(15, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(16, '2017-03-29 08:17:08', '2017-03-29 08:17:08', 13, 7, 'Lorem Ipsum Is Simply Dummy Text Of The Printing', 'Lorem Ipsum Is Simply Dummy Text Of The Printing', '', 0, '', '', 1),
-(17, '2017-04-02 02:34:18', '2017-04-02 02:34:18', 13, 7, 'Google Maps Geolocation + Draggable Marker with Coords', 'Google Maps Geolocation + Draggable Marker with Coords', '', 4, '', '', 1),
-(18, '2017-04-02 03:12:18', '2017-04-02 03:12:18', 13, 7, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing', '', 5, '', '', 1),
-(19, '2017-04-09 09:03:28', '2017-04-09 09:03:28', 18, 9, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 5, '', '', 1),
-(20, '2017-05-07 06:41:53', '2017-05-07 06:41:53', 29, 13, 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', '', 5, '', '', 1);
+CREATE TABLE `advertisment_customers` (
+  `id` bigint(20) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `gender_id` tinyint(1) NOT NULL,
+  `mobile_number` varchar(15) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `advertisment_customers`
+--
+
+INSERT INTO `advertisment_customers` (`id`, `created`, `modified`, `first_name`, `last_name`, `gender_id`, `mobile_number`, `email`) VALUES
+(1, '2018-08-08 08:22:41', '2018-08-08 08:22:41', 'Elakiya', '', 1, '8989891212', ''),
+(2, '2018-08-08 08:25:28', '2018-08-08 08:25:28', 'Elakiya', 'venkatesh', 1, '9791447545', 'damovenkatesh@gmail.com'),
+(3, '2018-08-08 09:00:40', '2018-08-08 09:00:40', 'Mani', '', 1, '8989123456', ''),
+(4, '2018-08-08 10:55:55', '2018-08-08 10:55:55', 'Elakiya', '', 1, '9898112345', ''),
+(5, '2018-08-08 02:08:43', '2018-08-08 02:08:43', 'Seetha', '', 2, '9840810900', ''),
+(6, '2018-08-08 02:32:55', '2018-08-08 02:32:55', 'Viji', 'Lakshmi', 2, '9791447570', 'viji@gmail.com'),
+(7, '2018-08-08 07:40:33', '2018-08-08 07:40:33', 'Ankit', 'venkatesh', 1, '9791447533', 'damo@20minute.email');
 
 -- --------------------------------------------------------
 
@@ -926,208 +288,69 @@ CREATE TABLE `advertisment_customer_bills` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `parent_user_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `reward_points` decimal(10,2) NOT NULL DEFAULT '0.00'
+  `reward_points` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `redem_points` decimal(10,2) NOT NULL,
+  `offer_id` bigint(20) DEFAULT NULL,
+  `order_id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertisment_customer_bills`
 --
 
-INSERT INTO `advertisment_customer_bills` (`id`, `created`, `modified`, `parent_user_id`, `user_id`, `amount`, `reward_points`) VALUES
-(1, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 2, 2, '2345', '0.00'),
-(2, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 2, 4, '2450', '0.00'),
-(3, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 2, 5, '3000', '0.00'),
-(4, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 2, 5, '2000', '0.00'),
-(5, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 2, 6, '200', '0.00'),
-(6, '2017-01-22 06:13:19', '2017-01-22 06:13:19', 2, 7, '5000', '0.00'),
-(7, '2017-01-22 06:13:19', '2017-01-22 06:13:19', 2, 8, '5000', '0.00'),
-(8, '2017-01-22 06:59:00', '2017-01-22 06:59:00', 2, 2, '15000', '0.00'),
-(9, '2017-01-22 07:46:50', '2017-01-22 07:46:50', 2, 2, '2345', '0.00'),
-(10, '2017-01-22 07:46:51', '2017-01-22 07:46:51', 2, 4, '2450', '0.00'),
-(11, '2017-01-22 07:46:51', '2017-01-22 07:46:51', 2, 5, '3000', '0.00'),
-(12, '2017-01-22 07:46:51', '2017-01-22 07:46:51', 2, 5, '2000', '0.00'),
-(13, '2017-01-22 07:46:51', '2017-01-22 07:46:51', 2, 6, '200', '0.00'),
-(14, '2017-01-22 07:46:51', '2017-01-22 07:46:51', 2, 7, '5000', '0.00'),
-(15, '2017-01-22 07:46:51', '2017-01-22 07:46:51', 2, 8, '5000', '0.00'),
-(16, '2017-01-22 07:46:51', '2017-01-22 07:46:51', 2, 9, '4000', '0.00'),
-(17, '2017-01-22 08:00:20', '2017-01-22 08:00:20', 2, 2, '2345', '0.00'),
-(18, '2017-01-22 08:00:20', '2017-01-22 08:00:20', 2, 4, '2450', '0.00'),
-(19, '2017-01-22 08:00:20', '2017-01-22 08:00:20', 2, 5, '3000', '0.00'),
-(20, '2017-01-22 08:00:20', '2017-01-22 08:00:20', 2, 5, '2000', '0.00'),
-(21, '2017-01-22 08:00:20', '2017-01-22 08:00:20', 2, 6, '200', '0.00'),
-(22, '2017-01-22 08:00:20', '2017-01-22 08:00:20', 2, 7, '5000', '0.00'),
-(23, '2017-01-22 08:00:21', '2017-01-22 08:00:21', 2, 8, '5000', '0.00'),
-(24, '2017-01-22 08:00:21', '2017-01-22 08:00:21', 2, 9, '4000', '0.00'),
-(25, '2017-01-22 08:00:21', '2017-01-22 08:00:21', 2, 10, '3200', '0.00'),
-(26, '2017-01-22 08:02:54', '2017-01-22 08:02:54', 2, 2, '2345', '0.00'),
-(27, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 4, '2450', '0.00'),
-(28, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 5, '3000', '0.00'),
-(29, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 5, '2000', '0.00'),
-(30, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 6, '200', '0.00'),
-(31, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 7, '5000', '0.00'),
-(32, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 8, '5000', '0.00'),
-(33, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 9, '4000', '0.00'),
-(34, '2017-01-22 08:02:55', '2017-01-22 08:02:55', 2, 10, '3200', '0.00'),
-(35, '2017-01-22 09:25:42', '2017-01-22 09:25:42', 2, 2, '2345', '0.00'),
-(36, '2017-01-22 09:25:42', '2017-01-22 09:25:42', 2, 4, '2450', '0.00'),
-(37, '2017-01-22 09:25:42', '2017-01-22 09:25:42', 2, 5, '3000', '0.00'),
-(38, '2017-01-22 09:25:43', '2017-01-22 09:25:43', 2, 5, '2000', '0.00'),
-(39, '2017-01-22 09:25:43', '2017-01-22 09:25:43', 2, 6, '200', '0.00'),
-(40, '2017-01-22 09:25:43', '2017-01-22 09:25:43', 2, 7, '5000', '0.00'),
-(41, '2017-01-22 09:25:43', '2017-01-22 09:25:43', 2, 8, '5000', '0.00'),
-(42, '2017-01-22 09:25:43', '2017-01-22 09:25:43', 2, 9, '4000', '0.00'),
-(43, '2017-01-22 09:25:43', '2017-01-22 09:25:43', 2, 10, '3200', '0.00'),
-(44, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 2, '2345', '0.00'),
-(45, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 4, '2450', '0.00'),
-(46, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 5, '3000', '0.00'),
-(47, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 5, '2000', '0.00'),
-(48, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 6, '200', '0.00'),
-(49, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 7, '5000', '0.00'),
-(50, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 8, '5000', '0.00'),
-(51, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 9, '4000', '0.00'),
-(52, '2017-01-22 09:26:30', '2017-01-22 09:26:30', 2, 10, '3200', '0.00'),
-(53, '2017-01-22 10:39:17', '2017-01-22 10:39:17', 2, 9, '1490', '0.00'),
-(54, '2017-01-22 11:45:55', '2017-01-22 11:45:55', 2, 12, '10000', '0.00'),
-(55, '2017-01-22 12:00:25', '2017-01-22 12:00:25', 2, 12, '12000', '0.00'),
-(56, '2017-01-24 06:20:58', '2017-01-24 06:20:58', 13, 5, '12345', '0.00'),
-(57, '2017-01-26 06:38:42', '2017-01-26 06:38:42', 13, 2, '2345', '0.00'),
-(58, '2017-01-26 06:38:42', '2017-01-26 06:38:42', 13, 4, '2450', '0.00'),
-(59, '2017-01-26 06:38:43', '2017-01-26 06:38:43', 13, 5, '3000', '0.00'),
-(60, '2017-01-26 06:38:43', '2017-01-26 06:38:43', 13, 5, '2000', '0.00'),
-(61, '2017-01-26 06:38:43', '2017-01-26 06:38:43', 13, 6, '200', '0.00'),
-(62, '2017-01-26 06:38:43', '2017-01-26 06:38:43', 13, 7, '5000', '0.00'),
-(63, '2017-01-26 06:38:43', '2017-01-26 06:38:43', 13, 8, '5000', '0.00'),
-(64, '2017-01-26 06:38:43', '2017-01-26 06:38:43', 13, 9, '4000', '0.00'),
-(65, '2017-01-26 06:38:44', '2017-01-26 06:38:44', 13, 10, '3200', '0.00'),
-(66, '2017-03-09 05:53:54', '2017-03-09 05:53:54', 13, 2, '2345', '0.00'),
-(67, '2017-03-09 05:53:54', '2017-03-09 05:53:54', 13, 4, '2450', '0.00'),
-(68, '2017-03-09 05:53:54', '2017-03-09 05:53:54', 13, 5, '3000', '0.00'),
-(69, '2017-03-09 05:53:54', '2017-03-09 05:53:54', 13, 5, '2000', '0.00'),
-(70, '2017-03-09 05:53:54', '2017-03-09 05:53:54', 13, 6, '200', '0.00'),
-(71, '2017-03-09 05:53:54', '2017-03-09 05:53:54', 13, 7, '5000', '0.00'),
-(72, '2017-03-09 05:53:54', '2017-03-09 05:53:54', 13, 8, '5000', '0.00'),
-(73, '2017-03-09 05:53:55', '2017-03-09 05:53:55', 13, 9, '4000', '0.00'),
-(74, '2017-03-09 05:53:55', '2017-03-09 05:53:55', 13, 10, '3200', '0.00'),
-(75, '2017-04-09 07:25:18', '2017-04-09 07:25:18', 13, 2, '2345', '0.00'),
-(76, '2017-04-09 07:25:18', '2017-04-09 07:25:18', 13, 4, '2450', '0.00'),
-(77, '2017-04-09 07:25:18', '2017-04-09 07:25:18', 13, 5, '3000', '0.00'),
-(78, '2017-04-09 07:25:18', '2017-04-09 07:25:18', 13, 5, '2000', '0.00'),
-(79, '2017-04-09 07:25:18', '2017-04-09 07:25:18', 13, 6, '200', '0.00'),
-(80, '2017-04-09 07:25:18', '2017-04-09 07:25:18', 13, 7, '5000', '0.00'),
-(81, '2017-04-09 07:25:18', '2017-04-09 07:25:18', 13, 8, '5000', '0.00'),
-(82, '2017-04-09 07:25:19', '2017-04-09 07:25:19', 13, 9, '4000', '0.00'),
-(83, '2017-04-09 07:25:19', '2017-04-09 07:25:19', 13, 10, '3200', '0.00'),
-(84, '2017-04-09 07:29:45', '2017-04-09 07:29:45', 13, 2, '2345', '0.00'),
-(85, '2017-04-09 07:29:45', '2017-04-09 07:29:45', 13, 4, '2450', '0.00'),
-(86, '2017-04-09 07:29:45', '2017-04-09 07:29:45', 13, 5, '3000', '0.00'),
-(87, '2017-04-09 07:29:45', '2017-04-09 07:29:45', 13, 5, '2000', '0.00'),
-(88, '2017-04-09 07:29:45', '2017-04-09 07:29:45', 13, 6, '200', '0.00'),
-(89, '2017-04-09 07:29:45', '2017-04-09 07:29:45', 13, 7, '5000', '0.00'),
-(90, '2017-04-09 07:29:45', '2017-04-09 07:29:45', 13, 8, '5000', '0.00'),
-(91, '2017-04-09 07:29:46', '2017-04-09 07:29:46', 13, 9, '4000', '0.00'),
-(92, '2017-04-09 07:29:46', '2017-04-09 07:29:46', 13, 10, '3200', '0.00'),
-(93, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 2, '2345', '0.00'),
-(94, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 4, '2450', '0.00'),
-(95, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 5, '3000', '0.00'),
-(96, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 5, '2000', '0.00'),
-(97, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 6, '200', '0.00'),
-(98, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 7, '5000', '0.00'),
-(99, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 8, '5000', '0.00'),
-(100, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 9, '4000', '0.00'),
-(101, '2017-04-09 07:32:22', '2017-04-09 07:32:22', 13, 10, '3200', '0.00'),
-(102, '2017-04-09 01:36:11', '2017-04-09 01:36:11', 13, 13, '12345', '0.00'),
-(103, '2017-04-09 02:26:04', '2017-04-09 02:26:04', 13, 19, '12400', '0.00'),
-(104, '2017-04-20 07:39:59', '2017-04-20 07:39:59', 20, 13, '15000', '0.00'),
-(105, '2017-05-07 05:01:44', '2017-05-07 05:01:44', 13, 27, '12500', '0.00'),
-(106, '2017-05-07 06:44:52', '2017-05-07 06:44:52', 29, 30, '12000', '0.00'),
-(107, '2017-05-07 06:57:31', '2017-05-07 06:57:31', 29, 31, '2345', '0.00'),
-(108, '2017-05-07 06:57:31', '2017-05-07 06:57:31', 29, 32, '2450', '0.00'),
-(109, '2017-05-07 06:57:31', '2017-05-07 06:57:31', 29, 33, '3000', '0.00'),
-(110, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 29, 34, '2000', '0.00'),
-(111, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 29, 35, '200', '0.00'),
-(112, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 29, 36, '5000', '0.00'),
-(113, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 29, 37, '5000', '0.00'),
-(114, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 29, 38, '4000', '0.00'),
-(115, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 29, 39, '3200', '0.00'),
-(116, '2017-05-07 06:58:43', '2017-05-07 06:58:43', 29, 31, '2345', '0.00'),
-(117, '2017-05-07 06:58:43', '2017-05-07 06:58:43', 29, 32, '2450', '0.00'),
-(118, '2017-05-07 06:58:44', '2017-05-07 06:58:44', 29, 33, '3000', '0.00'),
-(119, '2017-05-07 06:58:44', '2017-05-07 06:58:44', 29, 34, '2000', '0.00'),
-(120, '2017-05-07 06:58:44', '2017-05-07 06:58:44', 29, 35, '200', '0.00'),
-(121, '2017-05-07 06:58:44', '2017-05-07 06:58:44', 29, 36, '5000', '0.00'),
-(122, '2017-05-07 06:58:44', '2017-05-07 06:58:44', 29, 37, '5000', '0.00'),
-(123, '2017-05-07 06:58:44', '2017-05-07 06:58:44', 29, 38, '4000', '0.00'),
-(124, '2017-05-07 06:58:44', '2017-05-07 06:58:44', 29, 39, '3200', '0.00'),
-(125, '2017-05-07 07:00:37', '2017-05-07 07:00:37', 29, 31, '2345', '0.00'),
-(126, '2017-05-07 07:00:37', '2017-05-07 07:00:37', 29, 32, '2450', '0.00'),
-(127, '2017-05-07 07:00:37', '2017-05-07 07:00:37', 29, 33, '3000', '0.00'),
-(128, '2017-05-07 07:00:37', '2017-05-07 07:00:37', 29, 34, '2000', '0.00'),
-(129, '2017-05-07 07:00:37', '2017-05-07 07:00:37', 29, 35, '200', '0.00'),
-(130, '2017-05-07 07:00:37', '2017-05-07 07:00:37', 29, 36, '5000', '0.00'),
-(131, '2017-05-07 07:00:38', '2017-05-07 07:00:38', 29, 37, '5000', '0.00'),
-(132, '2017-05-07 07:00:38', '2017-05-07 07:00:38', 29, 38, '4000', '0.00'),
-(133, '2017-05-07 07:00:38', '2017-05-07 07:00:38', 29, 39, '3200', '0.00'),
-(134, '2017-05-07 07:02:24', '2017-05-07 07:02:24', 29, 31, '2345', '0.00'),
-(135, '2017-05-07 07:02:24', '2017-05-07 07:02:24', 29, 32, '2450', '0.00'),
-(136, '2017-05-07 07:02:24', '2017-05-07 07:02:24', 29, 33, '3000', '0.00'),
-(137, '2017-05-07 07:02:25', '2017-05-07 07:02:25', 29, 34, '2000', '0.00'),
-(138, '2017-05-07 07:02:25', '2017-05-07 07:02:25', 29, 35, '200', '0.00'),
-(139, '2017-05-07 07:02:25', '2017-05-07 07:02:25', 29, 36, '5000', '0.00'),
-(140, '2017-05-07 07:02:25', '2017-05-07 07:02:25', 29, 37, '5000', '0.00'),
-(141, '2017-05-07 07:02:25', '2017-05-07 07:02:25', 29, 38, '4000', '0.00'),
-(142, '2017-05-07 07:02:25', '2017-05-07 07:02:25', 29, 39, '3200', '0.00'),
-(143, '2017-05-13 09:33:27', '2017-05-13 09:33:27', 13, 2, '12345', '0.00'),
-(144, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 31, '2345', '0.00'),
-(145, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 32, '2450', '0.00'),
-(146, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 33, '3000', '0.00'),
-(147, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 34, '2000', '0.00'),
-(148, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 35, '200', '0.00'),
-(149, '2017-05-24 07:57:27', '2017-05-24 07:57:27', 13, 36, '5000', '0.00'),
-(150, '2017-05-24 07:57:27', '2017-05-24 07:57:27', 13, 37, '5000', '0.00'),
-(151, '2017-05-24 07:57:27', '2017-05-24 07:57:27', 13, 38, '4000', '0.00'),
-(152, '2017-05-24 07:57:27', '2017-05-24 07:57:27', 13, 39, '3200', '0.00'),
-(153, '2017-05-28 01:19:20', '2017-05-28 01:19:20', 13, 40, '12000', '0.00'),
-(154, '2017-05-28 01:23:08', '2017-05-28 01:23:08', 13, 41, '12000', '0.00'),
-(155, '2017-05-28 01:31:02', '2017-05-28 01:31:02', 13, 42, '1200', '0.00'),
-(156, '2017-05-28 02:18:03', '2017-05-28 02:18:03', 13, 43, '5000', '0.00'),
-(157, '2017-05-28 02:20:23', '2017-05-28 02:20:23', 13, 44, '12000', '0.00'),
-(158, '2017-05-28 02:32:32', '2017-05-28 02:32:32', 13, 45, '12000', '0.00'),
-(159, '2017-05-28 02:34:42', '2017-05-28 02:34:42', 13, 46, '1200', '0.00'),
-(160, '2017-06-29 07:51:27', '2017-06-29 07:51:27', 2, 38, '1200', '0.00'),
-(161, '2017-06-29 07:51:40', '2017-06-29 07:51:40', 2, 2, '4500', '0.00'),
-(162, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 31, '2345', '0.00'),
-(163, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 32, '2450', '0.00'),
-(164, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 33, '3000', '0.00'),
-(165, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 34, '2000', '0.00'),
-(166, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 35, '200', '0.00'),
-(167, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 36, '5000', '0.00'),
-(168, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 37, '5000', '0.00'),
-(169, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 38, '4000', '0.00'),
-(170, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 39, '3200', '0.00'),
-(171, '2018-05-12 06:16:05', '2018-05-12 06:16:05', 49, 86, '6000', '0.00'),
-(172, '2018-05-12 06:16:18', '2018-05-12 06:16:18', 49, 86, '9000', '0.00'),
-(173, '2018-05-20 03:20:26', '2018-05-20 03:20:26', 49, 86, '2000', '0.00'),
-(174, '2018-05-20 03:20:26', '2018-05-20 03:20:26', 49, 86, '1000', '10.00'),
-(177, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 2, 2, '2345', '0.00'),
-(180, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 2, 2, '2345', '0.00'),
-(187, '2018-05-12 06:16:05', '2018-05-12 06:16:05', 49, 86, '6000', '12000.00'),
-(188, '2018-07-15 03:11:46', '2018-07-15 03:11:46', 49, 87, '1200', '2400.00'),
-(189, '2018-07-15 06:29:35', '2018-07-15 06:29:35', 49, 87, '1000', '100000.00');
+INSERT INTO `advertisment_customer_bills` (`id`, `created`, `modified`, `parent_user_id`, `customer_id`, `amount`, `reward_points`, `redem_points`, `offer_id`, `order_id`) VALUES
+(1, '2018-08-08 08:22:41', '2018-08-08 08:22:41', 2, 1, '310', '0.00', '0.00', NULL, NULL),
+(2, '2018-08-08 08:25:28', '2018-08-08 08:25:28', 2, 2, '350', '0.00', '0.00', NULL, NULL),
+(3, '2018-08-08 09:00:40', '2018-08-08 09:00:40', 2, 3, '350', '0.00', '0.00', NULL, NULL),
+(4, '2018-08-08 10:55:55', '2018-08-08 10:55:55', 2, 4, '60', '0.00', '0.00', NULL, NULL),
+(5, '2018-08-08 11:26:50', '2018-08-08 11:26:50', 2, 4, '3500', '0.00', '0.00', NULL, NULL),
+(6, '2018-08-08 02:08:43', '2018-08-08 02:08:43', 2, 5, '1000', '0.00', '0.00', NULL, NULL),
+(7, '2018-08-08 02:32:55', '2018-08-08 02:32:55', 2, 6, '2600', '0.00', '0.00', NULL, NULL),
+(8, '2018-08-08 07:40:33', '2018-08-08 07:40:33', 2, 7, '42600', '0.00', '0.00', NULL, 'ORD-2-2018AugAugWedWed');
+
+-- --------------------------------------------------------
 
 --
--- Triggers `advertisment_customer_bills`
+-- Table structure for table `advertisment_customer_bill_details`
 --
-DELIMITER $$
-CREATE TRIGGER `customer_bill_before_insert` BEFORE INSERT ON `advertisment_customer_bills` FOR EACH ROW BEGIN
-   
-		SET NEW.reward_points=getPoints(NEW.amount, NEW.parent_user_id);		
-		
-UPDATE advertisment_customer_lists SET last_added_reward_points=getPoints(NEW.amount, NEW.parent_user_id), total_reward_points=total_reward_points+getPoints(NEW.amount, NEW.parent_user_id) WHERE user_id = NEW.user_id;
-    END
-$$
-DELIMITER ;
+
+CREATE TABLE `advertisment_customer_bill_details` (
+  `id` bigint(20) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `bill_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `quantity` decimal(10,4) NOT NULL,
+  `price` decimal(10,4) NOT NULL,
+  `total_price` decimal(10,4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `advertisment_customer_bill_details`
+--
+
+INSERT INTO `advertisment_customer_bill_details` (`id`, `created`, `modified`, `bill_id`, `product_id`, `quantity`, `price`, `total_price`) VALUES
+(1, '2018-08-08 08:22:41', '2018-08-08 08:22:41', 1, 4, '1.0000', '10.0000', '10.0000'),
+(2, '2018-08-08 08:22:41', '2018-08-08 08:22:41', 1, 2, '1.0000', '300.0000', '300.0000'),
+(3, '2018-08-08 08:25:28', '2018-08-08 08:25:28', 2, 2, '1.0000', '300.0000', '300.0000'),
+(4, '2018-08-08 08:25:28', '2018-08-08 08:25:28', 2, 4, '5.0000', '10.0000', '50.0000'),
+(5, '2018-08-08 09:00:40', '2018-08-08 09:00:40', 3, 2, '1.0000', '300.0000', '300.0000'),
+(6, '2018-08-08 09:00:40', '2018-08-08 09:00:40', 3, 4, '5.0000', '10.0000', '50.0000'),
+(7, '2018-08-08 10:55:55', '2018-08-08 10:55:55', 4, 4, '1.0000', '10.0000', '10.0000'),
+(8, '2018-08-08 10:55:55', '2018-08-08 10:55:55', 4, 4, '5.0000', '10.0000', '50.0000'),
+(9, '2018-08-08 11:26:50', '2018-08-08 11:26:50', 5, 2, '1.0000', '300.0000', '300.0000'),
+(10, '2018-08-08 11:26:50', '2018-08-08 11:26:50', 5, 4, '5.0000', '10.0000', '50.0000'),
+(11, '2018-08-08 11:26:50', '2018-08-08 11:26:50', 5, 1, '7.0000', '450.0000', '3150.0000'),
+(12, '2018-08-08 14:08:43', '2018-08-08 14:08:43', 6, 7, '1.0000', '500.0000', '500.0000'),
+(13, '2018-08-08 14:08:43', '2018-08-08 14:08:43', 6, 1, '1.0000', '450.0000', '450.0000'),
+(14, '2018-08-08 14:08:43', '2018-08-08 14:08:43', 6, 4, '5.0000', '10.0000', '50.0000'),
+(15, '2018-08-08 14:32:55', '2018-08-08 14:32:55', 7, 4, '10.0000', '10.0000', '100.0000'),
+(16, '2018-08-08 14:32:55', '2018-08-08 14:32:55', 7, 7, '5.0000', '500.0000', '2500.0000'),
+(17, '2018-08-08 19:40:33', '2018-08-08 19:40:33', 8, 4, '10.0000', '10.0000', '100.0000'),
+(18, '2018-08-08 19:40:34', '2018-08-08 19:40:34', 8, 7, '5.0000', '500.0000', '2500.0000'),
+(19, '2018-08-08 19:40:34', '2018-08-08 19:40:34', 8, 11, '1.0000', '40000.0000', '40000.0000');
 
 -- --------------------------------------------------------
 
@@ -1141,13 +364,6 @@ CREATE TABLE `advertisment_customer_bill_rewards` (
   `modified` datetime NOT NULL,
   `user_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `advertisment_customer_bill_rewards`
---
-
-INSERT INTO `advertisment_customer_bill_rewards` (`id`, `created`, `modified`, `user_id`) VALUES
-(1, '2018-05-13 10:14:04', '2018-05-13 10:14:04', 49);
 
 -- --------------------------------------------------------
 
@@ -1165,14 +381,6 @@ CREATE TABLE `advertisment_customer_bill_reward_rules` (
   `value` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `advertisment_customer_bill_reward_rules`
---
-
-INSERT INTO `advertisment_customer_bill_reward_rules` (`id`, `created`, `modified`, `reward_id`, `name`, `code`, `value`) VALUES
-(9, '2018-07-15 06:54:12', '2018-07-15 06:54:12', 1, 'Reward Point Amount', 'reward-point-amount', '100'),
-(10, '2018-07-15 06:54:12', '2018-07-15 06:54:12', 1, 'Reward Point Minium Amount', 'reward-point-minimum-amount', '500');
-
 -- --------------------------------------------------------
 
 --
@@ -1184,12 +392,12 @@ CREATE TABLE `advertisment_customer_lists` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `parent_user_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   `group_id` bigint(20) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `next_service_date` date NOT NULL,
   `visit_count` bigint(20) NOT NULL,
-  `total_amount` decimal(10,0) NOT NULL,
+  `total_amount` decimal(10,0) DEFAULT NULL,
   `last_bill_amount_paid` decimal(10,0) NOT NULL,
   `reward_points` decimal(10,0) NOT NULL,
   `last_redeem_points` decimal(10,0) NOT NULL,
@@ -1215,56 +423,14 @@ CREATE TABLE `advertisment_customer_lists` (
 -- Dumping data for table `advertisment_customer_lists`
 --
 
-INSERT INTO `advertisment_customer_lists` (`id`, `created`, `modified`, `parent_user_id`, `user_id`, `group_id`, `is_active`, `next_service_date`, `visit_count`, `total_amount`, `last_bill_amount_paid`, `reward_points`, `last_redeem_points`, `last_added_reward_points`, `is_birthday_remainder`, `is_aniversy_reminder`, `first_name`, `last_name`, `display_name`, `dob`, `preferred_city_id`, `mobile_number`, `doa`, `address`, `preferred_area_id`, `email`, `gender_id`, `total_reward_points`, `total_redeemed_points`) VALUES
-(1, '0000-00-00 00:00:00', '2017-05-13 09:33:27', 13, 2, 7, 1, '0000-00-00', 1, '12345', '12345', '0', '0', '0', 1, 1, 'venkatesh', 'venkatesh', '', '0000-00-00', 0, '9791447542', '0000-00-00', 'chennai', 0, 'venkatesh@gmail.com', 0, '0.00', '0.00'),
-(2, '2017-05-24 07:57:25', '2017-05-24 07:57:25', 13, 31, 0, 1, '0000-00-00', 1, '2345', '2345', '0', '0', '0', 0, 0, 'Venkatesh', 'Damo', 'Damo', '0000-00-00', 1, '9791407538', '0000-00-00', 'chennai', 303, 'damovenkatesh@gmail.com', 1, '0.00', '0.00'),
-(3, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 32, 0, 1, '0000-00-00', 1, '2450', '2450', '0', '0', '0', 0, 0, 'Vignesh', 'kumar', 'kumar', '0000-00-00', 1, '9791407539', '0000-00-00', 'chennai', 82, 'vicky@gmail.com', 1, '0.00', '0.00'),
-(4, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 33, 0, 1, '0000-00-00', 1, '3000', '3000', '0', '0', '0', 0, 0, 'Siva', 'shankar', 'shankar', '0000-00-00', 1, '9914875400', '0000-00-00', 'chennai', 82, 'siva@gmail.com', 1, '0.00', '0.00'),
-(5, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 34, 0, 1, '0000-00-00', 1, '2000', '2000', '0', '0', '0', 0, 0, 'Hari', 'Haran', 'Haran', '0000-00-00', 1, '9790449541', '0000-00-00', 'chennai', 27, 'siva@gmail.com', 1, '0.00', '0.00'),
-(6, '2017-05-24 07:57:26', '2017-05-24 07:57:26', 13, 35, 0, 1, '0000-00-00', 1, '200', '200', '0', '0', '0', 0, 0, 'Deva', 'Roy', 'Roy', '0000-00-00', 1, '9790447541', '0000-00-00', 'chennai', 304, 'roy@gmail.com', 1, '0.00', '0.00'),
-(7, '2017-05-24 07:57:27', '2017-05-24 07:57:27', 13, 36, 0, 1, '0000-00-00', 1, '5000', '5000', '0', '0', '0', 0, 0, 'Venky', 'damo', 'damo', '0000-00-00', 1, '9791487540', '0000-00-00', 'chennai', 304, 'Shankar@gmail.com', 1, '0.00', '0.00'),
-(8, '2017-05-24 07:57:27', '2017-05-24 07:57:27', 13, 37, 0, 1, '0000-00-00', 1, '5000', '5000', '0', '0', '0', 0, 0, 'Damo', 'Damo', 'Damo', '0000-00-00', 45, '9791497541', '0000-00-00', 'Delhi', 304, 'venky@gmail.com', 1, '0.00', '0.00'),
-(9, '2017-05-24 07:57:27', '2017-05-24 07:57:27', 13, 38, 0, 1, '0000-00-00', 1, '4000', '4000', '0', '0', '0', 0, 0, 'Ragu', 'Ragu', 'Ragu', '0000-00-00', 45, '9791447546', '0000-00-00', 'Delhi', 306, 'ragu@gmail.com', 1, '0.00', '0.00'),
-(10, '2017-05-24 07:57:27', '2017-05-28 11:04:48', 13, 39, 10, 1, '0000-00-00', 2, '3200', '3200', '0', '0', '0', 0, 0, 'shankar', 'siva', 'Siva', '0000-00-00', 4, '8989891228', '0000-00-00', 'Delhi', 306, 'helo@gmail.com', 1, '0.00', '0.00'),
-(11, '2017-05-28 01:19:20', '2017-05-28 01:19:20', 13, 40, 1, 1, '1970-01-01', 1, '12000', '12000', '0', '0', '0', 1, 1, 'venkatesh', 'venkatesh', 'venkatesh', '2017-05-11', 1, '9791447540', '2017-06-03', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 36, 'venkatesh@gmail.com', 0, '0.00', '0.00'),
-(12, '2017-05-28 01:23:08', '2017-05-28 01:23:08', 13, 41, 1, 1, '1970-01-01', 1, '12000', '12000', '0', '0', '0', 1, 1, 'Dhamodaran', 'venkatesh', 'Dhamodaran', '2017-05-11', 1, '9791445656', '2017-05-04', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 82, 'venkatesh@gmail.com', 0, '0.00', '0.00'),
-(13, '2017-05-28 01:31:02', '2017-05-28 01:31:02', 13, 42, 1, 1, '1970-01-01', 1, '1200', '1200', '0', '0', '0', 0, 1, 'venkatesh', 'venkatesh', 'venkatesh', '2017-05-26', 1, '9897891237', '2017-05-09', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 82, 'damovenkatesh@gmail.com', 0, '0.00', '0.00'),
-(14, '2017-05-28 02:18:03', '2017-05-28 02:18:03', 13, 43, 1, 1, '1970-01-01', 1, '5000', '5000', '0', '0', '0', 1, 1, 'test', '', 'test', '2017-05-11', 1, '9791447540', '2017-05-11', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 36, 'damovenkatesh@gmail.com', 0, '0.00', '0.00'),
-(15, '2017-05-28 02:20:23', '2017-05-28 02:20:23', 13, 44, 1, 1, '1970-01-01', 1, '12000', '12000', '0', '0', '0', 1, 1, 'test', 'venkatesh', 'test', '2017-05-04', 1, '9791447540', '2017-05-04', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 36, 'venkatesh@gmail.com', 0, '0.00', '0.00'),
-(16, '2017-05-28 02:32:32', '2017-05-28 02:32:32', 13, 45, 1, 1, '1970-01-01', 1, '12000', '12000', '0', '0', '0', 1, 1, 'venkatesh', 'venkatesh', 'venkatesh', '1970-01-01', 1, '9791447578', '1970-01-01', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 36, 'venkatesh@gmail.com', 0, '0.00', '0.00'),
-(17, '2017-05-28 02:34:42', '2017-05-28 04:25:32', 13, 46, 4, 1, '0000-00-00', 7, '1200', '1200', '0', '0', '0', 1, 1, 'venkatesh', 'venkatesh', 'venkatesh', '2017-05-18', 1, '9791447532', '2017-05-15', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 36, 'venkatesh@gmail.com', 1, '0.00', '0.00'),
-(18, '2017-06-29 07:28:06', '2017-07-10 08:45:14', 2, 2, 1, 1, '0000-00-00', 9, '4500', '4500', '0', '0', '0', 1, 1, 'venkatesh', 'venkatesh', 'venkatesh', '1970-01-01', 1, '9791447542', '1970-01-01', 'chennai', 36, 'damovenkatesh@gmail.com', 1, '0.00', '0.00'),
-(19, '2017-06-29 07:51:08', '2017-07-09 06:33:10', 2, 38, 1, 1, '0000-00-00', 3, '5200', '4000', '0', '0', '0', 1, 1, 'Ragu', 'Ragu', 'Ragu', '0000-00-00', 45, '9791447546', '0000-00-00', 'Delhi', 306, 'ragu@gmail.com', 1, '0.00', '0.00'),
-(20, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 31, 0, 1, '0000-00-00', 1, '2345', '2345', '0', '0', '0', 0, 0, 'Venkatesh', 'Damo', 'Damo', '0000-00-00', 1, '9791407538', '0000-00-00', 'chennai', 303, 'damovenkatesh@gmail.com', 1, '0.00', '0.00'),
-(21, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 32, 0, 1, '0000-00-00', 1, '2450', '2450', '0', '0', '0', 0, 0, 'Vignesh', 'kumar', 'kumar', '0000-00-00', 1, '9791407539', '0000-00-00', 'chennai', 82, 'vicky@gmail.com', 1, '0.00', '0.00'),
-(22, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 33, 0, 1, '0000-00-00', 1, '3000', '3000', '0', '0', '0', 0, 0, 'Siva', 'shankar', 'shankar', '0000-00-00', 1, '9914875400', '0000-00-00', 'chennai', 82, 'siva@gmail.com', 1, '0.00', '0.00'),
-(23, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 34, 0, 1, '0000-00-00', 1, '2000', '2000', '0', '0', '0', 0, 0, 'Hari', 'Haran', 'Haran', '0000-00-00', 1, '9790449541', '0000-00-00', 'chennai', 27, 'siva@gmail.com', 1, '0.00', '0.00'),
-(24, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 35, 0, 1, '0000-00-00', 1, '200', '200', '0', '0', '0', 0, 0, 'Deva', 'Roy', 'Roy', '0000-00-00', 1, '9790447541', '0000-00-00', 'chennai', 304, 'roy@gmail.com', 1, '0.00', '0.00'),
-(25, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 36, 0, 1, '0000-00-00', 1, '5000', '5000', '0', '0', '0', 0, 0, 'Venky', 'damo', 'damo', '0000-00-00', 1, '9791487540', '0000-00-00', 'chennai', 304, 'Shankar@gmail.com', 1, '0.00', '0.00'),
-(26, '2017-07-09 06:33:10', '2017-07-09 06:33:10', 2, 37, 0, 1, '0000-00-00', 1, '5000', '5000', '0', '0', '0', 0, 0, 'Damo', 'Damo', 'Damo', '0000-00-00', 45, '9791497541', '0000-00-00', 'Delhi', 304, 'venky@gmail.com', 1, '0.00', '0.00'),
-(27, '2017-07-09 06:33:10', '2017-07-11 06:41:34', 2, 39, 21, 1, '0000-00-00', 15, '3200', '3200', '0', '0', '0', 0, 0, 'shankar', 'siva', 'Siva', '1970-01-01', 4, '8989891228', '1970-01-01', 'Delhi', 306, 'helo@gmail.com', 1, '0.00', '0.00'),
-(28, '2018-05-12 06:15:45', '2018-05-20 03:20:26', 49, 86, 0, 1, '0000-00-00', 4, '17000', '2000', '0', '0', '12000', 1, 1, 'sukin', '', 'sukin', '2018-05-01', 0, '9848104055', '2018-05-03', '', 0, 'sukin@gmail.com', 1, '11500.00', '500.00'),
-(29, '2018-07-15 03:11:46', '2018-07-15 06:29:35', 49, 87, 0, 1, '0000-00-00', 2, '2200', '1000', '0', '0', '100000', 1, 1, 'test', 'test', 'Test', '2018-07-15', 1, '9848104059', '2018-07-15', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 82, 'preethi1@20mail.eu', 1, '102400.00', '0.00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `advertisment_customer_products`
---
-
-CREATE TABLE `advertisment_customer_products` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `advertisment_id` bigint(20) NOT NULL,
-  `product_id` bigint(20) NOT NULL,
-  `price` decimal(10,0) NOT NULL,
-  `city_id` bigint(20) NOT NULL,
-  `area_id` bigint(20) NOT NULL,
-  `meta_title` varchar(255) NOT NULL,
-  `meta_description` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `advertisment_customer_lists` (`id`, `created`, `modified`, `parent_user_id`, `customer_id`, `group_id`, `is_active`, `next_service_date`, `visit_count`, `total_amount`, `last_bill_amount_paid`, `reward_points`, `last_redeem_points`, `last_added_reward_points`, `is_birthday_remainder`, `is_aniversy_reminder`, `first_name`, `last_name`, `display_name`, `dob`, `preferred_city_id`, `mobile_number`, `doa`, `address`, `preferred_area_id`, `email`, `gender_id`, `total_reward_points`, `total_redeemed_points`) VALUES
+(1, '2018-08-08 08:22:41', '2018-08-08 08:22:41', 2, 1, 0, 1, '1970-01-01', 1, '310', '310', '0', '0', '0', 1, 1, 'Elakiya', '', 'Elakiya', '1970-01-01', 0, '8989891212', '1970-01-01', '', 0, '', 1, '0.00', '0.00'),
+(2, '2018-08-08 08:25:28', '2018-08-08 08:25:28', 2, 2, 0, 1, '1970-01-01', 1, '350', '350', '0', '0', '0', 1, 1, 'Elakiya', 'venkatesh', 'Elakiya', '2018-08-08', 0, '9791447545', '2018-08-09', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 0, 'damovenkatesh@gmail.com', 1, '0.00', '0.00'),
+(3, '2018-08-08 09:00:40', '2018-08-08 09:00:40', 2, 3, 0, 1, '1970-01-01', 1, '350', '350', '0', '0', '0', 1, 1, 'Mani', '', 'Mani', '2018-08-08', 0, '8989123456', '2018-08-15', '', 0, '', 1, '0.00', '0.00'),
+(4, '2018-08-08 10:55:55', '2018-08-08 11:26:50', 2, 4, 3, 1, '0000-00-00', 2, '3560', '3500', '0', '0', '0', 1, 1, 'elakiya', '', 'Elakiya', '2018-08-08', 0, '9898112345', '2018-08-16', '', 0, '', 1, '0.00', '0.00'),
+(5, '2018-08-08 02:08:43', '2018-08-08 02:08:43', 2, 5, 0, 1, '1970-01-01', 1, '1000', '1000', '0', '0', '0', 1, 1, 'Seetha', '', 'Seetha', '1970-01-01', 0, '9840810900', '1970-01-01', '', 0, '', 2, '0.00', '0.00'),
+(6, '2018-08-08 02:32:55', '2018-08-08 02:32:55', 2, 6, 3, 1, '1970-01-01', 1, '2600', '2600', '0', '0', '0', 1, 1, 'Viji', 'Lakshmi', 'Viji', '2018-08-01', 48, '9791447570', '2018-08-01', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 309, 'viji@gmail.com', 2, '0.00', '0.00'),
+(7, '2018-08-08 07:40:33', '2018-08-08 07:40:33', 2, 7, 0, 1, '1970-01-01', 1, '42600', '42600', '0', '0', '0', 1, 1, 'Ankit', 'venkatesh', 'Ankit', '2018-03-09', 1, '9791447533', '2018-08-23', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt', 82, 'damo@20minute.email', 1, '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -1277,7 +443,7 @@ CREATE TABLE `advertisment_customer_remainders` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `parent_user_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   `remainder_setting_id` bigint(20) NOT NULL,
   `service_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1286,17 +452,8 @@ CREATE TABLE `advertisment_customer_remainders` (
 -- Dumping data for table `advertisment_customer_remainders`
 --
 
-INSERT INTO `advertisment_customer_remainders` (`id`, `created`, `modified`, `parent_user_id`, `user_id`, `remainder_setting_id`, `service_date`) VALUES
-(2, '2017-02-12 04:18:55', '0000-00-00 00:00:00', 13, 10, 4, '0000-00-00'),
-(3, '2017-04-09 07:43:01', '0000-00-00 00:00:00', 13, 10, 6, '0000-00-00'),
-(4, '2017-04-09 07:43:01', '0000-00-00 00:00:00', 13, 10, 7, '0000-00-00'),
-(5, '2017-05-07 05:01:44', '0000-00-00 00:00:00', 13, 27, 5, '0000-00-00'),
-(6, '2017-05-28 11:04:48', '0000-00-00 00:00:00', 13, 39, 11, '0000-00-00'),
-(7, '2017-05-28 02:32:32', '0000-00-00 00:00:00', 13, 45, 2017, '0000-00-00'),
-(8, '2017-05-28 02:32:32', '0000-00-00 00:00:00', 13, 45, 2017, '0000-00-00'),
-(26, '2017-05-28 04:25:32', '0000-00-00 00:00:00', 13, 46, 11, '2017-05-02'),
-(27, '2017-05-28 04:25:32', '0000-00-00 00:00:00', 13, 46, 5, '2017-05-04'),
-(28, '2017-05-28 04:25:32', '0000-00-00 00:00:00', 13, 46, 7, '2017-05-11');
+INSERT INTO `advertisment_customer_remainders` (`id`, `created`, `modified`, `parent_user_id`, `customer_id`, `remainder_setting_id`, `service_date`) VALUES
+(3, '2018-07-22 02:49:14', '0000-00-00 00:00:00', 2, 3, 1, '2018-07-24');
 
 -- --------------------------------------------------------
 
@@ -1314,37 +471,6 @@ CREATE TABLE `advertisment_customer_service` (
   `area_id` bigint(20) NOT NULL,
   `url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `advertisment_customer_service`
---
-
-INSERT INTO `advertisment_customer_service` (`id`, `created`, `modified`, `listing_id`, `category_id`, `city_id`, `area_id`, `url`) VALUES
-(3, '2017-01-21 02:05:20', '0000-00-00 00:00:00', 2, 1242, 1, 36, ''),
-(4, '2017-01-21 02:05:20', '0000-00-00 00:00:00', 2, 1241, 1, 36, ''),
-(7, '2017-02-24 06:02:50', '0000-00-00 00:00:00', 8, 1243, 1, 20, ''),
-(8, '2017-02-24 06:02:50', '0000-00-00 00:00:00', 8, 1244, 1, 20, ''),
-(9, '2017-02-24 06:02:50', '0000-00-00 00:00:00', 8, 1245, 1, 20, ''),
-(10, '2017-02-24 06:02:50', '0000-00-00 00:00:00', 8, 1246, 1, 20, ''),
-(11, '2017-02-24 06:02:50', '0000-00-00 00:00:00', 8, 1247, 1, 20, ''),
-(12, '2017-02-24 06:02:50', '0000-00-00 00:00:00', 8, 1248, 1, 20, ''),
-(13, '2017-04-09 08:45:22', '0000-00-00 00:00:00', 9, 1249, 1, 36, ''),
-(14, '2017-04-09 08:45:22', '0000-00-00 00:00:00', 9, 1250, 1, 36, ''),
-(15, '2017-04-21 07:42:34', '0000-00-00 00:00:00', 10, 1258, 1, 5, ''),
-(16, '2017-04-21 07:51:14', '0000-00-00 00:00:00', 11, 1260, 1, 36, ''),
-(17, '2017-04-21 07:54:33', '0000-00-00 00:00:00', 12, 1261, 46, 307, ''),
-(18, '2017-05-07 06:39:37', '0000-00-00 00:00:00', 13, 1262, 1, 36, ''),
-(19, '2017-05-07 06:39:38', '0000-00-00 00:00:00', 13, 1242, 1, 36, ''),
-(20, '2017-05-07 06:39:38', '0000-00-00 00:00:00', 13, 1263, 1, 36, ''),
-(24, '2017-07-23 06:47:58', '0000-00-00 00:00:00', 24, 1266, 1, 36, ''),
-(25, '2017-07-23 06:47:58', '0000-00-00 00:00:00', 24, 1267, 1, 36, ''),
-(26, '2017-07-23 06:47:59', '0000-00-00 00:00:00', 24, 1268, 1, 36, ''),
-(27, '2017-07-23 06:47:59', '0000-00-00 00:00:00', 24, 1269, 1, 36, ''),
-(48, '2017-08-05 02:39:59', '0000-00-00 00:00:00', 25, 1258, 1, 82, ''),
-(66, '2018-01-26 06:36:18', '0000-00-00 00:00:00', 39, 1258, 1, 36, ''),
-(115, '2018-02-04 07:52:03', '0000-00-00 00:00:00', 1, 1241, 1, 36, ''),
-(116, '2018-02-04 07:52:03', '0000-00-00 00:00:00', 1, 1245, 1, 36, ''),
-(117, '2018-02-04 07:52:03', '0000-00-00 00:00:00', 1, 1240, 1, 36, '');
 
 -- --------------------------------------------------------
 
@@ -1370,13 +496,7 @@ CREATE TABLE `advertisment_enquiry_list` (
 --
 
 INSERT INTO `advertisment_enquiry_list` (`id`, `created`, `modified`, `advertisment_id`, `name`, `contact_no`, `email`, `title`, `message`, `is_active`) VALUES
-(1, '2017-01-21 02:09:10', '0000-00-00 00:00:00', '2', 'venkatesh', '9791447542', 'venkatesh@gmail.com', 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 1),
-(3, '2017-04-02 05:47:06', '0000-00-00 00:00:00', '7', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 1),
-(5, '2017-04-09 09:01:18', '0000-00-00 00:00:00', '9', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 1),
-(6, '2017-05-07 06:42:29', '0000-00-00 00:00:00', '13', 'venkatesh', '9791447542', 'venkatesh@gmail.com', 'Lorem Ipsum is simply dummy text of the printing', 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing', 1),
-(7, '2017-07-11 07:02:45', '0000-00-00 00:00:00', '7', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'hello', 'hello', 1),
-(8, '2017-07-20 07:15:20', '0000-00-00 00:00:00', '1', 'venkatesh', '9791447542', 'venkatesh@gmail.com', 'Lorium Lipsum', '#?????? ?????? ????? 3 ???????? ???????????????? | 3 #Science #Experiments That Could Have Ended The #World #Tamil shistory Epi 51.', 1),
-(9, '2018-07-15 02:42:03', '0000-00-00 00:00:00', '40', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'Test', 'tst', 1);
+(1, '2018-07-22 07:25:12', '0000-00-00 00:00:00', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'Lorium Lipsum', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner.', 1);
 
 -- --------------------------------------------------------
 
@@ -1400,29 +520,11 @@ CREATE TABLE `advertisment_images` (
 --
 
 INSERT INTO `advertisment_images` (`id`, `url`, `type`, `advertisment_id`, `image_dir`, `profile_image`, `created_at`, `updated_at`) VALUES
-(1, '', 0, 2, 'app_data/profile/', '011.jpg', '2017-01-20 20:37:35', '2017-01-20 20:37:35'),
-(2, '', 0, 2, 'app_data/profile/', '0101.jpg', '2017-01-20 20:37:41', '2017-01-20 20:37:41'),
-(3, '', 0, 2, 'app_data/profile/', 'download_(2).jpg', '2017-01-20 20:37:55', '2017-01-20 20:37:55'),
-(4, '', 0, 2, 'app_data/profile/', 'download.jpg', '2017-01-20 20:38:05', '2017-01-20 20:38:05'),
-(12, '', 0, 9, 'app_data/profile/', 'DSC_0225.JPG', '2017-04-09 03:16:26', '2017-04-09 03:16:26'),
-(13, '', 0, 9, 'app_data/profile/', 'DSC_0304.JPG', '2017-04-09 03:16:32', '2017-04-09 03:16:32'),
-(14, '', 0, 9, 'app_data/profile/', 'dubai-city-at-dusk.jpg', '2017-04-09 03:16:39', '2017-04-09 03:16:39'),
-(15, '', 0, 9, 'app_data/profile/', 'DSC_0118.JPG', '2017-04-09 03:16:47', '2017-04-09 03:16:47'),
-(18, '', 0, 7, 'app_data/profile/', 'dubai-city-at-dusk.jpg', '2017-05-07 01:36:27', '2017-05-07 01:36:27'),
-(19, '', 0, 13, 'app_data/profile/', 'DSC01291.jpg', '2017-05-07 01:10:38', '2017-05-07 01:10:38'),
-(20, '', 0, 13, 'app_data/profile/', 'IMG_20150920_140332924_HDR.jpg', '2017-05-07 01:10:47', '2017-05-07 01:10:47'),
-(21, '', 0, 13, 'app_data/profile/', 'DSC01291.jpg', '2017-05-07 01:10:56', '2017-05-07 01:10:56'),
-(22, '', 0, 13, 'app_data/profile/', 'IMG_20151014_135316.jpg', '2017-05-07 01:11:03', '2017-05-07 01:11:03'),
-(23, '', 0, 21, 'app_data/profile/', 'download_(2).jpg', '2017-07-16 03:59:41', '2017-07-16 03:59:41'),
-(24, '', 0, 21, 'app_data/profile/', 'download.jpg', '2017-07-16 03:59:44', '2017-07-16 03:59:44'),
-(25, '', 0, 21, 'app_data/profile/', 'download_(2).jpg', '2017-07-16 03:59:47', '2017-07-16 03:59:47'),
-(26, '', 0, 21, 'app_data/profile/', 'genelia_600x400_0_(1).jpg', '2017-07-16 03:59:52', '2017-07-16 03:59:52'),
-(27, '', 0, 21, 'app_data/profile/', 'images.jpg', '2017-07-16 03:59:56', '2017-07-16 03:59:56'),
-(28, '', 0, 21, 'app_data/profile/', 'images.jpg', '2017-07-16 04:00:02', '2017-07-16 04:00:02'),
-(29, '', 0, 21, 'app_data/profile/', 'download.png', '2017-07-16 04:00:08', '2017-07-16 04:00:08'),
-(30, '', 0, 24, 'app_data/profile/', 'chickendinner_640x480.jpg', '2017-07-23 01:33:27', '2017-07-23 01:33:27'),
-(31, '', 0, 40, 'app_data/profile/49/', '23cda2de9ecec7045c10dbe8b567de10.png', '2018-07-14 22:00:18', '2018-07-14 22:00:18'),
-(32, '', 0, 40, 'app_data/profile/49/', 'd2323c4722d30b734dfddb1efc8676e7.png', '2018-07-14 22:00:26', '2018-07-14 22:00:26');
+(1, '', 0, 1, 'app_data/profile/2/', 'c126033b31b79862c8084073a88779b2.jpg', '2018-07-22 01:49:24', '2018-07-22 01:49:24'),
+(2, '', 0, 1, 'app_data/profile/2/', '654dbbda1ca5895747e857e0236a834d.png', '2018-07-22 01:49:31', '2018-07-22 01:49:31'),
+(3, '', 0, 1, 'app_data/profile/2/', '011a0de6db4a6b5fa68167253028da5c.jpg', '2018-07-22 01:50:38', '2018-07-22 01:50:38'),
+(5, '', 0, 1, 'app_data/profile/2/', 'dacdce83ee288f7df80ef97a2de6224d.jpg', '2018-07-22 01:51:07', '2018-07-22 01:51:07'),
+(8, '', 0, 1, 'app_data/profile/2/', '07dbeab9ed7151f9d40c8edcc4f6a62f.jpg', '2018-07-21 20:11:18', '2018-07-21 20:11:18');
 
 -- --------------------------------------------------------
 
@@ -1444,57 +546,77 @@ CREATE TABLE `advertisment_phones` (
 --
 
 INSERT INTO `advertisment_phones` (`id`, `number`, `type`, `advertisment_id`, `created`, `modified`) VALUES
-(4, '9791447542', 1, 8, '2017-02-24 00:32:50', '0000-00-00 00:00:00'),
-(5, '9791447542', 2, 8, '2017-02-24 00:32:51', '0000-00-00 00:00:00'),
-(6, '9791447543', 2, 8, '2017-02-24 00:32:51', '0000-00-00 00:00:00'),
-(16, '9791447542', 1, 9, '2017-04-09 03:15:22', '0000-00-00 00:00:00'),
-(17, '9791447542', 2, 9, '2017-04-09 03:15:22', '0000-00-00 00:00:00'),
-(18, '9791447542', 2, 9, '2017-04-09 03:15:22', '0000-00-00 00:00:00'),
-(25, '9791447542', 1, 10, '2017-04-21 02:12:34', '0000-00-00 00:00:00'),
-(26, '0444-2345680', 2, 10, '2017-04-21 02:12:35', '0000-00-00 00:00:00'),
-(27, '0444-2345680', 2, 10, '2017-04-21 02:12:35', '0000-00-00 00:00:00'),
-(28, '9791447542', 1, 11, '2017-04-21 02:21:14', '0000-00-00 00:00:00'),
-(29, '9791447542', 2, 11, '2017-04-21 02:21:14', '0000-00-00 00:00:00'),
-(30, '9791447542', 2, 11, '2017-04-21 02:21:14', '0000-00-00 00:00:00'),
-(34, '9791447542', 1, 7, '2017-04-24 00:34:24', '0000-00-00 00:00:00'),
-(35, '9791447542', 2, 7, '2017-04-24 00:34:24', '0000-00-00 00:00:00'),
-(36, '9791447542', 2, 7, '2017-04-24 00:34:24', '0000-00-00 00:00:00'),
-(37, '9791447542', 1, 13, '2017-05-07 01:09:38', '0000-00-00 00:00:00'),
-(38, '9791447542', 2, 13, '2017-05-07 01:09:38', '0000-00-00 00:00:00'),
-(39, '9791447542', 2, 13, '2017-05-07 01:09:38', '0000-00-00 00:00:00'),
-(49, '9791447542', 1, 14, '2017-07-16 01:22:48', '0000-00-00 00:00:00'),
-(50, '9791447542', 2, 14, '2017-07-16 01:22:48', '0000-00-00 00:00:00'),
-(51, '9791447542', 2, 14, '2017-07-16 01:22:48', '0000-00-00 00:00:00'),
-(52, '9791447542', 1, 15, '2017-07-16 01:56:01', '0000-00-00 00:00:00'),
-(53, '9791447542', 2, 15, '2017-07-16 01:56:01', '0000-00-00 00:00:00'),
-(54, '9791447542', 2, 15, '2017-07-16 01:56:02', '0000-00-00 00:00:00'),
-(61, '9791447542', 1, 18, '2017-07-16 02:06:49', '0000-00-00 00:00:00'),
-(62, '9791447542', 2, 18, '2017-07-16 02:06:49', '0000-00-00 00:00:00'),
-(63, '9791447542', 2, 18, '2017-07-16 02:06:49', '0000-00-00 00:00:00'),
-(64, '9791447542', 1, 19, '2017-07-16 02:10:36', '0000-00-00 00:00:00'),
-(65, '979144752', 2, 19, '2017-07-16 02:10:36', '0000-00-00 00:00:00'),
-(66, '1234567', 2, 19, '2017-07-16 02:10:36', '0000-00-00 00:00:00'),
-(67, '9791447542', 1, 20, '2017-07-16 02:14:07', '0000-00-00 00:00:00'),
-(68, '9791447542', 2, 20, '2017-07-16 02:14:07', '0000-00-00 00:00:00'),
-(69, '9791447542', 2, 20, '2017-07-16 02:14:07', '0000-00-00 00:00:00'),
-(85, '9791447542', 1, 21, '2017-07-16 02:33:59', '0000-00-00 00:00:00'),
-(86, '9791447542', 2, 21, '2017-07-16 02:33:59', '0000-00-00 00:00:00'),
-(87, '9791447542', 2, 21, '2017-07-16 02:33:59', '0000-00-00 00:00:00'),
-(88, '9791447542', 1, 22, '2017-07-23 03:17:03', '0000-00-00 00:00:00'),
-(89, '9791447542', 2, 22, '2017-07-23 03:17:03', '0000-00-00 00:00:00'),
-(90, '9791447542', 2, 22, '2017-07-23 03:17:03', '0000-00-00 00:00:00'),
-(91, '9791447542', 1, 23, '2017-07-23 03:23:34', '0000-00-00 00:00:00'),
-(92, '9791447542', 2, 23, '2017-07-23 03:23:34', '0000-00-00 00:00:00'),
-(93, '9791447542', 2, 23, '2017-07-23 03:23:34', '0000-00-00 00:00:00'),
-(94, '9791447542', 1, 24, '2017-07-23 03:33:12', '0000-00-00 00:00:00'),
-(95, '9791447542', 2, 24, '2017-07-23 03:33:13', '0000-00-00 00:00:00'),
-(96, '9791447542', 2, 24, '2017-07-23 03:33:13', '0000-00-00 00:00:00'),
-(174, '9791447542', 1, 39, '2018-01-26 01:06:18', '0000-00-00 00:00:00'),
-(175, '9791447542', 2, 39, '2018-01-26 01:06:18', '0000-00-00 00:00:00'),
-(224, '9791447542', 1, 1, '2018-02-04 02:22:02', '0000-00-00 00:00:00'),
-(225, '9791447542', 2, 1, '2018-02-04 02:22:03', '0000-00-00 00:00:00'),
-(226, '9791447542', 2, 1, '2018-02-04 02:22:03', '0000-00-00 00:00:00'),
-(227, '9791447542', 1, 40, '2018-05-12 00:43:33', '0000-00-00 00:00:00');
+(25, '9791447542', 1, 1, '2018-07-28 23:38:17', '0000-00-00 00:00:00'),
+(26, '9791447542', 2, 1, '2018-07-28 23:38:17', '0000-00-00 00:00:00'),
+(27, '9791447542', 2, 1, '2018-07-28 23:38:17', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertisment_products`
+--
+
+CREATE TABLE `advertisment_products` (
+  `id` bigint(20) NOT NULL,
+  `created` datetime NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(10,4) NOT NULL,
+  `is_active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `advertisment_products`
+--
+
+INSERT INTO `advertisment_products` (`id`, `created`, `name`, `price`, `is_active`) VALUES
+(1, '2018-07-29 00:00:00', 'Samsung c2', '5000.0000', 1),
+(2, '2018-07-29 08:26:53', 'product1', '500.0000', 1),
+(3, '2018-07-29 08:27:58', 'product2', '400.0000', 1),
+(4, '2018-07-29 06:48:43', 'Hamam', '10.0000', 1),
+(7, '2018-07-30 06:55:06', 'Tv Speaker', '120.0000', 1),
+(8, '2018-07-30 06:55:25', 'Ac Remote Rv', '1200.0000', 1),
+(9, '2018-07-31 06:29:44', 'Ac Remote UV Support All Applicanece', '1200.0000', 1),
+(10, '2018-08-04 11:37:19', 'Led Tv', '4000.0000', 1),
+(11, '2018-08-04 11:38:13', 'Lenevo Laptop', '40000.0000', 1),
+(12, '2018-08-04 11:38:13', 'Samsung headset', '600.0000', 1),
+(13, '2018-08-15 07:13:48', 'jav', '120.0000', 1),
+(14, '2018-08-15 07:20:58', 'PHP', '0.0000', 1),
+(15, '2018-08-15 07:20:58', 'CORE', '0.0000', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertisment_store_products`
+--
+
+CREATE TABLE `advertisment_store_products` (
+  `id` bigint(20) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `price` decimal(10,4) NOT NULL,
+  `is_active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `advertisment_store_products`
+--
+
+INSERT INTO `advertisment_store_products` (`id`, `created`, `modified`, `user_id`, `product_id`, `price`, `is_active`) VALUES
+(1, '2018-07-29 00:00:00', '2018-07-29 00:00:00', 2, 1, '450.0000', 1),
+(2, '2018-07-29 08:27:57', '2018-07-29 10:39:18', 2, 2, '300.0000', 1),
+(3, '2018-07-29 08:27:58', '0000-00-00 00:00:00', 2, 3, '400.0000', 1),
+(4, '2018-07-29 06:48:43', '0000-00-00 00:00:00', 2, 4, '10.0000', 1),
+(13, '2018-07-30 06:50:34', '2018-07-30 06:51:51', 2, 5, '0.0000', 1),
+(15, '2018-07-30 06:55:25', '2018-07-31 06:39:15', 2, 9, '1200.0000', 1),
+(16, '2018-08-04 11:36:58', '0000-00-00 00:00:00', 2, 7, '500.0000', 1),
+(17, '2018-08-04 11:37:19', '0000-00-00 00:00:00', 2, 10, '4000.0000', 1),
+(18, '2018-08-04 11:38:13', '0000-00-00 00:00:00', 2, 11, '40000.0000', 1),
+(19, '2018-08-04 11:38:13', '0000-00-00 00:00:00', 2, 12, '600.0000', 1),
+(20, '2018-08-15 07:19:34', '0000-00-00 00:00:00', 2, 13, '120.0000', 1),
+(21, '2018-08-15 07:20:58', '0000-00-00 00:00:00', 2, 14, '0.0000', 1),
+(22, '2018-08-15 07:20:58', '0000-00-00 00:00:00', 2, 15, '0.0000', 1);
 
 -- --------------------------------------------------------
 
@@ -1519,245 +641,7 @@ CREATE TABLE `advertisment_views` (
 --
 
 INSERT INTO `advertisment_views` (`id`, `created`, `advertisment_id`, `ip`, `city`, `country`, `browser`, `browser_version`, `platform`) VALUES
-(1, '2017-01-26 04:36:45', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(2, '2017-01-26 05:20:59', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(3, '2017-01-28 01:06:28', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(4, '2017-01-28 01:08:15', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(5, '2017-01-28 01:08:16', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(6, '2017-01-28 01:08:17', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(7, '2017-01-28 01:08:17', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(9, '2017-01-28 01:08:20', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(10, '2017-01-28 01:08:21', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(11, '2017-01-28 01:08:21', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(12, '2017-01-28 01:08:21', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(13, '2017-01-28 01:08:21', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(14, '2017-01-28 01:08:21', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(15, '2017-01-28 01:08:21', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(16, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(17, '2017-01-28 01:08:21', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(18, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(19, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(20, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(21, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(22, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(23, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(24, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(25, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(26, '2017-01-28 01:08:22', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(27, '2017-01-28 01:08:34', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(28, '2017-01-28 01:09:14', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(29, '2017-01-28 01:09:25', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(30, '2017-01-28 01:10:23', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(31, '2017-01-28 01:14:09', 2, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(32, '2017-01-28 04:27:09', 5, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(33, '2017-01-28 04:28:10', 5, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(34, '2017-01-28 04:28:23', 5, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(35, '2017-01-29 08:03:07', 3, '', '', '', 'Google Chrome', '55.0.2883.87', 'windows'),
-(36, '2017-02-18 03:08:27', 2, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(37, '2017-02-18 03:08:43', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(38, '2017-02-18 03:09:23', 3, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(39, '2017-02-18 03:09:35', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(40, '2017-02-18 04:38:58', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(41, '2017-02-19 09:22:52', 6, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(42, '2017-02-19 09:23:53', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(43, '2017-02-19 09:24:51', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(44, '2017-02-19 09:35:40', 2, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(45, '2017-03-04 01:05:28', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(46, '2017-03-04 01:08:35', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(47, '2017-03-04 01:08:35', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(48, '2017-03-04 01:08:36', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(49, '2017-03-04 01:08:36', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(50, '2017-03-04 01:11:35', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(51, '2017-03-12 05:36:34', 3, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(52, '2017-03-18 05:50:59', 6, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(53, '2017-03-18 05:53:24', 6, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(54, '2017-03-18 05:56:05', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(55, '2017-03-18 05:57:20', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(56, '2017-03-18 05:58:48', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(57, '2017-03-18 06:10:26', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(58, '2017-03-18 06:10:27', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(59, '2017-03-18 06:10:28', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(60, '2017-03-18 06:10:30', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(61, '2017-03-18 06:10:51', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(62, '2017-03-18 06:10:52', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(63, '2017-03-18 06:10:53', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(64, '2017-03-18 06:10:54', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(65, '2017-03-18 06:10:55', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(66, '2017-03-18 06:10:56', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(67, '2017-03-18 06:10:56', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(68, '2017-03-18 06:43:03', 7, '', '', '', 'Mozilla Firefox', '51.0', 'windows'),
-(69, '2017-03-18 06:44:23', 7, '', '', '', 'Unknown', '?', 'windows'),
-(70, '2017-03-18 06:45:24', 7, '', '', '', 'Unknown', '?', 'windows'),
-(71, '2017-03-18 06:45:38', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(72, '2017-03-18 06:45:50', 7, '', '', '', 'Unknown', '?', 'windows'),
-(73, '2017-03-18 06:45:54', 7, '', '', '', 'Mozilla Firefox', '51.0', 'windows'),
-(74, '2017-03-24 06:51:45', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(75, '2017-03-24 06:52:16', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(76, '2017-03-25 04:42:23', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(77, '2017-03-25 04:42:58', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(78, '2017-03-25 04:44:03', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(79, '2017-03-25 04:44:41', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(80, '2017-03-25 04:46:26', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(81, '2017-03-25 04:52:10', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(82, '2017-03-25 04:53:47', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(83, '2017-03-25 04:54:32', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(84, '2017-03-25 04:54:45', 6, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(85, '2017-03-26 09:42:25', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(86, '2017-03-26 09:43:06', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(87, '2017-03-26 09:43:32', 1, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(88, '2017-03-26 09:44:18', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(89, '2017-03-26 10:15:47', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(90, '2017-03-26 10:17:49', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(91, '2017-03-26 02:11:12', 4, '', '', '', 'Mozilla Firefox', '52.0', 'windows'),
-(92, '2017-03-26 02:11:21', 7, '', '', '', 'Mozilla Firefox', '52.0', 'windows'),
-(93, '2017-03-26 02:11:31', 7, '', '', '', 'Mozilla Firefox', '52.0', 'windows'),
-(94, '2017-03-26 04:08:29', 4, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(95, '2017-03-26 04:08:39', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(96, '2017-03-26 04:09:04', 7, '', '', '', 'Unknown', '?', 'windows'),
-(97, '2017-03-28 07:25:32', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(98, '2017-03-28 07:25:47', 5, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(99, '2017-03-28 07:25:55', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(100, '2017-03-28 07:28:02', 7, '', '', '', 'Google Chrome', '56.0.2924.87', 'windows'),
-(101, '2017-04-09 06:41:09', 7, '', '', '', 'Google Chrome', '57.0.2987.133', 'windows'),
-(102, '2017-04-09 06:41:15', 7, '', '', '', 'Google Chrome', '57.0.2987.133', 'windows'),
-(103, '2017-05-07 07:37:25', 13, '', '', '', 'Google Chrome', '58.0.3029.96', 'windows'),
-(104, '2017-05-07 07:37:43', 13, '', '', '', 'Google Chrome', '58.0.3029.96', 'windows'),
-(105, '2017-05-14 08:18:21', 3, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(106, '2017-05-14 10:56:35', 7, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(107, '2017-05-14 11:46:37', 7, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(108, '2017-05-25 07:35:40', 7, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(109, '2017-05-26 06:52:08', 7, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(110, '2017-05-26 07:09:31', 7, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(111, '2017-05-28 03:11:10', 5, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(112, '2017-05-28 04:29:47', 5, '', '', '', 'Google Chrome', '58.0.3029.110', 'windows'),
-(113, '2017-06-28 08:21:03', 7, '', '', '', 'Google Chrome', '59.0.3071.109', 'windows'),
-(114, '2017-07-11 07:02:09', 7, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(115, '2017-07-11 08:03:31', 7, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(116, '2017-07-12 06:24:19', 7, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(117, '2017-07-12 06:55:42', 7, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(118, '2017-07-12 07:32:07', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(119, '2017-07-12 08:28:16', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(120, '2017-07-14 07:03:05', 3, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(121, '2017-07-14 07:28:41', 3, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(122, '2017-07-15 09:46:25', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(123, '2017-07-15 10:31:04', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(124, '2017-07-16 06:28:41', 13, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(125, '2017-07-16 06:29:16', 4, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(126, '2017-07-16 07:10:45', 7, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(127, '2017-07-17 06:32:43', 2, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(128, '2017-07-17 06:46:33', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(129, '2017-07-17 07:35:58', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(130, '2017-07-17 07:41:58', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(131, '2017-07-17 07:44:53', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(132, '2017-07-17 07:47:43', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(133, '2017-07-17 07:48:04', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(134, '2017-07-17 07:48:25', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(135, '2017-07-17 07:48:51', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(136, '2017-07-17 07:49:18', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(137, '2017-07-17 07:51:22', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(138, '2017-07-17 07:55:55', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(139, '2017-07-17 07:57:01', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(140, '2017-07-17 07:57:15', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(141, '2017-07-17 07:57:55', 2, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(142, '2017-07-17 07:58:11', 2, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(143, '2017-07-18 07:00:00', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(144, '2017-07-18 07:12:07', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(145, '2017-07-18 07:34:54', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(146, '2017-07-18 07:36:00', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(147, '2017-07-18 08:03:52', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(148, '2017-07-18 08:04:56', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(149, '2017-07-18 08:08:59', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(150, '2017-07-18 08:10:26', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(151, '2017-07-18 08:10:54', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(152, '2017-07-18 08:11:31', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(153, '2017-07-18 08:11:56', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(154, '2017-07-18 08:12:05', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(155, '2017-07-18 08:12:29', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(156, '2017-07-18 08:13:10', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(157, '2017-07-18 08:13:59', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(158, '2017-07-18 08:18:27', 7, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(159, '2017-07-20 07:06:46', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(160, '2017-07-23 09:02:19', 13, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(161, '2017-07-23 09:04:46', 24, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(162, '2017-07-26 06:42:24', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(163, '2017-07-26 06:53:22', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(164, '2017-07-26 06:53:58', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(165, '2017-07-26 06:54:42', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(166, '2017-07-26 06:56:54', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(167, '2017-07-26 06:57:12', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(168, '2017-07-26 06:58:29', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(169, '2017-07-26 06:58:36', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(170, '2017-07-26 07:03:01', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(171, '2017-07-26 07:04:15', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(172, '2017-07-26 07:04:41', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(173, '2017-07-26 07:05:03', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(174, '2017-07-26 07:05:47', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(175, '2017-07-26 07:06:01', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(176, '2017-07-26 07:08:31', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(177, '2017-07-26 07:09:49', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(178, '2017-07-30 06:22:12', 2, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(179, '2017-07-30 06:25:02', 4, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(180, '2017-07-30 06:25:23', 10, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(181, '2017-07-30 06:26:21', 13, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(182, '2017-08-05 06:33:12', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(183, '2017-08-05 06:34:13', 1, '', '', '', 'Google Chrome', '59.0.3071.115', 'windows'),
-(184, '2017-08-12 07:58:27', 24, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(185, '2017-08-12 08:24:01', 24, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(186, '2017-08-13 07:36:48', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(187, '2017-08-13 07:39:06', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(188, '2017-08-13 07:56:35', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(189, '2017-08-13 07:56:56', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(190, '2017-08-13 07:57:13', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(191, '2017-08-13 07:57:34', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(192, '2017-08-13 07:58:40', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(193, '2017-08-13 07:59:00', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(194, '2017-08-13 08:10:54', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(195, '2017-08-14 06:26:29', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(196, '2017-08-15 05:44:19', 1, '', '', '', 'Google Chrome', '58.0.2988.0', 'windows'),
-(197, '2017-08-15 08:36:22', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(198, '2017-08-15 08:43:18', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(199, '2017-08-15 08:43:35', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(200, '2017-08-15 08:45:19', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(201, '2017-08-15 08:46:31', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(202, '2017-08-15 09:31:36', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(203, '2017-08-15 09:46:08', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(204, '2017-08-15 12:35:17', 1, '', '', '', 'Google Chrome', '60.0.3112.90', 'windows'),
-(205, '2017-08-20 05:44:48', 24, '', '', '', 'Google Chrome', '60.0.3112.101', 'windows'),
-(206, '2017-08-26 10:40:38', 1, '', '', '', 'Google Chrome', '60.0.3112.101', 'windows'),
-(207, '2017-08-26 10:41:06', 1, '', '', '', 'Google Chrome', '60.0.3112.101', 'windows'),
-(208, '2017-08-27 06:44:30', 1, '', '', '', 'Google Chrome', '60.0.3112.101', 'linux'),
-(209, '2017-08-27 06:55:38', 1, '', '', '', 'Google Chrome', '60.0.3112.101', 'windows'),
-(210, '2017-10-26 06:53:57', 1, '', '', '', 'Google Chrome', '61.0.3163.100', 'windows'),
-(211, '2017-10-26 06:54:32', 1, '', '', '', 'Google Chrome', '61.0.3163.100', 'windows'),
-(212, '2017-11-11 09:21:26', 25, '', '', '', 'Google Chrome', '61.0.3163.100', 'windows'),
-(213, '2017-11-11 09:39:49', 25, '', '', '', 'Google Chrome', '61.0.3163.100', 'windows'),
-(214, '2017-11-12 06:42:37', 27, '', '', '', 'Google Chrome', '61.0.3163.100', 'windows'),
-(215, '2017-11-12 06:42:53', 27, '', '', '', 'Google Chrome', '61.0.3163.100', 'windows'),
-(216, '2018-01-26 06:36:31', 39, '', '', '', 'Google Chrome', '64.0.3282.119', 'windows'),
-(217, '2018-01-28 06:56:16', 1, '', '', '', 'Google Chrome', '64.0.3282.119', 'windows'),
-(218, '2018-02-04 07:20:21', 1, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(219, '2018-02-04 07:32:02', 1, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(220, '2018-02-04 07:32:38', 1, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(221, '2018-02-04 07:34:38', 1, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(222, '2018-02-04 07:48:35', 1, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(223, '2018-02-04 07:49:19', 1, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(224, '2018-02-04 07:50:38', 1, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(225, '2018-02-11 10:20:58', 4, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(226, '2018-02-11 10:23:14', 4, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(227, '2018-02-11 10:23:27', 4, '', '', '', 'Google Chrome', '64.0.3282.140', 'windows'),
-(228, '2018-07-15 02:41:39', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(229, '2018-07-15 02:42:24', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(230, '2018-07-15 02:48:48', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(231, '2018-07-15 03:22:38', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(232, '2018-07-15 03:23:13', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(233, '2018-07-15 03:28:31', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(234, '2018-07-15 03:30:35', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(235, '2018-07-15 03:32:43', 5, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(236, '2018-07-15 03:34:53', 21, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(237, '2018-07-15 03:34:58', 21, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(238, '2018-07-15 03:36:11', 21, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(239, '2018-07-15 03:36:27', 21, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows'),
-(240, '2018-07-15 06:10:42', 40, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows');
+(1, '2018-07-22 07:24:09', 1, '', '', '', 'Google Chrome', '67.0.3396.99', 'windows');
 
 -- --------------------------------------------------------
 
@@ -2091,7 +975,8 @@ INSERT INTO `areas` (`id`, `created`, `modified`, `name`, `alias`, `city_id`, `s
 (304, '2016-12-28 04:43:06', '0000-00-00 00:00:00', 'Sura', '', 1, 0, 0, 0, 0.000000, 0.000000, 1),
 (306, '2017-01-22 07:46:51', '0000-00-00 00:00:00', 'Goa', '', 45, 0, 0, 0, 0.000000, 0.000000, 1),
 (307, '2017-04-21 07:54:33', '0000-00-00 00:00:00', 'f', '', 46, 0, 0, 0, 0.000000, 0.000000, 1),
-(308, '2017-07-16 07:58:09', '0000-00-00 00:00:00', 'select', '', 47, 0, 0, 0, 0.000000, 0.000000, 1);
+(308, '2017-07-16 07:58:09', '0000-00-00 00:00:00', 'select', '', 47, 0, 0, 0, 0.000000, 0.000000, 1),
+(309, '2018-08-08 02:32:55', '0000-00-00 00:00:00', 'kudiyathuam', '', 48, 0, 0, 0, 0.000000, 0.000000, 1);
 
 -- --------------------------------------------------------
 
@@ -2123,50 +1008,6 @@ CREATE TABLE `blogs` (
   `type` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `blogs`
---
-
-INSERT INTO `blogs` (`id`, `created`, `modified`, `user_id`, `name`, `author`, `short_description`, `description`, `source_url`, `blog_category_id`, `image_name`, `image_dir`, `meta_keywords`, `meta_description`, `total_user_rated`, `rating`, `overall_score`, `site_score`, `view_count`, `api_provider`, `type`, `is_active`) VALUES
-(1, '2016-10-10 01:49:58', '2016-10-10 01:49:58', 1, 'India vs New Zealand, Third Test in Indore, Day 3: New Zealand all out for 299; India reach 18/0 in 2nd innings', 'PTI', 'India reached 18 for no loss in their second innings after bundling out New Zealand for 299 in the first innings on the third day of the third Test on Monday.\nIndia took a first-innings lead of 258', 'India reached 18 for no loss in their second innings after bundling out New Zealand for 299 in the first innings on the third day of the third Test on Monday.\nIndia took a first-innings lead of 258', 'http://www.thehindu.com/sport/cricket/india-vs-new-zealand-third-test-in-indore-day-3/article9206483.ece', 14, 'INDIA_NEW_ZEALAND__3040486c.jpg', 'app_data/blogs/', 'India vs New Zealand, Third Test in Indore, Day 3: New Zealand all out for 299; India reach 18/0 in 2nd innings', 'India reached 18 for no loss in their second innings after bundling out New Zealand for 299 in the first innings on the third day of the third Test on Monday.\nIndia took a first-innings lead of 258', 0, 0, 0, 0, 0, 'https://newsapi.org', 1, 1),
-(2, '2016-10-10 01:49:58', '2016-10-10 01:49:58', 1, 'Two professors share Economics Nobel', 'AP', 'British-born Oliver Hart and Bengt Holmstrom of Finland won the Nobel Memorial Prize in Economic Sciences for their contributions to contract theory, shedding light on how contracts help people deal', 'British-born Oliver Hart and Bengt Holmstrom of Finland won the Nobel Memorial Prize in Economic Sciences for their contributions to contract theory, shedding light on how contracts help people deal', 'http://www.thehindu.com/sci-tech/science/two-american-professors-share-economics-nobel/article9206731.ece', 14, 'Clipboard_3040493c.jpg', 'app_data/blogs/', 'Two professors share Economics Nobel', 'British-born Oliver Hart and Bengt Holmstrom of Finland won the Nobel Memorial Prize in Economic Sciences for their contributions to contract theory, shedding light on how contracts help people deal', 0, 0, 0, 0, 1, 'https://newsapi.org', 1, 1),
-(3, '2016-10-10 01:50:01', '2016-10-10 01:50:01', 1, 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'The Associated Press', 'Here\'s where the candidates played fast and loose with the truth.', 'Here\'s where the candidates played fast and loose with the truth.', 'http://fortune.com/2016/10/10/fact-checking-hillary-clinton-donald-trump-debate-claims/', 15, 'gettyimages-613700102.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'Here\'s where the candidates played fast and loose with the truth.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(4, '2016-10-10 01:50:04', '2016-10-10 01:50:04', 1, 'Apple and Samsung at the Supreme Court: What You Need to Know', 'Jeff John Roberts', 'An epic fight over design patents', 'An epic fight over design patents', 'http://fortune.com/2016/10/10/apple-supreme-court-samsung/', 15, 'apple-supreme-court.png?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Apple and Samsung at the Supreme Court: What You Need to Know', 'An epic fight over design patents', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(5, '2016-10-10 01:50:06', '2016-10-10 01:50:06', 1, 'Here’s Who Won the Second Presidential Debate', 'Tory Newmyer', 'Hillary Clinton and Donald Trump engaged in a bruising and personal exchange of attacks.', 'Hillary Clinton and Donald Trump engaged in a bruising and personal exchange of attacks.', 'http://fortune.com/2016/10/09/heres-who-won-the-second-presidential-debate/', 15, 'ap_16284052828202.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Here’s Who Won the Second Presidential Debate', 'Hillary Clinton and Donald Trump engaged in a bruising and personal exchange of attacks.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(6, '2016-10-10 01:50:07', '2016-10-10 01:50:07', 1, 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'The Associated Press', 'Here\'s where the candidates played fast and loose with the truth.', 'Here\'s where the candidates played fast and loose with the truth.', 'http://fortune.com/2016/10/10/fact-checking-hillary-clinton-donald-trump-debate-claims/', 15, 'gettyimages-613700102.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'Here\'s where the candidates played fast and loose with the truth.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(7, '2016-10-10 01:50:10', '2016-10-10 01:50:10', 1, 'Apple and Samsung at the Supreme Court: What You Need to Know', 'Jeff John Roberts', 'An epic fight over design patents', 'An epic fight over design patents', 'http://fortune.com/2016/10/10/apple-supreme-court-samsung/', 15, 'apple-supreme-court.png?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Apple and Samsung at the Supreme Court: What You Need to Know', 'An epic fight over design patents', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(8, '2016-10-10 01:50:12', '2016-10-10 01:50:12', 1, 'Watch the Highlights of the Second Presidential Debate Between Donald Trump and Hillary Clinton', 'Fortune Staff', 'The debate was full of fireworks and frenzied', 'The debate was full of fireworks and frenzied', 'http://fortune.com/2016/10/10/presidential-debate-highlights-video/', 15, 'rtsriye.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Watch the Highlights of the Second Presidential Debate Between Donald Trump and Hillary Clinton', 'The debate was full of fireworks and frenzied', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(9, '2016-10-10 01:50:14', '2016-10-10 01:50:14', 1, 'As China\'s Economy Slows, Migrant Workers Head Home', 'Reuters', 'The government wants to prop up insolvent SOEs, increase retraining, and encourage startups.', 'The government wants to prop up insolvent SOEs, increase retraining, and encourage startups.', 'http://fortune.com/2016/10/10/china-economy-migrant-workers/', 15, '84583073.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'As China\'s Economy Slows, Migrant Workers Head Home', 'The government wants to prop up insolvent SOEs, increase retraining, and encourage startups.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(10, '2016-10-10 01:50:16', '2016-10-10 01:50:16', 1, 'Economists Fact-Check the Second Presidential Debate', 'George Mannes, Money', 'Mistakes were made.', 'Mistakes were made.', 'http://fortune.com/2016/10/10/economists-fact-check-the-second-presidential-debate/', 15, 'ap_16284094096774.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Economists Fact-Check the Second Presidential Debate', 'Mistakes were made.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(11, '2016-10-10 01:51:25', '2016-10-10 01:51:25', 1, 'India vs New Zealand, Third Test in Indore, Day 3: New Zealand all out for 299; India reach 18/0 in 2nd innings', 'PTI', 'India reached 18 for no loss in their second innings after bundling out New Zealand for 299 in the first innings on the third day of the third Test on Monday.\nIndia took a first-innings lead of 258', 'India reached 18 for no loss in their second innings after bundling out New Zealand for 299 in the first innings on the third day of the third Test on Monday.\nIndia took a first-innings lead of 258', 'http://www.thehindu.com/sport/cricket/india-vs-new-zealand-third-test-in-indore-day-3/article9206483.ece', 14, 'INDIA_NEW_ZEALAND__3040486c.jpg', 'app_data/blogs/', 'India vs New Zealand, Third Test in Indore, Day 3: New Zealand all out for 299; India reach 18/0 in 2nd innings', 'India reached 18 for no loss in their second innings after bundling out New Zealand for 299 in the first innings on the third day of the third Test on Monday.\nIndia took a first-innings lead of 258', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(12, '2016-10-10 01:51:26', '2016-10-10 01:51:26', 1, 'Two professors share Economics Nobel', 'AP', 'British-born Oliver Hart and Bengt Holmstrom of Finland won the Nobel Memorial Prize in Economic Sciences for their contributions to contract theory, shedding light on how contracts help people deal', 'British-born Oliver Hart and Bengt Holmstrom of Finland won the Nobel Memorial Prize in Economic Sciences for their contributions to contract theory, shedding light on how contracts help people deal', 'http://www.thehindu.com/sci-tech/science/two-american-professors-share-economics-nobel/article9206731.ece', 14, 'Clipboard_3040493c.jpg', 'app_data/blogs/', 'Two professors share Economics Nobel', 'British-born Oliver Hart and Bengt Holmstrom of Finland won the Nobel Memorial Prize in Economic Sciences for their contributions to contract theory, shedding light on how contracts help people deal', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(13, '2016-10-10 01:51:29', '2016-10-10 01:51:29', 1, 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'The Associated Press', 'Here\'s where the candidates played fast and loose with the truth.', 'Here\'s where the candidates played fast and loose with the truth.', 'http://fortune.com/2016/10/10/fact-checking-hillary-clinton-donald-trump-debate-claims/', 15, 'gettyimages-613700102.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'Here\'s where the candidates played fast and loose with the truth.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(14, '2016-10-10 01:51:31', '2016-10-10 01:51:31', 1, 'Apple and Samsung at the Supreme Court: What You Need to Know', 'Jeff John Roberts', 'An epic fight over design patents', 'An epic fight over design patents', 'http://fortune.com/2016/10/10/apple-supreme-court-samsung/', 15, 'apple-supreme-court.png?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Apple and Samsung at the Supreme Court: What You Need to Know', 'An epic fight over design patents', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(15, '2016-10-10 01:51:33', '2016-10-10 01:51:33', 1, 'Here’s Who Won the Second Presidential Debate', 'Tory Newmyer', 'Hillary Clinton and Donald Trump engaged in a bruising and personal exchange of attacks.', 'Hillary Clinton and Donald Trump engaged in a bruising and personal exchange of attacks.', 'http://fortune.com/2016/10/09/heres-who-won-the-second-presidential-debate/', 15, 'ap_16284052828202.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Here’s Who Won the Second Presidential Debate', 'Hillary Clinton and Donald Trump engaged in a bruising and personal exchange of attacks.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(16, '2016-10-10 01:51:34', '2016-10-10 01:51:34', 1, 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'The Associated Press', 'Here\'s where the candidates played fast and loose with the truth.', 'Here\'s where the candidates played fast and loose with the truth.', 'http://fortune.com/2016/10/10/fact-checking-hillary-clinton-donald-trump-debate-claims/', 15, 'gettyimages-613700102.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Fact Checking Hillary Clinton and Donald Trump’s Debate Claims', 'Here\'s where the candidates played fast and loose with the truth.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(17, '2016-10-10 01:51:36', '2016-10-10 01:51:36', 1, 'Apple and Samsung at the Supreme Court: What You Need to Know', 'Jeff John Roberts', 'An epic fight over design patents', 'An epic fight over design patents', 'http://fortune.com/2016/10/10/apple-supreme-court-samsung/', 15, 'apple-supreme-court.png?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Apple and Samsung at the Supreme Court: What You Need to Know', 'An epic fight over design patents', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(18, '2016-10-10 01:51:38', '2016-10-10 01:51:38', 1, 'Watch the Highlights of the Second Presidential Debate Between Donald Trump and Hillary Clinton', 'Fortune Staff', 'The debate was full of fireworks and frenzied', 'The debate was full of fireworks and frenzied', 'http://fortune.com/2016/10/10/presidential-debate-highlights-video/', 15, 'rtsriye.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Watch the Highlights of the Second Presidential Debate Between Donald Trump and Hillary Clinton', 'The debate was full of fireworks and frenzied', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(19, '2016-10-10 01:51:40', '2016-10-10 01:51:40', 1, 'As China\'s Economy Slows, Migrant Workers Head Home', 'Reuters', 'The government wants to prop up insolvent SOEs, increase retraining, and encourage startups.', 'The government wants to prop up insolvent SOEs, increase retraining, and encourage startups.', 'http://fortune.com/2016/10/10/china-economy-migrant-workers/', 15, '84583073.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'As China\'s Economy Slows, Migrant Workers Head Home', 'The government wants to prop up insolvent SOEs, increase retraining, and encourage startups.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(20, '2016-10-10 01:51:42', '2016-10-10 01:51:42', 1, 'Economists Fact-Check the Second Presidential Debate', 'George Mannes, Money', 'Mistakes were made.', 'Mistakes were made.', 'http://fortune.com/2016/10/10/economists-fact-check-the-second-presidential-debate/', 15, 'ap_16284094096774.jpg?w=820&amp;h=570&amp;crop=1', 'app_data/blogs/', 'Economists Fact-Check the Second Presidential Debate', 'Mistakes were made.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(21, '2016-10-10 01:51:45', '2016-10-10 01:51:45', 1, 'India bat after Ashwin six-for secures 258-run lead', 'The Report by Karthik Krishnaswamy', 'India declined to enforce the follow-on after R Ashwin\'s 20th five-wicket haul in Test cricket helped bowl New Zealand out for 299 on the third day of the Indore Test', 'India declined to enforce the follow-on after R Ashwin\'s 20th five-wicket haul in Test cricket helped bowl New Zealand out for 299 on the third day of the Indore Test', 'http://www.espncricinfo.com/india-v-new-zealand-2016-17/content/story/1061100.html', 16, '253288.jpg', 'app_data/blogs/', 'India bat after Ashwin six-for secures 258-run lead', 'India declined to enforce the follow-on after R Ashwin\'s 20th five-wicket haul in Test cricket helped bowl New Zealand out for 299 on the third day of the Indore Test', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(22, '2016-10-10 01:51:46', '2016-10-10 01:51:46', 1, 'Hughes inquest examines tactics, sledging', 'Daniel Brettig', 'Short-bowling tactics and allegations of sledging were placed under the microscope on day one of the New South Wales Coroner\'s inquest into the death of Phillip Hughes', 'Short-bowling tactics and allegations of sledging were placed under the microscope on day one of the New South Wales Coroner\'s inquest into the death of Phillip Hughes', 'http://www.espncricinfo.com/australia/content/story/1061097.html', 16, '202429.3.jpg', 'app_data/blogs/', 'Hughes inquest examines tactics, sledging', 'Short-bowling tactics and allegations of sledging were placed under the microscope on day one of the New South Wales Coroner\'s inquest into the death of Phillip Hughes', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(23, '2016-10-10 01:51:47', '2016-10-10 01:51:47', 1, 'Shamsi, Maharaj in South Africa squad for Australia Tests', 'ESPNcricinfo staff', 'Following his early success with the ODI team, South Africa have included chinaman bowler Tabraiz Shamsi in their squad for the Tests in Australia', 'Following his early success with the ODI team, South Africa have included chinaman bowler Tabraiz Shamsi in their squad for the Tests in Australia', 'http://www.espncricinfo.com/southafrica/content/story/1061111.html', 16, 'dm_161010_QF-KeshavMaharaj-Oct10.jpg?w=1244&h=700', 'app_data/blogs/', 'Shamsi, Maharaj in South Africa squad for Australia Tests', 'Following his early success with the ODI team, South Africa have included chinaman bowler Tabraiz Shamsi in their squad for the Tests in Australia', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(24, '2016-10-10 01:51:48', '2016-10-10 01:51:48', 1, 'Jadeja fined 50% of match fees', 'Sidharth Monga in Indore', 'Ravindra Jadeja was penalised 50% of his match fees and slapped with three demerit points by the ICC for', 'Ravindra Jadeja was penalised 50% of his match fees and slapped with three demerit points by the ICC for', 'http://www.espncricinfo.com/india-v-new-zealand-2016-17/content/story/1061063.html', 16, '253241.jpg', 'app_data/blogs/', 'Jadeja fined 50% of match fees', 'Ravindra Jadeja was penalised 50% of his match fees and slapped with three demerit points by the ICC for', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(25, '2016-10-10 01:51:49', '2016-10-10 01:51:49', 1, 'Mashrafe and Taskin star in feisty series-levelling victory', 'The Report by David Hopps', 'Mashrafe Mortaza produced a matchwinning all-round display, and Taskin Ahmed took three quick wickets, as Bangladesh squared the series by 34 runs', 'Mashrafe Mortaza produced a matchwinning all-round display, and Taskin Ahmed took three quick wickets, as Bangladesh squared the series by 34 runs', 'http://www.espncricinfo.com/bangladesh-v-england-2016-17/content/story/1060969.html', 16, '253264.3.jpg', 'app_data/blogs/', 'Mashrafe and Taskin star in feisty series-levelling victory', 'Mashrafe Mortaza produced a matchwinning all-round display, and Taskin Ahmed took three quick wickets, as Bangladesh squared the series by 34 runs', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(26, '2016-10-10 01:51:49', '2016-10-10 01:51:49', 1, 'Abbott, du Plessis lead SA to 4-0 with another rout', 'The Report by Daniel Brettig', 'Facing a side resting three first-choice bowlers in a dead rubber, Steven Smith\'s Australia were shot out for 167 as South Africa romped to a six-wicket win and a 4-0 lead in the series', 'Facing a side resting three first-choice bowlers in a dead rubber, Steven Smith\'s Australia were shot out for 167 as South Africa romped to a six-wicket win and a 4-0 lead in the series', 'http://www.espncricinfo.com/south-africa-v-australia-2016-17/content/story/1060964.html', 16, '253225.3.jpg', 'app_data/blogs/', 'Abbott, du Plessis lead SA to 4-0 with another rout', 'Facing a side resting three first-choice bowlers in a dead rubber, Steven Smith\'s Australia were shot out for 167 as South Africa romped to a six-wicket win and a 4-0 lead in the series', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(27, '2016-10-10 01:51:49', '2016-10-10 01:51:49', 1, 'Buttler says Bangladesh celebrations were \'over the top\'', 'Mohammad Isam in Mirpur', 'England captain Jos Buttler said that Bangladesh\'s celebration of his dismissal in the hosts\' eventual 34-run win was over the top', 'England captain Jos Buttler said that Bangladesh\'s celebration of his dismissal in the hosts\' eventual 34-run win was over the top', 'http://www.espncricinfo.com/bangladesh-v-england-2016-17/content/story/1061080.html', 16, '253268.jpg', 'app_data/blogs/', 'Buttler says Bangladesh celebrations were \'over the top\'', 'England captain Jos Buttler said that Bangladesh\'s celebration of his dismissal in the hosts\' eventual 34-run win was over the top', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(28, '2016-10-10 01:51:52', '2016-10-10 01:51:52', 1, 'Second presidential debate takes the low road as attacks and slurs dominate', 'https://www.facebook.com/costareports, https://www.facebook.com/PhilipRuckerWP', 'Donald Trump describes 2005 video as ‘locker-room talk,’ brands Hillary Clinton ‘a liar.’', 'Donald Trump describes 2005 video as ‘locker-room talk,’ brands Hillary Clinton ‘a liar.’', 'https://www.washingtonpost.com/politics/second-presidential-debate-takes-the-low-road-as-attacks-and-slurs-dominate/2016/10/10/e350484a-8e9f-11e6-9c52-0b10449e33c4_story.html', 17, 'ht61476062531.jpg', 'app_data/blogs/', 'Second presidential debate takes the low road as attacks and slurs dominate', 'Donald Trump describes 2005 video as ‘locker-room talk,’ brands Hillary Clinton ‘a liar.’', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(29, '2016-10-10 01:51:53', '2016-10-10 01:51:53', 1, 'Yemen: Missiles target US warship, Pentagon says', 'Ryan Browne and Jamie Crawford, CNN', 'Two missiles targeted a US warship off the coast of Yemen on Sunday but missed the vessel and hit the water instead, a Pentagon spokesman said.', 'Two missiles targeted a US warship off the coast of Yemen on Sunday but missed the vessel and hit the water instead, a Pentagon spokesman said.', 'http://www.cnn.com/2016/10/10/politics/yemen-us-navy-targeted/index.html', 17, '161009194706-uss-mason-1009-large-tease.jpg', 'app_data/blogs/', 'Yemen: Missiles target US warship, Pentagon says', 'Two missiles targeted a US warship off the coast of Yemen on Sunday but missed the vessel and hit the water instead, a Pentagon spokesman said.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(30, '2016-10-10 01:51:53', '2016-10-10 01:51:53', 1, 'Samsung Cannot Kill Its Galaxy Note 7 Nightmare', 'Admin', 'Forbes Welcome page -- Forbes is a global media company, focusing on business, investing, technology, entrepreneurship, leadership, and lifestyle.', 'Forbes Welcome page -- Forbes is a global media company, focusing on business, investing, technology, entrepreneurship, leadership, and lifestyle.', 'http://www.forbes.com/sites/ewanspence/2016/10/10/samsung-galaxy-note-7-production-pause/', 17, '', 'app_data/blogs/', 'Samsung Cannot Kill Its Galaxy Note 7 Nightmare', 'Forbes Welcome page -- Forbes is a global media company, focusing on business, investing, technology, entrepreneurship, leadership, and lifestyle.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(31, '2016-10-10 01:51:54', '2016-10-10 01:51:54', 1, 'The war against Columbus Day', 'https://www.facebook.com/kristineaguerra', 'A growing number of communities are ditching Columbus Day to celebrate indigenous people instead.', 'A growing number of communities are ditching Columbus Day to celebrate indigenous people instead.', 'https://www.washingtonpost.com/news/post-nation/wp/2016/10/10/the-war-against-columbus-day/', 17, '2015-12-15T223611Z_01_SAO07_RTRIDSP_3_BRAZIL-SOCIETY-INDIGENOUS.jpg', 'app_data/blogs/', 'The war against Columbus Day', 'A growing number of communities are ditching Columbus Day to celebrate indigenous people instead.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(32, '2016-10-10 01:52:04', '2016-10-10 01:52:04', 1, 'TBI issues Amber Alert for Florida girl', 'Will Woodbery', 'Authorities have issued an East Tennessee Amber Alert for a Florida girl after a possible sighting in Campbell County.', 'Authorities have issued an East Tennessee Amber Alert for a Florida girl after a possible sighting in Campbell County.', 'http://www.tennessean.com/story/news/crime/2016/10/10/tbi-issues-amber-alert-florida-girl/91844920/', 17, '636116760196248455-Lewis-Rebecca-PhotoB.jpg', 'app_data/blogs/', 'TBI issues Amber Alert for Florida girl', 'Authorities have issued an East Tennessee Amber Alert for a Florida girl after a possible sighting in Campbell County.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(33, '2016-10-10 01:52:05', '2016-10-10 01:52:05', 1, 'Oliver Hart and Bengt Holmstrom Win Nobel in Economics for Work on Contracts', 'Binyamin Appelbaum', 'The professors were recognized for their efforts on how best to write the deals that bind together employers and their workers, or companies and their customers.', 'The professors were recognized for their efforts on how best to write the deals that bind together employers and their workers, or companies and their customers.', 'http://www.nytimes.com/2016/10/11/business/nobel-economics-oliver-hart-bengt-holmstrom.html', 17, '11Nobel-web-facebookJumbo.jpg', 'app_data/blogs/', 'Oliver Hart and Bengt Holmstrom Win Nobel in Economics for Work on Contracts', 'The professors were recognized for their efforts on how best to write the deals that bind together employers and their workers, or companies and their customers.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(34, '2016-10-10 01:52:08', '2016-10-10 01:52:08', 1, 'Aid arrives in Haiti, but desperation grows in cut-off towns', 'Los Angeles Times', 'Helicopters are ferrying in food and medicine to devastated southwestern Haiti, but almost a week after Hurricane Matthew \'s assault life here is still far from normal and desperation is growing in communities where aid has yet to arrive.', 'Helicopters are ferrying in food and medicine to devastated southwestern Haiti, but almost a week after Hurricane Matthew \'s assault life here is still far from normal and desperation is growing in communities where aid has yet to arrive.', 'http://www.latimes.com/world/la-fg-haiti-matthew-devastation-20161010-snap-story.html', 17, 'la-fg-haiti-matthew-devastation-20161010-snap', 'app_data/blogs/', 'Aid arrives in Haiti, but desperation grows in cut-off towns', 'Helicopters are ferrying in food and medicine to devastated southwestern Haiti, but almost a week after Hurricane Matthew \'s assault life here is still far from normal and desperation is growing in communities where aid has yet to arrive.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(35, '2016-10-10 01:52:11', '2016-10-10 01:52:11', 1, 'Local aid mobilizing to assist hurricane-ravaged Haiti', 'Admin', 'The hurricane pounded the western peninsula of the impoverished Caribbean island nation on Tuesday with 145 mph winds and torrential rain destroying thousands of homes, ruining plantations, drowning animals and displacing more than 61,500 people.  The U.S. military has begun sending aid to Haiti by air and sea, including two Navy ships and heavy-lift helicopters, bulldozers, fresh-water delivery vehicles and two mobile surgical units.  Doctors without Borders, Catholic Relief Services, American ', 'The hurricane pounded the western peninsula of the impoverished Caribbean island nation on Tuesday with 145 mph winds and torrential rain destroying thousands of homes, ruining plantations, drowning animals and displacing more than 61,500 people.  The U.S. military has begun sending aid to Haiti by air and sea, including two Navy ships and heavy-lift helicopters, bulldozers, fresh-water delivery vehicles and two mobile surgical units.  Doctors without Borders, Catholic Relief Services, American Red Cross and other U.S. aid organizations were sending relief workers and supplies.  The house where a group of nuns lived was wiped out, St. Antoine\'s Church collapsed and three days of punishing rain and winds uprooted trees, tore off metal roofs, downed power lines and caused widespread flooding and structural damage.  In 2010, St. Clement\'s Church in Saratoga Springs donated $20,000 for earthquake relief and the diocese spearheaded a local donation drive that filled a 40-foot container with tools and construction materials, food, medicine, school supplies and vegetable seeds and shipped it to Haiti.  Calling Hurricane Matthew\'s toll in Haiti \"nothing short of tragic,\" Gov. Andrew M. Cuomo issued a statement that urged New Yorkers to join him in \"offering our thoughts and prayers to all its victims and the millions of people impacted.\"  Following the 2010 earthquake, state authorities issued warnings to protect donors from falling prey to fundraising scams and shady solicitations and to guard against credit card and bank account theft.', 'http://www.timesunion.com/local/article/Local-aid-mobilizing-to-assist-hurricane-ravaged-9958730.php', 17, 'rawImage.jpg', 'app_data/blogs/', 'Local aid mobilizing to assist hurricane-ravaged Haiti', 'The hurricane pounded the western peninsula of the impoverished Caribbean island nation on Tuesday with 145 mph winds and torrential rain destroying thousands of homes, ruining plantations, drowning animals and displacing more than 61,500 people.  The U.S. military has begun sending aid to Haiti by air and sea, including two Navy ships and heavy-lift helicopters, bulldozers, fresh-water delivery vehicles and two mobile surgical units.  Doctors without Borders, Catholic Relief Services, American Red Cross and other U.S. aid organizations were sending relief workers and supplies.  The house where a group of nuns lived was wiped out, St. Antoine\'s Church collapsed and three days of punishing rain and winds uprooted trees, tore off metal roofs, downed power lines and caused widespread flooding and structural damage.  In 2010, St. Clement\'s Church in Saratoga Springs donated $20,000 for earthquake relief and the diocese spearheaded a local donation drive that filled a 40-foot container with tools and construction materials, food, medicine, school supplies and vegetable seeds and shipped it to Haiti.  Calling Hurricane Matthew\'s toll in Haiti \"nothing short of tragic,\" Gov. Andrew M. Cuomo issued a statement that urged New Yorkers to join him in \"offering our thoughts and prayers to all its victims and the millions of people impacted.\"  Following the 2010 earthquake, state authorities issued warnings to protect donors from falling prey to fundraising scams and shady solicitations and to guard against credit card and bank account theft.', 0, 0, 0, 0, 0, 'https://newsapi.org', 2, 1),
-(36, '2016-10-10 01:52:13', '2016-10-10 01:52:13', 1, 'Ethiopia Losing Foreign-Investment Appeal as Attacks Spread', 'William Davison,Helen Nyambura-Mwaura', 'Ethiopia’s attraction as a favorite new destination for foreign investors is fast dissipating as businesses owned by Nigerian billionaire Aliko Dangote and Dutch fruit processors come under attack in growing political unrest.', 'Ethiopia’s attraction as a favorite new destination for foreign investors is fast dissipating as businesses owned by Nigerian billionaire Aliko Dangote and Dutch fruit processors come under attack in growing political unrest.', 'http://www.bloomberg.com/news/articles/2016-10-10/ethiopia-losing-appeal-for-foreign-investors-as-attacks-spread', 17, 'bloomberg_markets_default-3d32d2f713.jpg', 'app_data/blogs/', 'Ethiopia Losing Foreign-Investment Appeal as Attacks Spread', 'Ethiopia’s attraction as a favorite new destination for foreign investors is fast dissipating as businesses owned by Nigerian billionaire Aliko Dangote and Dutch fruit processors come under attack in growing political unrest.', 0, 0, 0, 0, 4, 'https://newsapi.org', 2, 1),
-(37, '2016-10-10 01:52:16', '2016-10-10 01:52:16', 1, 'A Million Refugees Could Make a Mosul Victory Look Like Defeat', 'http://www.thedailybeast.com/contributors/florian-neuhofhtml', 'Aid agencies are underfunded and unsure when the U.S.-backed offensive to oust ISIS will begin. But they are certain it’s a humanitarian disaster in the making.', 'Aid agencies are underfunded and unsure when the U.S.-backed offensive to oust ISIS will begin. But they are certain it’s a humanitarian disaster in the making.', 'http://www.thedailybeast.com/articles/2016/10/10/a-million-refugees-could-make-a-mosul-victory-look-like-defeat.html', 17, '1476077329266.cached.jpg', 'app_data/blogs/', 'A Million Refugees Could Make a Mosul Victory Look Like Defeat', 'Aid agencies are underfunded and unsure when the U.S.-backed offensive to oust ISIS will begin. But they are certain it’s a humanitarian disaster in the making.', 0, 0, 0, 0, 2, 'https://newsapi.org', 2, 1),
-(38, '2017-05-14 10:02:59', '2017-05-14 10:02:59', 1, 'This question has been asked', '', 'This question has been asked before and already has an answer. If those answers do not fully address your question, please ask a new question.\r\nThis question has been asked before and already has an answer. If those answers do not fully address your question, please ask a new question.', '<p>\r\n	&lt;p&gt; <strong>This question has been asked&amp;nbsp;This question has been asked&amp;nbsp;This question has been asked&amp;nbsp;This question has been asked&amp;nbsp;This question has been asked</strong>&amp;nbsp;This question has been asked&amp;nbsp;This question has been asked&amp;nbsp;This question has been asked&amp;nbsp;This question has been asked&amp;nbsp;&lt;/p&gt;</p>', '', 5, 'dashbord.png', 'app_data/blogs/', 'This question has been asked', 'This question has been asked before and already has an answer. If those answers do not fully address your question, please ask a new question.', 0, 0, 0, 0, 13, '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2278,7 +1119,8 @@ INSERT INTO `campaign_interset` (`id`, `created`, `modified`, `user_id`, `campai
 (4, '2017-08-13 19:27:37', '0000-00-00 00:00:00', 2, 61, 13),
 (5, '2017-08-13 19:28:12', '0000-00-00 00:00:00', 2, 63, 2),
 (6, '2017-08-13 19:29:48', '0000-00-00 00:00:00', 2, 65, 2),
-(7, '2017-08-15 09:35:28', '0000-00-00 00:00:00', 2, 78, 2);
+(7, '2017-08-15 09:35:28', '0000-00-00 00:00:00', 2, 78, 2),
+(8, '2018-07-16 18:51:16', '0000-00-00 00:00:00', 49, 87, 49);
 
 -- --------------------------------------------------------
 
@@ -3690,12 +2532,9 @@ INSERT INTO `category_listing` (`id`, `category_id`, `listing_id`, `city_id`, `a
 (61, 1279, 34, 1, 0, '2017-12-25 03:05:20', '0000-00-00 00:00:00', NULL),
 (62, 1279, 35, 1, 0, '2017-12-25 03:06:37', '0000-00-00 00:00:00', NULL),
 (63, 1279, 36, 1, 0, '2017-12-25 03:07:46', '0000-00-00 00:00:00', NULL),
-(134, 1138, 1, 1, 36, '2018-02-04 02:22:03', '0000-00-00 00:00:00', NULL),
-(135, 1139, 1, 1, 36, '2018-02-04 02:22:03', '0000-00-00 00:00:00', NULL),
-(136, 1085, 1, 1, 36, '2018-02-04 02:22:03', '0000-00-00 00:00:00', NULL),
-(137, 414, 1, 1, 36, '2018-02-04 02:22:03', '0000-00-00 00:00:00', NULL),
-(138, 1280, 1, 1, 36, '2018-02-04 02:22:03', '0000-00-00 00:00:00', NULL),
-(139, 1281, 1, 1, 36, '2018-02-04 02:22:03', '0000-00-00 00:00:00', NULL);
+(158, 926, 1, 1, 163, '2018-07-28 23:38:17', '0000-00-00 00:00:00', NULL),
+(159, 652, 1, 1, 163, '2018-07-28 23:38:17', '0000-00-00 00:00:00', NULL),
+(160, 1243, 1, 1, 163, '2018-07-28 23:38:17', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -3785,7 +2624,8 @@ INSERT INTO `cities` (`id`, `created`, `modified`, `name`, `description`, `alias
 (44, '2016-10-30 01:50:57', '0000-00-00 00:00:00', ' Dubai', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', 0, '', '', 0, 0, 0, 1, 'New location, contact phone numbers, email, user reviews & ratings and more details in ##CITY##', 'Get location, contact phone numbers, email, user reviews & ratings and more details in ##CITY##', 'New location, contact phone numbers, email, user reviews & ratings and more details   in ##AREA## , ##CITY##', 'Get location, contact phone numbers, email, user reviews & ratings and more details   in ##AREA## , ##CITY##'),
 (46, '2017-04-21 07:54:33', '0000-00-00 00:00:00', 'd', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', 0, '', '', 0, 0, 0, 1, '', '', '', ''),
 (45, '2017-01-21 12:57:08', '0000-00-00 00:00:00', 'Delhi', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', 0, '', '', 0, 0, 0, 1, '', '', '', ''),
-(47, '2017-07-16 07:58:09', '0000-00-00 00:00:00', 'adyar', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', 0, '', '', 0, 0, 0, 1, '', '', '', '');
+(47, '2017-07-16 07:58:09', '0000-00-00 00:00:00', 'adyar', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', 0, '', '', 0, 0, 0, 1, '', '', '', ''),
+(48, '2018-08-08 02:32:55', '0000-00-00 00:00:00', 'vellore', '', '', 0, 0, '', 0, 0, 0, 0, 0, '', '', '', '', 0, '', '', 0, 0, 0, 1, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -3819,57 +2659,6 @@ CREATE TABLE `claim_my_bussiness` (
   `is_resolved` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `claim_my_bussiness`
---
-
-INSERT INTO `claim_my_bussiness` (`id`, `created`, `name`, `contact_number`, `email`, `url`, `description`, `is_account`, `is_resolved`) VALUES
-(2, '2016-08-07 04:12:34', 'damo', '', 'venkatesh@gmail.com', 'http://www.dialbe.com/', 'dfffffffffffffffffffffffffff', 0, 1),
-(3, '2016-08-15 03:43:18', 'Restaurants', '9791447542', 'gg@gmail.com', 'http://localhost/new_dialbe/business/1/dialbe/chennai', 'test message', 1, 0),
-(4, '2017-10-08 01:51:02', 'damovenkatesh@gmail.com', '9791447542', 'damovenkatesh@gmail.com', 'https://www.dragdeal.com/business/1948074/google-india/chennai', 'I want Update The Address', 1, 0),
-(5, '2017-10-08 01:53:11', 'damovenkatesh@gmail.com', '9791447542', 'damovenkatesh@gmail.com', 'https://www.dragdeal.com/business/1948074/google-india/chennai', 'hello', 1, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `commissions`
---
-
-CREATE TABLE `commissions` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `commission_type_id` bigint(20) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `percentage` decimal(10,0) NOT NULL,
-  `user_balance` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `commission_types`
---
-
-CREATE TABLE `commission_types` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `commission_types`
---
-
-INSERT INTO `commission_types` (`id`, `created`, `modified`, `name`, `code`, `is_active`) VALUES
-(1, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Purchase', 'purchase', 1),
-(2, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Subscription', 'subscription', 1),
-(3, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Page Views', 'page-views', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -3901,18 +2690,6 @@ CREATE TABLE `contact_us` (
   `title` varchar(255) NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `contact_us`
---
-
-INSERT INTO `contact_us` (`id`, `created`, `modified`, `name`, `contact_number`, `email`, `title`, `message`) VALUES
-(1, '2015-08-31 07:00:38', '2015-08-31 07:00:38', 'Venkatesh', '9791447542', 'damo@gmail.com', 'I am need to contact us', 'I need to fuck you immediately......'),
-(2, '2015-08-31 07:03:39', '2015-08-31 07:03:39', 'gdsddsds', '34433353534', 'damo@gmail.com', 'gggfsgf', 'fdsdffdffdfdssfdfddf'),
-(3, '2015-08-31 07:05:03', '2015-08-31 07:05:03', 'gdsddsds', '34433353534', 'damo@gmail.com', 'gggfsgf', 'fdsdffdffdfdssfdfddf'),
-(5, '2015-08-31 07:07:50', '2015-08-31 07:07:50', 'sddadds', '1234567890', 'asddd@gmail.com', 'dfdfsfffdf', 'asdasdsdddfdddffd'),
-(8, '2015-10-14 08:14:22', '2015-10-14 08:14:22', 'venkatesh', '9791447542', 'venkatesh@gmail.com', 'test', 'hai hello'),
-(9, '2016-07-05 08:41:22', '2016-07-05 08:41:22', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -3983,41 +2760,13 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `created`, `modified`, `advertisement_id`, `offer_type`, `user_id`, `name`, `short_description`, `description`, `total_count`, `total_coupons_download`, `exipry_date`, `is_active`, `city_name`, `area_name`, `percentage`, `image_dir`, `profile_image`, `price_type`, `keywords`, `original_price`, `offer_price`) VALUES
-(1, '2016-06-25 10:08:40', '0000-00-00 00:00:00', 1, 0, 2, 'Restaurants', '', 'Unless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, yUnless you have one of those quantum-static thingies, y', 10, 10, '2016-07-21', 0, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(8, '2016-07-18 07:50:26', '0000-00-00 00:00:00', 1, 0, 2, '2 Star Hotels', '', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses. Our Mission: Our mission is to provide genuine information to users in fast manner.', 15, 5, '2016-07-30', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(9, '2016-07-19 07:34:08', '2017-06-26 05:44:55', 1, 1, 2, 'Dialbe.com provides', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate dat...', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate dat...', 17, 1, '2017-06-30', 1, 'Chennai', 'Adambakkam', 0, 'app_data/coupons/', '31775B4A00000578-3459417-image-a-11_14561960518181.jpg', 2, '', 100, 45),
-(10, '2016-07-24 08:04:01', '0000-00-00 00:00:00', 4, 0, 33, 'Restaurants', '', 'dsfljfdlkjdflkjdglgkljjlk', 10, 0, '2016-07-22', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(11, '2016-07-24 08:04:36', '0000-00-00 00:00:00', 4, 0, 33, '2 Star Hotels', '', 'sdsggggggggggggggggggggggggggggggggggg', 15, 4, '2016-08-27', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(12, '2017-04-12 07:02:32', '0000-00-00 00:00:00', 7, 0, 13, 'venkatesh', '', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 15, 0, '2017-04-14', 0, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(13, '2017-04-12 07:03:00', '0000-00-00 00:00:00', 7, 0, 13, 'excellent information', '', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 12, 0, '2017-04-19', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(14, '2017-04-12 07:04:49', '0000-00-00 00:00:00', 7, 0, 13, 'venkatesh', '', 'Dialbe.com provides a excellent information services between local business and users in various cities across India. We Provide the most accurate data to users and businesses.', 50, 1, '2017-04-22', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(15, '2017-04-22 04:41:07', '0000-00-00 00:00:00', 7, 0, 13, 'venkatesh', '', 'ettrtrerrttrtr', 10, 0, '2017-04-22', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(16, '2017-04-22 04:44:22', '0000-00-00 00:00:00', 7, 0, 13, 'venkatesh', '', 'Constient Global Solutions Pvt Ltd (CGS) Is An IT Company With Rock Solid Reputation In Rendering IT Consulting And Allied Services Such As Application Development, Implementation, Support, Maintenance, IT-staffing And Out-sourcing Solutions.\r\n\r\nWe Also Possess Niche Capability In Cross-platform Enterprise Class And General Use Mobility Solutions, High End Educational And Recreational Game Development.\r\n\r\nOwing To Our Unwavering Passion And Consistent Endeavour To Deliver The Best For Our Clients CG', 100, 0, '2017-04-22', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(17, '2017-04-22 08:04:29', '0000-00-00 00:00:00', 7, 2, 13, 'Dialbe.com Provides A', '', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 100, 0, '2017-04-29', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(18, '2017-04-22 08:08:11', '2017-04-26 07:21:00', 7, 2, 13, 'Dialbe.com Provides A Excellent Information Dialbe.com Provides A Excellent Information', '', 'Dialbe.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses.', 12, 0, '2017-04-22', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(19, '2017-04-23 07:42:09', '2017-04-28 05:19:30', 7, 2, 13, 'URL Shortener API Allows1', '', 'URL Shortener API Allows You To Develop Applications That Interface With This Service. You Can Use Simple HTTP Methods To Create, Inspect, And Manage Goo.gl Short URLs From Your Desktop, Mobile, Or Web Application.\r\n\r\nURL Shortener API Allows URL Shortener API Allows URL Shortener API Allows URL Shortener API Allows URL Shortener API Allows URL Shortener API Allows .', 100, 1, '2017-05-06', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(20, '2017-04-28 05:30:24', '0000-00-00 00:00:00', 7, 1, 13, 'my First Coupon', '', 'URL Shortener API Allows You To Develop Applications That Interface With This Service. You Can Use Simple HTTP Methods To Create, Inspect, And Manage Goo.gl Short URLs Fr URL Shortener API Allows You To Develop Applications That Interface With This Service. You Can Use Simple HTTP Methods To Create, Inspect, And Manage Goo.gl Short URLs Fr...URL Shortener API Allows You To Develop Applications That Interface With This Service. You Can Use Simple HTTP Methods To Create, Inspect, And Manage Goo.gl', 100, 1, '2017-04-29', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(21, '2017-05-14 08:21:50', '2017-05-14 08:35:58', 7, 2, 13, 'Dialbe.com Provides A Excellent Information Services Between Local Busines.', 'Dialbe.com Provides A Excellent Information Services Between Local Busines.Dialbe.com Provides A Excellent Information Services Between Local Busines.', '&amp;amp;amp;amp;amp;lt;p&amp;amp;amp;amp;amp;gt;\r\n	Dialbe.com Provides A Excellent Information Services Between Local Busines.Dialbe.com Provides A Excellent Information Services Between Local Busines.Dialbe.com Provides A Excellent Information Services Between Local Busines.Dialbe.com Provides A Excellent Information Services Between Local Busines.Dialbe.com Provides A Excellent Information Services Between Local Busines.Dialbe.com Provides A Excellent Information Services Between Local Busines.&amp;amp;amp;amp;amp;lt;/p&amp;amp;amp;amp;amp;gt;', 100, 0, '2017-05-24', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(22, '2017-05-14 08:54:44', '2017-05-14 09:16:49', 7, 1, 13, 'venkatesh', 'Dialbe.com Provides A Excellent Information Services Between Local Busines.Dialbe.com Provides A Excellent Information Services Between Local Busines....', '<p>\r\n	hai</p>', 12, 0, '2017-05-19', 1, '', '', 0, NULL, NULL, 0, '', 0, 0),
-(23, '2017-05-14 09:18:01', '2017-05-14 09:27:30', 7, 1, 13, 'ddddd', 'This question has been asked before and already has an answer. If those answers do not fully address your question, please ask a new question.\r\nThis question has been asked before and already has an answer. If those answers do not fully address your question, please ask a new question.', 'undefined', 12, 0, '2017-06-01', 1, '', '', 0, 'app_data/coupons/', '393160.png', 0, '', 0, 0),
-(24, '2017-05-14 10:01:51', '2017-05-14 10:03:43', 7, 1, 13, 'Convert HTML entities to characters', 'Could you please add a warning to the top of the answer that this does not work if the iframe has a remote src? If I\'m wrong, I\'d appreciate if you could point me to how I can still get the iframe content without sending another HTTP request ', '<p>\r\n	<span style=\"color: rgb(36, 39, 41); font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 13px;\">Could you please add a warning to the top of the answer that this does not work if the iframe has a remote src? If I&#39;m wrong, I&#39;d appreciate if you could point me to how I can still get the iframe content without sending another HTTP request </span><span style=\"color: rgb(36, 39, 41); font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 13px;\">Could you please add a warning to the top of the answer that this does not work if the iframe has a remote src? If I&#39;m wrong, I&#39;d appreciate if you could point me to how I can still get the iframe content without sending another HTTP request </span></p>', 100, 0, '2017-05-24', 1, '', '', 0, 'app_data/coupons/', 'oshine_demos_10-1024x717.jpg', 0, '', 0, 0),
-(25, '2017-05-14 11:14:44', '2017-05-28 03:00:46', 7, 2, 13, 'Slazenger Krane Running Shoes', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the ', '<p>\r\n	<u><strong style=\"margin: 0px; padding: 0px; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem Ipsum</strong><span style=\"color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px; text-align: justify;\"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting</span></u></p>\r\n<p>\r\n	 </p>\r\n<p>\r\n	<em><u><strong style=\"margin: 0px; padding: 0px; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem Ipsum</strong><span style=\"color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px; text-align: justify;\"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting</span></u></em></p>', 100, 0, '2017-05-26', 1, 'Chennai', 'Adyar', 0, 'app_data/coupons/', 'oshine_demos_10-1024x7171.jpg', 0, '', 0, 0),
-(26, '2017-05-14 11:55:13', '0000-00-00 00:00:00', 7, 1, 13, 'Restaurants', 'Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!', '<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>\r\n<p>\r\n	 </p>\r\n<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>', 100, 0, '2017-05-27', 1, 'Chennai', 'Adyar', 12, 'app_data/coupons/', 'download_(1).jpg', 0, '', 0, 0),
-(28, '2017-05-14 11:55:13', '0000-00-00 00:00:00', 7, 1, 13, 'Restaurants', 'Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!', '<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>\r\n<p>\r\n	 </p>\r\n<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>', 100, 0, '2017-06-30', 1, 'Chennai', 'Adyar', 12, 'app_data/coupons/', 'download_(1).jpg', 0, '', 0, 0),
-(29, '2017-05-14 11:55:13', '0000-00-00 00:00:00', 7, 1, 13, 'Restaurants', 'Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!', '<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>\r\n<p>\r\n	 </p>\r\n<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>', 100, 0, '2017-06-30', 1, 'Chennai', 'Adyar', 12, 'app_data/coupons/', 'download_(1).jpg', 0, '', 0, 0),
-(30, '2017-05-14 11:55:13', '0000-00-00 00:00:00', 7, 1, 13, 'Restaurants', 'Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!', '<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>\r\n<p>\r\n	 </p>\r\n<p>\r\n	<span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span><span style=\"color: rgb(84, 84, 84); font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-size: 16px;\">Newspaper is a WordPress theme that lets you write articles and blog posts with ease. We offer great support and friendly help!</span></p>', 100, 0, '2017-06-30', 1, 'Chennai', 'Adyar', 12, 'app_data/coupons/', 'download_(1).jpg', 0, '', 0, 0),
-(31, '2017-06-27 08:05:28', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Get 10% off on all Services includes Hair cut, Hair wash Manicure, Pedicure and many more. Offer valid till 31st December 2017.', 1500, 0, '2017-07-31', 1, 'Chennai', 'Adambakkam', 0, NULL, NULL, 0, 'Manicure,Pedicure,Hair cut,Hair wash Manicure', 500, 350),
-(32, '2017-06-27 08:17:58', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Get 10% off on all Services includes Hair cut, Hair wash Manicure, Pedicure and many more. Offer valid till 31st December 2017.', 25500, 0, '2017-06-30', 1, 'Chennai', 'Adambakkam', 0, 'app_data/coupons/', 'b5b57eeb-9ec5-414f-97d5-59cd2cf2f4db-636270007799565273_(1).jpg', 0, 'Hair wash Manicure,Pedicure,Hair cut', 1550, 999),
-(33, '2017-06-28 06:47:47', '2017-06-29 07:01:56', 1, 2, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Get 10% off on all Services includes Hair cut, Hair wash Manicure, Pedicure and many more. Offer valid till 31st December 2017.', 100, 0, '2017-06-30', 1, 'Chennai', 'Adambakkam', 0, 'app_data/coupons/', 'download4.jpg', 0, 'sms campaign,Hair wash Manicure,Face wash,oil creak', 1200, 999),
-(34, '2017-06-29 08:13:09', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Exclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa Services', 1200, 0, '2017-06-29', 1, 'Chennai', 'Adambakkam', 0, 'app_data/coupons/', 'download5.jpg', 0, 'Rest,Sms campaign,kkkk,damo,Pedicure,Manicure', 120, 100),
-(35, '2017-07-16 09:37:22', '0000-00-00 00:00:00', 21, 1, 47, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Exclusive Offer: 10% Off On All Beauty & Spa Services', 1500, 14, '2017-10-31', 1, 'adyar', 'select', 0, 'app_data/coupons/', 'Mcdonald.jpg', 0, 'Bst Offer For Grocery,Chiken,veg Curry', 123, 100),
-(36, '2017-07-16 09:39:26', '0000-00-00 00:00:00', 21, 1, 47, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Exclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa Services', 1500, 0, '2017-07-16', 1, 'adyar', 'select', 0, 'app_data/coupons/', 'download6.jpg', 0, 'Chiken,Veg Combo,Briyani Cmbo', 500, 150),
-(37, '2017-07-16 09:42:31', '0000-00-00 00:00:00', 21, 1, 47, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Exclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa Services', 1500, 0, '2017-07-26', 1, 'adyar', 'select', 0, 'app_data/coupons/', 'download7.jpg', 0, 'Briyani Cmbo,Sms campaign,Many Offer,Bst Offer For Grocery', 1500, 1200),
-(38, '2017-07-17 07:51:14', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Exclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa Services', 1500, 0, '2017-07-17', 1, 'Chennai', 'Adambakkam', 0, 'app_data/coupons/', 'genelia_600x400_0_(1).jpg', 0, 'ServicesExclusive,ServicesExclusive1', 1500, 1200),
-(39, '2017-07-18 07:21:02', '2017-07-18 08:03:41', 1, 2, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Exclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa ServicesExclusive Offer: 10% Off On All Beauty & Spa Services', 1500, 0, '2017-07-26', 1, 'Chennai', 'Adambakkam', 12, 'app_data/coupons/', 'image_9309.jpg', 0, 'bst Offer For Grocery,veg Curry,Veg Combo,Briyani Cmbo,Briyani,vence', 1500, 12),
-(40, '2017-08-26 10:27:38', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'gf', 2, 2, '2017-08-31', 1, 'Chennai', 'Adambakkam', 0, 'app_data/coupons/', 'chickendinner_640x480.jpg', 0, 'keyword1,keyword2,hello,savu', 1500, 999),
-(41, '2018-07-15 06:11:30', '0000-00-00 00:00:00', 40, 1, 49, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Get more detailed location and contact information about various business enterprises of yellow pages in Chennai.Also find category yellow pages , Chennai', 100, 0, '2018-07-15', 1, 'Chennai', 'Adyar', 0, 'app_data/coupons/', 'Screenshot_2017-10-02-08-57-27-135_com_android_chrome.png', 0, 'Keyword1,Keyword2', 500, 200),
-(42, '2018-07-15 06:14:12', '0000-00-00 00:00:00', 40, 1, 49, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'hi Get more detailed location and contact information about various business enterprises of yellow pages in Chennai.Also find category yellow pages , Chennaihi Get more detailed location and contact information about various business enterprises of yellow pages in Chennai.Also find category yellow pages , Chennaihi Get more detailed location and contact information about various business enterprises of yellow pages in Chennai.Also find category yellow pages , Chennai', 100, 1, '2018-07-16', 1, 'Chennai', 'Adyar', 0, 'app_data/coupons/', 'thumb.png', 0, 'Keyword2', 500, 400);
+(1, '2018-08-04 11:45:25', '2018-08-04 11:46:47', 1, 2, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner.\r\n\r\nFor Businesses: Want To Increase The Number Of Customers? Need An Advertising Medium Which Will Give You The Best Return On Investment(ROI)? Which Dragdeal.com Is The Medium You Needed. Information Anytime Anywhere : The Information Is Available Across Online Voice.', 7000, 0, '2018-10-25', 1, 'Chennai', 'Santhome', 10, 'app_data/coupons/', 'templatemonster-icon.png', 0, 'keyword1,keyword2', 0, 0),
+(2, '2018-08-04 11:47:53', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner.\r\n\r\nFor Businesses: Want To Increase The Number Of Customers? Need An Advertising Medium Which Will Give You The Best Return On Investment(ROI)? Which Dragdeal.com Is The Medium You Needed. Information Anytime Anywhere : The Information Is Available Across Online Voice.', 400, 0, '2018-10-31', 1, 'Chennai', 'Santhome', 0, 'app_data/coupons/', 'themeforest-icon.png', 0, 'Spa,Hotel,Chiken,Manicure,Pidcure', 700, 500),
+(3, '2018-08-04 11:50:25', '0000-00-00 00:00:00', 1, 1, 2, 'Combo Offer: 10% Off On All Beauty & Spa Services', '', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner.\r\n\r\nFor Businesses: Want To Increase The Number Of Customers? Need An Advertising Medium Which Will Give You The Best Return On Investment(ROI)? Which Dragdeal.com Is The Medium You Needed. Information Anytime Anywhere : The Information Is Available Across Online Voice.', 800, 0, '2018-08-31', 1, 'Chennai', 'Santhome', 0, 'app_data/coupons/', 'sugaroutfitters-icon.png', 0, 'Chiken,Many Offer,ServicesExclusive,Spa,Damo,elakiya', 600, 500),
+(4, '2018-08-04 11:51:54', '2018-08-04 11:52:54', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner.\r\n\r\nFor Businesses: Want To Increase The Number Of Customers? Need An Advertising Medium Which Will Give You The Best Return On Investment(ROI)? Which Dragdeal.com Is The Medium You Needed. Information Anytime Anywhere : The Information Is Available Across Online Voice.', 900, 1, '2018-09-29', 1, 'Chennai', 'Santhome', 0, 'app_data/coupons/', 'chickendinner_640x480.jpg', 0, 'Briyani Cmbo,keyword1', 800, 500),
+(5, '2018-08-04 04:32:56', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner. For Businesses: Want To Increase The Number Of Customers? Need An Advertising Medium Which Will Give You The Best Return On Investment(ROI)? Which Dragdeal.com Is The Medium You Needed. Information Anytime Anywhere : The Information Is Available Across Online Voice.', 80, 0, '2018-08-04', 1, 'Chennai', 'Santhome', 0, 'app_data/coupons/', 'b5b57eeb-9ec5-414f-97d5-59cd2cf2f4db-636270007799565273_(1)1.jpg', 0, 'Briyani Cmbo,10 %', 6000, 4000),
+(6, '2018-08-04 04:33:54', '0000-00-00 00:00:00', 1, 1, 2, 'Exclusive Offer: 10% Off On All Beauty & Spa Services', '', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner. For Businesses: Want To Increase The Number Of Customers? Need An Advertising Medium Which Will Give You The Best Return On Investment(ROI)? Which Dragdeal.com Is The Medium You Needed. Information Anytime Anywhere : The Information Is Available Across Online Voice.', 500, 0, '2018-08-29', 1, 'Chennai', 'Santhome', 0, 'app_data/coupons/', 'download2.jpg', 0, 'Keyword2,Keyword1,Briyani Cmbo,Bst Offer For Grocery', 800, 500),
+(7, '2018-08-04 04:35:29', '0000-00-00 00:00:00', 1, 1, 2, 'Dragdeal', '', 'Dragdeal.com Provides A Excellent Information Services Between Local Business And Users In Various Cities Across India. We Provide The Most Accurate Data To Users And Businesses. Our Mission: Our Mission Is To Provide Genuine Information To Users In Fast Manner. For Businesses: Want To Increase The Number Of Customers? Need An Advertising Medium Which Will Give You The Best Return On Investment(ROI)? Which Dragdeal.com Is The Medium You Needed. Information Anytime Anywhere : The Information Is Available Across Online Voice.', 500, 0, '2018-08-04', 1, 'Chennai', 'Santhome', 0, 'app_data/coupons/', '17b735f8f74e66c06e18a4488a1d8ea1ccf2b7ba.jpg', 0, 'Test1,DIscount Offer,Oil creak', 900, 500);
 
 -- --------------------------------------------------------
 
@@ -4073,7 +2822,12 @@ INSERT INTO `coupons_category` (`id`, `created`, `modified`, `name`, `is_active`
 (33, '2017-08-26 10:27:38', '0000-00-00 00:00:00', 'keyword1', 1),
 (34, '2017-08-26 10:27:38', '0000-00-00 00:00:00', 'keyword2', 1),
 (35, '2017-08-26 10:27:39', '0000-00-00 00:00:00', 'hello', 1),
-(36, '2017-08-26 10:27:39', '0000-00-00 00:00:00', 'savu', 1);
+(36, '2017-08-26 10:27:39', '0000-00-00 00:00:00', 'savu', 1),
+(37, '2018-08-04 11:47:53', '0000-00-00 00:00:00', 'Spa', 1),
+(38, '2018-08-04 11:47:53', '0000-00-00 00:00:00', 'Hotel', 1),
+(39, '2018-08-04 11:47:53', '0000-00-00 00:00:00', 'Pidcure', 1),
+(40, '2018-08-04 11:50:25', '0000-00-00 00:00:00', 'elakiya', 1),
+(41, '2018-08-04 04:32:56', '0000-00-00 00:00:00', '10 %', 1);
 
 -- --------------------------------------------------------
 
@@ -4095,70 +2849,30 @@ CREATE TABLE `coupons_category_list` (
 --
 
 INSERT INTO `coupons_category_list` (`id`, `created`, `modified`, `coupon_id`, `category_id`, `url`) VALUES
-(1, '2017-04-22 04:44:26', '0000-00-00 00:00:00', 16, 4, ''),
-(2, '2017-04-22 04:44:26', '0000-00-00 00:00:00', 16, 6, ''),
-(3, '2017-04-22 04:44:26', '0000-00-00 00:00:00', 16, 5, ''),
-(13, '2017-04-26 07:21:00', '0000-00-00 00:00:00', 18, 4, ''),
-(14, '2017-04-26 07:21:00', '0000-00-00 00:00:00', 18, 6, ''),
-(15, '2017-04-26 07:21:00', '0000-00-00 00:00:00', 18, 7, ''),
-(16, '2017-04-26 07:21:00', '0000-00-00 00:00:00', 18, 8, ''),
-(19, '2017-04-28 05:19:32', '0000-00-00 00:00:00', 19, 1, ''),
-(20, '2017-04-28 05:19:32', '0000-00-00 00:00:00', 19, 12, ''),
-(21, '2017-04-28 05:30:27', '0000-00-00 00:00:00', 20, 1, ''),
-(22, '2017-04-28 05:30:28', '0000-00-00 00:00:00', 20, 13, ''),
-(29, '2017-05-14 08:35:59', '0000-00-00 00:00:00', 21, 14, ''),
-(52, '2017-05-14 09:16:49', '0000-00-00 00:00:00', 22, 1, ''),
-(53, '2017-05-14 09:16:49', '0000-00-00 00:00:00', 22, 2, ''),
-(61, '2017-05-14 09:27:31', '0000-00-00 00:00:00', 23, 1, ''),
-(63, '2017-05-14 10:03:43', '0000-00-00 00:00:00', 24, 1, ''),
-(70, '2017-05-14 11:55:13', '0000-00-00 00:00:00', 26, 1, ''),
-(71, '2017-05-14 11:55:13', '0000-00-00 00:00:00', 26, 2, ''),
-(73, '2017-05-28 10:27:11', '0000-00-00 00:00:00', 27, 16, ''),
-(74, '2017-05-28 03:00:46', '0000-00-00 00:00:00', 25, 1, ''),
-(75, '2017-05-28 03:00:46', '0000-00-00 00:00:00', 25, 2, ''),
-(76, '2017-05-28 03:00:47', '0000-00-00 00:00:00', 25, 15, ''),
-(77, '2017-06-27 08:05:28', '0000-00-00 00:00:00', 31, 17, ''),
-(78, '2017-06-27 08:05:28', '0000-00-00 00:00:00', 31, 18, ''),
-(79, '2017-06-27 08:05:28', '0000-00-00 00:00:00', 31, 19, ''),
-(80, '2017-06-27 08:05:28', '0000-00-00 00:00:00', 31, 20, ''),
-(81, '2017-06-27 08:17:58', '0000-00-00 00:00:00', 32, 20, ''),
-(82, '2017-06-27 08:17:58', '0000-00-00 00:00:00', 32, 18, ''),
-(83, '2017-06-27 08:17:58', '0000-00-00 00:00:00', 32, 19, ''),
-(100, '2017-06-29 07:01:56', '0000-00-00 00:00:00', 33, 14, ''),
-(101, '2017-06-29 07:01:56', '0000-00-00 00:00:00', 33, 20, ''),
-(102, '2017-06-29 07:01:56', '0000-00-00 00:00:00', 33, 21, ''),
-(103, '2017-06-29 07:01:56', '0000-00-00 00:00:00', 33, 22, ''),
-(104, '2017-06-29 08:13:09', '0000-00-00 00:00:00', 34, 16, ''),
-(105, '2017-06-29 08:13:09', '0000-00-00 00:00:00', 34, 14, ''),
-(106, '2017-06-29 08:13:10', '0000-00-00 00:00:00', 34, 23, ''),
-(107, '2017-06-29 08:13:10', '0000-00-00 00:00:00', 34, 24, ''),
-(108, '2017-06-29 08:13:10', '0000-00-00 00:00:00', 34, 18, ''),
-(109, '2017-06-29 08:13:10', '0000-00-00 00:00:00', 34, 17, ''),
-(110, '2017-07-16 09:37:22', '0000-00-00 00:00:00', 35, 11, ''),
-(111, '2017-07-16 09:37:22', '0000-00-00 00:00:00', 35, 25, ''),
-(112, '2017-07-16 09:37:22', '0000-00-00 00:00:00', 35, 26, ''),
-(113, '2017-07-16 09:39:26', '0000-00-00 00:00:00', 36, 25, ''),
-(114, '2017-07-16 09:39:26', '0000-00-00 00:00:00', 36, 27, ''),
-(115, '2017-07-16 09:39:26', '0000-00-00 00:00:00', 36, 28, ''),
-(116, '2017-07-16 09:42:31', '0000-00-00 00:00:00', 37, 28, ''),
-(117, '2017-07-16 09:42:31', '0000-00-00 00:00:00', 37, 14, ''),
-(118, '2017-07-16 09:42:31', '0000-00-00 00:00:00', 37, 10, ''),
-(119, '2017-07-16 09:42:31', '0000-00-00 00:00:00', 37, 11, ''),
-(120, '2017-07-17 07:51:14', '0000-00-00 00:00:00', 38, 29, ''),
-(121, '2017-07-17 07:51:15', '0000-00-00 00:00:00', 38, 30, ''),
-(146, '2017-07-18 08:03:42', '0000-00-00 00:00:00', 39, 11, ''),
-(147, '2017-07-18 08:03:42', '0000-00-00 00:00:00', 39, 26, ''),
-(148, '2017-07-18 08:03:42', '0000-00-00 00:00:00', 39, 27, ''),
-(149, '2017-07-18 08:03:42', '0000-00-00 00:00:00', 39, 28, ''),
-(150, '2017-07-18 08:03:42', '0000-00-00 00:00:00', 39, 31, ''),
-(151, '2017-07-18 08:03:43', '0000-00-00 00:00:00', 39, 32, ''),
-(152, '2017-08-26 10:27:39', '0000-00-00 00:00:00', 40, 33, ''),
-(153, '2017-08-26 10:27:39', '0000-00-00 00:00:00', 40, 34, ''),
-(154, '2017-08-26 10:27:39', '0000-00-00 00:00:00', 40, 35, ''),
-(155, '2017-08-26 10:27:39', '0000-00-00 00:00:00', 40, 36, ''),
-(156, '2018-07-15 06:11:30', '0000-00-00 00:00:00', 41, 33, ''),
-(157, '2018-07-15 06:11:30', '0000-00-00 00:00:00', 41, 34, ''),
-(158, '2018-07-15 06:14:13', '0000-00-00 00:00:00', 42, 34, '');
+(3, '2018-08-04 11:46:48', '0000-00-00 00:00:00', 1, 33, ''),
+(4, '2018-08-04 11:46:48', '0000-00-00 00:00:00', 1, 34, ''),
+(5, '2018-08-04 11:47:53', '0000-00-00 00:00:00', 2, 37, ''),
+(6, '2018-08-04 11:47:54', '0000-00-00 00:00:00', 2, 38, ''),
+(7, '2018-08-04 11:47:54', '0000-00-00 00:00:00', 2, 25, ''),
+(8, '2018-08-04 11:47:54', '0000-00-00 00:00:00', 2, 17, ''),
+(9, '2018-08-04 11:47:54', '0000-00-00 00:00:00', 2, 39, ''),
+(10, '2018-08-04 11:50:25', '0000-00-00 00:00:00', 3, 25, ''),
+(11, '2018-08-04 11:50:25', '0000-00-00 00:00:00', 3, 10, ''),
+(12, '2018-08-04 11:50:25', '0000-00-00 00:00:00', 3, 29, ''),
+(13, '2018-08-04 11:50:25', '0000-00-00 00:00:00', 3, 37, ''),
+(14, '2018-08-04 11:50:25', '0000-00-00 00:00:00', 3, 24, ''),
+(15, '2018-08-04 11:50:26', '0000-00-00 00:00:00', 3, 40, ''),
+(20, '2018-08-04 11:52:54', '0000-00-00 00:00:00', 4, 28, ''),
+(21, '2018-08-04 11:52:54', '0000-00-00 00:00:00', 4, 33, ''),
+(22, '2018-08-04 04:32:56', '0000-00-00 00:00:00', 5, 28, ''),
+(23, '2018-08-04 04:32:56', '0000-00-00 00:00:00', 5, 41, ''),
+(24, '2018-08-04 04:33:54', '0000-00-00 00:00:00', 6, 34, ''),
+(25, '2018-08-04 04:33:54', '0000-00-00 00:00:00', 6, 33, ''),
+(26, '2018-08-04 04:33:54', '0000-00-00 00:00:00', 6, 28, ''),
+(27, '2018-08-04 04:33:54', '0000-00-00 00:00:00', 6, 11, ''),
+(28, '2018-08-04 04:35:29', '0000-00-00 00:00:00', 7, 2, ''),
+(29, '2018-08-04 04:35:29', '0000-00-00 00:00:00', 7, 9, ''),
+(30, '2018-08-04 04:35:29', '0000-00-00 00:00:00', 7, 22, '');
 
 -- --------------------------------------------------------
 
@@ -4181,11 +2895,7 @@ CREATE TABLE `coupons_codes` (
 --
 
 INSERT INTO `coupons_codes` (`id`, `created`, `modified`, `coupon_id`, `code`, `is_download`, `user_id`) VALUES
-(1, '2017-08-06 19:31:09', '0000-00-00 00:00:00', 35, '3624582409', 1, 50),
-(2, '2017-08-06 19:46:20', '0000-00-00 00:00:00', 35, '4974643716', 1, 2),
-(3, '2017-08-26 16:55:31', '0000-00-00 00:00:00', 40, '5177546188', 1, 4),
-(4, '2017-08-26 17:06:56', '0000-00-00 00:00:00', 40, '0265573665', 1, 4),
-(5, '2018-07-15 18:15:59', '0000-00-00 00:00:00', 42, '8631652325', 1, 50);
+(1, '2018-08-12 09:47:25', '0000-00-00 00:00:00', 4, '8468272445', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -4206,25 +2916,9 @@ CREATE TABLE `coupons_price_list` (
 --
 
 INSERT INTO `coupons_price_list` (`id`, `coupon_id`, `from_price`, `to_price`, `percentage`) VALUES
-(15, 18, 0, 1000, 30.1),
-(16, 18, 0, 1000, 30.1),
-(17, 18, 1000, 3000, 12.1),
-(24, 19, 1000, 2000, 5.1),
-(25, 19, 1000, 2000, 5.1),
-(26, 19, 1000, 2000, 5.1),
-(27, 19, 1000, 2000, 5.1),
-(28, 19, 1000, 2000, 5.1),
-(29, 19, 2000, 5000, 7.1),
-(30, 19, 5000, 10000, 10.1),
-(38, 21, 1000, 2000, 12),
-(39, 21, 1000, 2000, 12),
-(40, 21, 1000, 2000, 12),
-(41, 25, 1000, 2000, 12),
-(42, 25, 2000, 3000, 15),
-(47, 33, 1000, 2000, 10),
-(48, 33, 2000, 4000, 20),
-(51, 39, 1000, 15000, 10),
-(52, 39, 15000, 30000, 12);
+(4, 1, 0, 0, 0),
+(5, 1, 2000, 7000, 5),
+(6, 1, 8000, 9000, 10);
 
 -- --------------------------------------------------------
 
@@ -4303,29 +2997,6 @@ CREATE TABLE `customer_import_history` (
   `total_rows` bigint(20) NOT NULL,
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customer_import_history`
---
-
-INSERT INTO `customer_import_history` (`id`, `created`, `modified`, `user_id`, `file_name`, `total_rows`, `status`) VALUES
-(1, '2017-01-22 06:13:19', '0000-00-00 00:00:00', 2, 'sample.xlsx', 7, 'Success'),
-(2, '2017-01-22 07:46:51', '0000-00-00 00:00:00', 2, 'sample.xlsx', 8, 'Success'),
-(3, '2017-01-22 08:00:21', '0000-00-00 00:00:00', 2, 'sample.xlsx', 9, 'Success'),
-(4, '2017-01-22 08:02:55', '0000-00-00 00:00:00', 2, 'sample.xlsx', 9, 'Success'),
-(5, '2017-01-22 09:25:43', '0000-00-00 00:00:00', 2, 'sample.xlsx', 9, 'Success'),
-(6, '2017-01-22 09:26:30', '0000-00-00 00:00:00', 2, 'sample.xlsx', 9, 'Success'),
-(7, '2017-01-26 06:38:44', '0000-00-00 00:00:00', 13, 'sample.xlsx', 9, 'Success'),
-(8, '2017-03-09 17:53:55', '0000-00-00 00:00:00', 13, 'sample.xlsx', 9, 'Success'),
-(9, '2017-04-09 07:25:19', '0000-00-00 00:00:00', 13, 'sample.xlsx', 9, 'Success'),
-(10, '2017-04-09 07:29:46', '0000-00-00 00:00:00', 13, 'sample.xlsx', 9, 'Success'),
-(11, '2017-04-09 07:32:22', '0000-00-00 00:00:00', 13, 'sample.xlsx', 9, 'Success'),
-(12, '2017-05-07 18:57:32', '0000-00-00 00:00:00', 29, 'sample.xlsx', 9, 'Success'),
-(13, '2017-05-07 18:58:44', '0000-00-00 00:00:00', 29, 'sample.xlsx', 9, 'Success'),
-(14, '2017-05-07 19:00:38', '0000-00-00 00:00:00', 29, 'sample.xlsx', 9, 'Success'),
-(15, '2017-05-07 19:02:25', '0000-00-00 00:00:00', 29, 'sample.xlsx', 9, 'Success'),
-(16, '2017-05-24 19:57:27', '0000-00-00 00:00:00', 13, 'sample.xlsx', 9, 'Success'),
-(17, '2017-07-09 06:33:10', '0000-00-00 00:00:00', 2, 'sample.xlsx', 9, 'Success');
 
 -- --------------------------------------------------------
 
@@ -4521,7 +3192,8 @@ INSERT INTO `groups` (`id`, `created`, `modified`, `name`, `is_active`, `user_id
 (19, '2017-05-07 09:20:41', '0000-00-00 00:00:00', 'gggg', 1, 13, ''),
 (20, '2017-05-07 09:22:12', '2017-05-07 09:58:00', 'gggg123', 0, 13, ''),
 (21, '2017-07-10 08:40:14', '0000-00-00 00:00:00', '', 1, 2, ''),
-(22, '2017-08-06 02:05:10', '2017-08-06 03:26:49', 'hrr', 1, 50, '');
+(22, '2017-08-06 02:05:10', '2017-08-06 03:26:49', 'hrr', 1, 50, ''),
+(23, '2018-07-29 05:06:52', '0000-00-00 00:00:00', 'Brone', 1, 2, '');
 
 -- --------------------------------------------------------
 
@@ -4557,15 +3229,6 @@ CREATE TABLE `jobs` (
   `main_category_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `jobs`
---
-
-INSERT INTO `jobs` (`id`, `created`, `modified`, `name`, `description`, `short_description`, `company_name`, `no_of_vacancy`, `pay_scale`, `city`, `area`, `qualification`, `age_limit`, `selection_process`, `how_to_apply`, `last_date_apply`, `is_active`, `image_name`, `image_dir`, `meta_keywords`, `meta_description`, `website`, `skills`, `view_count`, `main_category_id`) VALUES
-(1, '2017-08-20 01:05:45', '2017-08-27 06:36:29', 'IRDA Recruitment 2017 Assistant Manager Posts', '<p style=\"box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px;\">\r\n	The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.</p>\r\n<p style=\"box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px;\">\r\n	<b style=\"box-sizing: inherit;\">Tip:</b>&nbsp;1000 ms = 1 second.</p>\r\n<p style=\"box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px;\">\r\n	<strong style=\"box-sizing: inherit;\">Tip:</strong>&nbsp;The function is only executed once. If you need to repeat execution, use the&nbsp;<a href=\"https://www.w3schools.com/jsref/met_win_setinterval.asp\" style=\"box-sizing: inherit; background-color: transparent;\">setInterval()</a>&nbsp;method.</p>\r\n<p style=\"box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px;\">\r\n	<strong style=\"box-sizing: inherit;\">Tip:</strong>&nbsp;Use the&nbsp;<a href=\"https://www.w3schools.com/jsref/met_win_cleartimeout.asp\" style=\"box-sizing: inherit; background-color: transparent;\">clearTimeout()</a>&nbsp;method to prevent the function from running.</p>', '1) Go to the official website. http://www.irdai.gov.in\r\n2) Fill the details required.\r\n3) Send the filled form with the necessary educational qualifications certificate copies and address proof digital copies on the panel.', 'Consistent Global Solution', 'IRDA Recruitment 2017 Assistant Manager Posts', '15000 - 30000 p/m', 'chennai', 'area', 'BE, B,tech, Master Degree', '25-32 As on [12-10-2017]', 'IRDA Recruitment 2017 Assistant Manager Posts', NULL, '2017-12-10', 1, '', 'app_data/blogs/', 'Lorem Ipsum is simply dummy text of the .', 'Lorem Ipsum is simply dummy text of the .', '', 'Candidates should have passed Graduation Degree in Law from a recognised university.', 2, 0),
-(2, '2017-08-20 05:30:27', '2017-08-20 05:30:27', 'test', '<p>\r\n	<span style=\"color: rgb(68, 68, 68); font-family: Ubuntu, Helvetica, Arial, sans-serif; font-size: 14px;\">Insurance Regulatory and Development Authority of India invites application for the post Assistant Manager &ndash; 30. The total number of vacancies for the post Assistant Manager are 30. The interested and eligible candidates can apply for the post Assistant Manager &nbsp;on before 05.09.2017.</span></p>', NULL, '', '1234', '14500', 'chennai', 'adyar', 'BE, B,tech, Master Degree', '12- 23', 'Written Exam', 'dfffffffffffffff', '0000-00-00', 1, '', 'app_data/blogs/', 'Lorem Ipsum is simply du', 'Insurance Regulatory and Development Authority of India invites application for the post Assistant Manager – 30. The total number of vacancies for the post Assistant Manager are 30. The interested and eligible candidates can apply for the post Assistant M', 'https://www.google.com', '', 3, 0),
-(3, '2017-08-21 07:08:47', '2017-08-21 07:20:29', 'MP High Court Recruitment 2017 - 94 Vacancies for Civil Judges', '<table cellpadding=\"0\" cellspacing=\"0\" style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 15px; margin: 0px; padding: 0px; width: 782px; border-spacing: 0px; border-collapse: collapse; color: rgb(102, 102, 102); outline: 0px !important;\" width=\"100%\">\r\n	<tbody style=\"box-sizing: border-box; font-family: calibri, calibriregular, Arial, Helvetica, sans-serif; margin: 0px; padding: 0px; outline: 0px !important;\">\r\n		<tr style=\"box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px !important;\">\r\n			<td style=\"box-sizing: border-box; font-size: 14px; margin: 0px; padding: 12px 0px 0px; border-width: 0px; border-style: initial; border-color: initial; float: none; width: auto; text-align: justify; outline: 0px !important;\">\r\n				<span style=\"box-sizing: border-box; font-size: 15px; margin: 0px; padding: 0px; font-weight: 700; outline: 0px !important;\">Application Fee:&nbsp;</span>General/UR Candidates (Other States) have to pay Rs. 1000 and SC/ST/OBC Candidates (MP Domicile Only) have to pay Rs. 800 through MP Online portal using Credit or Debit Card.</td>\r\n		</tr>\r\n		<tr style=\"box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px !important;\">\r\n			<td style=\"box-sizing: border-box; font-size: 14px; margin: 0px; padding: 12px 0px 0px; border-width: 0px; border-style: initial; border-color: initial; float: none; width: auto; text-align: justify; outline: 0px !important;\">\r\n				<span style=\"box-sizing: border-box; font-size: 15px; margin: 0px; padding: 0px; font-weight: 700; outline: 0px !important;\">How to Apply:&nbsp;</span>Interested and eligible candidates may apply online through MPHC website - http://mponline.gov.in/portal/ - from 05-08-2017 to 05-09-2017.</td>\r\n		</tr>\r\n		<tr style=\"box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px !important;\">\r\n			<td style=\"box-sizing: border-box; font-size: 14px; margin: 0px; padding: 12px 0px 0px; border-width: 0px; border-style: initial; border-color: initial; float: none; width: auto; outline: 0px !important;\">\r\n				<span style=\"box-sizing: border-box; font-size: 15px; margin: 0px; padding: 0px; font-weight: 700; outline: 0px !important;\">Important Dates:&nbsp;</span><br style=\"box-sizing: border-box; font-size: 15px; margin: 0px; padding: 0px; outline: 0px !important;\" />\r\n				&bull;&nbsp;<span style=\"box-sizing: border-box; font-size: 15px; margin: 0px; padding: 0px; font-weight: 700; outline: 0px !important;\">Starting Date of Online Application:</span>&nbsp;05-08-2017<br style=\"box-sizing: border-box; font-size: 15px; margin: 0px; padding: 0px; outline: 0px !important;\" />\r\n				&bull;&nbsp;<span style=\"box-sizing: border-box; font-size: 15px; margin: 0px; padding: 0px; font-weight: 700; outline: 0px !important;\">Last Date of Online Application:</span>&nbsp;05-09-2017</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	&nbsp;</p>', 'Madhya Pradesh High Court (MPHC) has released a notification for the recruitment of 94 Civil Judges Grade-II. Interested candidates may check the eligibility criteria and apply online from 05-08-2017 to 05-09-2017. \r\nMore details about MP High Court Recruitment (2017), including number of vacancies, eligibility criteria, selection procedure, how to apply and important dates, are given below:', 'Consistent Global Solution', 'MP High Court Recruitment 2017 - 94 Vacancies for Civil Judges', 'Rs. 27,700-44,770', 'Madhya Pradesh', 'Madhya Pradesh', 'Candidates should have passed Graduation Degree in Law from a recognised university.', 'Minimum 21 years and Maximum 35 years', 'MP High Court Recruitment 2017 - 94 Vacancies for Civil Judges', NULL, '0000-00-00', 1, '', 'app_data/blogs/', 'Madhya Pradesh High Court (MPHC)', 'Madhya Pradesh High Court (MPHC) has released a notification for the recruitment of 94 Civil Judges Grade-II. Interested candidates may check the eligibility criteria and apply online from 05-08-2017 to 05-09-2017.', 'https://www.google.com', 'Candidates should have passed Graduation Degree in Law from a recognised university.', 3, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -4597,13 +3260,6 @@ CREATE TABLE `keyword_enquiry` (
   `area` varchar(255) NOT NULL,
   `is_send` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `keyword_enquiry`
---
-
-INSERT INTO `keyword_enquiry` (`id`, `created`, `modified`, `name`, `contact_no`, `email`, `keyword`, `city`, `area`, `is_send`) VALUES
-(1, '2017-07-30 08:55:59', '0000-00-00 00:00:00', 'damo', '9791447542', 'damovenkatesh@gmail.com', 'Safety nets suppliers', 'Chennai', 'Adambakkam', 1);
 
 -- --------------------------------------------------------
 
@@ -4887,7 +3543,16 @@ INSERT INTO `notifications` (`id`, `created`, `modified`, `from_user_id`, `to_us
 (203, '2018-07-15 03:34:58', '2018-07-15 03:34:58', 1, 47, 3, 'Advertisments View Notifications', 'Advertisements View Notifications\r\n<br/>\r\nBrowser INFO;\r\n<br/>\r\nBrowser Name :Google Chrome\r\n<br/>\r\nIP:##IP##\r\n<br/>\r\nCITY:##CITY##\r\n<br/>', 0),
 (204, '2018-07-15 03:36:11', '2018-07-15 03:36:11', 1, 47, 3, 'Advertisments View Notifications', 'Advertisements View Notifications\r\n<br/>\r\nBrowser INFO;\r\n<br/>\r\nBrowser Name :Google Chrome\r\n<br/>\r\nIP:##IP##\r\n<br/>\r\nCITY:##CITY##\r\n<br/>', 0),
 (205, '2018-07-15 03:36:27', '2018-07-15 03:36:27', 1, 47, 3, 'Advertisments View Notifications', 'Advertisements View Notifications\r\n<br/>\r\nBrowser INFO;\r\n<br/>\r\nBrowser Name :Google Chrome\r\n<br/>\r\nIP:##IP##\r\n<br/>\r\nCITY:##CITY##\r\n<br/>', 0),
-(206, '2018-07-15 06:10:42', '2018-07-15 06:10:42', 1, 49, 3, 'Advertisments View Notifications', 'Advertisements View Notifications\r\n<br/>\r\nBrowser INFO;\r\n<br/>\r\nBrowser Name :Google Chrome\r\n<br/>\r\nIP:##IP##\r\n<br/>\r\nCITY:##CITY##\r\n<br/>', 0);
+(206, '2018-07-15 06:10:42', '2018-07-15 06:10:42', 1, 49, 3, 'Advertisments View Notifications', 'Advertisements View Notifications\r\n<br/>\r\nBrowser INFO;\r\n<br/>\r\nBrowser Name :Google Chrome\r\n<br/>\r\nIP:##IP##\r\n<br/>\r\nCITY:##CITY##\r\n<br/>', 0),
+(207, '2018-07-16 06:50:17', '2018-07-16 06:50:17', 1, 49, 3, 'Advertisments View Notifications', 'Advertisements View Notifications\r\n<br/>\r\nBrowser INFO;\r\n<br/>\r\nBrowser Name :Google Chrome\r\n<br/>\r\nIP:##IP##\r\n<br/>\r\nCITY:##CITY##\r\n<br/>', 0),
+(208, '2018-07-18 07:12:20', '2018-07-18 07:12:20', 1, 88, 1, 'Welcome to dragdeal have a nice day', 'Dear ##NAME##,\r\nWelcome to Dragdeal have a nice day.\r\n\r\nThanks And Regards,\r\nDragdeal Support Team', 0),
+(209, '2018-07-18 07:20:44', '2018-07-18 07:20:44', 1, 89, 1, 'Welcome to dragdeal have a nice day', 'Dear ##NAME##,\r\nWelcome to Dragdeal have a nice day.\r\n\r\nThanks And Regards,\r\nDragdeal Support Team', 0),
+(210, '2018-07-18 07:22:09', '2018-07-18 07:22:09', 1, 90, 1, 'Welcome to dragdeal have a nice day', 'Dear ##NAME##,\r\nWelcome to Dragdeal have a nice day.\r\n\r\nThanks And Regards,\r\nDragdeal Support Team', 0),
+(211, '2018-07-18 07:22:22', '2018-07-18 07:22:22', 1, 91, 1, 'Welcome to dragdeal have a nice day', 'Dear ##NAME##,\r\nWelcome to Dragdeal have a nice day.\r\n\r\nThanks And Regards,\r\nDragdeal Support Team', 0),
+(212, '2018-07-19 07:14:00', '2018-07-19 07:14:00', 1, 49, 2, 'Forgot Password Alert', 'Hi venkatesh,\r\nRecently Your trying to reset your password.', 0),
+(213, '2018-07-22 06:58:41', '2018-07-22 06:58:41', 1, 2, 1, 'Welcome to dragdeal have a nice day', 'Dear ##NAME##,\r\nWelcome to Dragdeal have a nice day.\r\n\r\nThanks And Regards,\r\nDragdeal Support Team', 0),
+(214, '2018-07-22 07:24:09', '2018-07-22 07:24:09', 1, 2, 3, 'Advertisments View Notifications', 'Advertisements View Notifications\r\n<br/>\r\nBrowser INFO;\r\n<br/>\r\nBrowser Name :Google Chrome\r\n<br/>\r\nIP:##IP##\r\n<br/>\r\nCITY:##CITY##\r\n<br/>', 0),
+(215, '2018-07-22 07:48:02', '2018-07-22 07:48:02', 1, 3, 1, 'Welcome to dragdeal have a nice day', 'Dear ##NAME##,\r\nWelcome to Dragdeal have a nice day.\r\n\r\nThanks And Regards,\r\nDragdeal Support Team', 0);
 
 -- --------------------------------------------------------
 
@@ -5217,39 +3882,8 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `created`, `transaction_id`, `user_id`, `is_verified`, `type_id`) VALUES
-(1, '2017-07-02 03:05:56', '33d4a488029cf585e7ab', 2, 1, 0),
-(2, '2017-07-05 07:02:53', '1f95d6bd5491af0d0615', 2, 0, 0),
-(3, '2017-07-05 07:11:42', '9c41cd523a1244b49b50', 2, 0, 0),
-(4, '2017-07-05 07:46:35', '70369c7bac66b1f9c7da', 2, 0, 2),
-(5, '2017-07-05 07:54:20', '062f748f605555a891cf', 2, 0, 2),
-(6, '2017-07-05 07:54:22', '19313d13230a9123b5ab', 2, 0, 2),
-(7, '2017-07-05 07:54:24', '23c64d3c01e19da4b709', 2, 0, 2),
-(8, '2017-07-05 08:09:17', '7a2ab7be5c2d5d7ffacf', 2, 0, 2),
-(9, '2017-07-05 08:12:25', 'f2a36470bb8370194a9b', 2, 0, 1),
-(10, '2017-07-05 08:22:39', '9f1c0baea0a4b2625cfa', 2, 0, 2),
-(11, '2017-07-05 08:22:54', '5f603be757f652e18c0b', 2, 0, 1),
-(12, '2017-07-14 08:04:39', '1a18b51b6f70c46b8207', 2, 0, 1),
-(13, '2017-07-15 06:03:17', '9911dd7ed4c237b093ff', 2, 0, 1),
-(14, '2017-07-15 06:03:27', '4be0a70528d39b395268', 2, 0, 1),
-(15, '2017-07-15 06:03:34', '47132cf6475e28a0e309', 2, 0, 1),
-(16, '2017-07-15 06:05:32', '3b22c9474ca40299360e', 2, 0, 1),
-(17, '2017-07-15 09:51:35', 'ba2e4d24325d092b1308', 2, 0, 1),
-(18, '2017-07-15 09:55:16', '843c1e76d25474fb433c', 2, 0, 1),
-(19, '2017-07-15 12:21:53', '7dd37ea578afe733c2a5', 2, 0, 2),
-(20, '2017-07-16 07:51:34', '2ffce6c47e393c673196', 47, 0, 1),
-(21, '2017-07-16 07:54:38', '7cc6cdb7e464c5d831f2', 47, 0, 1),
-(22, '2017-07-23 08:49:13', '77490567c5280a497146', 48, 0, 1),
-(23, '2017-07-23 09:04:33', '46bb5437eecbf49fe964', 48, 0, 1),
-(24, '2017-11-04 05:40:14', '14c791e727e45581efca', 2, 0, 1),
-(25, '2017-11-04 06:37:46', '5961bf625af30ba853c7', 2, 0, 1),
-(26, '2017-11-04 07:17:04', '47405654ff9f60abfdfa', 2, 0, 1),
-(27, '2017-12-25 08:37:59', '159db41cd40cdab5eca8', 69, 0, 1),
-(28, '2018-01-26 10:26:38', '234dbb99339311fc06a7', 79, 0, 1),
-(29, '2018-01-26 10:28:49', 'c545791a4a8541c0db06', 80, 0, 1),
-(30, '2018-01-26 06:35:57', '56d7722b9f6f8bb5ee3f', 81, 0, 1),
-(31, '2018-02-04 05:21:28', '40c6bcde3e4566371fcd', 82, 0, 1),
-(32, '2018-02-04 05:44:30', 'e9f0d263d0b4a242c3ac', 82, 0, 1),
-(33, '2018-05-12 06:13:38', 'f0fdfdff5fc713f15c47', 49, 0, 1);
+(1, '2018-07-22 07:22:25', '2d0aea814fa6f8f1377d', 2, 0, 1),
+(2, '2018-07-31 06:54:25', 'ffa44e9f81406197f6d5', 2, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -5308,50 +3942,7 @@ CREATE TABLE `plan_clicks` (
 --
 
 INSERT INTO `plan_clicks` (`id`, `created`, `user_id`, `plan_id`, `no_of_months`) VALUES
-(1, 2017, 13, 1, 0),
-(2, 2017, 13, 1, 0),
-(3, 2017, 13, 2, 0),
-(4, 2017, 13, 3, 0),
-(5, 2017, 13, 2, 3),
-(6, 2017, 13, 4, 0),
-(7, 2017, 13, 2, 0),
-(8, 2017, 2, 1, 0),
-(9, 2017, 2, 1, 0),
-(10, 2017, 2, 1, 0),
-(11, 2017, 2, 1, 0),
-(12, 2017, 2, 1, 0),
-(13, 2017, 2, 1, 0),
-(14, 2017, 2, 1, 0),
-(15, 2017, 2, 1, 0),
-(16, 2017, 2, 1, 0),
-(17, 2017, 2, 1, 0),
-(18, 2017, 2, 2, 0),
-(19, 2017, 2, 2, 0),
-(20, 2017, 2, 2, 0),
-(21, 2017, 2, 1, 0),
-(22, 2017, 2, 1, 0),
-(23, 2017, 2, 1, 0),
-(24, 2017, 2, 1, 0),
-(25, 2017, 2, 2, 0),
-(26, 2017, 2, 1, 0),
-(27, 2017, 47, 2, 0),
-(28, 2017, 47, 1, 0),
-(29, 2017, 48, 2, 0),
-(30, 2017, 48, 3, 0),
-(31, 2017, 2, 1, 0),
-(32, 2017, 2, 1, 0),
-(33, 2017, 2, 1, 0),
-(34, 2017, 2, 1, 0),
-(35, 2017, 2, 1, 0),
-(36, 2017, 2, 1, 0),
-(37, 2017, 2, 1, 0),
-(38, 2017, 69, 8, 0),
-(39, 2018, 79, 6, 0),
-(40, 2018, 80, 6, 0),
-(41, 2018, 81, 4, 0),
-(42, 2018, 82, 6, 0),
-(43, 2018, 82, 6, 0),
-(44, 2018, 49, 1, 0);
+(1, 2018, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5375,202 +3966,6 @@ CREATE TABLE `plan_order` (
   `fees` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `plan_order`
---
-
-INSERT INTO `plan_order` (`id`, `created`, `user_id`, `plan_id`, `amount`, `payment_status`, `payment_id`, `qunatity`, `buyer_name`, `buyer_phone`, `buyer_email`, `currency`, `fees`, `status`) VALUES
-(1, '2016-06-28 07:27:27', 2, 1, 9, 'success', 'MOJO6628000J69380876', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.17', 'Credit'),
-(2, '2016-06-28 07:31:27', 2, 1, 9, 'success', 'MOJO6628000J69380876', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.17', 'Credit'),
-(3, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(4, '2016-07-23 01:16:26', 2, 2, 10, 'success', '3c3e60532b65ba957856', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(5, '2016-07-23 01:23:25', 2, 1, 40, 'success', 'f2a1ac75ccaec2ddbaaf', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(6, '2016-07-24 07:19:18', 13, 1, 40, 'failure', 'e954666420bf46e19deb', '1', 'test1', '9897891234', 'test1345@gmail.com', 'INR', NULL, 'failure'),
-(7, '2016-07-24 07:26:07', 33, 1, 40, 'success', '31bfa4500d80d09a8780', '1', 'test1', '9897891234', 'test_dialbe@gmail.com', 'INR', NULL, 'success'),
-(8, '2016-08-05 07:33:24', 34, 1, 40, 'failure', '8bd9ffcc15f0dcf123be', '1', 'venkatesh', '9791447542', 'new_venkatesh@gmail.com', 'INR', NULL, 'failure'),
-(9, '2016-10-06 07:09:20', 41, 1, 50, 'failure', '1031f2917459bcec9a5e', '1', 'venkatesh', '9791447542', 'venkatesh_new@gmail.com', 'INR', NULL, 'failure'),
-(10, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(11, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(12, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(13, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(14, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(15, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(16, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(17, '2016-07-23 01:01:25', 13, 1, 10, 'fial', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(18, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(19, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(20, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(21, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(22, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(23, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(24, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(25, '2016-07-23 01:01:25', 13, 1, 10, 'fail', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(26, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(27, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(28, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(29, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(30, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(31, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(32, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(33, '2016-07-23 01:01:25', 13, 1, 10, 'success', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'success'),
-(34, '2016-07-23 01:01:25', 13, 1, 10, 'fail', '343835ae883c07712312', '1', 'damo', '9791447542', 'venkatesh@gmail.com', 'INR', NULL, 'fail'),
-(35, '2017-05-13 07:15:02', 13, 2, 10, 'success', 'MOJO7513000A63296879', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.19', 'Credit'),
-(36, '2017-05-13 07:15:34', 13, 2, 10, 'success', 'MOJO7513000A63296879', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.19', 'Credit'),
-(37, '2017-05-13 07:17:00', 13, 2, 10, 'success', 'MOJO7513000A63296879', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.19', 'Credit'),
-(38, '2017-05-13 07:21:20', 13, 2, 10, 'success', 'MOJO7513000A63296879', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.19', 'Credit'),
-(39, '2017-05-13 07:23:25', 13, 2, 10, 'success', 'MOJO7513000A63296879', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.19', 'Credit'),
-(40, '2017-05-13 07:24:02', 13, 2, 10, 'success', 'MOJO7513000A63296879', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.19', 'Credit'),
-(41, '2017-05-13 07:24:19', 13, 2, 10, 'success', 'MOJO7513000A63296879', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', '0.19', 'Credit'),
-(42, '2017-07-02 07:18:39', 382, 1, 10, 'success', '4852007fa391c8f65999', '1', 'Ankit', '9791447542', 'damovenkatesh@gmail.com', 'INR', '', 'success'),
-(43, '2017-07-05 08:13:20', 2, 2, 500, 'failure', 'f2a36470bb8370194a9b', '1', 'venkatesh', '9791447542', 'damovenkatesh@gmail.com', 'INR', NULL, 'failure');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products`
---
-
-CREATE TABLE `products` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `price` decimal(10,0) NOT NULL,
-  `meta_title` varchar(255) NOT NULL,
-  `meta_description` text NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `created`, `modified`, `name`, `description`, `price`, `meta_title`, `meta_description`, `is_active`) VALUES
-(1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'product1', 'product1product1product1product1product1 product1product1product1product1', '100', 'product1', 'product1', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `promotional_payments`
---
-
-CREATE TABLE `promotional_payments` (
-  `id` bigint(20) NOT NULL,
-  `created` int(11) NOT NULL,
-  `modified` int(11) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `promotion_payment_type_id` bigint(20) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `user_balance` decimal(10,0) NOT NULL,
-  `promotion_payment_state_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `promotional_payment_states`
---
-
-CREATE TABLE `promotional_payment_states` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `promotional_payment_states`
---
-
-INSERT INTO `promotional_payment_states` (`id`, `created`, `modified`, `name`, `code`) VALUES
-(1, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Active', 'active'),
-(2, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'pending', 'pending'),
-(3, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Declined', 'declined');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `promotional_products`
---
-
-CREATE TABLE `promotional_products` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `price` decimal(10,0) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `promotional_product_type_id` bigint(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `promotional_product_trees`
---
-
-CREATE TABLE `promotional_product_trees` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `parent_id` bigint(20) NOT NULL,
-  `product_id` bigint(20) NOT NULL,
-  `number_of_childs` bigint(20) NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `promotional_product_types`
---
-
-CREATE TABLE `promotional_product_types` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `promotional_product_types`
---
-
-INSERT INTO `promotional_product_types` (`id`, `created`, `modified`, `name`, `code`, `is_active`) VALUES
-(1, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Referal Product', 'referal', 1),
-(2, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Subscription Product', 'subscription', 1),
-(3, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'One Time', 'one-time', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `promotion_payment_types`
---
-
-CREATE TABLE `promotion_payment_types` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `promotion_payment_types`
---
-
-INSERT INTO `promotion_payment_types` (`id`, `created`, `modified`, `name`, `code`) VALUES
-(1, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Subscription', 'subscription'),
-(2, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Deposit', 'deposit'),
-(3, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Withdrawal', 'withdrawal'),
-(4, '2017-10-29 00:00:00', '2017-10-29 00:00:00', 'Purchase', 'purchase');
 
 -- --------------------------------------------------------
 
@@ -5599,30 +3994,6 @@ CREATE TABLE `remainders` (
   `parent_user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `remainders`
---
-
-INSERT INTO `remainders` (`id`, `created`, `modified`, `name`, `message`, `remainder_date`, `remainder_type`, `remainder_setting_id`, `coupon_code`, `mobileno`, `campaign_url`, `campaign_url_short`, `token`, `status`, `is_active`, `is_verified`, `user_id`, `parent_user_id`) VALUES
-(1, '2017-02-12 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now  Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-12', 1, 1, 'ccxdz', '97914475400', 'http://www.dialbe.com/', 'https://goo.gl/Tw0L7N', '', 1, 0, 1, 0, 0),
-(2, '2017-02-12 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ', '2017-02-12', 1, 2, 'ccy1x', '97914475400', 'http://www.dialbe.com/', 'https://goo.gl/no8CP9', '', 1, 0, 1, 0, 0),
-(3, '2017-02-12 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ', '2017-02-12', 1, 2, 'ccy1y', '8989891221', 'http://www.dialbe.com/', 'https://goo.gl/ZyY7OZ', '', 1, 0, 1, 0, 0),
-(4, '2017-02-14 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ', '2017-02-14', 1, 2, 'cdfxy', '97914475400', 'http://www.dialbe.com/', 'https://goo.gl/no8CP9', '', 1, 0, 1, 0, 0),
-(5, '2017-02-14 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ', '2017-02-14', 1, 2, 'cdfzz', '97914475400', 'http://www.dialbe.com/', 'https://goo.gl/no8CP9', '', 1, 0, 1, 0, 0),
-(6, '2017-02-14 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ', '2017-02-14', 1, 2, 'cdg35', '97914475400', 'http://www.dialbe.com/', 'https://goo.gl/no8CP9', '', 1, 0, 1, 0, 0),
-(7, '2017-02-14 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ', '2017-02-14', 1, 2, 'cdg3P', '97914475400', 'http://www.dialbe.com/', 'https://goo.gl/no8CP9', '', 1, 0, 1, 0, 0),
-(8, '2017-02-17 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-17', 1, 1, 'celoS', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(9, '2017-02-17 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ', '2017-02-17', 1, 2, 'celoS', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(10, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-18', 1, 1, 'cf4tQ', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(11, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-18', 1, 1, 'cf4th', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(12, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-18', 1, 1, 'cf4uW', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(13, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-18', 1, 1, 'cf4vb', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(14, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-18', 1, 1, 'cf4xY', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(15, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-18', 1, 1, 'cf4zn', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(16, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', '2017-02-18', 1, 1, 'cf503', '97914475400', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 0, 0),
-(17, '2017-04-20 00:00:00', '0000-00-00 00:00:00', 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information.Dialbe.com provides a excellent informationDialbe.com provides a excellent informationDialbe.com provides a excellent informationDialbe.com provides a excellent information', '2017-04-20', 1, 10, 'd1HMB', '9791447542', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 20, 20),
-(18, '2017-04-20 00:00:00', '0000-00-00 00:00:00', 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information.Dialbe.com provides a excellent informationDialbe.com provides a excellent informationDialbe.com provides a excellent informationDialbe.com provides a excellent information', '2017-04-20', 1, 10, 'd1HNx', '9791447542', 'http://www.dialbe.com/', NULL, '', 1, 0, 1, 20, 20);
-
 -- --------------------------------------------------------
 
 --
@@ -5641,25 +4012,6 @@ CREATE TABLE `remainder_histroy` (
   `number_of_user_recredit` bigint(20) NOT NULL,
   `message_length` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `remainder_histroy`
---
-
-INSERT INTO `remainder_histroy` (`id`, `created`, `modified`, `user_id`, `remainder_settings_id`, `number_of_user_send`, `number_of_user_received`, `number_of_sms_debit`, `number_of_user_recredit`, `message_length`) VALUES
-(1, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 13, 1, 1, 1, 1, 0, 0),
-(2, '2017-02-18 00:00:00', '0000-00-00 00:00:00', 13, 2, 13, 13, 0, 0, 0),
-(3, '2017-03-18 00:00:00', '0000-00-00 00:00:00', 13, 1, 1, 1, 1, 0, 0),
-(4, '2017-03-17 00:00:00', '0000-00-00 00:00:00', 13, 1, 40, 1, 1, 0, 0),
-(5, '2017-04-10 00:00:00', '0000-00-00 00:00:00', 13, 1, 45, 1, 1, 0, 0),
-(6, '2017-04-09 00:00:00', '0000-00-00 00:00:00', 13, 1, 1, 1, 1, 0, 0),
-(7, '2017-04-08 00:00:00', '0000-00-00 00:00:00', 13, 1, 10, 1, 1, 0, 0),
-(8, '2017-04-07 00:00:00', '0000-00-00 00:00:00', 13, 1, 1, 1, 1, 0, 0),
-(9, '2017-04-06 00:00:00', '0000-00-00 00:00:00', 13, 1, 32, 1, 1, 0, 0),
-(10, '2017-04-20 00:00:00', '0000-00-00 00:00:00', 13, 1, 0, 0, 0, 0, 0),
-(11, '2017-04-20 00:00:00', '0000-00-00 00:00:00', 13, 2, 0, 0, 0, 0, 0),
-(12, '2017-04-20 00:00:00', '0000-00-00 00:00:00', 20, 10, 1, 2, 2, 0, 2),
-(13, '2017-04-20 00:00:00', '0000-00-00 00:00:00', 20, 10, 1, 2, 2, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -5691,19 +4043,7 @@ CREATE TABLE `remainder_settings` (
 --
 
 INSERT INTO `remainder_settings` (`id`, `created`, `modified`, `user_id`, `remainder_type_id`, `remainder_period_type`, `name`, `message`, `no_of_days`, `url`, `shorten_url`, `coupon_code`, `coupon_type`, `custom_service_date`, `is_custom_servicedate`, `is_active`) VALUES
-(1, '2017-02-18 01:10:45', '0000-00-00 00:00:00', 13, 1, 1, 'Birthday Remainder Before One Date', 'Ride Now Your Dream Bike Flat 50 % Offer For Only you.Please Visit as Near Show Honda ShowRoom.T & C *', 2, 'http://www.dialbe.com/', '', '', 2, '0000-00-00', 0, 1),
-(2, '2017-02-18 02:16:39', '0000-00-00 00:00:00', 13, 1, 1, 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ##URL##', 0, 'http://www.dialbe.com/', '', '', 2, '0000-00-00', 0, 1),
-(3, '2017-02-11 04:49:57', '0000-00-00 00:00:00', 13, 2, 2, 'Auto Leasing Rentals', 'Auto Leasing RentalsAuto Leasing RentalsAuto Leasing RentalsAuto Leasing Rentals', 2, 'http://www.dialbe.com/', '', '', 1, '0000-00-00', 0, 0),
-(4, '2017-02-11 04:53:48', '0000-00-00 00:00:00', 13, 3, 1, 'Bike Service', 'Bike Service  Notifications', 2, 'http://www.dialbe.com/', '', '', 1, '0000-00-00', 0, 1),
-(5, '2017-02-12 04:22:24', '0000-00-00 00:00:00', 13, 3, 3, 'Bike Service on Date', 'Bike Service on Date', 0, 'https://www.dialbe.com/', '', '', 1, '0000-00-00', 0, 1),
-(6, '2017-02-15 06:51:38', '0000-00-00 00:00:00', 13, 3, 3, 'Birthday Remainder On Date', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ##URL##', 0, 'http://www.dialbe.com/', '', '344555', 2, '0000-00-00', 0, 1),
-(7, '2017-02-15 06:52:03', '0000-00-00 00:00:00', 13, 3, 3, 'Birthday Remainder On Date1', 'Advance Birthday Wishes Have A Nice Day .Get More Offers For You pls Visit on ##URL##', 0, 'http://www.dialbe.com/', '', '', 2, '0000-00-00', 0, 1),
-(8, '2017-04-09 07:06:19', '0000-00-00 00:00:00', 13, 1, 3, 'is_custom_servicedate', 'is_custom_servicedateis_custom_servicedateis_custom_servicedateis_custom_servicedateis_custom_servicedate', 0, 'http://www.dialbe.com/', NULL, '', 1, '0000-00-00', NULL, 1),
-(9, '2017-04-12 06:27:17', '0000-00-00 00:00:00', 13, 1, 2, 'Bithday1', 'test', 4, 'http://www.dialbe.com/', NULL, '', 1, '0000-00-00', NULL, 1),
-(10, '2017-04-20 08:55:35', '0000-00-00 00:00:00', 20, 1, 3, 'Dialbe.com provides a excellent information', 'Dialbe.com provides a excellent information.Dialbe.com provides a excellent informationDialbe.com provides a excellent informationDialbe.com provides a excellent informationDialbe.com provides a excellent information', 0, 'http://www.dialbe.com/', NULL, '', 1, '0000-00-00', NULL, 1),
-(11, '2017-05-28 10:59:57', '0000-00-00 00:00:00', 13, 3, 0, 'service', 'test', 12, 'http://www.dialbe.com/', NULL, '', 1, '0000-00-00', NULL, 1),
-(12, '2017-07-24 06:29:22', '0000-00-00 00:00:00', 48, 1, 1, 'The Google URL Shortener At Goo.gl', 'The Google URL Shortener At Goo.gl Is A Service That Takes Long URLs And Squeezes Them Into Fewer Characters To Make A Link That Is Easier To Share, Tweet, Or Email To Friends. The Google URL Shortener API Allows You To Develop Applications That Interface With This Service. You Can Use Simple HTTP Methods To Create, Inspect, And Manage Goo.gl Short URLs From Your Desktop, Mobile, Or Web Application.', 12, 'https://www.dragdeal.com/', NULL, 'BUREEE', 2, '0000-00-00', NULL, 1),
-(13, '2017-07-24 06:47:14', '0000-00-00 00:00:00', 48, 1, 1, 'The Google URL Shortener At Goo.gl Is A Service', 'The Google URL Shortener At Goo.gl Is A Service That Takes Long URLs And Squeezes Them Into Fewer Characters To Make A Link That Is Easier To Share, Tweet, Or Email To Friends. The Google URL Shortener API Allows You To Develop Applications That Interface With This Service. You Can Use Simple HTTP Methods To Create, Inspect, And Manage Goo.gl Short URLs From Your Desktop, Mobile, Or Web Application.', 12, 'https://www.dragdeal.com/', NULL, '12344', 2, '0000-00-00', NULL, 0);
+(1, '2018-07-22 02:44:37', '0000-00-00 00:00:00', 2, 3, 3, 'First Month EMI Product', 'Hi ##USERNAME## , Your EMI is currently pending kindly hold the 6999 on 10-10-2018', 0, 'https://www.dragdeal.com/', NULL, '', 1, '0000-00-00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -5747,7 +4087,68 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `created`, `modified`, `sitename`, `setting_fields`, `is_active`) VALUES
-(1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Drag-Deal', 'a:32:{s:13:\"email_address\";s:23:\"damovenkatesh@gmail.com\";s:7:\"contact\";s:10:\"9791447542\";s:15:\"back_pagination\";s:1:\"5\";s:16:\"front_pagination\";s:1:\"6\";s:12:\"merchant_key\";s:8:\"KuXx0SZd\";s:13:\"merchant_salt\";s:10:\"6SuYHrS2Xt\";s:7:\"pay_url\";s:22:\"https://secure.payu.in\";s:13:\"insta_api_key\";s:32:\"7cbe02b53c430cf542d03fd6839ef00a\";s:14:\"insta_auth_key\";s:32:\"b4159831c19434c0cc965b00a62a9ccc\";s:9:\"total_sms\";s:5:\"50000\";s:7:\"api_key\";s:33:\"A5db85b773c1028251c651efbcac4d65e\";s:10:\"sender_id1\";s:6:\"DIALBE\";s:10:\"sender_id2\";s:6:\"DIALBE\";s:8:\"sms_cost\";s:4:\"0.12\";s:12:\"paypal_email\";s:16:\"admin@paypal.com\";s:12:\"footer_email\";s:23:\"damovenkatesh@gmail.com\";s:13:\"facebook_link\";s:23:\"http://www.facebook.com\";s:12:\"twitter_link\";s:23:\"http://www.twittter.com\";s:15:\"googleplus_link\";s:19:\"http://www.plus.com\";s:12:\"youtube_link\";s:18:\"http://www.you.com\";s:17:\"home_page_summary\";s:94:\"Get detailed location and contact information about various business enterprises across world.\";s:8:\"Keywords\";s:66:\"Dialbe.com - Detailed Information About Local Business Enterprises\";s:11:\"description\";s:94:\"Get detailed location and contact information about various business enterprises across world.\";s:13:\"list_keywords\";s:45:\"hello Business Listings In ##AREA## ,##CITY##\";s:16:\"list_description\";s:122:\"Get location, contact phone numbers, email, user reviews & ratings and more details of ##CATEGORY## in ##AREA## , ##CITY##\";s:14:\"list_keywords1\";s:54:\"Business Listings OF ##CATEGORY## IN##AREA## ,##CITY##\";s:17:\"list_description1\";s:122:\"Get location, contact phone numbers, email, user reviews & ratings and more details OF ##CATEGORY## in ##AREA## , ##CITY##\";s:15:\"detail_keywords\";s:46:\"##NAME## in ##AREA## , ##CITY## | ##CATEGORY##\";s:18:\"detail_description\";s:145:\" Get location, contact phone numbers, email, user reviews & ratings and more details of ##NAME## listed under ##CATEGORY## in ##AREA## , ##CITY##\";s:14:\"common_summary\";s:305:\"Find Address, contact person, phone numbers, email, customer reviews & ratings and more details of <a href=\"http://www.dialbe.com/search/##LINKCITY##/##LINKAREA##\"><b>##NAME## </b></a>listed as <a href=\"http://www.dialbe.com/search/##LINKCITY##/##LINKAREA##\"><b>##CATEGORY## in ##AREA## , ##CITY##</b></a>\";s:15:\"dynamic_content\";s:308:\"hi Get more detailed location and contact information about various business enterprises of <b><a href=\"http://www.dialbe.com/search/##LINKCITY##/##LINKAREA##\">##CATEGORY## in ##CITY##</a></b>.Also find category <a href=\"http://www.dialbe.com/category-search/##LINKCATEGORY##\"><b >##CATEGORY## , ##CITY##</a>\";s:14:\"coupon_message\";s:182:\"Dear ##NAME## Thanks For Downloading.\\r\\n\r\n##TITLE##\\r\\n\r\nCode : ##CODE##\\r\\n\r\nStore: ##SHOPNAME##\\r\\n\r\nADDRESS :##ADD##\\r\\n\r\nUrl:##URL##\r\n\r\nPlease Show this Sms To Avail this offer.\";}', 0);
+(1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Drag-Deal', 'a:33:{s:13:\"email_address\";s:23:\"damovenkatesh@gmail.com\";s:7:\"contact\";s:10:\"9791447542\";s:15:\"back_pagination\";s:1:\"5\";s:16:\"front_pagination\";s:1:\"6\";s:12:\"merchant_key\";s:8:\"KuXx0SZd\";s:13:\"merchant_salt\";s:10:\"6SuYHrS2Xt\";s:7:\"pay_url\";s:22:\"https://secure.payu.in\";s:16:\"short_url_domain\";s:24:\"https://www.dragdeal.com\";s:13:\"insta_api_key\";s:32:\"7cbe02b53c430cf542d03fd6839ef00a\";s:14:\"insta_auth_key\";s:32:\"b4159831c19434c0cc965b00a62a9ccc\";s:9:\"total_sms\";s:5:\"50000\";s:7:\"api_key\";s:33:\"A5db85b773c1028251c651efbcac4d65e\";s:10:\"sender_id1\";s:6:\"DIALBE\";s:10:\"sender_id2\";s:6:\"DIALBE\";s:8:\"sms_cost\";s:4:\"0.12\";s:12:\"paypal_email\";s:16:\"admin@paypal.com\";s:12:\"footer_email\";s:23:\"damovenkatesh@gmail.com\";s:13:\"facebook_link\";s:23:\"http://www.facebook.com\";s:12:\"twitter_link\";s:23:\"http://www.twittter.com\";s:15:\"googleplus_link\";s:19:\"http://www.plus.com\";s:12:\"youtube_link\";s:18:\"http://www.you.com\";s:17:\"home_page_summary\";s:94:\"Get detailed location and contact information about various business enterprises across world.\";s:8:\"Keywords\";s:66:\"Dialbe.com - Detailed Information About Local Business Enterprises\";s:11:\"description\";s:94:\"Get detailed location and contact information about various business enterprises across world.\";s:13:\"list_keywords\";s:45:\"hello Business Listings In ##AREA## ,##CITY##\";s:16:\"list_description\";s:122:\"Get location, contact phone numbers, email, user reviews & ratings and more details of ##CATEGORY## in ##AREA## , ##CITY##\";s:14:\"list_keywords1\";s:54:\"Business Listings OF ##CATEGORY## IN##AREA## ,##CITY##\";s:17:\"list_description1\";s:122:\"Get location, contact phone numbers, email, user reviews & ratings and more details OF ##CATEGORY## in ##AREA## , ##CITY##\";s:15:\"detail_keywords\";s:46:\"##NAME## in ##AREA## , ##CITY## | ##CATEGORY##\";s:18:\"detail_description\";s:145:\" Get location, contact phone numbers, email, user reviews & ratings and more details of ##NAME## listed under ##CATEGORY## in ##AREA## , ##CITY##\";s:14:\"common_summary\";s:305:\"Find Address, contact person, phone numbers, email, customer reviews & ratings and more details of <a href=\"http://www.dialbe.com/search/##LINKCITY##/##LINKAREA##\"><b>##NAME## </b></a>listed as <a href=\"http://www.dialbe.com/search/##LINKCITY##/##LINKAREA##\"><b>##CATEGORY## in ##AREA## , ##CITY##</b></a>\";s:15:\"dynamic_content\";s:308:\"hi Get more detailed location and contact information about various business enterprises of <b><a href=\"http://www.dialbe.com/search/##LINKCITY##/##LINKAREA##\">##CATEGORY## in ##CITY##</a></b>.Also find category <a href=\"http://www.dialbe.com/category-search/##LINKCATEGORY##\"><b >##CATEGORY## , ##CITY##</a>\";s:14:\"coupon_message\";s:182:\"Dear ##NAME## Thanks For Downloading.\\r\\n\r\n##TITLE##\\r\\n\r\nCode : ##CODE##\\r\\n\r\nStore: ##SHOPNAME##\\r\\n\r\nADDRESS :##ADD##\\r\\n\r\nUrl:##URL##\r\n\r\nPlease Show this Sms To Avail this offer.\";}', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shorten_url`
+--
+
+CREATE TABLE `shorten_url` (
+  `id` bigint(20) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `long_url` text NOT NULL,
+  `code` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shorten_url`
+--
+
+INSERT INTO `shorten_url` (`id`, `created`, `modified`, `long_url`, `code`) VALUES
+(1, '2018-07-22 07:16:45', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447544&UTM_email=&UTM_campaign_id=6&UTM_user_id=2&UTM_type_id=1&UTM_u_id=2', 'fhHyP'),
+(2, '2018-07-22 07:19:47', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447544&UTM_email=&UTM_campaign_id=7&UTM_user_id=2&UTM_type_id=1&UTM_u_id=2', 'fhI1L'),
+(3, '2018-07-22 07:21:18', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447544&UTM_email=&UTM_campaign_id=8&UTM_user_id=2&UTM_type_id=1&UTM_u_id=2', 'fhI2o'),
+(4, '2018-07-22 07:21:19', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9840810900&UTM_email=preethi@20mail.eu&UTM_campaign_id=8&UTM_user_id=2&UTM_type_id=1&UTM_u_id=3', 'fhI2p'),
+(5, '2018-07-29 04:30:00', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=8989891235&UTM_email=&UTM_campaign_id=0&UTM_user_id=&UTM_type_id=1', 'fjmhs'),
+(6, '2018-07-29 04:30:09', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=8989891235&UTM_email=&UTM_campaign_id=0&UTM_user_id=&UTM_type_id=1', 'fjmi1'),
+(7, '2018-07-29 04:30:51', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=8989891235&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'fjmih'),
+(8, '2018-07-29 04:33:54', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=8989891234&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'fjmle'),
+(9, '2018-07-31 06:55:28', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9840810900&UTM_email=preethi@20mail.eu&UTM_campaign_id=9&UTM_user_id=2&UTM_type_id=1', 'fkXvk'),
+(10, '2018-07-31 06:55:28', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=8989891234&UTM_email=&UTM_campaign_id=9&UTM_user_id=2&UTM_type_id=1', 'fkXvk'),
+(11, '2018-07-31 06:55:28', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=7878786778&UTM_email=damo@20minute.email&UTM_campaign_id=9&UTM_user_id=2&UTM_type_id=1', 'fkXvk'),
+(12, '2018-07-31 06:55:28', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9790001000&UTM_email=sample@gmail.com&UTM_campaign_id=9&UTM_user_id=2&UTM_type_id=1', 'fkXvk'),
+(13, '2018-08-04 11:42:05', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://wwww.dragdeal.com&UTM_mobilenumber=9840810900&UTM_email=preethi@20mail.eu&UTM_campaign_id=10&UTM_user_id=2&UTM_type_id=1', 'DVSE'),
+(14, '2018-08-04 11:42:05', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://wwww.dragdeal.com&UTM_mobilenumber=8989891234&UTM_email=&UTM_campaign_id=10&UTM_user_id=2&UTM_type_id=1', '5Cnn'),
+(15, '2018-08-04 11:42:05', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://wwww.dragdeal.com&UTM_mobilenumber=7878786778&UTM_email=damo@20minute.email&UTM_campaign_id=10&UTM_user_id=2&UTM_type_id=1', 'gXty'),
+(16, '2018-08-04 11:42:06', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://wwww.dragdeal.com&UTM_mobilenumber=9790001000&UTM_email=sample@gmail.com&UTM_campaign_id=10&UTM_user_id=2&UTM_type_id=1', 'apdF'),
+(17, '2018-08-07 06:25:29', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=8787123456&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', '4qw0'),
+(18, '2018-08-08 07:53:19', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=7878412345&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', '4Wky'),
+(19, '2018-08-08 07:54:11', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=7878412345&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'hxZH'),
+(20, '2018-08-08 08:22:42', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=8989891212&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'vuPy'),
+(21, '2018-08-08 08:25:28', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=9791447545&UTM_email=damovenkatesh@gmail.com&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'Be1v'),
+(22, '2018-08-08 09:00:40', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=8989123456&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'uoCT'),
+(23, '2018-08-08 10:55:55', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=9898112345&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'HJrO'),
+(24, '2018-08-08 11:26:51', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=9898112345&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'IAry'),
+(25, '2018-08-08 02:08:44', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=9840810900&UTM_email=&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'XWgG'),
+(26, '2018-08-08 02:32:56', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=9791447570&UTM_email=viji@gmail.com&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'ui7l'),
+(27, '2018-08-08 07:40:34', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=http://localhost/dragdeallive/business/1/consistent-global-solution/chennai&UTM_mobilenumber=9791447533&UTM_email=damo@20minute.email&UTM_campaign_id=0&UTM_user_id=2&UTM_type_id=1', 'Kqjv'),
+(28, '2018-08-09 06:49:26', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447570&UTM_email=viji@gmail.com&UTM_campaign_id=1&UTM_user_id=2&UTM_type_id=1', 'PUPG'),
+(29, '2018-08-09 06:49:26', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447533&UTM_email=damo@20minute.email&UTM_campaign_id=1&UTM_user_id=2&UTM_type_id=1', '8h87'),
+(30, '2018-08-10 06:27:31', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=8989891212&UTM_email=&UTM_campaign_id=2&UTM_user_id=2&UTM_type_id=1', 'dxyb'),
+(31, '2018-08-10 06:27:31', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447545&UTM_email=damovenkatesh@gmail.com&UTM_campaign_id=2&UTM_user_id=2&UTM_type_id=1', 'Dlvu'),
+(32, '2018-08-10 06:27:32', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=8989123456&UTM_email=&UTM_campaign_id=2&UTM_user_id=2&UTM_type_id=1', 'zyGx'),
+(33, '2018-08-10 06:27:32', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9840810900&UTM_email=&UTM_campaign_id=2&UTM_user_id=2&UTM_type_id=1', 'i1pc'),
+(34, '2018-08-10 06:45:40', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=8989891212&UTM_email=&UTM_campaign_id=3&UTM_user_id=2&UTM_type_id=1&UTM_u_id=1', 'iEWR'),
+(35, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447545&UTM_email=damovenkatesh@gmail.com&UTM_campaign_id=3&UTM_user_id=2&UTM_type_id=1&UTM_u_id=2', 'mB3p'),
+(36, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=8989123456&UTM_email=&UTM_campaign_id=3&UTM_user_id=2&UTM_type_id=1&UTM_u_id=3', 'afDM'),
+(37, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9898112345&UTM_email=&UTM_campaign_id=3&UTM_user_id=2&UTM_type_id=1&UTM_u_id=4', 'O0gD'),
+(38, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9840810900&UTM_email=&UTM_campaign_id=3&UTM_user_id=2&UTM_type_id=1&UTM_u_id=5', 'q9gR'),
+(39, '2018-08-10 06:45:41', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447570&UTM_email=viji@gmail.com&UTM_campaign_id=3&UTM_user_id=2&UTM_type_id=1&UTM_u_id=6', 'nlbr'),
+(40, '2018-08-10 06:45:42', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/?r_url=https://www.dragdeal.com&UTM_mobilenumber=9791447533&UTM_email=damo@20minute.email&UTM_campaign_id=3&UTM_user_id=2&UTM_type_id=1&UTM_u_id=7', 'A14N'),
+(41, '2018-08-12 09:47:25', '0000-00-00 00:00:00', 'http://localhost/dragdeallive/coupons/4/exclusive-offer-10-off-on-all-beauty-spa-services', 'y2HU');
 
 -- --------------------------------------------------------
 
@@ -17887,7 +16288,9 @@ INSERT INTO `sms_plan_clicks` (`id`, `created`, `user_id`, `plan_id`) VALUES
 (16, 2017, 2, 1),
 (17, 2017, 2, 1),
 (18, 2017, 2, 4),
-(19, 2017, 2, 4);
+(19, 2017, 2, 4),
+(20, 2018, 2, 1),
+(21, 2018, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -18090,23 +16493,6 @@ INSERT INTO `states` (`id`, `created`, `modified`, `name`, `alias`, `country_id`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subscriptions`
---
-
-CREATE TABLE `subscriptions` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `product_id` bigint(20) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -18118,7 +16504,7 @@ CREATE TABLE `users` (
   `contact_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `user_type` tinyint(1) NOT NULL COMMENT '1-Admin,2-Hotel User,3-Site User',
+  `user_type` tinyint(1) NOT NULL COMMENT '1-Admin,2-Vendor,3-Site User',
   `profile_image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `image_dir` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `image_info` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -18138,119 +16524,19 @@ CREATE TABLE `users` (
   `is_active` tinyint(1) NOT NULL,
   `is_email_confirmed` tinyint(1) NOT NULL DEFAULT '0',
   `email_verified_date` datetime NOT NULL,
-  `is_approved` tinyint(4) NOT NULL COMMENT 'Only for hotel user,1-Approved,0-Not Approved',
-  `referer_id` bigint(20) NOT NULL,
-  `sender_id1` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
-  `sender_id2` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `total_sms` bigint(20) NOT NULL,
   `total_number_of_sms_send` bigint(20) NOT NULL,
-  `referal_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `is_active_fancy_link` tinyint(1) NOT NULL,
-  `is_bank_details_approved` tinyint(1) NOT NULL
+  `customer_id` bigint(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `created`, `modified`, `email`, `contact_number`, `display_name`, `password`, `user_type`, `profile_image`, `image_dir`, `image_info`, `facebook_user_id`, `facebook_access_token`, `google_auth_id`, `twitter_auth_id`, `preferred_country_id`, `preferred_state_id`, `preferred_city_id`, `preferred_area_id`, `last_login_time`, `current_login_time`, `register_type`, `uid`, `uid_request_date`, `is_active`, `is_email_confirmed`, `email_verified_date`, `is_approved`, `referer_id`, `sender_id1`, `sender_id2`, `total_sms`, `total_number_of_sms_send`, `referal_name`, `is_active_fancy_link`, `is_bank_details_approved`) VALUES
-(1, '2015-06-27 06:07:03', '2015-06-27 06:07:06', 'admin@edial.com', '', 'venaktesh', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2018-02-04 05:22:48', '2018-05-20 06:58:10', 0, '', '0000-00-00 00:00:00', 0, 1, '0000-00-00 00:00:00', 1, 0, '0', '', 0, 0, '', 0, 0),
-(2, '2017-01-21 01:06:41', '2017-05-13 09:33:27', 'damovenkatesh@gmail.com', '9791447542', '', 'c33367701511b4f6020ec61ded352059', 3, '3b3b853635b32a4620d4876413a828ff63af8bc1.jpg', 'app_data/profile/', '', 0, '', '', NULL, 0, 0, 1, 36, '2018-02-04 07:00:24', '2018-02-04 07:19:27', 1, '1Ws2H4zzzO', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, 'vm-11234', 'vm-11234', 885, 115, '', 0, 0),
-(3, '2017-01-21 01:57:57', '2017-01-21 01:57:57', 'harishankar@gmail.com', '9791447544', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-01-21 01:58:32', '2017-01-21 01:58:32', 1, 'Z0DMBcZ4Ag', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(4, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 'vicky@gmail.com', '9791447539', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(5, '2017-01-22 06:13:18', '2017-01-24 06:20:57', 'siva@gmail.com', '97914475400', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(6, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 'roy@gmail.com', '9791447541', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(7, '2017-01-22 06:13:18', '2017-03-09 06:03:30', 'Shankar@gmail.com', '9791447541', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(8, '2017-01-22 06:13:19', '2017-03-09 06:02:35', 'venky@gmail.com', '9791447541', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(9, '2017-01-22 07:46:51', '2017-03-09 06:01:55', 'ragu@gmail.com', '9791447541', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(10, '2017-01-22 08:00:21', '2017-04-09 07:43:10', 'helo@gmail.com', '8989891221', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(11, '2017-01-22 11:23:28', '2017-01-22 11:23:28', 'venky26@gmail.com', '9791444523', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(12, '2017-01-22 11:45:55', '2017-01-22 12:00:24', 'testuser@gmail.com', '9791447543', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 2, '', '', 0, 0, '', 0, 0),
-(13, '2017-01-22 05:16:47', '2017-05-07 01:52:48', 'venkatesh@gmail.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, 'DSC_0118.JPG', 'app_data/profile/', '', 0, '', '', NULL, 0, 0, 1, 36, '2017-05-28 09:58:15', '2017-05-29 06:19:18', 1, '2606', '2017-03-11 04:12:28', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 12923, 4593, '', 0, 0),
-(14, '2017-02-24 05:55:43', '2017-02-24 05:55:43', 'ramya@gmail.com', '9791447540', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-02-24 05:57:09', '2017-04-07 07:27:01', 1, 'AJKgas8iVJ', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(15, '2017-03-12 05:54:20', '2017-03-12 05:54:20', 'venkatesh21@gmail.com', '9791447542', '', 'd41e98d1eafa6d6011d3a70f1a5b92f0', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-03-12 05:55:29', '2017-03-12 05:55:29', 1, '0D8kDhcS0S', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(16, '2017-03-12 05:58:22', '2017-03-12 05:58:22', 'venkatesh231@gmail.com', '97914475400', '', 'd41e98d1eafa6d6011d3a70f1a5b92f0', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'KgybcekgJf', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(17, '2017-03-13 05:25:43', '2017-03-13 05:25:43', 'venkatesh223@gmail.com', '9791447542', '', 'd41e98d1eafa6d6011d3a70f1a5b92f0', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-03-13 05:29:31', '2017-03-13 05:29:31', 1, '58P883s6BE', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(18, '2017-04-09 07:51:34', '2017-04-09 07:51:34', 'ramyavenkey@gmail.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-04-09 07:53:20', '2017-04-09 08:17:07', 1, 'A4g2OUbrcB', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(19, '2017-04-09 02:26:04', '2017-04-09 02:26:04', 'siva123@gmail.com', '9791233456', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 82, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(20, '2017-04-20 07:12:24', '2017-04-20 07:12:24', 'sms@gmail.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-04-20 07:13:37', '2017-04-21 06:13:03', 1, '3I0TGmjLti', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 80, 20, '', 0, 0),
-(21, '2017-04-20 07:48:51', '2017-04-20 08:35:53', 'siva4321@gmail.com', '9791447542', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 20, '', '', 0, 0, '', 0, 0),
-(22, '2017-04-21 07:46:41', '2017-04-21 07:46:41', 'a@f.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-04-21 07:48:20', '2017-04-21 07:48:20', 1, 'NJaTumhiGK', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(23, '2017-05-07 04:27:42', '2017-05-07 04:27:42', 'venkateshff@gmail.com', '', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(24, '2017-05-07 04:37:02', '2017-05-07 04:37:02', 'hai@gmail.com', '', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(25, '2017-05-07 04:39:13', '2017-05-07 04:39:13', 'fddffdfd@mail.com', '', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(26, '2017-05-07 04:41:08', '2017-05-07 04:41:08', '', '', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(27, '2017-05-07 04:42:32', '2017-05-07 04:42:32', '', '1234567890', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(28, '2017-05-07 06:11:57', '2017-05-07 06:11:57', 'ragu123@gmail.com', '9791447533', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'qVT1t9r7lR', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(29, '2017-05-07 06:14:35', '2017-05-07 06:14:35', 'ggg@gmail.com', '9791447500', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-05-07 06:16:20', '2017-05-07 06:16:20', 1, '01H9ok4YUg', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 1480, 20, '', 0, 0),
-(30, '2017-05-07 06:44:51', '2017-05-07 06:44:51', 'damovenkatesh@gmail.com', '8097914475', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 82, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(31, '2017-05-07 06:53:39', '2017-05-07 06:53:39', 'damovenkatesh@gmail.com', '9791407538', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 303, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(32, '2017-05-07 06:57:31', '2017-05-07 06:57:31', 'vicky@gmail.com', '9791407539', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 82, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(33, '2017-05-07 06:57:31', '2017-05-07 06:57:31', 'siva@gmail.com', '9914875400', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 82, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(34, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 'siva@gmail.com', '9790449541', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 27, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(35, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 'roy@gmail.com', '9790447541', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 304, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(36, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 'Shankar@gmail.com', '9791487540', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 304, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(37, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 'venky@gmail.com', '9791497541', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 45, 304, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(38, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 'ragu@gmail.com', '9791447546', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 45, 306, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(39, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 'helo@gmail.com', '8989891228', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 4, 306, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 29, '', '', 0, 0, '', 0, 0),
-(40, '2017-05-28 01:19:20', '2017-05-28 01:19:20', 'venkatesh@gmail.com', '9791447540', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(41, '2017-05-28 01:23:08', '2017-05-28 01:23:08', 'venkatesh@gmail.com', '9791445656', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 82, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(42, '2017-05-28 01:31:02', '2017-05-28 01:31:02', 'damovenkatesh@gmail.com', '9897891237', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 82, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(43, '2017-05-28 02:18:03', '2017-05-28 02:18:03', 'damovenkatesh@gmail.com', '9791447540', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(44, '2017-05-28 02:20:23', '2017-05-28 02:20:23', 'venkatesh@gmail.com', '9791447540', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(45, '2017-05-28 02:32:32', '2017-05-28 02:32:32', 'venkatesh@gmail.com', '9791447578', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(46, '2017-05-28 02:34:42', '2017-05-28 02:34:42', 'venkatesh@gmail.com', '9791447532', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 13, '', '', 0, 0, '', 0, 0),
-(47, '2017-07-16 06:40:19', '2017-07-16 06:40:19', 'sugan@gmail.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-07-16 06:41:39', '2017-07-16 06:41:39', 1, 'mF2iPJ8kV1', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', -1, 1, '', 0, 0),
-(48, '2017-07-23 08:44:24', '2017-07-23 08:44:24', 'test232@gmail.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-07-23 05:59:03', '2017-07-24 05:42:58', 1, 'qzUIrkfBMt', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, '', 0, 0),
-(49, '2017-07-24 07:11:58', '2018-07-15 06:09:15', 'damo@20minute.email', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, 'Screenshot_2017-10-02-08-57-27-135_com.android.chrome.png', 'app_data/profile/', '', 0, '', '', NULL, 0, 0, 1, 82, '2018-07-15 02:37:18', '2018-07-15 05:55:37', 1, '1510982349', '2018-02-11 10:27:40', 1, 1, '2017-07-24 07:17:55', 1, 0, '', '', 999, 1, '', 0, 0),
-(50, '2017-08-05 02:24:51', '2017-08-05 02:24:51', 'venkatesh@20mail.eu', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2017-08-06 02:01:52', '2018-07-15 06:15:48', 1, '', '0000-00-00 00:00:00', 1, 1, '2017-08-05 02:25:22', 1, 0, '', '', 0, 0, '', 0, 0),
-(51, '2017-11-11 09:16:43', '2017-11-11 09:16:43', 'ssdsddff@gmail.com', '454554454554', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(52, '2017-11-11 09:17:42', '2017-11-11 09:17:42', 'ssdsddff@gmail.comr', '454554454554', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(53, '2017-11-11 09:18:06', '2017-11-11 09:18:06', 'ssdsddfff@gmail.comr', '454554454554', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(54, '2017-11-12 06:37:15', '2017-11-12 06:37:15', 'test@gmail.com', '9791447542', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(55, '2017-11-12 06:39:48', '2017-11-12 06:39:48', 'ddf@fff.com', '9791447542', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(56, '2017-11-12 06:41:09', '2017-11-12 06:41:09', 'ddfc@fff.com', '9791447542', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(57, '2017-11-12 06:41:36', '2017-11-12 06:41:36', 'ddfdc@fff.com', '9791447542', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(58, '2017-11-13 06:38:50', '2017-11-13 06:38:50', 'dddfdff@gmail.com', '566565656776', '', 'd41d8cd98f00b204e9800998ecf8427e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(59, '2017-12-25 06:14:13', '2017-12-25 06:14:13', '', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(60, '2017-12-25 07:14:56', '2017-12-25 07:14:56', '', '9791447543', '', 'e10adc3949ba59abbe56e057f20f883e', 4, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(61, '2017-12-25 07:16:19', '2017-12-25 07:16:19', '', '7878784532', '', 'e10adc3949ba59abbe56e057f20f883e', 4, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(62, '2017-12-25 07:24:10', '2017-12-25 07:24:10', '', '9791447543', '', 'e10adc3949ba59abbe56e057f20f883e', 4, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(63, '2017-12-25 07:31:42', '2017-12-25 07:31:42', '', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 4, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(64, '2017-12-25 07:33:00', '2017-12-25 07:33:00', '', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 4, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(65, '2017-12-25 07:40:32', '2017-12-25 07:40:32', '', '9791447534', '', 'e10adc3949ba59abbe56e057f20f883e', 4, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(66, '2017-12-25 07:44:34', '2017-12-25 07:44:34', '', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 4, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(67, '2017-12-25 07:53:27', '2017-12-25 07:53:27', '', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(68, '2017-12-25 08:31:44', '2017-12-25 08:31:44', '', '6789676789', '', '2753a874abefe7cb531931b82e23ebd8', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'DaLxgswYcP', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(69, '2017-12-25 08:34:34', '2017-12-25 08:34:34', '', '5757677666', '', '10c422c9bdf7b4e44cfcadb318dffc5b', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'yYrqzMmAKU', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(70, '2017-12-25 02:29:44', '2017-12-25 02:29:44', 'damof@20minute.email', '5656563456', '', 'bfa6388415a06cdb85a921f99fac3e97', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'yr87RHZDUz', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(71, '2017-12-25 02:31:51', '2017-12-25 02:31:51', 'damwof@20minute.email', '5656563456', '', '93c45ca97b1969f90c6a12baafb9494a', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'ROvpZuXmli', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(72, '2017-12-25 02:35:08', '2017-12-25 02:35:08', 'damovenkatesh5@gmail.com', '9791447542', '', 'bc08ee1b07ca66c8a69b06a2c061d43e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'avh17fsGSb', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(73, '2017-12-25 04:39:54', '2017-12-25 04:39:54', 'damovenkatesh36@gmail.com', '9791447542', '', 'd0e6b32a8043541d78ac7c0253bed650', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'v8Tie3cgbq', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(74, '2017-12-25 04:58:27', '2017-12-25 04:58:27', 'damovenk5@gmail.com', '9791447542', '', 'c34b56b7778e59e8b63b3062f4f7864d', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, '0pwCrA2ieo', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(81, '2018-01-26 06:29:43', '2018-01-26 06:29:43', 'te45@20mm.eu', '8989891234', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '2018-01-26 06:30:51', '2018-01-26 06:30:51', 1, '', '0000-00-00 00:00:00', 1, 1, '2018-01-26 06:30:41', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(82, '2018-02-04 05:20:37', '2018-02-04 05:20:37', 'test789@gmail.com', '9791447542', '', '1b066aa5a57f0849a7cd94a4127be44b', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'GDjLFmOhkq', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(83, '2018-02-11 05:15:16', '2018-02-11 05:15:16', 'damovenktesh234@gmail.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'T5Atg0MmfV', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(84, '2018-02-11 05:17:22', '2018-02-11 05:17:22', 'venkatesh5666@gmail.com', '1234567890', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'gB8suiYnLA', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(85, '2018-02-11 10:25:26', '2018-02-11 10:25:26', 'damo452@gmail.com', '9791447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'u1qnMYOyas', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 1, 0, '', '', 0, 0, NULL, 0, 0),
-(86, '2018-05-12 06:15:45', '2018-05-12 06:15:45', 'sukin@gmail.com', '9848104055', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 49, '', '', 0, 0, NULL, 0, 0),
-(87, '2018-07-15 03:11:46', '2018-07-15 03:11:46', 'preethi1@20mail.eu', '9848104059', '', '62ca99db5ad33812b03c005bc3707111', 3, '', '', '', 0, '', '', NULL, 0, 0, 1, 82, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 1, 0, '0000-00-00 00:00:00', 0, 49, '', '', 0, 0, NULL, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_account_details`
---
-
-CREATE TABLE `user_account_details` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `users` (`id`, `created`, `modified`, `email`, `contact_number`, `display_name`, `password`, `user_type`, `profile_image`, `image_dir`, `image_info`, `facebook_user_id`, `facebook_access_token`, `google_auth_id`, `twitter_auth_id`, `preferred_country_id`, `preferred_state_id`, `preferred_city_id`, `preferred_area_id`, `last_login_time`, `current_login_time`, `register_type`, `uid`, `uid_request_date`, `is_active`, `is_email_confirmed`, `email_verified_date`, `total_sms`, `total_number_of_sms_send`, `customer_id`) VALUES
+(1, '2018-07-22 00:00:00', '2018-08-12 06:06:07', 'admin@dragdeal.com', '9791447542', 'Venkatesh', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '', '', 0, '', '', NULL, 0, 0, 1, 36, '2018-08-12 06:11:28', '2018-08-26 12:25:00', 0, '1763546439', '2018-08-15 02:10:43', 1, 1, '2018-07-22 00:00:00', 0, 0, 0),
+(2, '2018-07-22 06:58:41', '2018-07-22 04:40:17', 'elakiya@gmail.com', '9791447543', '', 'e10adc3949ba59abbe56e057f20f883e', 2, 'avatar-2.png', 'app_data/profile/', '', 0, '', '', NULL, 0, 0, 1, 82, '2018-08-15 02:34:12', '2018-08-15 07:20:12', 1, 'aZndeOjvMw', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 4982, 19, 1),
+(3, '2018-07-22 07:48:02', '2018-08-15 06:47:37', 'damovenkatesh@gmail.com', '9891447542', '', 'e10adc3949ba59abbe56e057f20f883e', 3, '494c505a671f0f3f623bd0fbc5ee52bdd3937782.jpg', 'app_data/profile/', '', 0, '', '', NULL, 0, 0, 1, 82, '2018-08-14 06:27:34', '2018-08-15 05:47:52', 1, '4s6MZ3UKzk', '0000-00-00 00:00:00', 1, 1, '0000-00-00 00:00:00', 0, 0, 6);
 
 -- --------------------------------------------------------
 
@@ -18272,1205 +16558,36 @@ CREATE TABLE `user_logins` (
 --
 
 INSERT INTO `user_logins` (`id`, `created`, `user_id`, `ip`, `browser_info`, `is_deleted`) VALUES
-(1, '2015-02-24 05:20:03', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0', 0),
-(2, '2015-02-24 05:53:57', 5, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(3, '2015-02-24 06:37:20', 4, '180.151.61.235', 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0', 0),
-(4, '2015-02-24 06:43:51', 5, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(5, '2015-02-24 06:45:36', 6, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(6, '2015-02-24 06:51:26', 5, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(7, '2015-02-24 06:58:54', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(8, '2015-02-24 06:59:37', 2, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(9, '2015-02-24 08:40:33', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 6.1; rv:28.0) Gecko/20100101 Firefox/28.0', 0),
-(10, '2015-02-24 08:43:52', 1, '95.91.232.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18', 0),
-(11, '2015-02-24 09:03:30', 7, '180.151.61.235', 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0', 0),
-(12, '2015-02-24 09:04:47', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(13, '2015-02-24 09:06:01', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0', 0),
-(14, '2015-02-24 09:07:02', 3, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(15, '2015-02-24 09:48:35', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(16, '2015-02-24 10:10:02', 8, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(17, '2015-02-24 10:10:06', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0', 0),
-(18, '2015-02-24 10:19:15', 9, '180.151.61.235', 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0', 0),
-(19, '2015-02-24 10:21:47', 1, '220.227.113.169', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(20, '2015-02-24 10:28:21', 10, '220.227.113.169', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(21, '2015-02-24 10:30:00', 10, '220.227.113.169', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(22, '2015-02-24 10:31:04', 11, '220.227.113.169', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(23, '2015-02-24 10:36:33', 12, '220.227.113.169', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(24, '2015-02-24 10:38:35', 11, '220.227.113.169', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(25, '2015-02-24 10:44:48', 11, '220.227.113.169', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(26, '2015-02-24 10:47:18', 2, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(27, '2015-02-24 10:49:29', 10, '220.227.113.169', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/7.0)', 0),
-(28, '2015-02-24 10:51:09', 10, '220.227.113.169', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/7.0)', 0),
-(29, '2015-02-24 10:52:30', 10, '220.227.113.169', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/7.0)', 0),
-(30, '2015-02-24 10:59:57', 10, '220.227.113.169', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/7.0)', 0),
-(31, '2015-02-24 11:03:19', 1, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(32, '2015-02-24 11:07:34', 6, '180.151.61.235', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36', 0),
-(33, '2015-02-24 11:18:27', 1, '95.91.232.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18', 0),
-(34, '2015-02-24 11:20:30', 14, '95.91.232.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18', 0),
-(35, '2015-02-24 11:25:18', 11, '220.227.113.169', 'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(36, '2015-03-03 07:21:35', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(37, '2015-03-04 06:37:39', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(38, '2015-03-10 09:48:48', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(39, '2015-03-10 10:04:33', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(40, '2015-03-10 10:07:02', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(41, '2015-03-10 10:08:18', 15, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(42, '2015-03-10 10:12:07', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(43, '2015-03-10 11:00:39', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(44, '2015-03-10 11:01:52', 15, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(45, '2015-03-10 01:10:51', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(46, '2015-03-11 05:40:57', 8, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(47, '2015-03-11 07:58:48', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(48, '2015-03-11 10:35:09', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(49, '2015-03-11 02:04:18', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(50, '2015-03-12 05:29:28', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(51, '2015-03-12 07:07:32', 9, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(52, '2015-03-12 07:39:50', 4, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(53, '2015-03-12 07:40:22', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(54, '2015-03-12 09:47:32', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(55, '2015-03-12 10:11:39', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(56, '2015-03-13 05:44:38', 9, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(57, '2015-03-13 05:47:37', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(58, '2015-03-13 06:40:46', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(59, '2015-03-13 06:45:05', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(60, '2015-03-13 06:55:05', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(61, '2015-03-13 06:59:20', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(62, '2015-03-13 07:02:56', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(63, '2015-03-13 08:07:31', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(64, '2015-03-13 10:51:16', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(65, '2015-03-14 10:38:25', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(66, '2015-03-14 12:28:00', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(67, '2015-03-16 05:53:44', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(68, '2015-03-16 06:04:12', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(69, '2015-03-16 06:09:08', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(70, '2015-03-16 06:26:16', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(71, '2015-03-16 07:06:51', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(72, '2015-03-16 08:07:06', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(73, '2015-03-20 04:40:28', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(74, '2015-03-20 06:00:46', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(75, '2015-03-20 06:07:06', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(76, '2015-03-20 09:55:23', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2', 0),
-(77, '2015-03-20 10:23:33', 14, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(78, '2015-03-20 10:27:52', 12, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(79, '2015-03-20 10:33:13', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(80, '2015-03-20 10:34:25', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(81, '2015-03-20 12:53:45', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2', 0),
-(82, '2015-03-20 01:02:39', 14, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(83, '2015-03-20 02:49:18', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(84, '2015-03-21 06:01:36', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(85, '2015-03-21 06:07:11', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(86, '2015-03-21 06:15:13', 12, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2', 0),
-(87, '2015-03-21 06:34:28', 14, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(88, '2015-03-21 10:44:44', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(89, '2015-03-21 10:44:58', 12, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(90, '2015-03-21 10:45:29', 12, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2', 0),
-(91, '2015-03-21 10:47:10', 12, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(92, '2015-03-21 10:51:04', 14, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36', 0),
-(93, '2015-03-21 10:52:38', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(94, '2015-03-23 06:04:30', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(95, '2015-03-23 09:29:12', 12, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(96, '2015-03-23 09:29:34', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36', 0),
-(97, '2015-03-23 09:30:05', 14, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36', 0),
-(98, '2015-03-23 09:49:50', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(99, '2015-03-24 06:26:01', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(100, '2015-03-24 09:51:28', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(101, '2015-03-27 10:38:05', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(102, '2015-03-27 10:38:54', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(103, '2015-03-27 10:58:16', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(104, '2015-03-27 12:41:56', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(105, '2015-03-28 06:33:23', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(106, '2015-03-28 06:37:31', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(107, '2015-03-28 06:37:54', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(108, '2015-03-28 08:05:22', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(109, '2015-03-28 10:20:37', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(110, '2015-03-30 06:48:58', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(111, '2015-03-30 10:40:54', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(112, '2015-03-30 01:46:13', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(113, '2015-03-30 01:48:41', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(114, '2015-03-30 01:49:58', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(115, '2015-03-30 01:50:45', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(116, '2015-03-30 02:07:45', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(117, '2015-03-31 06:32:46', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(118, '2015-03-31 08:46:38', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(119, '2015-03-31 08:52:09', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(120, '2015-03-31 08:54:40', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(121, '2015-03-31 11:14:39', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(122, '2015-03-31 11:21:03', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(123, '2015-03-31 11:53:45', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(124, '2015-03-31 11:57:10', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(125, '2015-03-31 12:09:58', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(126, '2015-03-31 01:57:23', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(127, '2015-03-31 01:59:40', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(128, '2015-03-31 02:00:07', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(129, '2015-03-31 02:05:03', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(130, '2015-03-31 02:18:45', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(131, '2015-04-01 06:53:51', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(132, '2015-04-01 07:47:14', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(133, '2015-04-01 11:18:06', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(134, '2015-04-01 02:30:47', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(135, '2015-04-01 02:52:50', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(136, '2015-04-01 03:12:19', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(137, '2015-04-01 03:13:24', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(138, '2015-04-01 03:22:39', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(139, '2015-04-01 03:27:14', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(140, '2015-04-01 03:38:10', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(141, '2015-04-01 03:41:34', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(142, '2015-04-01 03:48:18', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(143, '2015-04-01 03:48:39', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(144, '2015-04-01 03:49:49', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(145, '2015-04-01 03:53:32', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(146, '2015-04-01 03:53:52', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(147, '2015-04-01 03:56:23', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(148, '2015-04-01 03:56:44', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(149, '2015-04-01 03:57:39', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(150, '2015-04-02 06:34:24', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(151, '2015-04-02 11:15:20', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(152, '2015-04-02 02:00:10', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(153, '2015-04-02 03:13:18', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko', 0),
-(154, '2015-04-03 06:44:42', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(155, '2015-04-03 06:54:18', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(156, '2015-04-03 09:07:49', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(157, '2015-04-03 10:41:06', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(158, '2015-04-03 02:02:42', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(159, '2015-04-06 07:47:38', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(160, '2015-04-06 10:33:43', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(161, '2015-04-06 11:10:26', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(162, '2015-04-06 02:19:15', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(163, '2015-04-06 02:19:32', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(164, '2015-04-06 02:41:07', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(165, '2015-04-06 02:57:52', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(166, '2015-04-06 03:06:55', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(167, '2015-04-07 06:53:01', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(168, '2015-04-07 07:33:50', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(169, '2015-04-07 08:16:08', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(170, '2015-04-07 10:39:14', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(171, '2015-04-07 12:14:07', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(172, '2015-04-07 12:17:49', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(173, '2015-04-07 01:27:04', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(174, '2015-04-08 06:32:47', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(175, '2015-04-08 09:06:50', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0', 0),
-(176, '2015-04-09 08:15:07', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(177, '2015-04-09 11:47:15', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(178, '2015-04-09 12:13:19', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(179, '2015-04-09 12:48:58', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(180, '2015-04-09 12:55:10', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(181, '2015-04-09 01:50:44', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(182, '2015-04-10 06:25:35', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(183, '2015-04-10 07:51:52', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(184, '2015-04-10 07:55:53', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(185, '2015-04-10 07:57:29', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(186, '2015-04-10 07:58:02', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(187, '2015-04-10 08:03:18', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(188, '2015-04-10 08:39:19', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(189, '2015-04-10 10:30:58', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(190, '2015-04-10 11:26:50', 1, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(191, '2015-04-15 07:03:44', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(192, '2015-04-15 07:14:42', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(193, '2015-04-15 08:46:30', 6, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(194, '2015-04-15 08:48:35', 2, '192.168.1.112', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(195, '2015-04-15 11:17:30', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(196, '2015-04-15 12:15:17', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(197, '2015-04-15 12:22:29', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(198, '2015-04-15 12:34:40', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(199, '2015-04-15 01:00:50', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(200, '2015-04-15 01:44:34', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(201, '2015-04-15 02:08:29', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36', 0),
-(202, '2015-04-15 02:10:46', 5, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(203, '2015-04-15 03:42:58', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(204, '2015-04-15 04:17:05', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(205, '2015-04-16 06:29:33', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(206, '2015-04-16 07:04:03', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(207, '2015-04-16 07:07:11', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(208, '2015-04-16 07:08:00', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(209, '2015-04-16 07:09:02', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(210, '2015-04-16 07:53:04', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(211, '2015-04-16 08:26:06', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(212, '2015-04-16 08:32:55', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(213, '2015-04-16 08:33:49', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(214, '2015-04-16 12:26:34', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(215, '2015-04-16 12:34:12', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(216, '2015-04-16 02:25:10', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(217, '2015-04-17 06:44:31', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(218, '2015-04-17 07:40:16', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(219, '2015-04-17 07:45:37', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(220, '2015-04-17 08:14:59', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(221, '2015-04-17 11:48:57', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(222, '2015-04-17 11:49:17', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(223, '2015-04-18 06:53:07', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(224, '2015-04-18 06:53:55', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(225, '2015-04-18 07:21:10', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(226, '2015-04-18 08:30:45', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(227, '2015-04-18 08:35:23', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko', 0),
-(228, '2015-04-18 08:38:46', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2', 0),
-(229, '2015-04-18 08:39:41', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36', 0),
-(230, '2015-04-18 08:42:09', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(231, '2015-04-18 12:23:08', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(232, '2015-04-18 03:05:50', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(233, '2015-04-21 06:00:20', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(234, '2015-04-21 06:06:10', 28, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(235, '2015-04-21 07:09:03', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(236, '2015-04-21 09:06:45', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(237, '2015-04-21 01:11:34', 29, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(238, '2015-04-22 06:34:51', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(239, '2015-04-22 10:59:58', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(240, '2015-04-22 11:00:13', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(241, '2015-04-22 11:07:19', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(242, '2015-04-23 06:39:05', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(243, '2015-04-23 03:32:14', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(244, '2015-04-24 06:46:16', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(245, '2015-04-24 07:03:56', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(246, '2015-04-24 07:49:55', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(247, '2015-04-24 10:56:30', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(248, '2015-04-24 11:28:00', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(249, '2015-04-27 12:20:50', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(250, '2015-04-27 01:55:27', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(251, '2015-04-27 02:55:59', 1, '192.168.1.63', 'Mozilla/5.0 (Android; Mobile; rv:29.0) Gecko/29.0 Firefox/29.0', 0),
-(252, '2015-04-28 05:58:17', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(253, '2015-04-28 02:02:15', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(254, '2015-04-29 06:30:27', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(255, '2015-04-29 06:46:11', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(256, '2015-04-29 06:53:38', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(257, '2015-04-29 11:34:47', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(258, '2015-04-30 06:28:39', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(259, '2015-04-30 06:35:38', 7, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(260, '2015-04-30 06:37:07', 5, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(261, '2015-04-30 06:46:24', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(262, '2015-04-30 12:28:16', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(263, '2015-04-30 01:06:04', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(264, '2015-04-30 01:30:02', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(265, '2015-05-04 06:49:14', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(266, '2015-05-04 10:28:14', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(267, '2015-05-04 11:33:52', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(268, '2015-05-05 06:33:44', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(269, '2015-05-05 10:34:39', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(270, '2015-05-06 12:49:01', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(271, '2015-05-06 02:28:48', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(272, '2015-05-06 04:15:29', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(273, '2015-05-07 07:32:22', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(274, '2015-05-07 12:18:23', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(275, '2015-05-07 12:31:42', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(276, '2015-05-07 12:40:15', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(277, '2015-05-07 12:43:57', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(278, '2015-05-07 12:48:48', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(279, '2015-05-07 04:16:42', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36', 0),
-(280, '2015-05-07 04:26:50', 6, '192.168.1.55', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(281, '2015-05-08 06:15:37', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(282, '2015-05-08 06:36:57', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(283, '2015-05-08 06:55:50', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(284, '2015-05-08 07:01:44', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36', 0),
-(285, '2015-05-08 07:58:42', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(286, '2015-05-08 10:41:56', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(287, '2015-05-08 10:42:51', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36', 0),
-(288, '2015-05-08 12:10:29', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(289, '2015-05-08 01:32:56', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(290, '2015-05-11 07:48:24', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(291, '2015-05-11 01:04:39', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(292, '2015-05-11 01:27:13', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(293, '2015-05-12 06:41:28', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(294, '2015-05-12 10:48:34', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(295, '2015-05-12 11:59:17', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(296, '2015-05-12 01:45:16', 5, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(297, '2015-05-12 02:31:33', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(298, '2015-05-12 03:42:47', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(299, '2015-05-13 07:37:35', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(300, '2015-05-13 08:55:04', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(301, '2015-05-13 11:51:27', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(302, '2015-05-13 01:37:18', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(303, '2015-05-13 03:34:34', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(304, '2015-05-14 07:12:00', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(305, '2015-05-14 02:20:07', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0', 0),
-(306, '2015-05-18 06:45:38', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(307, '2015-05-18 07:22:18', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(308, '2015-05-18 07:25:57', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(309, '2015-05-18 01:51:07', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(310, '2015-05-19 08:14:50', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(311, '2015-05-19 02:03:52', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(312, '2015-05-19 03:20:38', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(313, '2015-05-19 03:53:58', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(314, '2015-05-20 07:52:52', 6, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(315, '2015-05-20 08:41:09', 2, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(316, '2015-05-20 10:38:38', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(317, '2015-05-20 01:04:29', 1, '192.168.1.63', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0', 0),
-(318, '2015-06-27 01:09:36', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36', 0),
-(319, '2015-07-06 04:33:10', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36', 0),
-(320, '2015-07-19 05:11:22', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36', 0),
-(321, '2015-08-13 06:55:05', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36', 0),
-(322, '2015-08-13 07:06:40', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36', 0),
-(323, '2015-08-14 07:08:20', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(324, '2015-08-16 07:15:08', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(325, '2015-08-22 07:22:25', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(326, '2015-08-22 01:19:54', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(327, '2015-08-22 01:24:54', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(328, '2015-08-22 02:59:38', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(329, '2015-08-22 06:15:53', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(330, '2015-08-22 06:51:55', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(331, '2015-08-22 06:54:42', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(332, '2015-08-22 06:57:12', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36', 0),
-(333, '2015-08-26 08:18:25', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36', 0),
-(334, '2015-08-29 08:08:27', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 0),
-(335, '2015-08-30 11:00:54', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 0),
-(336, '2015-08-30 11:07:31', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 0),
-(337, '2015-08-30 11:11:18', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 0),
-(338, '2015-08-30 12:12:16', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 0),
-(339, '2015-08-30 06:19:56', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 0),
-(340, '2015-09-05 01:31:47', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 0),
-(341, '2015-09-07 06:31:53', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36', 0),
-(342, '2015-09-10 06:49:09', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36', 0),
-(343, '2015-09-12 05:49:04', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36', 0),
-(344, '2015-09-21 05:38:12', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36', 0),
-(345, '2015-09-23 08:19:01', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36', 0),
-(346, '2015-09-25 06:37:30', 16, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(347, '2015-09-25 07:02:04', 17, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(348, '2015-09-25 07:12:10', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(349, '2015-09-25 08:43:49', 18, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(350, '2015-09-25 08:46:36', 19, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(351, '2015-09-25 08:46:57', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(352, '2015-09-26 08:10:56', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(353, '2015-09-26 08:29:30', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(354, '2015-09-26 08:30:44', 20, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(355, '2015-09-26 08:38:25', 20, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(356, '2015-09-26 09:19:18', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 1),
-(357, '2015-09-26 09:48:16', 20, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(358, '2015-09-26 02:43:13', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(359, '2015-09-26 02:47:32', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(360, '2015-09-26 02:48:24', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(361, '2015-09-26 02:49:40', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(362, '2015-09-26 06:03:29', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(363, '2015-09-27 08:50:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36', 0),
-(364, '2015-09-28 07:13:13', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(365, '2015-09-28 07:13:24', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(366, '2015-09-29 07:08:30', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(367, '2015-09-29 07:28:08', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(368, '2015-10-04 01:38:02', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(369, '2015-10-04 01:53:03', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(370, '2015-10-06 08:14:51', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(371, '2015-10-09 06:45:40', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(372, '2015-10-13 07:43:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(373, '2015-10-13 07:49:17', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(374, '2015-10-13 07:51:21', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(375, '2015-10-13 07:54:27', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(376, '2015-10-14 05:44:29', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(377, '2015-10-17 05:11:37', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(378, '2015-10-17 06:52:39', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(379, '2015-10-17 06:52:41', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36', 0),
-(380, '2015-10-18 10:49:13', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0),
-(381, '2015-10-18 01:26:35', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0),
-(382, '2015-10-22 05:30:33', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0),
-(383, '2015-10-22 06:20:52', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0),
-(384, '2015-10-24 06:16:11', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0);
-INSERT INTO `user_logins` (`id`, `created`, `user_id`, `ip`, `browser_info`, `is_deleted`) VALUES
-(385, '2015-10-25 06:37:21', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0),
-(386, '2015-10-25 06:39:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0),
-(387, '2015-10-25 01:16:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36', 0),
-(388, '2015-11-16 09:22:05', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(389, '2015-11-16 01:11:48', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(390, '2015-11-16 06:26:05', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(391, '2015-11-17 05:15:56', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(392, '2015-11-20 05:33:39', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(393, '2015-11-21 06:45:53', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(394, '2015-11-21 10:30:04', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(395, '2015-11-21 10:32:16', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(396, '2015-11-21 10:32:32', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(397, '2015-11-22 07:36:30', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(398, '2015-11-22 04:10:27', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(399, '2015-11-29 06:20:58', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(400, '2015-11-29 08:15:39', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(401, '2015-11-30 07:55:44', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(402, '2015-12-06 05:05:21', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(403, '2015-12-07 06:57:17', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(404, '2015-12-08 04:55:19', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(405, '2015-12-08 06:59:48', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(406, '2015-12-08 07:06:02', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36', 0),
-(407, '2015-12-09 05:53:25', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36', 0),
-(408, '2015-12-09 06:46:02', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36', 0),
-(409, '2015-12-09 06:53:32', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36', 0),
-(410, '2015-12-14 07:09:10', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36', 0),
-(411, '2015-12-15 06:59:44', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36', 0),
-(412, '2015-12-20 06:04:09', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(413, '2015-12-20 06:06:37', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(414, '2015-12-25 09:23:08', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(415, '2015-12-25 01:42:50', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(416, '2015-12-25 06:57:39', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(417, '2015-12-27 02:52:34', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(418, '2015-12-29 06:31:54', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(419, '2015-12-30 06:39:03', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(420, '2016-01-01 12:19:12', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(421, '2016-01-01 03:09:45', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(422, '2016-01-09 12:41:26', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(423, '2016-01-09 03:56:29', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(424, '2016-01-09 06:20:23', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(425, '2016-01-10 07:45:09', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(426, '2016-01-10 12:46:31', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 0),
-(427, '2016-01-31 01:29:33', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36', 0),
-(428, '2016-02-02 06:38:31', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36', 0),
-(429, '2016-02-20 02:40:01', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36', 0),
-(430, '2016-02-20 04:38:49', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(431, '2016-02-21 05:26:24', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(432, '2016-02-21 12:36:28', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(433, '2016-02-21 04:09:50', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(434, '2016-02-24 08:27:09', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(435, '2016-02-24 04:39:25', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(436, '2016-02-24 05:10:04', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(437, '2016-02-27 05:04:03', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(438, '2016-03-06 02:06:43', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(439, '2016-03-06 05:50:29', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(440, '2016-03-09 04:35:17', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(441, '2016-03-09 05:33:32', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(442, '2016-03-09 06:48:43', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(443, '2016-03-10 06:29:38', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(444, '2016-03-11 06:13:02', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(445, '2016-03-12 04:54:48', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(446, '2016-03-12 02:33:37', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(447, '2016-03-12 03:50:14', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(448, '2016-03-12 06:21:36', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(449, '2016-03-13 06:04:58', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(450, '2016-03-13 06:06:29', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(451, '2016-03-13 08:01:19', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(452, '2016-03-13 09:08:44', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(453, '2016-03-13 01:44:56', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(454, '2016-03-13 03:05:19', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(455, '2016-03-14 05:57:48', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(456, '2016-03-14 06:21:20', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(457, '2016-03-15 05:00:31', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', 0),
-(458, '2016-03-15 07:01:21', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(459, '2016-03-16 05:27:43', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(460, '2016-03-17 05:16:39', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(461, '2016-03-19 04:37:53', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(462, '2016-03-19 09:36:01', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(463, '2016-03-19 02:09:49', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(464, '2016-03-19 05:39:16', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(465, '2016-03-21 05:55:14', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(466, '2016-03-23 05:22:04', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(467, '2016-03-24 05:12:00', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(468, '2016-03-26 02:07:31', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(469, '2016-03-26 04:08:14', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(470, '2016-03-27 04:28:09', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(471, '2016-03-28 05:33:18', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(472, '2016-03-29 07:10:30', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(473, '2016-03-30 07:02:22', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(474, '2016-03-31 06:22:01', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36', 0),
-(475, '2016-03-31 07:54:51', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(476, '2016-04-02 06:33:47', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(477, '2016-04-02 11:37:18', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(478, '2016-04-02 01:13:18', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(479, '2016-04-02 03:38:45', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(480, '2016-04-05 06:24:03', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(481, '2016-04-06 07:14:49', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(482, '2016-04-07 07:19:13', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(483, '2016-04-09 07:12:47', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(484, '2016-04-10 05:15:46', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(485, '2016-04-10 09:08:57', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(486, '2016-04-10 12:32:15', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(487, '2016-04-10 03:39:34', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(488, '2016-04-11 07:10:37', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(489, '2016-04-12 06:57:43', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(490, '2016-04-20 07:19:14', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 0),
-(491, '2016-05-27 08:02:52', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0', 0),
-(492, '2016-05-28 06:56:35', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36', 0),
-(493, '2016-05-29 06:47:53', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36', 0),
-(494, '2016-06-11 03:06:22', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0', 0),
-(495, '2016-06-12 07:59:29', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36', 0),
-(496, '2016-06-12 08:43:49', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36', 0),
-(497, '2016-06-14 06:10:44', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36', 0),
-(498, '2016-06-14 08:28:40', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36', 0),
-(499, '2016-06-18 03:12:01', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36', 0),
-(500, '2016-06-19 10:12:05', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(501, '2016-06-19 10:15:32', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(502, '2016-06-19 10:16:23', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(503, '2016-06-19 04:45:59', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(504, '2016-06-19 04:47:03', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(505, '2016-06-19 04:47:37', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(506, '2016-06-19 05:11:57', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(507, '2016-06-19 05:12:19', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(508, '2016-06-19 05:14:10', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(509, '2016-06-19 05:15:16', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(510, '2016-06-19 05:16:32', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(511, '2016-06-19 05:17:33', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(512, '2016-06-19 06:47:34', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(513, '2016-06-19 06:48:46', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(514, '2016-06-20 06:30:22', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(515, '2016-06-20 07:22:42', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(516, '2016-06-20 07:51:15', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(517, '2016-06-20 08:06:40', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(518, '2016-06-21 06:20:47', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(519, '2016-06-22 06:29:18', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(520, '2016-06-23 05:22:35', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(521, '2016-06-24 06:11:56', 27, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(522, '2016-06-24 08:10:23', 27, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(523, '2016-06-25 06:40:00', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(524, '2016-06-25 02:55:56', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(525, '2016-06-25 02:59:40', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(526, '2016-06-26 06:51:24', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(527, '2016-06-26 07:22:14', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(528, '2016-06-26 11:58:09', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(529, '2016-06-27 06:09:43', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(530, '2016-06-28 05:37:45', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(531, '2016-06-28 07:42:02', 28, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(532, '2016-06-28 08:11:34', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(533, '2016-06-28 08:21:05', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(534, '2016-06-29 07:20:57', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(535, '2016-07-01 07:39:34', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(536, '2016-07-02 11:37:49', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(537, '2016-07-02 11:59:22', 28, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(538, '2016-07-02 12:02:55', 27, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(539, '2016-07-02 03:11:57', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(540, '2016-07-02 03:38:08', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(541, '2016-07-03 08:47:32', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(542, '2016-07-04 07:04:07', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(543, '2016-07-06 06:15:44', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(544, '2016-07-06 06:15:44', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(545, '2016-07-07 05:30:15', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(546, '2016-07-08 06:02:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(547, '2016-07-08 09:23:37', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(548, '2016-07-08 09:37:29', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(549, '2016-07-08 07:03:41', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(550, '2016-07-09 03:36:40', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(551, '2016-07-10 04:55:07', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(552, '2016-07-10 06:32:54', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(553, '2016-07-11 08:46:00', 29, '::1', 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(554, '2016-07-12 07:25:19', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(555, '2016-07-12 07:41:14', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(556, '2016-07-13 06:53:47', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(557, '2016-07-13 07:30:07', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(558, '2016-07-13 07:58:23', 29, '::1', 'Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30', 0),
-(559, '2016-07-14 05:14:18', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(560, '2016-07-14 07:42:16', 2, '::1', 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(561, '2016-07-14 08:19:12', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(562, '2016-07-15 04:36:22', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(563, '2016-07-15 08:00:58', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(564, '2016-07-15 08:05:30', 2, '::1', 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36', 0),
-(565, '2016-07-16 07:17:13', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(566, '2016-07-16 07:23:24', 30, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(567, '2016-07-16 07:23:25', 30, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(568, '2016-07-16 11:49:35', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(569, '2016-07-16 12:18:16', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(570, '2016-07-16 12:31:18', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(571, '2016-07-17 07:30:49', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(572, '2016-07-17 07:42:44', 2, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36', 0),
-(573, '2016-07-17 07:44:18', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(574, '2016-07-17 11:03:56', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(575, '2016-07-17 11:44:57', 2, '::1', 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36', 0),
-(576, '2016-07-17 11:57:11', 2, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(577, '2016-07-17 12:08:00', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(578, '2016-07-17 12:18:37', 2, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(579, '2016-07-17 12:25:45', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(580, '2016-07-17 01:42:08', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(581, '2016-07-18 06:22:47', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(582, '2016-07-19 07:00:21', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(583, '2016-07-20 05:53:37', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(584, '2016-07-20 07:08:13', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(585, '2016-07-20 07:19:58', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(586, '2016-07-21 07:44:16', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(587, '2016-07-23 06:21:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(588, '2016-07-23 06:51:28', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(589, '2016-07-23 07:30:20', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(590, '2016-07-23 10:50:37', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(591, '2016-07-23 06:15:40', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(592, '2016-07-23 06:17:03', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(593, '2016-07-24 06:45:45', 31, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(594, '2016-07-24 07:06:05', 33, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(595, '2016-07-24 07:13:08', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(596, '2016-07-24 08:07:14', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(597, '2016-07-24 08:08:39', 33, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(598, '2016-07-24 09:40:31', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(599, '2016-07-24 12:04:47', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(600, '2016-07-26 07:21:48', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(601, '2016-07-26 07:21:50', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(602, '2016-07-27 04:48:05', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(603, '2016-07-27 05:43:02', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(604, '2016-07-27 08:24:14', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(605, '2016-07-28 07:03:20', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(606, '2016-07-29 06:31:00', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(607, '2016-07-30 06:22:26', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(608, '2016-07-30 09:07:39', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(609, '2016-07-30 12:50:40', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(610, '2016-07-30 01:02:44', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(611, '2016-07-30 02:51:40', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(612, '2016-07-30 05:58:38', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(613, '2016-08-04 06:17:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(614, '2016-08-05 06:40:50', 34, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(615, '2016-08-05 07:31:08', 34, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(616, '2016-08-06 06:32:36', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(617, '2016-08-06 06:44:28', 34, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(618, '2016-08-06 02:51:55', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(619, '2016-08-06 02:51:55', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(620, '2016-08-06 05:17:19', 34, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(621, '2016-08-07 03:58:07', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(622, '2016-08-08 06:36:53', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(623, '2016-08-10 06:46:34', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(624, '2016-08-11 05:28:45', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(625, '2016-08-13 02:37:30', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(626, '2016-08-15 03:25:11', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 0),
-(627, '2016-08-21 06:10:46', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(628, '2016-08-21 06:05:28', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(629, '2016-08-21 06:12:22', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(630, '2016-08-21 06:17:49', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(631, '2016-08-21 06:28:59', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(632, '2016-08-28 07:12:41', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(633, '2016-08-28 07:43:25', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(634, '2016-09-02 06:15:29', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(635, '2016-09-02 07:34:10', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(636, '2016-09-03 05:06:52', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(637, '2016-09-04 01:55:15', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(638, '2016-09-05 04:24:14', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(639, '2016-09-06 06:32:48', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(640, '2016-09-06 06:33:43', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(641, '2016-09-06 06:34:29', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(642, '2016-09-06 06:40:06', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(643, '2016-09-08 06:16:35', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(644, '2016-09-08 08:00:32', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(645, '2016-09-08 08:19:11', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(646, '2016-09-08 08:23:18', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(647, '2016-09-09 05:37:05', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(648, '2016-09-09 06:22:00', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(649, '2016-09-09 06:24:09', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(650, '2016-09-09 06:24:54', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(651, '2016-09-10 08:09:15', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(652, '2016-09-10 09:04:48', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(653, '2016-09-10 09:07:20', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(654, '2016-09-10 09:08:09', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(655, '2016-09-10 04:30:07', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(656, '2016-09-11 04:33:09', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(657, '2016-09-11 07:39:04', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(658, '2016-09-11 10:50:07', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(659, '2016-09-11 03:50:42', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(660, '2016-09-11 04:01:27', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(661, '2016-09-11 04:02:06', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(662, '2016-09-11 04:03:37', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(663, '2016-09-12 06:56:44', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(664, '2016-09-13 05:54:25', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(665, '2016-09-13 06:14:15', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(666, '2016-09-13 06:25:06', 39, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(667, '2016-09-13 10:24:22', 39, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(668, '2016-09-13 10:58:03', 39, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(669, '2016-09-13 01:49:48', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(670, '2016-09-13 02:30:02', 40, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(671, '2016-09-13 02:37:36', 40, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(672, '2016-09-13 03:57:08', 39, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(673, '2016-09-13 04:00:38', 39, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(674, '2016-09-13 04:00:59', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(675, '2016-09-13 07:03:18', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(676, '2016-09-13 07:05:01', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(677, '2016-09-14 05:52:53', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 0),
-(678, '2016-09-17 04:48:46', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(679, '2016-09-17 04:48:46', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(680, '2016-09-17 08:18:25', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(681, '2016-09-17 10:13:52', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(682, '2016-09-17 02:41:56', 38, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(683, '2016-09-18 03:18:24', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(684, '2016-09-25 01:54:50', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(685, '2016-09-25 01:56:31', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(686, '2016-09-25 01:57:33', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(687, '2016-09-25 02:06:23', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2683.0 Safari/537.36', 0),
-(688, '2016-09-25 03:46:52', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(689, '2016-09-25 03:46:52', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(690, '2016-09-25 03:58:01', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(691, '2016-09-25 03:58:23', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(692, '2016-10-02 11:14:56', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(693, '2016-10-02 11:16:13', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(694, '2016-10-02 11:16:38', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(695, '2016-10-02 06:29:08', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(696, '2016-10-02 08:05:11', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', 0),
-(697, '2016-10-06 06:57:42', 41, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(698, '2016-10-08 01:02:40', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(699, '2016-10-08 01:03:32', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(700, '2016-10-08 01:04:14', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(701, '2016-10-08 01:05:58', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(702, '2016-10-08 01:06:21', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(703, '2016-10-08 01:07:39', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(704, '2016-10-08 01:10:09', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(705, '2016-10-08 01:11:04', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(706, '2016-10-08 01:12:50', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(707, '2016-10-08 01:17:05', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(708, '2016-10-08 01:18:54', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(709, '2016-10-08 01:19:53', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(710, '2016-10-08 01:21:38', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(711, '2016-10-08 06:10:11', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(712, '2016-10-09 06:17:06', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(713, '2016-10-10 02:21:42', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 0),
-(714, '2016-10-16 03:17:00', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0);
-INSERT INTO `user_logins` (`id`, `created`, `user_id`, `ip`, `browser_info`, `is_deleted`) VALUES
-(715, '2016-10-16 03:26:52', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(716, '2016-10-16 04:16:01', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(717, '2016-10-16 04:18:41', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(718, '2016-10-16 06:59:04', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(719, '2016-10-17 05:38:31', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(720, '2016-10-17 06:08:47', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(721, '2016-10-17 06:08:47', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(722, '2016-10-17 12:16:27', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(723, '2016-10-17 12:16:27', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36', 0),
-(724, '2016-10-22 06:47:31', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36', 0),
-(725, '2016-10-22 06:48:47', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36', 0),
-(726, '2016-10-22 06:54:02', 2, '::1', 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36', 0),
-(727, '2016-10-22 06:54:51', 2, '::1', 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36', 0),
-(728, '2016-10-30 05:46:02', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36', 0),
-(729, '2016-10-30 05:46:02', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36', 0),
-(730, '2016-10-30 07:51:20', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36', 0),
-(731, '2016-10-30 12:55:36', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36', 0),
-(732, '2016-11-13 12:42:58', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36', 0),
-(733, '2016-11-20 06:54:55', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36', 0),
-(734, '2016-11-20 12:51:20', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(735, '2016-12-18 04:12:00', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(736, '2016-12-19 05:54:16', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(737, '2016-12-19 06:14:19', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(738, '2016-12-20 06:03:41', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(739, '2016-12-20 06:03:41', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(740, '2016-12-22 05:42:32', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(741, '2016-12-24 05:36:21', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(742, '2016-12-26 05:42:33', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(743, '2016-12-27 06:06:25', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(744, '2016-12-27 06:08:56', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(745, '2016-12-28 04:18:12', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(746, '2016-12-28 05:26:14', 2, '::1', 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36', 0),
-(747, '2016-12-28 05:27:28', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(748, '2016-12-28 07:59:50', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(749, '2016-12-28 08:31:51', 2, '::1', 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36', 0),
-(750, '2016-12-28 08:33:10', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(751, '2016-12-28 10:49:13', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(752, '2016-12-28 03:53:50', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(753, '2016-12-28 05:45:28', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(754, '2017-01-04 06:08:04', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0', 0),
-(755, '2017-01-05 04:53:02', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0', 0),
-(756, '2017-01-05 05:13:09', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(757, '2017-01-05 06:12:24', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(758, '2017-01-05 06:15:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(759, '2017-01-06 05:10:11', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(760, '2017-01-06 06:37:53', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(761, '2017-01-07 05:23:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(762, '2017-01-07 06:18:57', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(763, '2017-01-07 07:04:11', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(764, '2017-01-07 07:18:51', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(765, '2017-01-07 09:39:52', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(766, '2017-01-07 01:20:41', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(767, '2017-01-07 05:47:57', 2, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(768, '2017-01-07 05:48:53', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(769, '2017-01-08 06:05:57', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(770, '2017-01-08 08:40:48', 53, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(771, '2017-01-08 12:27:18', 53, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(772, '2017-01-08 12:43:04', 53, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(773, '2017-01-10 05:32:32', 53, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(774, '2017-01-11 05:56:56', 53, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(775, '2017-01-11 06:36:35', 53, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(776, '2017-01-11 06:39:15', 53, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(777, '2017-01-11 07:10:55', 53, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(778, '2017-01-12 05:31:20', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(779, '2017-01-16 04:45:54', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(780, '2017-01-18 04:48:28', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(781, '2017-01-18 05:25:21', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(782, '2017-01-19 04:50:44', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(783, '2017-01-19 06:49:17', 2, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(784, '2017-01-19 06:50:57', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36', 0),
-(785, '2017-01-20 05:19:31', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(786, '2017-01-21 04:11:39', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(787, '2017-01-21 05:18:00', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(788, '2017-01-21 05:27:57', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(789, '2017-01-21 07:35:22', 2, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(790, '2017-01-21 07:36:53', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(791, '2017-01-21 01:07:34', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(792, '2017-01-21 01:58:32', 3, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(793, '2017-01-21 04:05:15', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(794, '2017-01-22 05:45:17', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(795, '2017-01-22 06:09:06', 2, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(796, '2017-01-22 05:17:37', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(797, '2017-01-23 05:43:15', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(798, '2017-01-24 03:15:11', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(799, '2017-01-24 05:44:10', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(800, '2017-01-24 06:02:20', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(801, '2017-01-26 05:48:42', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(802, '2017-01-26 08:13:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(803, '2017-01-26 11:07:00', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(804, '2017-01-26 03:25:30', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(805, '2017-01-28 04:38:09', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(806, '2017-01-28 04:41:16', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(807, '2017-01-28 09:47:14', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(808, '2017-01-28 01:17:02', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(809, '2017-01-28 01:41:20', 13, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(810, '2017-01-28 01:41:35', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(811, '2017-01-28 01:50:04', 13, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(812, '2017-01-28 01:50:44', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(813, '2017-01-28 06:04:29', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(814, '2017-01-29 06:31:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(815, '2017-01-29 08:07:04', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(816, '2017-01-29 01:16:39', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(817, '2017-01-29 05:09:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(818, '2017-01-30 05:53:43', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(819, '2017-02-01 04:57:23', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(820, '2017-02-04 05:31:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(821, '2017-02-05 07:07:23', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(822, '2017-02-05 10:37:39', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(823, '2017-02-05 06:17:32', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 0),
-(824, '2017-02-08 04:55:26', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(825, '2017-02-10 05:36:23', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(826, '2017-02-11 06:47:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(827, '2017-02-11 03:51:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(828, '2017-02-12 03:58:30', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(829, '2017-02-12 07:26:53', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(830, '2017-02-14 05:04:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(831, '2017-02-15 05:29:31', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(832, '2017-02-16 05:27:24', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(833, '2017-02-17 05:35:41', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(834, '2017-02-18 04:14:28', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(835, '2017-02-18 01:04:17', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(836, '2017-02-18 04:43:00', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(837, '2017-02-19 05:51:17', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(838, '2017-02-19 07:56:14', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(839, '2017-02-19 03:19:02', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(840, '2017-02-24 05:29:35', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(841, '2017-02-24 05:57:09', 14, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(842, '2017-02-28 05:57:44', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(843, '2017-02-28 06:15:10', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(844, '2017-03-04 12:34:21', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(845, '2017-03-08 05:07:14', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(846, '2017-03-09 05:37:03', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(847, '2017-03-11 05:17:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(848, '2017-03-11 05:19:56', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(849, '2017-03-11 07:56:39', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(850, '2017-03-11 08:11:17', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(851, '2017-03-11 08:18:53', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(852, '2017-03-11 08:19:39', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(853, '2017-03-11 02:06:15', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(854, '2017-03-11 03:23:53', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(855, '2017-03-11 04:13:09', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(856, '2017-03-12 05:52:37', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(857, '2017-03-12 05:52:46', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(858, '2017-03-12 05:04:50', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(859, '2017-03-12 05:30:10', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(860, '2017-03-12 05:30:10', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(861, '2017-03-12 05:54:38', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(862, '2017-03-12 05:55:29', 15, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(863, '2017-03-13 05:24:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(864, '2017-03-13 05:29:31', 17, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(865, '2017-03-13 05:52:03', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(866, '2017-03-18 04:18:44', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(867, '2017-03-18 05:09:25', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(868, '2017-03-18 05:10:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(869, '2017-03-18 06:18:53', 13, '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1', 0),
-(870, '2017-03-18 06:20:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(871, '2017-03-19 07:08:11', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(872, '2017-03-19 07:21:17', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(873, '2017-03-19 05:35:24', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(874, '2017-03-21 05:23:54', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(875, '2017-03-24 06:23:38', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(876, '2017-03-24 06:29:40', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(877, '2017-03-24 06:52:32', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(878, '2017-03-24 07:13:10', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(879, '2017-03-25 04:19:49', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(880, '2017-03-25 09:29:23', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(881, '2017-03-25 09:30:33', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(882, '2017-03-25 09:31:51', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(883, '2017-03-25 02:18:52', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(884, '2017-03-25 03:11:35', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(885, '2017-03-25 03:14:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(886, '2017-03-25 05:45:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(887, '2017-03-26 06:33:56', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(888, '2017-03-26 06:34:24', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(889, '2017-03-26 06:35:54', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(890, '2017-03-26 06:42:36', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(891, '2017-03-26 06:48:43', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(892, '2017-03-26 08:41:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(893, '2017-03-26 09:01:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(894, '2017-03-26 09:01:55', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(895, '2017-03-26 09:08:15', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(896, '2017-03-26 09:08:44', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(897, '2017-03-26 09:11:32', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(898, '2017-03-26 09:19:07', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(899, '2017-03-26 09:22:22', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(900, '2017-03-26 09:23:44', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(901, '2017-03-26 09:24:33', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(902, '2017-03-26 09:46:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(903, '2017-03-26 09:47:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(904, '2017-03-26 11:36:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(905, '2017-03-26 11:37:57', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(906, '2017-03-26 11:38:55', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(907, '2017-03-26 11:39:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(908, '2017-03-26 11:40:17', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(909, '2017-03-26 04:58:59', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(910, '2017-03-26 05:00:07', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(911, '2017-03-26 06:06:05', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(912, '2017-03-26 06:06:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(913, '2017-03-26 06:08:27', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(914, '2017-03-26 06:08:30', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(915, '2017-03-26 06:08:36', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(916, '2017-03-26 06:09:25', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(917, '2017-03-26 06:09:37', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(918, '2017-03-27 06:53:14', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(919, '2017-03-27 07:02:22', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(920, '2017-03-27 07:19:09', 13, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0', 0),
-(921, '2017-03-27 07:19:15', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0', 0),
-(922, '2017-03-27 08:27:21', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(923, '2017-03-28 06:49:28', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(924, '2017-03-28 07:36:41', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(925, '2017-03-29 06:32:14', 13, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0', 0),
-(926, '2017-03-29 07:33:16', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(927, '2017-03-30 07:15:03', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(928, '2017-03-30 08:29:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(929, '2017-03-30 08:30:39', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(930, '2017-03-31 07:17:32', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(931, '2017-04-01 07:21:01', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 0),
-(932, '2017-04-02 08:04:02', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(933, '2017-04-02 10:53:10', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(934, '2017-04-02 12:33:41', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(935, '2017-04-02 02:20:49', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(936, '2017-04-02 02:26:09', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(937, '2017-04-02 02:41:22', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(938, '2017-04-02 02:42:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(939, '2017-04-02 02:54:39', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(940, '2017-04-02 03:11:47', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(941, '2017-04-02 03:12:33', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(942, '2017-04-02 03:25:03', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(943, '2017-04-02 03:26:22', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(944, '2017-04-02 03:50:11', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(945, '2017-04-02 03:54:35', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(946, '2017-04-02 06:51:28', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(947, '2017-04-02 06:57:28', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(948, '2017-04-02 07:52:52', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(949, '2017-04-02 07:54:41', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(950, '2017-04-02 07:56:51', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(951, '2017-04-02 07:56:57', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(952, '2017-04-02 08:00:02', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(953, '2017-04-02 08:01:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(954, '2017-04-04 07:09:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(955, '2017-04-04 07:14:07', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(956, '2017-04-04 07:14:53', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(957, '2017-04-05 06:58:58', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(958, '2017-04-05 07:42:31', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(959, '2017-04-05 07:52:03', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(960, '2017-04-06 06:36:35', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(961, '2017-04-06 07:57:31', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(962, '2017-04-06 08:17:08', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(963, '2017-04-06 08:17:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(964, '2017-04-06 08:18:05', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(965, '2017-04-06 08:23:22', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(966, '2017-04-06 08:24:22', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(967, '2017-04-06 08:26:16', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(968, '2017-04-07 07:22:01', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(969, '2017-04-07 07:25:44', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(970, '2017-04-07 07:27:01', 14, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(971, '2017-04-07 07:32:42', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(972, '2017-04-08 04:23:41', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(973, '2017-04-08 04:51:38', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(974, '2017-04-08 04:54:30', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(975, '2017-04-08 06:45:05', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(976, '2017-04-08 06:47:11', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(977, '2017-04-08 06:48:07', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(978, '2017-04-08 07:07:05', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(979, '2017-04-08 07:44:19', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(980, '2017-04-08 07:48:12', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(981, '2017-04-08 07:48:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(982, '2017-04-09 05:50:42', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(983, '2017-04-09 07:53:20', 18, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(984, '2017-04-09 08:17:07', 18, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(985, '2017-04-09 09:11:38', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(986, '2017-04-09 09:15:27', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(987, '2017-04-09 09:46:08', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(988, '2017-04-09 11:53:15', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(989, '2017-04-09 11:53:20', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(990, '2017-04-09 12:08:46', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(991, '2017-04-09 12:10:55', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(992, '2017-04-09 12:12:11', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(993, '2017-04-09 12:12:58', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(994, '2017-04-09 12:52:17', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(995, '2017-04-09 01:25:55', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(996, '2017-04-09 01:27:21', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(997, '2017-04-09 07:10:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(998, '2017-04-09 07:11:36', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(999, '2017-04-09 07:36:05', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1000, '2017-04-09 07:39:06', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1001, '2017-04-09 07:41:20', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1002, '2017-04-11 06:29:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1003, '2017-04-12 06:25:38', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1004, '2017-04-12 06:44:34', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1005, '2017-04-12 07:38:05', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1006, '2017-04-12 07:39:59', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1007, '2017-04-13 06:44:56', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1008, '2017-04-14 07:55:24', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1009, '2017-04-14 01:09:51', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1010, '2017-04-15 08:31:28', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1011, '2017-04-15 01:01:23', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1012, '2017-04-16 04:30:16', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1013, '2017-04-17 05:58:33', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1014, '2017-04-18 06:37:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1015, '2017-04-18 06:53:46', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1016, '2017-04-18 08:07:52', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1017, '2017-04-19 06:08:53', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1018, '2017-04-20 06:33:53', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1019, '2017-04-20 07:13:37', 20, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1020, '2017-04-20 07:59:11', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1021, '2017-04-21 06:09:11', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1022, '2017-04-21 06:13:03', 20, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1023, '2017-04-21 07:48:20', 22, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1024, '2017-04-21 08:01:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1025, '2017-04-22 06:38:37', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1026, '2017-04-22 03:38:46', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1027, '2017-04-22 06:58:20', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1028, '2017-04-23 08:05:07', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1029, '2017-04-23 03:00:40', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1030, '2017-04-24 05:59:16', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1031, '2017-04-26 06:38:08', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1032, '2017-04-28 05:08:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1033, '2017-04-28 11:19:23', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1034, '2017-04-28 11:30:05', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1035, '2017-05-01 05:57:54', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1036, '2017-05-01 06:18:13', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0);
-INSERT INTO `user_logins` (`id`, `created`, `user_id`, `ip`, `browser_info`, `is_deleted`) VALUES
-(1037, '2017-05-01 06:18:43', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1038, '2017-05-01 06:23:50', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 0),
-(1039, '2017-05-01 05:10:53', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36', 0),
-(1040, '2017-05-02 06:29:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36', 0),
-(1041, '2017-05-03 06:41:24', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36', 0),
-(1042, '2017-05-04 06:49:17', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36', 0),
-(1043, '2017-05-06 05:21:13', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36', 0),
-(1044, '2017-05-07 05:18:38', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36', 0),
-(1045, '2017-05-07 04:19:03', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36', 0),
-(1046, '2017-05-07 06:16:20', 29, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36', 0),
-(1047, '2017-05-07 07:05:01', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36', 0),
-(1048, '2017-05-12 06:25:04', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36', 0),
-(1049, '2017-05-13 06:45:36', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1050, '2017-05-13 06:21:14', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1051, '2017-05-14 07:35:45', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1052, '2017-05-14 07:49:29', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1053, '2017-05-14 02:44:07', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1054, '2017-05-18 07:35:10', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1055, '2017-05-19 07:18:11', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1056, '2017-05-21 05:58:23', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1057, '2017-05-22 06:20:46', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1058, '2017-05-23 06:08:02', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1059, '2017-05-24 06:35:24', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1060, '2017-05-25 06:26:33', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1061, '2017-05-25 06:46:08', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1062, '2017-05-26 06:17:24', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1063, '2017-05-26 07:22:53', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1064, '2017-05-28 09:58:15', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1065, '2017-05-28 06:46:49', 1, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1066, '2017-05-29 06:19:18', 13, '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 0),
-(1067, '2017-06-26 05:42:58', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36', 0),
-(1068, '2017-06-27 06:24:44', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36', 0),
-(1069, '2017-06-28 06:19:31', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36', 0),
-(1070, '2017-06-29 06:37:13', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36', 0),
-(1071, '2017-06-30 06:32:08', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1072, '2017-07-02 07:03:28', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1073, '2017-07-02 02:21:15', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1074, '2017-07-04 07:14:31', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1075, '2017-07-05 06:51:20', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1076, '2017-07-05 08:21:58', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1077, '2017-07-06 04:12:15', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1078, '2017-07-06 07:00:02', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1079, '2017-07-07 05:52:08', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1080, '2017-07-09 05:37:53', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1081, '2017-07-09 07:18:24', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1082, '2017-07-10 07:32:26', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1083, '2017-07-11 06:06:49', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1084, '2017-07-12 07:05:27', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1085, '2017-07-12 07:05:58', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1086, '2017-07-14 06:30:09', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1087, '2017-07-15 06:01:06', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1088, '2017-07-15 09:45:19', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1089, '2017-07-15 07:11:50', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1090, '2017-07-15 07:12:27', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1091, '2017-07-16 05:49:11', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1092, '2017-07-16 05:53:10', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1093, '2017-07-16 06:41:39', 47, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1094, '2017-07-16 05:12:26', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1095, '2017-07-16 06:18:24', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1096, '2017-07-16 06:45:31', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1097, '2017-07-17 06:22:24', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1098, '2017-07-17 07:35:00', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1099, '2017-07-18 06:33:24', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1100, '2017-07-20 06:15:46', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1101, '2017-07-21 06:15:50', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1102, '2017-07-23 06:00:21', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1103, '2017-07-23 08:45:48', 48, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1104, '2017-07-23 05:59:03', 48, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1105, '2017-07-24 05:42:58', 48, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1106, '2017-07-24 07:18:13', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1107, '2017-07-25 06:41:09', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1108, '2017-07-26 06:41:18', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1109, '2017-07-27 06:38:38', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1110, '2017-07-28 06:43:37', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1111, '2017-07-30 02:55:40', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1112, '2017-07-30 05:05:10', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1113, '2017-07-30 05:06:16', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1114, '2017-08-03 06:33:27', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1115, '2017-08-05 06:33:00', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1116, '2017-08-05 10:45:32', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1117, '2017-08-05 02:25:47', 50, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1118, '2017-08-06 08:34:58', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1119, '2017-08-06 02:01:52', 50, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1120, '2017-08-06 05:47:01', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1121, '2017-08-06 07:46:03', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', 0),
-(1122, '2017-08-10 07:08:27', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1123, '2017-08-11 07:06:16', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2988.0 Safari/537.36', 0),
-(1124, '2017-08-13 07:24:40', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1125, '2017-08-13 07:28:10', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1126, '2017-08-13 01:09:55', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1127, '2017-08-13 05:37:15', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1128, '2017-08-14 06:25:20', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1129, '2017-08-15 05:40:52', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2988.0 Safari/537.36', 0),
-(1130, '2017-08-15 08:34:17', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1131, '2017-08-15 09:31:12', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1132, '2017-08-15 01:01:44', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1133, '2017-08-15 05:58:15', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36', 0),
-(1134, '2017-08-20 06:22:04', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1135, '2017-08-20 08:00:29', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1136, '2017-08-20 12:38:52', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1137, '2017-08-20 03:46:25', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1138, '2017-08-21 06:18:08', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1139, '2017-08-25 08:21:41', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1140, '2017-08-25 09:24:33', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1141, '2017-08-25 06:16:17', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1142, '2017-08-26 10:26:38', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1143, '2017-08-26 12:53:10', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1144, '2017-08-26 04:50:59', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1145, '2017-08-27 06:44:02', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1146, '2017-08-27 02:45:37', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1147, '2017-08-27 06:15:11', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36', 0),
-(1148, '2017-10-02 06:06:57', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1149, '2017-10-03 05:25:27', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1150, '2017-10-03 06:59:57', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1151, '2017-10-06 06:57:30', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1152, '2017-10-06 08:03:37', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1153, '2017-10-08 02:08:48', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1154, '2017-10-13 02:18:01', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1155, '2017-10-24 06:26:30', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1156, '2017-10-25 05:16:01', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1157, '2017-10-26 06:05:23', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1158, '2017-10-28 06:27:19', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1159, '2017-10-28 09:57:47', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1160, '2017-10-28 10:06:36', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1161, '2017-10-28 06:03:27', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1162, '2017-11-04 06:16:01', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1163, '2017-11-05 03:23:39', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1164, '2017-11-06 05:39:03', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1165, '2017-11-07 05:19:22', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1166, '2017-11-11 09:20:46', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1167, '2017-11-12 06:42:05', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 0),
-(1168, '2017-12-01 05:55:11', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', 0),
-(1169, '2018-01-07 05:41:49', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36', 0),
-(1170, '2018-01-23 05:27:35', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 0),
-(1171, '2018-01-26 07:48:40', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1172, '2018-01-26 05:15:47', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1173, '2018-01-26 06:30:51', 81, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1174, '2018-01-27 07:47:21', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1175, '2018-01-28 05:53:36', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1176, '2018-01-28 01:46:05', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1177, '2018-01-28 04:46:56', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1178, '2018-02-02 05:40:14', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 0),
-(1179, '2018-02-03 05:33:54', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36', 0),
-(1180, '2018-02-04 07:00:24', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36', 0),
-(1181, '2018-02-04 07:19:27', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36', 0),
-(1182, '2018-02-04 07:33:14', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36', 0),
-(1183, '2018-02-04 05:22:48', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36', 0),
-(1184, '2018-02-11 10:20:35', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36', 0),
-(1185, '2018-05-12 06:11:39', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1186, '2018-05-12 10:39:02', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1187, '2018-05-13 05:24:52', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1188, '2018-05-13 09:45:05', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1189, '2018-05-20 06:48:04', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1190, '2018-05-20 06:58:10', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1191, '2018-05-20 01:27:30', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1192, '2018-05-21 06:50:17', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1193, '2018-05-22 06:29:39', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 0),
-(1194, '2018-07-15 02:37:19', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
-(1195, '2018-07-15 05:55:37', 49, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
-(1196, '2018-07-15 06:15:48', 50, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0);
+(1, '2018-07-22 06:11:55', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(2, '2018-07-22 06:41:50', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(3, '2018-07-22 07:04:05', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(4, '2018-07-22 07:14:15', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(5, '2018-07-28 05:24:43', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(6, '2018-07-29 04:59:45', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(7, '2018-07-29 04:28:55', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(8, '2018-07-30 06:24:35', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(9, '2018-07-31 06:14:49', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(10, '2018-08-04 10:09:46', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(11, '2018-08-06 05:50:48', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(12, '2018-08-07 04:12:40', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(13, '2018-08-08 06:52:52', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(14, '2018-08-08 01:34:36', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(15, '2018-08-08 05:52:36', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(16, '2018-08-09 06:27:19', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(17, '2018-08-10 06:22:18', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(18, '2018-08-10 06:54:51', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(19, '2018-08-12 06:05:22', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(20, '2018-08-12 06:06:40', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(21, '2018-08-12 06:11:28', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(22, '2018-08-12 09:32:32', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(23, '2018-08-12 09:58:47', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(24, '2018-08-12 10:02:45', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(25, '2018-08-13 06:45:54', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(26, '2018-08-14 06:27:34', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 0),
+(27, '2018-08-15 05:47:52', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36', 0),
+(28, '2018-08-15 02:34:12', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36', 0),
+(29, '2018-08-15 07:20:12', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36', 0),
+(30, '2018-08-26 12:25:00', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36', 0);
 
 -- --------------------------------------------------------
 
@@ -19499,88 +16616,9 @@ CREATE TABLE `user_profiles` (
 --
 
 INSERT INTO `user_profiles` (`id`, `created`, `modified`, `user_id`, `first_name`, `last_name`, `display_name`, `gender_id`, `dob`, `doa`, `mobile_number`, `telephone_number`, `address`) VALUES
-(1, '2015-01-12 12:31:43', '2015-02-24 05:22:29', 1, 'Admin', 'Hobitel', '0', 0, '0000-00-00', '0000-00-00', '', '', ''),
-(2, '2017-01-21 01:06:41', '2017-05-13 09:33:27', 2, 'venkatesh', 'venkatesh', '', 1, '1900-12-21', '1900-11-27', '9791447542', NULL, 'chennai'),
-(3, '2017-01-21 01:57:57', '2017-01-21 01:57:57', 3, 'Hari Shankar', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', '', ''),
-(4, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 4, 'Vignesh', 'kumar', 'Vignesh', 0, '1972-02-12', '0000-00-00', '9791447539', '9791447539', '26-10-1990'),
-(5, '2017-01-22 06:13:18', '2017-01-24 06:20:57', 5, 'siva', 'shankar', 'Siva', 1, '2017-02-17', '1970-01-01', '9791447540', '97914475400', '26-10-1990'),
-(6, '2017-01-22 06:13:18', '2017-01-22 06:13:18', 6, 'Deva', 'Roy', 'Deva', 0, '1970-01-01', '0000-00-00', '9791447541', '9791447541', '26-10-1990'),
-(7, '2017-01-22 06:13:18', '2017-03-09 06:03:30', 7, 'venky', 'damo', 'Venky', 1, '1970-01-01', '0000-00-00', '9791447541', '9791447541', '26-10-1990'),
-(8, '2017-01-22 06:13:19', '2017-03-09 06:02:35', 8, 'damo', 'damo', 'Damo', 2, '1970-01-01', '0000-00-00', '9791447541', '9791447541', '26-10-1990'),
-(9, '2017-01-22 07:46:51', '2017-03-09 06:01:55', 9, 'ragu', 'ragu', 'Ragu', 1, '1990-10-26', '1970-01-01', '9791447541', '9791447541', 'Delhi'),
-(10, '2017-01-22 08:00:21', '2017-04-09 07:43:10', 10, 'shankar', 'siva', 'Shankar', 1, '1990-10-26', '1970-01-01', '8989891221', '8989891221', 'Delhi'),
-(11, '2017-01-22 11:23:28', '2017-01-22 11:23:28', 11, 'venkatesh', '', 'venkatesh', 0, '2017-01-16', '2017-01-12', '9791444523', '9791447542', 'chennai'),
-(12, '2017-01-22 11:45:55', '2017-01-22 12:00:24', 12, 'venkatesh', 'venkatesh', 'venkatesh', 1, '2017-01-10', '2017-01-17', '9791447543', '9791447542', 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(13, '2017-01-22 05:16:47', '2017-05-07 01:52:48', 13, 'venkatesh', 'venkatesh', '', 1, '2016-12-13', '2017-02-11', '9791447542', '97914475400', 'chennai'),
-(14, '2017-02-24 05:55:43', '2017-02-24 05:55:43', 14, 'test', '', '', 0, '0000-00-00', '0000-00-00', '9791447540', '', ''),
-(15, '2017-03-12 05:54:20', '2017-03-12 05:54:20', 15, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', '', ''),
-(16, '2017-03-12 05:58:22', '2017-03-12 05:58:22', 16, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447540', '', ''),
-(17, '2017-03-13 05:25:44', '2017-03-13 05:25:44', 17, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', '', ''),
-(18, '2017-04-09 07:51:34', '2017-04-09 07:51:34', 18, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', '', ''),
-(19, '2017-04-09 02:26:04', '2017-04-09 02:26:04', 19, 'siva', 'siva', 'siva', 0, '2017-04-19', '2017-04-19', '9791233456', '9791233456', 'chennai'),
-(20, '2017-04-20 07:12:24', '2017-04-20 07:12:24', 20, 'Venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', '', ''),
-(21, '2017-04-20 07:48:51', '2017-04-20 08:35:53', 21, 'venkatesh', '', 'venkatesh', 1, '1990-04-21', '1970-01-01', '9791447542', '97914475400', ''),
-(22, '2017-04-21 07:46:41', '2017-04-21 07:46:41', 22, 'tesdsddssd', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', '', ''),
-(23, '2017-05-07 04:37:02', '2017-05-07 04:37:02', 24, 'Dhamodaran', 'venkatesh', 'Dhamodaran', 0, '1970-01-01', '1970-01-01', '', NULL, ''),
-(24, '2017-05-07 04:39:13', '2017-05-07 04:39:13', 25, 'dddfdfdffdfdfd', 'fdddfdffd', 'dddfdfdffdfdfd', 0, '1970-01-01', '1970-01-01', '', NULL, ''),
-(25, '2017-05-07 04:41:08', '2017-05-07 04:41:08', 26, 'ccvvccvcvvccvcv', '', 'ccvvccvcvvccvcv', 0, '1970-01-01', '1970-01-01', '', NULL, ''),
-(26, '2017-05-07 04:42:32', '2017-05-07 04:42:32', 27, 'venkatesh', '', 'venkatesh', 0, '1970-01-01', '1970-01-01', '1234567890', NULL, ''),
-(27, '2017-05-07 06:11:57', '2017-05-07 06:11:57', 28, 'Ragu', '', '', 0, '0000-00-00', '0000-00-00', '9791447533', NULL, ''),
-(28, '2017-05-07 06:14:35', '2017-05-07 06:14:35', 29, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447500', NULL, ''),
-(29, '2017-05-07 06:44:51', '2017-05-07 06:44:51', 30, 'venkatesh', 'venkatesh', 'venkatesh', 0, '2017-05-13', '2017-05-30', '8097914475', NULL, 'chennai'),
-(30, '2017-05-07 06:53:39', '2017-05-07 06:53:39', 31, 'Venkatesh', 'Damo', 'Venkatesh', 0, '1990-10-26', '1990-10-26', '9791407538', '9791407538', 'chennai'),
-(31, '2017-05-07 06:57:31', '2017-05-07 06:57:31', 32, 'Vignesh', 'kumar', 'Vignesh', 0, '1990-10-26', '1990-10-26', '9791407539', '9791407539', 'chennai'),
-(32, '2017-05-07 06:57:31', '2017-05-07 06:57:31', 33, 'Siva', 'shankar', 'Siva', 0, '1990-10-26', '1990-10-26', '9914875400', '9914875400', 'chennai'),
-(33, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 34, 'Hari', 'Haran', 'Hari', 0, '1990-10-26', '1990-10-26', '9790449541', '9790449541', 'chennai'),
-(34, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 35, 'Deva', 'Roy', 'Deva', 0, '1990-10-26', '1990-10-26', '9790447541', '9790447541', 'chennai'),
-(35, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 36, 'Venky', 'damo', 'Venky', 0, '1990-10-26', '1990-10-26', '9791487540', '9791487540', 'chennai'),
-(36, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 37, 'Damo', 'Damo', 'Damo', 0, '1990-10-26', '1990-10-26', '9791497541', '9791497541', 'Delhi'),
-(37, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 38, 'Ragu', 'Ragu', 'Ragu', 0, '1990-10-26', '1990-10-26', '9791447546', '9791447546', 'Delhi'),
-(38, '2017-05-07 06:57:32', '2017-05-07 06:57:32', 39, 'Shankar', 'Siva', 'Shankar', 0, '1990-10-26', '1990-10-26', '8989891228', '8989891228', 'Delhi'),
-(39, '2017-05-28 01:19:20', '2017-05-28 01:19:20', 40, 'venkatesh', 'venkatesh', 'venkatesh', 0, '2017-05-11', '2017-06-03', '9791447540', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(40, '2017-05-28 01:23:08', '2017-05-28 01:23:08', 41, 'Dhamodaran', 'venkatesh', 'Dhamodaran', 0, '2017-05-11', '2017-05-04', '9791445656', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(41, '2017-05-28 01:31:02', '2017-05-28 01:31:02', 42, 'venkatesh', 'venkatesh', 'venkatesh', 0, '2017-05-26', '2017-05-09', '9897891237', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(42, '2017-05-28 02:18:03', '2017-05-28 02:18:03', 43, 'test', '', 'test', 0, '2017-05-11', '2017-05-11', '9791447540', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(43, '2017-05-28 02:20:23', '2017-05-28 02:20:23', 44, 'test', 'venkatesh', 'test', 0, '2017-05-04', '2017-05-04', '9791447540', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(44, '2017-05-28 02:32:32', '2017-05-28 02:32:32', 45, 'venkatesh', 'venkatesh', 'venkatesh', 0, '1970-01-01', '1970-01-01', '9791447578', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(45, '2017-05-28 02:34:42', '2017-05-28 02:34:42', 46, 'venkatesh', 'venkatesh', 'venkatesh', 0, '2017-05-18', '2017-05-15', '9791447532', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(46, '2017-06-29 07:28:06', '2017-06-29 07:28:06', 2, 'venkatesh', 'venkatesh', 'venkatesh', 0, '1970-01-01', '1970-01-01', '9791447542', NULL, 'chennai'),
-(47, '2017-06-29 07:51:08', '2017-06-29 07:51:08', 38, 'Ragu', 'Ragu', 'Ragu', 0, '1990-10-26', '1990-10-26', '9791447546', NULL, 'Delhi'),
-(48, '2017-07-16 06:40:19', '2017-07-16 06:40:19', 47, 'suganya', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(49, '2017-07-23 08:44:24', '2017-07-23 08:44:24', 48, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(50, '2017-07-24 07:11:58', '2018-07-15 06:09:15', 49, 'venkatesh', 'venkatesh', '', 1, '2018-07-15', '0000-00-00', '9791447542', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
-(51, '2017-08-05 02:24:51', '2017-08-05 02:24:51', 50, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(52, '2017-11-11 09:16:43', '2017-11-11 09:16:43', 51, 'ddgg', '', '', 0, '0000-00-00', '0000-00-00', '4545544545', NULL, ''),
-(53, '2017-11-11 09:17:42', '2017-11-11 09:17:42', 52, 'ddgg', '', '', 0, '0000-00-00', '0000-00-00', '4545544545', NULL, ''),
-(54, '2017-11-11 09:18:06', '2017-11-11 09:18:06', 53, 'ddgg', '', '', 0, '0000-00-00', '0000-00-00', '4545544545', NULL, ''),
-(55, '2017-11-12 06:37:15', '2017-11-12 06:37:15', 54, 'chenani', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(56, '2017-11-12 06:39:48', '2017-11-12 06:39:48', 55, 'DFDFDFF', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(57, '2017-11-12 06:41:09', '2017-11-12 06:41:09', 56, 'DFDFDFF', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(58, '2017-11-12 06:41:36', '2017-11-12 06:41:36', 57, 'DFDFDFF', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(59, '2017-11-13 06:38:50', '2017-11-13 06:38:50', 58, 'sdffd', '', '', 0, '0000-00-00', '0000-00-00', '5665656567', NULL, ''),
-(60, '2017-12-25 06:14:13', '2017-12-25 06:14:13', 59, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(61, '2017-12-25 07:14:56', '2017-12-25 07:14:56', 60, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447543', NULL, ''),
-(62, '2017-12-25 07:16:19', '2017-12-25 07:16:19', 61, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '7878784532', NULL, ''),
-(63, '2017-12-25 07:24:10', '2017-12-25 07:24:10', 62, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447543', NULL, ''),
-(64, '2017-12-25 07:31:42', '2017-12-25 07:31:42', 63, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(65, '2017-12-25 07:33:00', '2017-12-25 07:33:00', 64, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(66, '2017-12-25 07:40:32', '2017-12-25 07:40:32', 65, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447534', NULL, ''),
-(67, '2017-12-25 07:44:34', '2017-12-25 07:44:34', 66, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(68, '2017-12-25 07:53:27', '2017-12-25 07:53:27', 67, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(69, '2017-12-25 08:31:44', '2017-12-25 08:31:44', 68, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '6789676789', NULL, ''),
-(70, '2017-12-25 08:34:34', '2017-12-25 08:34:34', 69, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '5757677666', NULL, ''),
-(71, '2017-12-25 02:29:44', '2017-12-25 02:29:44', 70, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '5656563456', NULL, ''),
-(72, '2017-12-25 02:31:51', '2017-12-25 02:31:51', 71, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '5656563456', NULL, ''),
-(73, '2017-12-25 02:35:08', '2017-12-25 02:35:08', 72, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(74, '2017-12-25 04:39:54', '2017-12-25 04:39:54', 73, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(75, '2017-12-25 04:58:27', '2017-12-25 04:58:27', 74, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(82, '2018-01-26 06:29:43', '2018-01-26 06:29:43', 81, 'test', '', '', 0, '0000-00-00', '0000-00-00', '8989891234', NULL, ''),
-(83, '2018-02-04 05:20:37', '2018-02-04 05:20:37', 82, 'Customer', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(84, '2018-02-11 05:15:16', '2018-02-11 05:15:16', 83, 'venkatesh', '', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(85, '2018-02-11 05:17:22', '2018-02-11 05:17:22', 84, 'venkatesh23', '', '', 0, '0000-00-00', '0000-00-00', '1234567890', NULL, ''),
-(86, '2018-02-11 10:25:26', '2018-02-11 10:25:26', 85, 'venkatesh', 'venkateshlast', '', 0, '0000-00-00', '0000-00-00', '9791447542', NULL, ''),
-(87, '2018-05-12 06:15:45', '2018-05-12 06:15:45', 86, 'sukin', '', 'sukin', 0, '2018-05-01', '2018-05-03', '9848104055', NULL, ''),
-(88, '2018-07-15 03:11:46', '2018-07-15 03:11:46', 87, 'Test', 'Test', 'Test', 0, '2018-07-15', '2018-07-15', '9848104059', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt');
+(1, '2018-07-22 00:00:00', '2018-08-12 06:06:07', 1, 'damo', 'venkatesh', 'Venkatesh', 1, '2018-07-24', '2018-07-30', '9791447542', '9791447542', 'chennai'),
+(2, '2018-07-22 06:58:41', '2018-07-22 04:40:17', 2, 'elakiya', 'sekar', '', 1, '1994-10-30', '0000-00-00', '9791447543', NULL, 'n0.28 mari amman koil street,vittalapuram,tinidivanam,villpuaram dt'),
+(3, '2018-07-22 07:48:02', '2018-08-15 06:47:37', 3, 'viji', 'lakshmi', '', 1, '2018-08-15', '0000-00-00', '9891447542', NULL, 'chennai');
 
 -- --------------------------------------------------------
 
@@ -19602,50 +16640,11 @@ CREATE TABLE `user_sender_ids` (
 --
 
 INSERT INTO `user_sender_ids` (`id`, `created`, `modified`, `sender_id`, `user_id`, `is_active`) VALUES
-(1, '2017-04-01 00:00:00', '2017-04-02 00:00:00', 'HM-ICICI', 13, 2),
-(2, '2017-04-02 07:45:53', '2017-04-02 07:45:53', 'HM-ICIC1', 13, 0),
-(4, '2017-04-02 07:50:56', '2017-04-02 07:50:56', 'HM-HDFC1', 13, 1),
-(5, '2017-04-02 07:51:22', '2017-04-02 07:51:22', 'HM-HDFC1', 13, 1),
-(6, '2017-04-02 07:52:03', '2017-04-02 07:52:03', 'HM-ICBI', 13, 1),
-(7, '2017-04-20 07:58:45', '2017-04-20 07:58:45', 'HM-HDFC', 20, 2),
-(8, '2017-04-20 07:59:49', '2017-04-20 07:59:49', 'HM-HDFC', 20, 1),
-(9, '2017-05-07 06:50:34', '2017-05-07 06:50:34', 'HM-DIAL1', 29, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vendors`
---
-
-CREATE TABLE `vendors` (
-  `id` bigint(20) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(1, '2018-07-22 04:58:11', '2018-07-22 04:58:11', 'DIALBE', 2, 0);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `accounts`
---
-ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `account_details`
---
-ALTER TABLE `account_details`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `account_types`
---
-ALTER TABLE `account_types`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `advertisements`
@@ -19698,9 +16697,21 @@ ALTER TABLE `advertisment_comments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `advertisment_customers`
+--
+ALTER TABLE `advertisment_customers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `advertisment_customer_bills`
 --
 ALTER TABLE `advertisment_customer_bills`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `advertisment_customer_bill_details`
+--
+ALTER TABLE `advertisment_customer_bill_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -19719,12 +16730,6 @@ ALTER TABLE `advertisment_customer_bill_reward_rules`
 -- Indexes for table `advertisment_customer_lists`
 --
 ALTER TABLE `advertisment_customer_lists`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `advertisment_customer_products`
---
-ALTER TABLE `advertisment_customer_products`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -19755,6 +16760,18 @@ ALTER TABLE `advertisment_images`
 -- Indexes for table `advertisment_phones`
 --
 ALTER TABLE `advertisment_phones`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `advertisment_products`
+--
+ALTER TABLE `advertisment_products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `advertisment_store_products`
+--
+ALTER TABLE `advertisment_store_products`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -19847,18 +16864,6 @@ ALTER TABLE `city_images`
 -- Indexes for table `claim_my_bussiness`
 --
 ALTER TABLE `claim_my_bussiness`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `commissions`
---
-ALTER TABLE `commissions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `commission_types`
---
-ALTER TABLE `commission_types`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -20049,42 +17054,6 @@ ALTER TABLE `plan_order`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `promotional_payment_states`
---
-ALTER TABLE `promotional_payment_states`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `promotional_products`
---
-ALTER TABLE `promotional_products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `promotional_product_trees`
---
-ALTER TABLE `promotional_product_trees`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `promotional_product_types`
---
-ALTER TABLE `promotional_product_types`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `promotion_payment_types`
---
-ALTER TABLE `promotion_payment_types`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `remainders`
 --
 ALTER TABLE `remainders`
@@ -20112,6 +17081,12 @@ ALTER TABLE `remainder_types`
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `shorten_url`
+--
+ALTER TABLE `shorten_url`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -20146,21 +17121,9 @@ ALTER TABLE `states`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `subscriptions`
---
-ALTER TABLE `subscriptions`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_account_details`
---
-ALTER TABLE `user_account_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -20182,120 +17145,114 @@ ALTER TABLE `user_sender_ids`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `vendors`
---
-ALTER TABLE `vendors`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `accounts`
---
-ALTER TABLE `accounts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `account_details`
---
-ALTER TABLE `account_details`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `account_types`
---
-ALTER TABLE `account_types`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id for listings', AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id for listings', AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `advertisments_customers_campaign`
 --
 ALTER TABLE `advertisments_customers_campaign`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `advertisments_customers_campaign_list`
 --
 ALTER TABLE `advertisments_customers_campaign_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=445;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `advertisments_customers_campaign_tracking`
 --
 ALTER TABLE `advertisments_customers_campaign_tracking`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `advertisment_comments`
 --
 ALTER TABLE `advertisment_comments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `advertisment_customers`
+--
+ALTER TABLE `advertisment_customers`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `advertisment_customer_bills`
 --
 ALTER TABLE `advertisment_customer_bills`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `advertisment_customer_bill_details`
+--
+ALTER TABLE `advertisment_customer_bill_details`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `advertisment_customer_bill_rewards`
 --
 ALTER TABLE `advertisment_customer_bill_rewards`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `advertisment_customer_bill_reward_rules`
 --
 ALTER TABLE `advertisment_customer_bill_reward_rules`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `advertisment_customer_lists`
 --
 ALTER TABLE `advertisment_customer_lists`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
---
--- AUTO_INCREMENT for table `advertisment_customer_products`
---
-ALTER TABLE `advertisment_customer_products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `advertisment_customer_remainders`
 --
 ALTER TABLE `advertisment_customer_remainders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `advertisment_customer_service`
 --
 ALTER TABLE `advertisment_customer_service`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `advertisment_enquiry_list`
 --
 ALTER TABLE `advertisment_enquiry_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `advertisment_images`
 --
 ALTER TABLE `advertisment_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `advertisment_phones`
 --
 ALTER TABLE `advertisment_phones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `advertisment_products`
+--
+ALTER TABLE `advertisment_products`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `advertisment_store_products`
+--
+ALTER TABLE `advertisment_store_products`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `advertisment_views`
 --
 ALTER TABLE `advertisment_views`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=310;
 --
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `blog_category`
 --
@@ -20315,7 +17272,7 @@ ALTER TABLE `calendar_events`
 -- AUTO_INCREMENT for table `campaign_interset`
 --
 ALTER TABLE `campaign_interset`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `camping_types`
 --
@@ -20330,12 +17287,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `category_listing`
 --
 ALTER TABLE `category_listing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `city_images`
 --
@@ -20345,17 +17302,7 @@ ALTER TABLE `city_images`
 -- AUTO_INCREMENT for table `claim_my_bussiness`
 --
 ALTER TABLE `claim_my_bussiness`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `commissions`
---
-ALTER TABLE `commissions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `commission_types`
---
-ALTER TABLE `commission_types`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `contact_reply`
 --
@@ -20365,7 +17312,7 @@ ALTER TABLE `contact_reply`
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `countries`
 --
@@ -20375,27 +17322,27 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `coupons_category`
 --
 ALTER TABLE `coupons_category`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `coupons_category_list`
 --
 ALTER TABLE `coupons_category_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `coupons_codes`
 --
 ALTER TABLE `coupons_codes`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `coupons_price_list`
 --
 ALTER TABLE `coupons_price_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `coupon_download_histroy`
 --
@@ -20415,7 +17362,7 @@ ALTER TABLE `customers_sms_notification_types`
 -- AUTO_INCREMENT for table `customer_import_history`
 --
 ALTER TABLE `customer_import_history`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `customer_offers_list`
 --
@@ -20445,12 +17392,12 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `jobs_category_list`
 --
@@ -20460,7 +17407,7 @@ ALTER TABLE `jobs_category_list`
 -- AUTO_INCREMENT for table `keyword_enquiry`
 --
 ALTER TABLE `keyword_enquiry`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `keyword_enquiry_mail`
 --
@@ -20475,7 +17422,7 @@ ALTER TABLE `main_category`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
 --
 -- AUTO_INCREMENT for table `notification_type`
 --
@@ -20495,7 +17442,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `plans`
 --
@@ -20505,52 +17452,27 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT for table `plan_clicks`
 --
 ALTER TABLE `plan_clicks`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `plan_order`
 --
 ALTER TABLE `plan_order`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `promotional_payment_states`
---
-ALTER TABLE `promotional_payment_states`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `promotional_products`
---
-ALTER TABLE `promotional_products`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `promotional_product_trees`
---
-ALTER TABLE `promotional_product_trees`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `promotional_product_types`
---
-ALTER TABLE `promotional_product_types`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `remainders`
 --
 ALTER TABLE `remainders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `remainder_histroy`
 --
 ALTER TABLE `remainder_histroy`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `remainder_settings`
 --
 ALTER TABLE `remainder_settings`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `remainder_types`
 --
@@ -20561,6 +17483,11 @@ ALTER TABLE `remainder_types`
 --
 ALTER TABLE `settings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `shorten_url`
+--
+ALTER TABLE `shorten_url`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `site_links`
 --
@@ -20580,47 +17507,32 @@ ALTER TABLE `sms_packages`
 -- AUTO_INCREMENT for table `sms_plan_clicks`
 --
 ALTER TABLE `sms_plan_clicks`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2379;
 --
--- AUTO_INCREMENT for table `subscriptions`
---
-ALTER TABLE `subscriptions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
---
--- AUTO_INCREMENT for table `user_account_details`
---
-ALTER TABLE `user_account_details`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_logins`
 --
 ALTER TABLE `user_logins`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1197;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `user_profiles`
 --
 ALTER TABLE `user_profiles`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_sender_ids`
 --
 ALTER TABLE `user_sender_ids`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `vendors`
---
-ALTER TABLE `vendors`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

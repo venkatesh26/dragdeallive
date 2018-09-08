@@ -10,7 +10,7 @@ class Advertisment_customers_bills_model extends CI_Model {
 	############### Order Details ###################
 	public function my_order_detail($order_id, $customer_id){
 		$this->db->select('cities.name as city, areas.name as area, advertisment_customer_bills.id,advertisment_customer_lists.first_name,advertisment_customer_lists.last_name, advertisment_customer_lists.mobile_number, advertisment_customer_lists.email, advertisment_customer_bills.parent_user_id,advertisment_customer_bills.id,advertisment_customer_bills.created,advertisment_customer_bills.amount, advertisment_customer_lists.address, advertisment_customer_bills.order_id, advertisements.name as shop_name, advertisements.email AS contact_email, advertisements.contact_number as contact_phone_number,advertisements.address_line as contact_address',false);
-		$this->db->join('advertisment_customer_lists','advertisment_customer_bills.customer_id=advertisment_customer_lists.id');
+		$this->db->join('advertisment_customer_lists','advertisment_customer_bills.customer_id=advertisment_customer_lists.customer_id');
 		$this->db->join('cities','cities.id=advertisment_customer_lists.preferred_city_id', 'LEFT');
 		$this->db->join('areas','areas.id=advertisment_customer_lists.preferred_area_id', 'LEFT');
 		$this->db->join('advertisements','advertisements.user_id=advertisment_customer_lists.parent_user_id', 'LEFT');
@@ -32,13 +32,13 @@ class Advertisment_customers_bills_model extends CI_Model {
 			$query = $this->db->get();			
 			$result['product_order_details']=$query->result_array();
 		}
-		return $result;
+		return $result;	
 	}
 	
 	############### Order Details ###################
 	public function order_detail($order_id, $userId){
 		$this->db->select('cities.name as city, areas.name as area, advertisment_customer_bills.id,advertisment_customer_lists.first_name,advertisment_customer_lists.last_name, advertisment_customer_lists.mobile_number, advertisment_customer_lists.email, advertisment_customer_bills.parent_user_id,advertisment_customer_bills.id,advertisment_customer_bills.created,advertisment_customer_bills.amount, advertisment_customer_lists.address, advertisment_customer_bills.order_id',false);
-		$this->db->join('advertisment_customer_lists','advertisment_customer_bills.customer_id=advertisment_customer_lists.id');
+		$this->db->join('advertisment_customer_lists','advertisment_customer_bills.customer_id=advertisment_customer_lists.customer_id');
 		$this->db->join('cities','cities.id=advertisment_customer_lists.preferred_city_id', 'LEFT');
 		$this->db->join('areas','areas.id=advertisment_customer_lists.preferred_area_id', 'LEFT');
 		$this->db->where('advertisment_customer_bills.id',$order_id);
