@@ -137,8 +137,8 @@ class Advertisment_store_products_model extends CI_Model {
 	################## Update Products ##############
 	public function update_products($userId, $id){
 
-	    $price=$_POST['price'];
-		$product=$_POST['product_name'];
+	    	$price=$_POST['price'];
+		$product=$_POST['name'];
 		$is_active=0;
 		if(isset($_POST['is_active']) && $_POST['is_active']!=''){
 			$is_active=1;		
@@ -168,7 +168,7 @@ class Advertisment_store_products_model extends CI_Model {
 		$this->db->join('advertisment_products','advertisment_products.id=advertisment_store_products.product_id');
 		$this->db->from('advertisment_store_products');
 		$this->db->order_by('advertisment_store_products.created','DESC');
-		$this->db->group_by('advertisment_store_products.product_id');
+		//$this->db->group_by('advertisment_store_products.product_id');
 		$this->db->limit($limit_start, $limit_end);
 		$query = $this->db->get();			
 		$result=$query->result_array();

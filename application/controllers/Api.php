@@ -14,26 +14,27 @@ class Api extends CI_Controller {
 	
 	########### Dashboard List #############
 	public function getRevenueInfomation($user_id=null){
-				
+		
 		$response['code']=500;
 		$response['message']="Invalid Request";	
 		$response['status']=FALSE;
-        if($user_id!=''){		
+		if($user_id!=''){		
 			$response['data']=getCustomerBillInformation($user_id);
 			$response['code']=200;
 			$response['status']=TRUE;
+			$response['message']="Success";	
 		}
 		echo json_encode($response);
-        die;
+		die;
 	}
 	
 	########### Forgot Password #############
 	public function forgotpassword(){
-		
 		$response['code']=500;
 		$response['message']="Invalid Request";		
 		$response['status']=false;
 		if($_POST) {
+
 			$this->form_validation->set_rules('email', 'Email','trim|required|valid_email');
 			if($this->form_validation->run() == true) {
 				if(!$this->users_model->valid_user_type($this->input->post('email'))) {
@@ -131,7 +132,7 @@ class Api extends CI_Controller {
 	##########Cusomer Change Password################# 
 	public function change_password()  {
 		$response['code']=500;
-		$response['message']="Invalid Request1";	
+		$response['message']="Invalid Request";	
 		$response['status']=FALSE;		
 		if($_POST) {
 			$response['code']=200;
@@ -159,7 +160,7 @@ class Api extends CI_Controller {
 		$response['code']=500;
 		$response['message']="Invalid Request";	
 		$response['status']=FALSE;
-        if($user_id!=''){		
+    if($user_id!=''){		
 			$response['data']=$this->advertisment_store_products_model->get_all_products_list($user_id);
 			$response['code']=200;
 			$response['status']=TRUE;
@@ -206,7 +207,7 @@ class Api extends CI_Controller {
 	}
 
 	####################### Product Add Api Service ################
-	public function addProduct(){
+	public function addbulkProduct(){
         $response['code']=500;
 		$response['message']="Invalid Request";		
 		$response['status']=false;
@@ -245,8 +246,47 @@ class Api extends CI_Controller {
 		echo json_encode($response);
         die;	
 	}
+
+	####################### Product Add Api Service ################
+	public function addProduct(){
+		$response['code']=500;
+		$response['message']="Invalid Request";		
+		$response['status']=false;
+		if($_POST) {
+			$response['code']=200;			
+			$this->form_validation->set_rules('name',"Name",'trim|required');
+			$this->form_validation->set_rules('price',"price",'trim|required');
+			$this->form_validation->set_rules('user_id',"User ID",'trim|required');
+			if($this->form_validation->run() == true) {
+				$user_id=$this->input->post('user_id');
+				$product=$_POST['name'];
+				$price=$_POST['price'];
+				$product_id=$this->advertisment_products_model->productFindOrSave($product, $price);
+				if(!$this->advertisment_store_products_model->check_product_exists($user_id, $product_id)){
+						$advertisment_store_products=array(
+							'created'=>date('Y-m-d h:i:s'),
+							'user_id'=>$user_id,
+							'product_id'=>$product_id,
+							'price'=>$price,
+							'is_active'=>1,
+						);
+						$this->db->insert('advertisment_store_products', $advertisment_store_products);		
+				}
+				$response['message']="Product Saved Successfully";	
+				$response['status']=TRUE;				
+			}
+			else{
+				$errors=$this->form_validation->get_json();
+				$errors=json_decode($errors, true);
+				$response['errors']=$errors['errorfields'];
+				
+			}
+		}
+		echo json_encode($response);
+    die;	
+	}
    
-    ############## Update Product #############################
+  ############## Update Product #############################
 	public function updateProduct(){
 		$response['code']=500;
 		$response['message']="Invalid Request";		
@@ -254,7 +294,7 @@ class Api extends CI_Controller {
 		if($_POST) {
 			$response['code']=200;
 			$this->form_validation->set_rules('name',"Name",'trim|required');
-			$this->form_validation->set_rules('amount',"amount",'trim|required');
+			$this->form_validation->set_rules('price',"price",'trim|required');
 			$this->form_validation->set_rules('user_id',"User ID",'trim|required');
 			$this->form_validation->set_rules('product_id',"Product ID",'trim|required');
 			if($this->form_validation->run() == true) {
@@ -274,7 +314,7 @@ class Api extends CI_Controller {
         die;	
 	}	
 	
-    public function getProductDetails($product_id=null, $user_id=null){
+   public function getProductDetails($product_id=null, $user_id=null){
 		$response['code']=500;
 		$response['message']="Invalid Request";	
 		$response['status']=FALSE;
@@ -326,7 +366,7 @@ class Api extends CI_Controller {
 			}
 		}
 		echo json_encode($response);
-        die;
+    die;
 	}
      
 	###################### Customer Add #####################

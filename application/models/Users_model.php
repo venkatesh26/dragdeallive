@@ -276,7 +276,7 @@ class Users_model extends CI_Model {
 	function check_user_available($email,$uid) {
 		$this->load->helper('date');
 		$this->db->where('email', $email);
-		$this->db->where_in('user_type', array('1','4', '3'));
+		$this->db->where_in('user_type', array('1', '2', '4', '3'));
 		$query = $this->db->get('users');
 	
 		if($query->num_rows() == 1) { 
